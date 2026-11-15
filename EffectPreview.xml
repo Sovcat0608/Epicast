@@ -1,0 +1,9 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/">
+    <Actor name="EpicastLibraryActorTemplate" virtual="true">
+        <Scripts>
+            <OnModelLoaded>
+                if self.epicastLibraryLoaded then self.epicastLibraryLoaded() end
+            </OnModelLoaded>
+        </Scripts>
+    </Actor>
+</Ui>

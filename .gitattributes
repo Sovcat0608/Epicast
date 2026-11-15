@@ -1,0 +1,4 @@
+# Keep release payload bytes identical across checkouts and package verification.
+* -text
+*.tga binary
+*.zip binary

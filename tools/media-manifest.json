@@ -1,0 +1,74 @@
+{
+  "Media/ArcaneScrollBookCASSize192.tga": {
+    "bytes": 262162,
+    "sha256": "dcc5d2f07f9c68d90a30111b1771682d9ba9545b106a8dd4cb1a9619865055d6"
+  },
+  "Media/ArcaneScrollBookCASSize288.tga": {
+    "bytes": 1048594,
+    "sha256": "8926d74a241247f9c271add0fc5586dcc4ca7d7bb90b9a2b59535b079f0739cc"
+  },
+  "Media/ArcaneScrollBookCASSize384.tga": {
+    "bytes": 1048594,
+    "sha256": "a99710db451ef45bdbba67cbe8d7a56dd82d2334fe21a4025297226bd1c9188e"
+  },
+  "Media/ArcaneScrollBookCASSize480.tga": {
+    "bytes": 1048594,
+    "sha256": "4868d1b78ec1a83d0d149e09934447bd7dcc3a4b59395cc9bb446d9221aed250"
+  },
+  "Media/ArcaneScrollBookCASSize576.tga": {
+    "bytes": 4194322,
+    "sha256": "c53a0858810ca109423bf10501621cecdc38ad9965384aee83597aa8c940e03d"
+  },
+  "Media/ArcaneScrollBookCASSize768.tga": {
+    "bytes": 4194322,
+    "sha256": "22518a58c075afe3479fcfe57429c408c44225e641012fdb2e83a58c633dafce"
+  },
+  "Media/ArcaneScrollBookCASSize887.tga": {
+    "bytes": 4194322,
+    "sha256": "121e6921bf6b7fc880ac5c33ddc47717ebc7a1322a55615c7dc82828346a89f4"
+  },
+  "Media/ArcaneScrollEmissionAtlas.tga": {
+    "bytes": 8388626,
+    "sha256": "a9068dd397e5a9ea330d4450936fa769be00ea006dec91bf96dd7aac34c72bb8"
+  },
+  "Media/ArcaneSigilCASSize256.tga": {
+    "bytes": 262162,
+    "sha256": "1d501f44e46c10e48c4d1b20cb0e2a441710c8c67012ede73a03116813e47e94"
+  },
+  "Media/ArcaneTomeBookCASSize192.tga": {
+    "bytes": 262162,
+    "sha256": "570ed3183fe5ef82bdfd7706c53e37e673f4eb20d06f5efeae925843b94cfb66"
+  },
+  "Media/ArcaneTomeBookCASSize288.tga": {
+    "bytes": 1048594,
+    "sha256": "56035aea7c48d87237ae937efcc40ef90a8a8b164397d9939d6281553651f8ed"
+  },
+  "Media/ArcaneTomeBookCASSize384.tga": {
+    "bytes": 1048594,
+    "sha256": "e724969e9cd9b59a430164ac37a357fed7a5568ed29ce374c7af4224680d7a78"
+  },
+  "Media/ArcaneTomeBookCASSize480.tga": {
+    "bytes": 1048594,
+    "sha256": "898409e95abeadf56851461236f25aa5f9bd7b69da5a52391130cdc085ae960a"
+  },
+  "Media/ArcaneTomeBookCASSize576.tga": {
+    "bytes": 4194322,
+    "sha256": "f26669333c84d77e8ea9d3013ba0a61c8c2d63bc4b9138664f93f2c611327605"
+  },
+  "Media/ArcaneTomeBookCASSize768.tga": {
+    "bytes": 4194322,
+    "sha256": "e5ec40f7de0f69335286c60c32a6ad00bdbbf6918594a499a3f87eb2dbcaf31d"
+  },
+  "Media/ArcaneTomeBookCASSize887.tga": {
+    "bytes": 4194322,
+    "sha256": "774e89365576354fe055b7749f7a1fc6148f743bc2a83b4ebc429c5d385e2f29"
+  },
+  "Media/ArcaneTomeEmissionAtlas.tga": {
+    "bytes": 8388626,
+    "sha256": "fd5237bb0d4c5c0711613605a6b437b490b2b7759ff7c73c5f8a26e9f1faa59e"
+  },
+  "Media/EpicastIcon.tga": {
+    "bytes": 65554,
+    "sha256": "15462b3949d99a87fcd3d2e632b8a0d943631a7436c3b441cd0098d48588e0e4"
+  }
+}

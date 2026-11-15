@@ -1,0 +1,10 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/">
+    <!-- Plain actor: load completion only, no Blizzard mixin or Lua OnUpdate. -->
+    <Actor name="EpicastSmokeActorTemplate" virtual="true">
+        <Scripts>
+            <OnModelLoaded>
+                if self.epicastOnModelLoaded then self.epicastOnModelLoaded() end
+            </OnModelLoaded>
+        </Scripts>
+    </Actor>
+</Ui>

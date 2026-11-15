@@ -1,6 +1,8 @@
 # Epicast handover
 
-Prepared 2026-11-15. Current build: **0.1.0-beta.2**, authorized for GitHub beta publication; initial release: **0.1.0-beta.1**. Saved-settings schema **1**, WoW Forever interface **16001**.
+Latest live feedback: the user confirmed Druid Clearcasting works after changing both layers from Proc to Buff. Their screenshot shows native 16864/16870 active and both effects playing. They requested the same for **Missile Barrage**; verified beta.7 already has the shared reader and both Arcane defaults use Buff, with installed/source hashes matching and the full suite passing. Use While buff active / aura 400589 and visible native Barrage tracking. No new runtime change or build was needed for that mapping, no SavedVariables were accessed, and Mage live acceptance is still pending. See `docs/druid-clearcasting.md` follow-up.
+
+Prepared 2026-11-15. Current built/installed version: **0.1.0-beta.7**; latest published release: **0.1.0-beta.7**. Saved-settings schema **2**, WoW Forever interface **16001**. Added Druid Clearcasting/Omen of Clarity to the native buff bridge after 16870 failed with buff/proc signals. Buff bindings now match the Druid 16864/16870 native tracker; snapshots are per proc, diagnostics are profile-specific and studio guidance explains visible native tracking. Screenshot showed direct aura errors in combat and both native viewers hidden. Live acceptance remains pending; see `docs/druid-clearcasting.md`. Beta.6's **8,723 Forever-filtered models** and placeholder safeguards remain unchanged, as do approved Druid/Arcane artwork and existing saved layers. See `docs/forever-effects.md`, `docs/effect-library.md` and `docs/druid-sisters.md`. Beta.3's tabs/Barrage changes remain included; live Barrage acceptance is still pending.
 
 ## Delivery and current status
 
@@ -10,16 +12,17 @@ The requested sequence was followed: the small EndCapper Arcane beta was built, 
 | --- | --- |
 | Friends' EndCapper Arcane-only beta | `F:/Work/WoW Addons/EndCapper/artifacts/arcane-only-beta/EndCapper-Arcane-Mage-Beta-1.zip` |
 | Independent Epicast source | `F:/Work/WoW Addons/Epicast` |
-| Latest local test ZIP | `dist/Epicast-0.1.0-beta.2.zip` |
+| Latest local test ZIP | `dist/Epicast-0.1.0-beta.7.zip` |
+| Beta.7 release | `https://github.com/Sovcat0608/Epicast/releases/tag/v0.1.0-beta.7` |
 | Beta.2 release | `https://github.com/Sovcat0608/Epicast/releases/tag/v0.1.0-beta.2` |
 | Published beta.1 | `https://github.com/Sovcat0608/Epicast/releases/tag/v0.1.0-beta.1` |
 | Exact package size, SHA256 and file count | `dist/package-verification.json` |
 | Approved media hashes | `tools/media-manifest.json` |
 | This handover | `handover.md` |
 
-Epicast contains 20 Lua modules, two XML actor templates and 18 TGA assets. The installable ZIP contains 45 files including its TOC, player README, changelog and license notices. Its compressed size is approximately 7 MB. Development dependencies, tests, source tooling, this handover, old artwork and historical documents are excluded from the installable ZIP.
+Epicast contains 21 Lua modules, two XML actor templates and 30 TGA assets. The beta.7 ZIP contains 58 files including its TOC, player README, changelog and license notices, totaling 13,246,158 bytes; SHA256 `CBD24D6D64378159464E3CC00F6581AA3F96CD519132199EEE2D3BFBF3F1A3AC`. Development dependencies, tests, source tooling, approved source PNGs, this handover and historical documents are excluded from the installable ZIP.
 
-Local integration, Lua 5.1 parsing, scope and media audits pass. Packaging verifies every archived entry against its source SHA256. The previous scan-fix beta is installed in `D:/World of Warcraft/_forever_/Interface/AddOns/Epicast`. The Cooldown Manager beta.1 was subsequently pushed and published to GitHub under user instruction; the user then made the repository public. The About sidebar links to the releases page because GitHub does not feature beta prereleases as Latest. Beta.2 addresses a reproducible trigger-engine failure path after the friend reported all effects stopped; the user subsequently authorized its GitHub publication. The affected client's error/restart evidence remains pending. See `docs/release-0.1.0-beta.2.md` for release identity and asset evidence. No game UI automation or SavedVariables editing was performed.
+Local integration, Lua 5.1 parsing, scope and media audits pass, including Clearcasting repeated cycles, per-proc snapshot isolation, optional-reader failure and unchanged healing triggers, plus all earlier library/artwork regressions. Packaging verifies every archived entry against its source SHA256. Beta.7 is installed in `D:/World of Warcraft/_forever_/Interface/AddOns/Epicast`: 58 installed payload hashes verified, 6 files changed, replaced addon files backed up under `artifacts/install-20261115-224715`. All 30 artwork assets, catalog and rendering modules remain unchanged from beta.6. No SavedVariables access or game UI automation. The user subsequently authorized pushing and publishing beta.7; see `docs/release-0.1.0-beta.7.md` for its release identity. The previously installed beta.7 ZIP is published unchanged. The friend confirmed beta.2 restored other triggers, but Barrage remains unconfirmed after the subsequent local reader changes.
 
 ## Product contract
 
@@ -36,18 +39,18 @@ Each role occupies exactly one location in the saved configuration, even if that
 
 **Role content follows the role; placement follows the location.** A tuned spell effect stays with Spellcasting when locations swap. Central gap, Edge inset, individual drag offsets and active checkboxes stay with their physical locations. The location's Swap sisters flag remains with that location.
 
-Only the approved **Arcane Tome / Arcane Scroll** design is included. The optional resource pair currently reuses this art: left Health, right Mana by default. This was a stated implementation assumption, not a newly commissioned resource art set. Resource emissions respond to level and an optional small meter shows the percentage. The base artwork remains readable. No additional art was generated.
+Approved runtime designs are **Arcane Tome / Arcane Scroll** and **Moonwarden / Groveheart**. Druids automatically use the latter for Spellcasting in either physical location, with a separate tuning bank. No Druid spell-effect presets are included; developer-authored bindings remain available. The optional Resources pair retains its existing Arcane art and class-filter behavior: left Health, right Mana by default. Resource emissions respond to level and an optional small meter shows the percentage. Dedicated Resources artwork remains deferred.
 
-Mage-only visibility is on by default. This is class gating, not specialization switching: all Mage specializations can show this single design. The `E.Designs.arcane` metadata identifies the intended class/spec but is not a completed multi-spec selection system.
+The previous Mage-only visibility flag now reads **Restrict Arcane artwork to Mages** and remains on by default. It still applies to Arcane Spellcasting/Resources. Druid Spellcasting is always selected on Druids only, independent of that flag. Class designs apply across specializations/forms; this is not a per-specialization profile system. The older Arcane-only renderer/calibration contracts below remain unchanged.
 
 ## Starting and testing
 
 1. Fully exit WoW, extract `Epicast` into the game's `Interface/AddOns` directory, restart WoW and enable it.
 2. Open `/epicast` or `/epic`. `/epicast dev` toggles developer controls and opens options.
-3. Enable the desired locations. Use the role buttons or **Swap spell / resource locations** to move their content.
-4. Select Central or Edge, then a sister. Drag the outlines or use set size, separation, offset and height controls.
+3. Select **Central set** or **Edge set**, enable that location and choose its role from the explicit menu. **Swap roles between sets** moves both roles atomically.
+4. Select a sister. Central exposes size/separation/position/height; Edge exposes size/inset/height. Each tab remembers its selected sister; resource and spell controls follow the current role.
 5. Save commits the complete configuration. Cancel or closing options discards unsaved previews. Save keeps the panel open with a new clean draft.
-6. In developer mode, **Open effects** opens the Arcane catalog and effect studio. Custom artwork controls are separate from native effect controls and can dock in the studio.
+6. In developer mode, **Edit sister's effects** opens the full native model catalog and effect studio. Search names, paths, aliases or numeric FileDataIDs. A preview must load before adding it. Custom artwork controls remain separate from native effect controls.
 
 Both addons can load together because names, saved settings and templates are independent. Their artwork may overlap if both are enabled. Epicast does not automatically change EndCapper's selections or hide its frames.
 
@@ -76,10 +79,11 @@ The fork copies the 17 approved Arcane artwork textures without resampling, rege
 | `BoundEffects.lua` | Public spell/aura/proc events, state/burst lifetimes, segment transitions and test triggers |
 | `AddedEffects.lua` | Per-instance native layer pool and binding configuration |
 | `MageBooks.lua` | Arcane-only book/scroll textures, native hover and registered emission atlas playback |
+| `DruidSisters.lua` | Approved Druid sprites, independent native hover/phase, size-specific texture/UV selection |
 | `Seal.lua` | Arcane scroll's custom rotating seal and its delayed hover phase |
 | `Resources.lua` | Resource reads, event updates, emission intensity and optional meters |
-| `EffectCatalog.lua` | Eleven allowed native effect records |
-| `EffectLibrary.lua` | Search and catalog access; rejects IDs outside this beta's scope |
+| `EffectCatalog.lua` | 8,723 Forever-filtered spell/particle/supporting world models and 32 preview calibrations |
+| `EffectLibrary.lua` | Lazy name/path/alias search and direct FileDataID lookup |
 | `EffectAnimations.lua` | Known animation segment durations for six of the allowed models |
 | `EffectAuthoring.lua` | Static/Bound creation and declarative binding defaults |
 | `EffectPreview.xml`, `EffectPreview.lua` | Independent preview actor, fitting and segment playback |
@@ -101,7 +105,7 @@ Abbreviated schema:
 
 ```lua
 EpicastDB = {
-  version = 1,
+  version = 2,
   hideBlizzard = false,
   classOnly = true,
   sets = {
@@ -113,11 +117,12 @@ EpicastDB = {
   content = {
     spells = { left=sideConfig, right=sideConfig },
     resources = { left=sideConfig, right=sideConfig },
+    druid = { left=druidSideConfig, right=druidSideConfig },
   },
 }
 ```
 
-A side config contains its Arcane art ID, role, size, facing, effects/native flags, emission settings, scroll seal settings, optional resource/meter fields and a flat `addedEffects` array. Resource configs forcibly strip binding records and normalize layers to Static. Explicit empty effect arrays remain empty; only missing arrays initialize defaults. Unknown art/model IDs are discarded or replaced with the appropriate Arcane default. Numeric input is bounded and rejects NaN/infinity. At most 16 native layers are accepted per sister.
+A side config contains its approved art ID, role, size, facing, effects/native flags, optional emission/seal/resource settings and a flat `addedEffects` array. Resource configs forcibly strip binding records and normalize layers to Static. Explicit empty effect arrays remain empty; only missing arrays initialize defaults. Invalid artwork IDs revert to the appropriate class/role default. Native model IDs accept the full integer FileDataID range 1–4,294,967,295, including unlisted but successfully previewed assets. Other numeric inputs remain bounded and reject NaN/infinity. At most 16 native layers are accepted per sister.
 
 `E.Begin` creates a normalized draft; `E.Config` returns draft or saved state; `E.HasChanges` compares normalized settings; `E.Commit` writes only EpicastDB; `E.Cancel` drops the draft. Higher saved schema versions leave this build inactive instead of silently downgrading settings.
 
@@ -141,7 +146,7 @@ Media inventory includes seven square size variants (192, 288, 384, 480, 576, 76
 
 ## Native effect defaults and binding behavior
 
-The model whitelist contains eleven IDs. Thirteen default placements use them:
+The unchanged Arcane defaults use eleven native model IDs in thirteen placements. These no longer restrict the effect library:
 
 | Sister | Effect / ID | Default behavior |
 | --- | --- | --- |
@@ -250,7 +255,7 @@ Only Fengari and luaparse are development dependencies. None are installed into 
 
 `tools/test.cjs` parses all 20 modules as Lua 5.1, then loads them in real TOC order under a UI/game-event mock. Tests run real option, studio and renderer handlers. Covered cases include fresh defaults; all assignment/activation combinations; duplicate-role repair; content-following swaps; Save/Cancel; resource changes and restricted data; authoring bindings/segments; resource binding rejection; repeated buffs and native Cooldown Manager detection; cast/channel/pulse events; interruption; combat deferral; hide/restore; independent settings and frames; inherited animation settings; manual test isolation; stale timer cancellation; disabled-set events; empty arrays; malformed numbers; and individual drag rollback.
 
-`tools/audit.cjs` checks that every runtime Lua/XML file is in the TOC, checks independent names and excluded legacy names, rejects dynamic script execution, verifies the eleven-model catalog, and validates every approved texture's hash, byte length and uncompressed 32-bit TGA format.
+`tools/audit.cjs` checks that every runtime Lua/XML file is in the TOC, checks independent names and excluded legacy code, rejects dynamic script execution, verifies the generated full-catalog manifest/uniqueness/format, and validates every approved texture's hash, byte length and uncompressed 32-bit TGA format.
 
 `tools/Package.ps1` uses a positive file allowlist from the TOC, five metadata files and the media manifest. It checks archive entry count and each entry's SHA256 against its source, then writes `dist/package-verification.json`. It does not install, publish, access SavedVariables or invoke Git. Rerun tests/audit before packaging after any change. For deliberate asset changes, review the new source before updating the media manifest; do not regenerate the manifest merely to silence a mismatch.
 

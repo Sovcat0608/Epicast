@@ -6,7 +6,7 @@ local overlay={}
 local lastEvent="initialization"
 local auraEvents=0
 local spellEvents=0
-local triggerRevision="0.1.0-beta.2"
+local triggerRevision="0.1.0-beta.7"
 local bridgeError
 local buffPollPending,dead=false,false
 local buffBatch,buffSnapshot=false,nil
@@ -28,14 +28,16 @@ end
 local function cooldownBinding(b)
     if not b or b.kind~="buff" then return false end
     if type(E.IsCooldownBuffBinding)~="function" then return false,"module missing" end
-    local ok,value=pcall(E.IsCooldownBuffBinding,b)
+    local ok,value,key=pcall(E.IsCooldownBuffBinding,b)
     if not ok then rememberBridgeError(value);return false,"binding error" end
     if not public(value) then return false,"restricted" end
-    return value==true
+    if value~=true then return false end
+    if not public(key) then return false,"restricted" end
+    return true,type(key)=="string" and key or "barrage"
 end
-local function readCooldownBuff()
+local function readCooldownBuff(key)
     if type(E.ReadCooldownBuff)~="function" then return nil,"module missing" end
-    local ok,value,status=pcall(E.ReadCooldownBuff)
+    local ok,value,status=pcall(E.ReadCooldownBuff,false,key)
     if not ok then rememberBridgeError(value);return nil,"reader error" end
     if not readable(value) or not readable(status) then return nil,"restricted" end
     if value~=nil and type(value)~="boolean" then return nil,"invalid state" end
@@ -141,8 +143,8 @@ local function active(b)
     elseif b.kind=="buff" then
         local supported,cooldownStatus=cooldownBinding(b)
         if supported then
-            local snapshot=buffSnapshot or {readCooldownBuff()}
-            if buffBatch then buffSnapshot=snapshot end
+            local snapshot=buffSnapshot and buffSnapshot[cooldownStatus] or {readCooldownBuff(cooldownStatus)}
+            if buffBatch then buffSnapshot[cooldownStatus]=snapshot end
             if type(snapshot[1])=="boolean" then return snapshot[1],"cooldown-"..snapshot[2],snapshot[2] end
             local value,status=aura(b)
             return value,status,snapshot[2]
@@ -158,7 +160,7 @@ local function pollBuffs()
     C_Timer.After(.1,function()
         buffPollPending=false
         if dead then return end
-        buffBatch=true;buffSnapshot=nil
+        buffBatch=true;buffSnapshot={}
         for e in pairs(layers) do
             if cooldownBinding(e.boundConfig) and usable(e) then
                 lastEvent="COOLDOWN_MANAGER_POLL"
@@ -228,7 +230,7 @@ function E.HandleBoundEvent(event,unit,guid,id)
             end
         end
     end
-    buffBatch=true;buffSnapshot=nil
+    buffBatch=true;buffSnapshot={}
     for e in pairs(layers) do E.SyncBoundEffect(e) end
     buffBatch=false;buffSnapshot=nil
 end
@@ -236,6 +238,12 @@ end
 function E.PrintBoundStatus()
     E.Message(string.format("Triggers %s: combat=%s, spell events=%d, aura events=%d, last=%s, bridge error=%s",
         triggerRevision,tostring(InCombatLockdown()),spellEvents,auraEvents,lastEvent,bridgeError or "none"))
+    if type(E.PrintCooldownBuffStatus)=="function" then
+        local keys={}
+        for e in pairs(layers)do local supported,key=cooldownBinding(e.boundConfig);if supported then keys[key]=true end end
+        local ok,err=pcall(E.PrintCooldownBuffStatus,keys)
+        if not ok then rememberBridgeError(err);E.Message("Native report unavailable: "..bridgeError)end
+    end
     for _,setKey in ipairs({"central","edge"}) do
         for _,side in ipairs({"left","right"}) do
             local entry=E.instances[setKey][side]

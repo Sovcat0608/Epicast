@@ -1,1 +1,1 @@
-{"name":"epicast","version":"0.1.0-beta.2","private":true,"scripts":{"test":"node tools/test.cjs","audit":"node tools/audit.cjs"},"devDependencies":{"fengari":"0.1.5","luaparse":"0.3.1"}}
+{"name":"epicast","version":"0.1.0-beta.7","private":true,"scripts":{"test":"node tools/test.cjs","audit":"node tools/audit.cjs"},"devDependencies":{"fengari":"0.1.5","luaparse":"0.3.1"}}

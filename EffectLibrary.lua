@@ -2,6 +2,7 @@ local _, E = ...
 E.EffectLibrary=E.EffectLibrary or {}
 local Viewer=E.EffectLibrary
 local entries, byID
+local rejected = {}
 
 local function indexCatalog()
     entries, byID = {}, {}
@@ -22,20 +23,28 @@ local function indexCatalog()
     end)
 end
 
+function Viewer.IsAvailable(id)
+    if not entries then indexCatalog() end
+    return byID[id] ~= nil and not rejected[id]
+end
+
+function Viewer.RejectPlaceholder(id)
+    rejected[id] = true -- Session only; never changes saved layers/settings.
+end
+
 function Viewer.Search(query)
     if not entries then indexCatalog() end
     query = query:lower():match("^%s*(.-)%s*$")
-    if query == "" then return entries end
     if query:match("^%d+$") then
         local id = tonumber(query)
-        if id < 1 or id > 4294967295 then return {} end
-        return byID[id] and {byID[id]} or {}
+        if not E.ValidEffectID(id) or not Viewer.IsAvailable(id) then return {} end
+        return {byID[id]}
     end
 
     local terms, matches = {}, {}
     for term in query:gmatch("%S+") do terms[#terms + 1] = term end
     for _, entry in ipairs(entries) do
-        local matchesAll = true
+        local matchesAll = not rejected[entry.id]
         for _, term in ipairs(terms) do
             if not entry.searchKey:find(term, 1, true) then
                 matchesAll = false

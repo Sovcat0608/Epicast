@@ -1,11 +1,22 @@
 local _,E=...
-E.schemaVersion=1
+E.schemaVersion=2
 E.ArcaneArtworks={arcaneTome="ArcaneTome",arcaneScroll="ArcaneScroll"};E.MageArtworks=E.ArcaneArtworks
 E.MageSigils={arcaneScroll="Arcane seal"}
 E.artworks={{id="arcaneTome",name="Arcane Tome",width=225,height=225,path="Interface\\AddOns\\Epicast\\Media\\ArcaneTomeBookCASSize887.tga"},
- {id="arcaneScroll",name="Arcane Scroll",width=225,height=225,path="Interface\\AddOns\\Epicast\\Media\\ArcaneScrollBookCASSize887.tga"}}
+ {id="arcaneScroll",name="Arcane Scroll",width=225,height=225,path="Interface\\AddOns\\Epicast\\Media\\ArcaneScrollBookCASSize887.tga"},
+ {id="moonwarden",name="Moonwarden",width=162,height=216,path="Interface\\AddOns\\Epicast\\Media\\MoonwardenCASSize768.tga"},
+ {id="groveheart",name="Groveheart",width=162,height=216,path="Interface\\AddOns\\Epicast\\Media\\GroveheartCASSize768.tga"}}
+E.DruidArtworks={moonwarden={name="Moonwarden",bounds={42,14,751,998}},groveheart={name="Groveheart",bounds={15,81,730,976}}}
+E.DruidTextureSizes={192,288,384,480,576,768}
 E.artworkByID={};for _,v in ipairs(E.artworks)do E.artworkByID[v.id]=v end
-E.Designs={arcane={name="Arcane",class="MAGE",specialization="Arcane",left="arcaneTome",right="arcaneScroll"}}
+E.Designs={arcane={name="Arcane",class="MAGE",specialization="Arcane",left="arcaneTome",right="arcaneScroll"},
+ druid={name="Druid",class="DRUID",left="moonwarden",right="groveheart"}}
+function E.SpellDesign()local _,class=UnitClass("player");return class=="DRUID"and"druid"or"arcane"end
+function E.SetAllowed(db,role,preview)
+ local _,class=UnitClass("player")
+ if role=="spells"and E.SpellDesign()=="druid"then return class=="DRUID"end
+ return not db.classOnly or class=="MAGE"or preview
+end
 E.SetLabels={central="Central set",edge="Edge set"}
 E.RoleLabels={spells="Spellcasting",resources="Resources"}
 E.ResourceKinds={{"health","Health"},{"mana","Mana",0},{"energy","Energy",3},{"rage","Rage",1},{"focus","Focus",2},{"runic","Runic power",6},{"power","Current power"}}
@@ -22,6 +33,13 @@ function E.GetBookConfig()return{size=100,x=0,y=30,flip=false}end
 function E.MageBookHoverAmplitude(w)return w*.012+2 end
 function E.UV(c,flip)if not flip then return unpack(c)end;return c[5],c[6],c[7],c[8],c[1],c[2],c[3],c[4]end
 function E.GetCapGeometry(c,flip)
+ local druid=E.DruidArtworks[c.art]
+ if druid then
+  local b=druid.bounds;local w=162*c.size/100;local h=w*4/3
+  local cx=((b[1]+b[3])/1536-.5)*w*(flip and -1 or 1)
+  local cy=(.5-(b[2]+b[4])/2048)*h
+  return w*(b[3]-b[1])/768,h*(b[4]-b[2])/1024+2*h*.012,cx,30*c.size/100+cy
+ end
  local b=E.MageBookBounds[c.art];local w=225*c.size/100;local bw=w*.72
  local cx=((b[1]+b[3])/1774-.5)*bw*(flip and -1 or 1);local cy=(.5-(b[2]+b[4])/1774)*bw
  return bw*((b[3]-b[1])/887+.024),bw*(b[4]-b[2])/887+2*E.MageBookHoverAmplitude(bw),cx,30*w/225+cy
@@ -35,9 +53,9 @@ end
 function E.SetSigil(c,k,v)if not E.devMode or not E.MageSigils[c.art]then return end;c.sigil=E.GetSigilConfig(c);c.sigil[k]=v;c.sigil=E.GetSigilConfig(c)end
 function E.ResetSigil(c)c.sigil=nil end
 E.AddedEffectLimit=16
-E.AllowedEffects={};for _,list in pairs(E.AddedEffectDefaults)do for _,r in ipairs(list)do E.AllowedEffects[r.fileID]=true end end
+function E.ValidEffectID(id)return type(id)=="number"and id>=1 and id<=4294967295 and id==math.floor(id)end
 function E.NormalizeAddedEffect(v)
- if type(v)~="table" or not E.AllowedEffects[v.fileID]then return end
+ if type(v)~="table" or not E.ValidEffectID(v.fileID)then return end
  local r={fileID=v.fileID,name=type(v.name)=="string" and v.name:sub(1,100)or("Model "..v.fileID),
  animation=math.floor(number(v.animation,0,0,65535)),scale=number(v.scale,1,.000001,10000),
  originX=number(v.originX,0,-100000,100000),originY=number(v.originY,0,-100000,100000),originZ=number(v.originZ,0,-100000,100000),
@@ -54,27 +72,29 @@ function E.GetAddedEffects(c)return c.addedEffects or{}end
 function E.EditAddedEffects(c)c.addedEffects=c.addedEffects or{};return c.addedEffects end
 function E.AddLibraryEffect(c,value)
  if not E.devMode then return end;local r=E.NormalizeAddedEffect(value);if not r or(c.role=="resources"and r.behavior=="bound")then return end
+ if not E.EffectLibrary or not E.EffectLibrary.IsAvailable(r.fileID)then return end
  local rows=E.EditAddedEffects(c);if #rows>=E.AddedEffectLimit then return end;rows[#rows+1]=r;return #rows
 end
 function E.RemoveLibraryEffect(c,index)if E.devMode and type(index)=="number"and index>=1 and index<=#E.GetAddedEffects(c)then table.remove(c.addedEffects,index)end end
-function E.NormalizeSide(value,side,role)
+function E.NormalizeSide(value,side,role,designKey)
  local v=tableOr(value);role=role=="resources"and"resources"or"spells"
- local art=E.artworkByID[v.art]and v.art or(side=="left"and"arcaneTome"or"arcaneScroll")
+ local design=E.Designs[role=="spells"and designKey=="druid"and"druid"or"arcane"]
+ local art=(v.art==design.left or v.art==design.right)and v.art or design[side]
  local kinds={};for _,k in ipairs(E.ResourceKinds)do kinds[k[1]]=true end
  local c={art=art,role=role,size=number(v.size,100,50,200),flip=type(v.flip)=="boolean"and v.flip or false,
   effects=v.effects~=false,nativeSmoke=v.nativeSmoke~=false,resource=kinds[v.resource]and v.resource or(side=="left"and"health"or"mana"),showMeter=v.showMeter~=false}
- if type(v.flip)~="boolean"then c.flip=side=="right"end
- c.emissions=E.GetEmissionConfig({art=art,emissions=v.emissions});c.sigil=E.GetSigilConfig({art=art,sigil=v.sigil})
+ if type(v.flip)~="boolean"then c.flip=not E.DruidArtworks[art]and side=="right"end
+ if not E.DruidArtworks[art]then c.emissions=E.GetEmissionConfig({art=art,emissions=v.emissions});c.sigil=E.GetSigilConfig({art=art,sigil=v.sigil})end
  c.addedEffects={};local rows=v.addedEffects
  if type(rows)~="table"then
-  if role=="spells"then rows=E.AddedEffectDefaults[art]
+  if role=="spells"then rows=E.AddedEffectDefaults[art]or{}
   else local glow=E.Copy(E.AddedEffectDefaults.arcaneScroll[1]);glow.trailOpacity=35;rows={glow}end
  end
  for i=1,math.min(#rows,E.AddedEffectLimit)do local r=E.NormalizeAddedEffect(rows[i]);if r then if role=="resources"then r.behavior="static";r.binding=nil end;c.addedEffects[#c.addedEffects+1]=r end end
  return c
 end
 function E.Normalize(value)
- local v=tableOr(value);local result={version=1,hideBlizzard=v.hideBlizzard==true,classOnly=v.classOnly~=false,sets={},content={}}
+ local v=tableOr(value);local result={version=E.schemaVersion,hideBlizzard=v.hideBlizzard==true,classOnly=v.classOnly~=false,sets={},content={}}
  local sets=tableOr(v.sets)
  for _,key in ipairs({"central","edge"})do
   local s=tableOr(sets[key]);result.sets[key]={role=s.role=="resources"and"resources"or(s.role=="spells"and"spells"or(key=="central"and"spells"or"resources")),
@@ -84,6 +104,8 @@ function E.Normalize(value)
  end
  if result.sets.central.role==result.sets.edge.role then result.sets.edge.role=result.sets.central.role=="spells"and"resources"or"spells"end
  for _,role in ipairs({"spells","resources"})do local r=tableOr(tableOr(v.content)[role]);result.content[role]={};for _,side in ipairs({"left","right"})do result.content[role][side]=E.NormalizeSide(r[side],side,role)end end
+ local druid=tableOr(tableOr(v.content).druid);result.content.druid={}
+ for _,side in ipairs({"left","right"})do result.content.druid[side]=E.NormalizeSide(druid[side],side,"spells","druid")end
  return result
 end
 function E.AssignRole(db,key,role)
@@ -97,4 +119,8 @@ function E.Begin()if not E.draft then E.draft=E.Normalize(EpicastDB)end end
 function E.HasChanges()return E.draft~=nil and not equal(E.Normalize(E.draft),E.Normalize(EpicastDB))end
 function E.Commit()EpicastDB=E.Normalize(E.Config());E.draft=nil end
 function E.Cancel()E.draft=nil end
-function E.GetSide(db,setKey,side)local slot=db.sets[setKey];local source=slot.swapped and(side=="left"and"right"or"left")or side;return db.content[slot.role][source],source end
+function E.GetSide(db,setKey,side)
+ local slot=db.sets[setKey];local source=slot.swapped and(side=="left"and"right"or"left")or side
+ local bank=slot.role=="spells"and E.SpellDesign()=="druid"and"druid"or slot.role
+ return db.content[bank][source],source
+end

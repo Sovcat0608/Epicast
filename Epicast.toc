@@ -1,8 +1,8 @@
 ## Interface: 16001
 ## Title: Epicast
-## Notes: Independent reactive spell and resource artwork. Arcane Mage beta.
+## Notes: Independent spell and resource artwork. Arcane Mage and Druid beta.
 ## Author: Epicast
-## Version: 0.1.0-beta.2
+## Version: 0.1.0-beta.7
 ## IconTexture: Interface\AddOns\Epicast\Media\EpicastIcon
 ## SavedVariables: EpicastDB
 
@@ -15,6 +15,7 @@ CooldownBuffs.lua
 BoundEffects.lua
 AddedEffects.lua
 MageBooks.lua
+DruidSisters.lua
 Seal.lua
 Resources.lua
 EffectCatalog.lua

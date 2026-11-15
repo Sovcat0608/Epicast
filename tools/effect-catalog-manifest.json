@@ -1,0 +1,22 @@
+{
+  "repository": "https://github.com/wowdev/wow-listfile",
+  "revision": "69b61e99aaa1bb767ad8e42288780d23eeb15bea",
+  "sourceDate": "2026-11-14T17:40:51Z",
+  "inputs": {
+    "spells.csv": {
+      "bytes": 1693856,
+      "sha256": "14dabb64c262e561340dbe18061ec9d8dce44749c8d59ff3408e5288005038d3"
+    },
+    "misc.csv": {
+      "bytes": 12621487,
+      "sha256": "1cd56401f97419aabc054112d22d973009b5739177241af706bc47c3c6c691b0"
+    }
+  },
+  "sourceModels": 9768,
+  "foreverBuild": "1.60.1.70938",
+  "foreverRoot": "f5e8b398da97f055c74ee9898857af83",
+  "availabilitySHA256": "98dd028a6748be74740b165000bbbdebd5802f33dfe63b97e52775d177bf08ea",
+  "previewPresets": 32,
+  "models": 8723,
+  "catalogSHA256": "ef01a6c96fbbdd3fbddd1538b8125ddf3677f8df696ba3b429bf7fc33839061a"
+}

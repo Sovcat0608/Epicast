@@ -35,7 +35,7 @@ local function create(setKey,side)
  local entry={frame=frame,side=side,setKey=setKey,alpha=1};entry.art=frame:CreateTexture(nil,"ARTWORK");entry.art:SetAlpha(0)
  local handle=CreateFrame("Button",nil,frame,"BackdropTemplate");entry.handle=handle;handle:SetAllPoints();handle:SetFrameStrata("DIALOG");handle:SetFrameLevel(80)
  handle:SetBackdrop({edgeFile="Interface\\Buttons\\WHITE8X8",edgeSize=1});handle:SetBackdropBorderColor(.6,.4,1,.7);handle:EnableMouse(true);handle:RegisterForDrag("LeftButton");handle:Hide()
- handle:SetScript("OnMouseDown",function()if editing()then E.editorSet=setKey;E.editorSide=side;E.RefreshOptions()end end)
+ handle:SetScript("OnMouseDown",function()if editing()then E.SelectSet(setKey,side)end end)
  handle:SetScript("OnDragStart",function()
   if not editing()then return end
   local x,y=GetCursorPosition();local s=E.draft.sets[setKey];local ox,oy=s[side.."X"],s[side.."Y"]
@@ -61,12 +61,12 @@ function E.Place(entry,s)
 end
 function E.Apply()
  if not E.ready then return end;if InCombatLockdown()then E.pending=true;return end
- local db=E.Config();local _,class=UnitClass("player");local allowed=not db.classOnly or class=="MAGE"or editing()
+ local db=E.Config()
  for _,setKey in ipairs({"central","edge"})do
-  local s=db.sets[setKey]
+  local s=db.sets[setKey];local allowed=E.SetAllowed(db,s.role,editing())
   for _,side in ipairs({"left","right"})do
    local entry=E.instances[setKey][side];if not entry then entry=create(setKey,side);E.instances[setKey][side]=entry end
-   local source=E.GetSide(db,setKey,side);local c=E.Copy(source);c.size=s.size*source.size/100;c.flip=source.flip~=(setKey=="edge")
+   local source=E.GetSide(db,setKey,side);local c=E.Copy(source);c.size=s.size*source.size/100;c.flip=source.flip~=(setKey=="edge"and not E.DruidArtworks[source.art])
    entry.config=c
    if s.enabled and allowed then
     local w,h,cx,cy=E.GetCapGeometry(c,c.flip);entry.frame:SetSize(w,h);entry.art:SetSize(225*c.size/100,225*c.size/100);entry.art:ClearAllPoints();entry.art:SetPoint("CENTER",entry.frame,"CENTER",-cx,-cy)

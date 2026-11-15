@@ -70,5 +70,53 @@
   "Media/EpicastIcon.tga": {
     "bytes": 65554,
     "sha256": "15462b3949d99a87fcd3d2e632b8a0d943631a7436c3b441cd0098d48588e0e4"
+  },
+  "Media/MoonwardenCASSize192.tga": {
+    "bytes": 262162,
+    "sha256": "7162ac442886dc1af53307a7c178a813e1d9dab6b41d1ca96d39fa5f75bc8aee"
+  },
+  "Media/MoonwardenCASSize288.tga": {
+    "bytes": 1048594,
+    "sha256": "1b5bba1b3452e76056d084e207557d48f5787a8ab83868800fdcd0b07e55e002"
+  },
+  "Media/MoonwardenCASSize384.tga": {
+    "bytes": 1048594,
+    "sha256": "34ef2495a0b6b777291d6f2bfed29fcb8c4f8b48c6357352c3dacba3dba61044"
+  },
+  "Media/MoonwardenCASSize480.tga": {
+    "bytes": 2097170,
+    "sha256": "8f970ecf28e89dfaaaf6f2cccdfb597357bf44719aa012b905565db1943592bf"
+  },
+  "Media/MoonwardenCASSize576.tga": {
+    "bytes": 4194322,
+    "sha256": "15a228a08a106329c6e0f279849e6569b0385141ba8d760d81360a716af8395c"
+  },
+  "Media/MoonwardenCASSize768.tga": {
+    "bytes": 4194322,
+    "sha256": "984b3a755fc67f50ce35f49a41e7e4899307e4ea6bf85636ccebd6497e02c917"
+  },
+  "Media/GroveheartCASSize192.tga": {
+    "bytes": 262162,
+    "sha256": "0a38c0156e5718e7719a5affd54f881b41af73b76166413675045e9bf357a9e0"
+  },
+  "Media/GroveheartCASSize288.tga": {
+    "bytes": 1048594,
+    "sha256": "dd42544fdc82bd40c46213a0383c5d4eb6e88cd304eeb63f12820524eb341f43"
+  },
+  "Media/GroveheartCASSize384.tga": {
+    "bytes": 1048594,
+    "sha256": "4e9b236b4e515cd45552d056dce15558ea487a2bd3c8dd2930a4a55c1aa30fb6"
+  },
+  "Media/GroveheartCASSize480.tga": {
+    "bytes": 2097170,
+    "sha256": "81587db037f5a3eb4391cd1b0cf71f8ab2dd9249de34da1dff02c43773558706"
+  },
+  "Media/GroveheartCASSize576.tga": {
+    "bytes": 4194322,
+    "sha256": "eb9cbc662e7dddc13e7d8a75811770266be2d0c01dabaee955d964310586c10e"
+  },
+  "Media/GroveheartCASSize768.tga": {
+    "bytes": 4194322,
+    "sha256": "07252edf75efc09e92eec011503284a3a530fd76b551427700f304f4f7f0afa5"
   }
 }

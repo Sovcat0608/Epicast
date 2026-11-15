@@ -4,14 +4,38 @@ local Viewer=E.EffectLibrary
 local Preview = {}
 Preview.__index = Preview
 
-local function bounds(actor)
-    if not actor.GetMaxBoundingBox then return 0, 0, 0, 1 end
+local function readBounds(actor)
     local x1, y1, z1, x2, y2, z2 = actor:GetMaxBoundingBox()
     if type(x1) == "table" and type(y1) == "table" then
         local bottom, top = x1, y1
         x1, y1, z1 = bottom:GetXYZ()
         x2, y2, z2 = top:GetXYZ()
     end
+    return x1, y1, z1, x2, y2, z2
+end
+
+local function placeholder(actor)
+    if actor:GetModelFileID() == 166046 then return true end
+    if actor.GetModelPath then
+        local path = actor:GetModelPath()
+        if type(path) == "string" and path:lower():gsub("\\", "/"):match("errorcube%.m2$") then return true end
+    end
+    -- Exact fingerprint of Forever's ErrorCube model, inspected from its CASC file.
+    -- This also catches clients that retain the requested ID/path on the fallback.
+    local box = { readBounds(actor) }
+    for i = 1, 6 do
+        local v = box[i]
+        if type(v) ~= "number" or v ~= v or math.abs(v) == math.huge then error("Unavailable model bounds") end
+    end
+    for i = 1, 6 do
+        if math.abs(box[i] - (i <= 3 and -1 or 1) * 0.1388888955116272) > 0.000001 then return false end
+    end
+    return true
+end
+
+local function bounds(actor)
+    if not actor.GetMaxBoundingBox then return 0, 0, 0, 1 end
+    local x1, y1, z1, x2, y2, z2 = readBounds(actor)
     if type(x1) ~= "number" or type(z2) ~= "number" then return 0, 0, 0, 1 end
     local span = math.max(x2 - x1, y2 - y1, z2 - z1)
     if span < 0.001 or span > 100000 then return 0, 0, 0, 1 end
@@ -35,14 +59,37 @@ end
 function Preview:Clear()
     self.generation = self.generation + 1
     self.state, self.paused = nil, false
+    self.entryID = nil
     self.actor.epicastLibraryLoaded = nil
     self.scene:Hide()
     self.scene:SetPaused(false, false)
     self.actor:ClearModel()
 end
 
+function Preview:Validate(entry)
+    if not entry or not Viewer.IsAvailable(entry.id) then return false, "Effect unavailable in Forever." end
+    local ok, isPlaceholder = pcall(placeholder, self.actor)
+    if not ok then return false, "Unable to validate this model. Try Replay." end
+    if isPlaceholder then
+        Viewer.RejectPlaceholder(entry.id)
+        return false, "Missing-model placeholder blocked. Choose another effect."
+    end
+    local loaded, matches = pcall(function() return self.actor:IsLoaded() and self.actor:GetModelFileID() == entry.id end)
+    if not loaded or not matches then return false, "Model is not ready. Try Replay." end
+    return true
+end
+
+function Preview:CanAdd(entry)
+    if self.state ~= "ready" or not entry or self.entryID ~= entry.id then return false end
+    local ready, message = self:Validate(entry)
+    if not ready then self:Clear(); self.update(message) end
+    return ready
+end
+
 function Preview:Load(entry, animation, keepView)
     self:Clear()
+    if not entry or not Viewer.IsAvailable(entry.id) then self.update("Effect unavailable in Forever."); return end
+    self.entryID = entry.id
     self.animation=animation
     local generation = self.generation
     local actor, scene = self.actor, self.scene
@@ -60,7 +107,11 @@ function Preview:Load(entry, animation, keepView)
 
     local function finish()
         if self.generation ~= generation or self.state ~= "loading" then return end
-        if not actor:IsLoaded() or actor:GetModelFileID() ~= entry.id then return end
+        local loaded, isLoaded = pcall(actor.IsLoaded, actor)
+        if not loaded then fail("Unable to check model loading."); return end
+        if not isLoaded then return end
+        local valid, message = self:Validate(entry)
+        if not valid then fail(message); return end
 
         local ok = pcall(function()
             actor:SetAnimation(animation, 0, 1, 0)

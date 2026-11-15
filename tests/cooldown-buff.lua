@@ -132,7 +132,7 @@ icon.IsActive=activeMethod;icon.active=true
 metadata=secret;Mock.advance(.11);visible(false)
 assert(storm.boundCooldown=='restricted')
 metadata={spellID=secret,linkedSpellIDs=secret};Mock.advance(.11);visible(false)
-metadata={spellID=400588,selfAura=false};Mock.advance(.11);visible(false)
+metadata={spellID=400588,selfAura=false};Mock.advance(.11);visible(true)
 metadata={spellID=400588,selfAura=true};Mock.advance(.11);visible(true)
 local cooldownInfo=C_CooldownViewer.GetCooldownViewerCooldownInfo
 C_CooldownViewer.GetCooldownViewerCooldownInfo=function()error('Native data not loaded')end
@@ -147,6 +147,48 @@ replacement.isActive=false;Mock.advance(.11);visible(false)
 assert(storm.boundCooldown=='conflict')
 BuffBarCooldownViewer=nil;Mock.advance(.11);visible(true)
 print('PASS: both buff viewers, native spell aliases, pool reassignment, hidden/preview/restricted/error/conflicting states')
+
+-- A hidden unused Bars row used to mask a visible unmatched Icons row as
+-- "hidden". Talent catalog flags must not veto an exact Barrage buff match.
+BuffBarCooldownViewer={IsVisible=function()return false end,GetChildren=function()return replacement end}
+metadata={spellID=11213,selfAura=true};Mock.advance(.11);visible(false)
+assert(storm.boundCooldown=='untracked','Visible unmatched row must not be reported as hidden')
+metadata={spellID=400588,selfAura=false}
+for cycle=1,3 do
+    icon.active=true;Mock.advance(.11);visible(true)
+    icon.active=false;Mock.event('UNIT_AURA','player');visible(false)
+end
+-- The supported item list can live in a container rather than direct children.
+viewer.GetItemFrames=function()return {icon}end
+viewer.items={clearcasting};icon.active=true;Mock.advance(.11);visible(true)
+-- Cooldown IDs are opaque numeric identifiers; unlike spell IDs, zero is not
+-- documented as invalid. Only the linked public spell IDs identify Barrage.
+local api=C_CooldownViewer.GetCooldownViewerCooldownInfo
+C_CooldownViewer.GetCooldownViewerCooldownInfo=function(id)if id==0 then return metadata end;return api(id)end
+icon.cooldownID=0;Mock.advance(.11);visible(true)
+icon.active=false;Mock.advance(.11);visible(false)
+icon.cooldownID=71;icon.active=true
+-- A native item's cached metadata is a read-only fallback when the API has no
+-- result. A released/reassigned item must never inherit a previous identity.
+C_CooldownViewer.GetCooldownViewerCooldownInfo=function()return nil end
+icon.GetCooldownInfo=function()return {cooldownID=icon.cachedID,spellID=400588,selfAura=false}end
+icon.cachedID=71;Mock.advance(.11);visible(true)
+icon.cachedID=72;Mock.advance(.11);visible(false)
+icon.cachedID=secret;Mock.advance(.11);visible(false)
+icon.cachedID=71;icon.cooldownID=nil;Mock.advance(.11);visible(false)
+icon.cooldownID=71;Mock.advance(.11);visible(true)
+local captured,oldPrint={},E.Message
+E.Message=function(text)captured[#captured+1]=text end
+E.PrintCooldownBuffStatus()
+local report=table.concat(captured,'\n')
+assert(report:find('BuffIconCooldownViewer: visible=true, state=active',1,true),report)
+assert(report:find('BuffBarCooldownViewer: visible=false, state=hidden',1,true),report)
+assert(report:find('metadata=item barrage=true state=active',1,true),report)
+E.Message=oldPrint
+icon.GetCooldownInfo=nil;C_CooldownViewer.GetCooldownViewerCooldownInfo=api
+viewer.GetItemFrames=nil;viewer.items={icon};BuffBarCooldownViewer=nil
+metadata={spellID=400588,selfAura=true};Mock.advance(.11);visible(true)
+print('PASS: catalog flags, zero cooldown ID, native item containers, cached metadata identity and per-viewer diagnostics')
 
 -- Public aura lookup still works without usable native tracking, including
 -- late loading/disabling of the native addon without an Epicast reconfiguration.

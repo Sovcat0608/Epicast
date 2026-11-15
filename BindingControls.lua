@@ -122,7 +122,9 @@ function E.CreateBindingControls(panel,state,button,label,gold,muted)
             local ok,v=pcall(C_Spell.GetSpellInfo,tonumber(display)or display)
             if ok and not(issecretvalue and issecretvalue(v)) and type(v)=="table" and not(issecrettable and issecrettable(v)) and not(issecretvalue and issecretvalue(v.name)) then resolved=v.name end
         end
-        ui.feedback:SetText(c.role=="resources" and "Resource layers follow the selected health / power level. Spell bindings belong to the Spellcasting set." or not b and "Always active. The native animation continues playing." or display=="" and "Enter a spell or buff, then Bind spell." or resolved and ("Tracking: "..resolved) or "Saved name / ID. Not found in spellbook; buff names can still match.")
+        local hint
+        if b and type(E.CooldownBuffHint)=="function" then local ok,value=pcall(E.CooldownBuffHint,b);if ok then hint=value end end
+        ui.feedback:SetText(c.role=="resources" and "Resource layers follow the selected health / power level. Spell bindings belong to the Spellcasting set." or not b and "Always active. The native animation continues playing." or display=="" and "Enter a spell or buff, then Bind spell." or hint or resolved and ("Tracking: "..resolved) or "Saved name / ID. Not found in spellbook; buff names can still match.")
         local rows=E.GetLibraryRows(c);local first=math.floor((state.selected-1)/5)*5+1
         for i,button in ipairs(ui.layers)do local index=first+i-1;local r=rows[index];button.index=index;button:SetShown(r~=nil)
             if r then button:SetText((index==state.selected and "> " or "")..index.." · "..(E.GetLayerBinding(c.art,r) and "Bound" or "Static").." · "..r.name);button:SetEnabled(not InCombatLockdown())end

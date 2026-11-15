@@ -75,14 +75,14 @@ local function createWindow()
     search:SetMaxLetters(150)
     local placeholder = label(search, "GameFontHighlightSmall", muted)
     placeholder:SetPoint("LEFT", 5, 0)
-    placeholder:SetText("Search names, paths or FileDataID")
+    placeholder:SetText("Search Forever effects or FileDataID")
 
     local list = CreateFrame("Frame", nil, panel)
     list:SetSize(290, ROWS * ROW_HEIGHT)
     list:SetPoint("TOPLEFT", 17, -83)
     list:EnableMouseWheel(true)
     local rows, page, matches = {}, 1, {}
-    local selected, preview
+    local selected, preview, renderRows
     local prevPage = button(panel, "Prev", 52)
     prevPage:SetPoint("TOPLEFT", list, "BOTTOMLEFT", 0, -10)
     local nextPage = button(panel, "Next", 52)
@@ -168,7 +168,7 @@ local function createWindow()
     add:SetEnabled(false);addBound:SetEnabled(false)
     local function addEffect(behavior)
         local c=E.GetEffectLibraryTarget()
-        if not c or InCombatLockdown() or not selected or not preview or preview.state~="ready" then return end
+        if not c or InCombatLockdown() or not selected or not preview or not preview:CanAdd(selected) then return end
         local index=E.AddLibraryEffect(c,{behavior=behavior,binding={kind="success",spell="",duration=1},fileID=selected.id,name=selected.name,animation=preview.animation,
             scale=preview.baseScale*2^preview.zoom,originX=preview.x,originY=preview.y,originZ=preview.z,
             azimuth=preview.angle,elevation=preview.elevation,desaturation=selected.preset and selected.preset.desaturation or 0})
@@ -184,6 +184,9 @@ local function createWindow()
     panel.RefreshTarget=function()
         local c=E.GetEffectLibraryTarget()
         if not c then panel:Hide();return end
+        local hasCustom=not E.DruidArtworks[c.art]
+        custom:SetEnabled(hasCustom and not InCombatLockdown())
+        if not hasCustom then panel.customArt=false;custom:SetText("Custom artwork")end
         added.Refresh()
         added.host:SetShown(not panel.customArt)
         if E.DockCustomElements then E.DockCustomElements(panel,panel.customArt) end
@@ -195,6 +198,11 @@ local function createWindow()
     panel:SetScript("OnEvent",panel.RefreshTarget)
     local function setStatus(message, ready, paused)
         status:SetText(message)
+        if selected and not Viewer.IsAvailable(selected.id) and renderRows then
+            matches = Viewer.Search(search:GetText())
+            page = math.min(page, math.max(1, math.ceil(#matches / ROWS)))
+            renderRows()
+        end
         local c=E.GetEffectLibraryTarget()
         addBound:SetEnabled(ready==true and c~=nil and c.role~="resources" and not InCombatLockdown() and #E.GetAddedEffects(c)<E.AddedEffectLimit)
         add:SetEnabled(ready==true and c~=nil and not InCombatLockdown() and #E.GetAddedEffects(c)<E.AddedEffectLimit)
@@ -206,7 +214,7 @@ local function createWindow()
     local previewOK, created = pcall(Viewer.CreatePreview, stage, setStatus)
     if previewOK then preview = created;panel.preview=preview end
 
-    local function renderRows()
+    renderRows = function()
         local first = (page - 1) * ROWS + 1
         for i, row in ipairs(rows) do
             local entry = matches[first + i - 1]
@@ -287,6 +295,13 @@ local function createWindow()
         local query = search:GetText()
         placeholder:SetShown(query == "" and not search:HasFocus())
         matches, page = Viewer.Search(query), 1
+        if #matches == 0 then
+            selected = nil
+            if preview then preview:Clear() end
+            name:SetText("");path:SetText("");id:SetText("");segmentSummary:SetText("")
+            setStatus("No matching Forever effects.")
+            for _, control in pairs(panel.segmentButtons) do control:SetEnabled(false) end
+        end
         renderRows()
     end
     search:SetScript("OnTextChanged", filter)
@@ -314,7 +329,11 @@ local function createWindow()
     stage:SetScript("OnMouseWheel", function(_, delta) zoom(delta) end)
 
     panel:SetScript("OnShow", function()
-        if selected then play(true) else selectEntry(Viewer.Search("166009")[1]) end
+        if selected then play(true) else
+            local entry = search:GetText() == "" and Viewer.Search("166009")[1] or nil
+            entry = entry or Viewer.Search(search:GetText())[1]
+            if entry then selectEntry(entry) else setStatus("No matching Forever effects.") end
+        end
     end)
     panel:SetScript("OnHide", function()
         if E.DockCustomElements then E.DockCustomElements(nil,false) end

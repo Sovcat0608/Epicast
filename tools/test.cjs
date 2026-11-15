@@ -10,7 +10,13 @@ function run(selected,tail){
  try{if(lauxlib.luaL_dostring(L,to_luastring(script))!==lua.LUA_OK)throw Error(to_jsstring(lua.lua_tostring(L,-1)));}finally{lua.lua_close(L);}
 }
 run(files,`\nassert(loadfile('tests/integration.lua'))(E)\nassert(loadfile('tests/buff-retrigger.lua'))(E)\nassert(loadfile('tests/cooldown-buff.lua'))(E)`);
+run(files,`\nassert(loadfile('tests/options-tabs.lua'))(E)`);
+run(files,`\nassert(loadfile('tests/druid-sisters.lua'))(E)`);
+run(files,`\nassert(loadfile('tests/effect-library.lua'))(E)`);
+run(files,`\nassert(loadfile('tests/druid-clearcasting.lua'))(E)`);
 for(const mode of ['missing-module','missing-reader','reader-error','binding-error']){
  run(files.filter(f=>mode!=='missing-module'||f!=='CooldownBuffs.lua'),`\nassert(loadfile('tests/trigger-isolation.lua'))(E,'${mode}')`);
 }
 console.log(`PASS: ${files.length} modules parsed as Lua 5.1 and loaded in TOC order`);
+require('./test-druid-assets.cjs');
+require('./test-casc-reader.cjs');

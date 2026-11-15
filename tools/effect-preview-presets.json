@@ -1,0 +1,268 @@
+{
+  "165412": {
+    "name": "Icy Mist",
+    "scale": 4,
+    "path": "particles/coldbreath.m2"
+  },
+  "165598": {
+    "name": "Broad Blue Flame",
+    "scale": 0.15,
+    "path": "spells/archimonde_blue_fire.m2"
+  },
+  "165686": {
+    "name": "Gloom",
+    "scale": 0.22,
+    "origin": [
+      -0.0377854258,
+      0.0422529913,
+      0
+    ],
+    "animation": 158,
+    "path": "spells/blackradiationfog.m2"
+  },
+  "165743": {
+    "name": "Blue Mist",
+    "scale": 0.22,
+    "origin": [
+      -0.0377854258,
+      0.0422529913,
+      0
+    ],
+    "animation": 158,
+    "path": "spells/blueradiationfog.m2"
+  },
+  "165792": {
+    "name": "Frost Particles",
+    "scale": 0.65,
+    "origin": [
+      0.0150772817,
+      0.0732985586,
+      2.5055406094
+    ],
+    "animation": 158,
+    "path": "spells/christmassnowrain.m2"
+  },
+  "165995": {
+    "name": "Cold flame",
+    "scale": 1,
+    "aliases": "Left Blue Eye Trail Right Blue Eye Trail",
+    "origin": [
+      -0.1388888955,
+      0,
+      0
+    ],
+    "path": "spells/enchantments/blueflame_low.m2"
+  },
+  "165997": {
+    "name": "Blue Glow",
+    "scale": 1,
+    "path": "spells/enchantments/blueglow_low.m2"
+  },
+  "165998": {
+    "name": "Blue Frost Glow",
+    "scale": 1,
+    "aliases": "Azure Glow",
+    "path": "spells/enchantments/blueglow_med.m2"
+  },
+  "166003": {
+    "name": "Fel Flame",
+    "scale": 1,
+    "origin": [
+      -0.1388888955,
+      0,
+      0
+    ],
+    "path": "spells/enchantments/greenflame_low.m2"
+  },
+  "166004": {
+    "name": "Fel Green Glow",
+    "scale": 1,
+    "path": "spells/enchantments/greenglow_high.m2"
+  },
+  "166007": {
+    "name": "Fel Green Dripping",
+    "scale": 1,
+    "path": "spells/enchantments/poisondrip.m2"
+  },
+  "166009": {
+    "name": "Large Void Glow",
+    "scale": 2,
+    "aliases": "Shadow Glow Arcane Glow",
+    "path": "spells/enchantments/purpleglow_high.m2"
+  },
+  "166011": {
+    "name": "Fire",
+    "scale": 1,
+    "aliases": "Left Red Eye Trail Right Red Eye Trail",
+    "origin": [
+      -0.1388888955,
+      0,
+      0
+    ],
+    "path": "spells/enchantments/redflame_low.m2"
+  },
+  "166012": {
+    "name": "Fire Glow",
+    "scale": 1,
+    "path": "spells/enchantments/redglow_high.m2"
+  },
+  "166026": {
+    "name": "Soulfrost",
+    "scale": 1,
+    "path": "spells/enchantments/soulfrostglow_high.m2"
+  },
+  "166032": {
+    "name": "Moonlight glow",
+    "scale": 1,
+    "path": "spells/enchantments/whiteglow_low.m2"
+  },
+  "166033": {
+    "name": "Amber Flow",
+    "scale": 1,
+    "aliases": "Left Eye Trail Right Eye Trail",
+    "origin": [
+      -0.1388888955,
+      0,
+      0
+    ],
+    "path": "spells/enchantments/yellowflame_low.m2"
+  },
+  "166034": {
+    "name": "Large Holy Glow",
+    "scale": 2,
+    "aliases": "Amber Glow Luminance Bloom Amber Lamp Glow",
+    "path": "spells/enchantments/yellowglow_high.m2"
+  },
+  "166062": {
+    "name": "Faerie Fire",
+    "scale": 1,
+    "origin": [
+      -0.1370388716,
+      -0.0742775947,
+      0.3270530477
+    ],
+    "path": "spells/faeriefire_noglow.m2"
+  },
+  "166072": {
+    "name": "Fel Casting",
+    "scale": 0.65,
+    "origin": [
+      0,
+      -0.0012143453,
+      -0.0384081602
+    ],
+    "path": "spells/fel_fire_precast_high_hand.m2"
+  },
+  "166209": {
+    "name": "Frost Form",
+    "scale": 0.45,
+    "origin": [
+      0,
+      0.0116675766,
+      -0.1641135812
+    ],
+    "path": "spells/frost_form_precast.m2"
+  },
+  "166280": {
+    "name": "Rot Fog",
+    "scale": 0.22,
+    "animation": 158,
+    "path": "spells/greenradiationfog.m2"
+  },
+  "166907": {
+    "name": "Void Smoke",
+    "scale": 0.18,
+    "origin": [
+      -0.0003013768,
+      -0.005567445,
+      0.1358658969
+    ],
+    "path": "spells/smokeflare_purple.m2"
+  },
+  "243044": {
+    "name": "Kirin Tor Seal",
+    "scale": 0.65,
+    "angle": 90,
+    "path": "world/expansion02/doodads/dalaran/dalaran_eye_01.m2"
+  },
+  "362201": {
+    "name": "Dark Smoke",
+    "scale": 0.13,
+    "origin": [
+      0,
+      0,
+      -0.3894283473
+    ],
+    "path": "spells/smoke_dark_fast.m2"
+  },
+  "445680": {
+    "name": "Gentle Whirlwind",
+    "scale": 0.55,
+    "origin": [
+      -0.0001710653,
+      -0.0011721849,
+      2.3160927296
+    ],
+    "path": "world/expansion03/doodads/skywall/skywall_cyclone_jump_draft.m2"
+  },
+  "460839": {
+    "name": "Skywall Swirl",
+    "scale": 0.018,
+    "origin": [
+      0,
+      0.0007514954,
+      1.0117073059
+    ],
+    "elevation": 35,
+    "path": "world/expansion03/doodads/skywall/skywall_boss_floor_tornado.m2"
+  },
+  "609761": {
+    "name": "Fire Motes",
+    "scale": 0.9,
+    "origin": [
+      0.0279227365,
+      -0.0065376096,
+      0
+    ],
+    "animation": 158,
+    "path": "spells/warlock_bodyofflames_low_state_base.m2"
+  },
+  "610642": {
+    "name": "Divine Radiance",
+    "scale": 1.5,
+    "origin": [
+      0.0232977532,
+      0.0576375052,
+      0.0206381083
+    ],
+    "animation": 158,
+    "path": "spells/priest_divinestar_precast_yellow.m2"
+  },
+  "657698": {
+    "name": "Water Ripples",
+    "scale": 0.04,
+    "elevation": 18,
+    "path": "world/expansion04/doodads/thunderisle/doodads/itk_waterripple_01.m2"
+  },
+  "1713498": {
+    "name": "Black Dungeon Fog",
+    "scale": 0.015,
+    "origin": [
+      11.0514602661,
+      -14.9769515991,
+      34.8938217163
+    ],
+    "path": "spells/7fx_dungeonfog_large_sharp_black.m2"
+  },
+  "1958358": {
+    "name": "Candle Flame",
+    "scale": 0.22,
+    "origin": [
+      0,
+      0,
+      -0.0319035314
+    ],
+    "angle": 90,
+    "path": "world/expansion07/doodads/fx/8fx_candleflame.m2"
+  }
+}

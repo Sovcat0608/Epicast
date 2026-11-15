@@ -1,8 +1,8 @@
 local E=...
 local original={marker='EndCapper stays independent'};EndCapperDB=original
 Mock.event('ADDON_LOADED','Epicast');Mock.advance(0)
-assert(E.ready and EpicastDB.version==1 and E.instances.central.left.frame:IsShown()and not E.instances.edge.left.frame:IsShown())
-assert(#E.artworks==2 and #E.EffectLibrary.Search('')==11 and #E.EffectLibrary.Search('166011')==0)
+assert(E.ready and EpicastDB.version==2 and E.instances.central.left.frame:IsShown()and not E.instances.edge.left.frame:IsShown())
+assert(#E.artworks==4 and #E.EffectLibrary.Search('')==E.EffectLibrary.catalogCount and #E.EffectLibrary.Search('166011')==1)
 assert(EpicastDB.sets.central.role=='spells'and EpicastDB.sets.edge.role=='resources')
 for _,central in ipairs({false,true})do for _,edge in ipairs({false,true})do for _,role in ipairs({'spells','resources'})do
  local d=E.Normalize(nil);d.sets.central.enabled=central;d.sets.edge.enabled=edge;E.AssignRole(d,'central',role)
@@ -11,10 +11,10 @@ end end end
 local invalid=E.Normalize({sets={central={role='spells'},edge={role='spells'}}});assert(invalid.sets.edge.role=='resources')
 local source=E.Copy(EpicastDB);source.content.spells.left.addedEffects[1].trailX=67;E.SwapRoles(source)
 assert(E.GetSide(source,'edge','left').addedEffects[1].trailX==67 and source.sets.central.role=='resources')
-assert(not E.NormalizeAddedEffect({fileID=166011}))
-print('PASS: fresh defaults, exclusivity, all enabled/assignment combinations, role-following settings and Arcane-only scope')
+assert(not E.NormalizeAddedEffect({fileID=0}))
+print('PASS: fresh defaults, exclusivity, all enabled/assignment combinations, role-following settings and approved catalog scope')
 E.devMode=true;E.OpenOptions();local p=E.panel
-assert(p:IsShown()and not E.HasChanges());p.active.edge:Click();assert(E.draft.sets.edge.enabled and E.instances.edge.left.frame:IsShown())
+assert(p:IsShown()and not E.HasChanges());p.tabs.edge:Click();p.active.edge:Click();assert(E.draft.sets.edge.enabled and E.instances.edge.left.frame:IsShown())
 local resource=E.instances.edge.left;assert(resource.resourceRatio==.7 and resource.resourceBar.value==.7)
 Mock.health=15;Mock.event('UNIT_HEALTH','player');assert(resource.resourceRatio==.15)
 local secret={};issecretvalue=function(v)return v==secret end;Mock.health=secret;Mock.event('UNIT_HEALTH','player');assert(resource.resourceRatio==nil and resource.resourceBar.text.text=='Health —')

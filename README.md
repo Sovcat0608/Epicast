@@ -1,10 +1,10 @@
 # Epicast — Arcane Mage beta
 
-**0.1.0-beta.1 · WoW Forever (16001)**
+**0.1.0-beta.2 · WoW Forever (16001)**
 
 Independent reactive artwork for spells and resources. This first beta includes the Arcane Tome / Arcane Scroll pair: hovering artwork, animated glyphs and gems, a rotating scroll seal, and native Arcane effects.
 
-Extract the `Epicast` folder into `Interface/AddOns`, enable it, and reload. Open **`/epicast`** or **`/epic`**. Epicast has its own settings and does not require EndCapper, an action-bar addon, or WeakAuras. If both Epicast and EndCapper are enabled, their artwork can overlap; disable the unwanted sets in either addon.
+Close WoW completely before installing or updating. Extract the `Epicast` folder into `Interface/AddOns`, restart WoW, and enable Epicast. A full restart allows newly added Lua files to be discovered. Open **`/epicast`** or **`/epic`**. Epicast has its own settings and does not require EndCapper, an action-bar addon, or WeakAuras. If both Epicast and EndCapper are enabled, their artwork can overlap; disable the unwanted sets in either addon.
 
 - **Central set** positions the pair around the screen center, near the bottom.
 - **Edge set** positions the pair at the lower screen edges.
@@ -21,6 +21,6 @@ Bindings use public player events. Some models lack intro/hold/end segments, and
 
 Missile Barrage effects also read Blizzard's Cooldown Manager during combat. Enable the Cooldown Manager, include Missile Barrage in **Tracked Buffs** or **Tracked Bars**, and keep that row enabled and visible outside Edit Mode. Epicast uses the native active state and does not change your tracking settings. Ordinary readable buff data remains a fallback when native tracking is unavailable.
 
-If a buff effect fails, run `/epicast triggers` while the buff is active. The report shows the input, Cooldown Manager status, effect start/stop counts and native playback state. `cooldown=active` or `inactive` confirms native detection; `hidden`, `untracked` or `unavailable` means the native tracking needs checking. `restricted` or `unknown` means no readable native state was available. Include the report when describing a missed proc.
+If an effect fails, run `/epicast triggers` after casting (or while the missed buff is active). The report includes the trigger-code version, spell/aura event counts, all bound effects, enable/visibility flags and native playback state. For Barrage, `cooldown=active` or `inactive` confirms native detection; `hidden`, `untracked` or `unavailable` means the native tracking needs checking. `restricted` or `unknown` means no readable native state was available. `module missing` means the new reader was not loaded: check that the entire ZIP was extracted and fully restart WoW. `reader error` or `binding error` includes the last bridge error in the report. Include the report and the first Lua error when describing a failure.
 
 This is a testing build. Local integration and package checks pass; actual client appearance and spell/event availability still need in-game testing. It has not been installed or published automatically.

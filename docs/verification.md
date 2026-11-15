@@ -1,3 +1,17 @@
+# Trigger isolation test build — 2026-11-15
+
+Build: **0.1.0-beta.2** / schema 1 / interface 16001. Verified test ZIP; GitHub beta publication subsequently authorized. See [release-0.1.0-beta.2.md](release-0.1.0-beta.2.md).
+
+- User reports that all triggers stopped in their friend's test of beta.1. The first Lua error and full-restart history have been requested but not received; the client's root cause is unconfirmed.
+- Reproduced setup and cast-event failures with the new Cooldown Manager module omitted: a nil `IsCooldownBuffBinding` call aborted setup at Tome layer 4 and prevented creation of the Scroll. Injecting an exception from the native reader also aborted setup/event processing. The same reproduction now creates both sisters and starts Arcane Blast successfully in all three cases.
+- `npm test`: full existing suite plus four fresh-VM regressions pass, covering absent module, absent reader, thrown reader and thrown binding detector. Each exercises repeated Blast, Explosion, Missiles channel/pulse and public Barrage fallback; diagnostics and reader recovery; zero Apply/model reload calls and unchanged mock settings.
+- `npm run audit` and `git diff --check`: passed. All 20 Lua modules parse as Lua 5.1, all 22 runtime entries remain in the TOC, all 18 media hashes and the eleven-model scope are unchanged.
+- `tools/Package.ps1`: all **45** ZIP entries verified against source SHA256. Compared with the published beta.1, **41 payloads are identical**; only BoundEffects.lua, TOC, README and CHANGELOG changed.
+- Archive: `dist/Epicast-0.1.0-beta.2.zip`, **7,019,777 bytes**.
+- SHA256: **`D1B3627862C38838F08EA6FBB50275119055B4391AC249793C0A3CA6DE25B4C0`**.
+
+SavedVariables were not accessed. Test by fully exiting WoW before extracting the complete ZIP, then restarting. `/epicast triggers` now reports all bindings and identifies trigger revision beta.2. Live confirmation remains pending.
+
 # Cooldown Manager rebuild — 2026-11-15
 
 Build: 0.1.0-beta.1 / schema 1 / interface 16001. This supersedes the initial package evidence below.

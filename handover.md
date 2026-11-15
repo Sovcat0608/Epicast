@@ -1,6 +1,6 @@
 # Epicast handover
 
-Prepared 2026-11-15. Initial independent build: **0.1.0-beta.1**, saved-settings schema **1**, WoW Forever interface **16001**.
+Prepared 2026-11-15. Current build: **0.1.0-beta.2**, authorized for GitHub beta publication; initial release: **0.1.0-beta.1**. Saved-settings schema **1**, WoW Forever interface **16001**.
 
 ## Delivery and current status
 
@@ -10,14 +10,16 @@ The requested sequence was followed: the small EndCapper Arcane beta was built, 
 | --- | --- |
 | Friends' EndCapper Arcane-only beta | `F:/Work/WoW Addons/EndCapper/artifacts/arcane-only-beta/EndCapper-Arcane-Mage-Beta-1.zip` |
 | Independent Epicast source | `F:/Work/WoW Addons/Epicast` |
-| Epicast installable ZIP | `dist/Epicast-0.1.0-beta.1.zip` |
+| Latest local test ZIP | `dist/Epicast-0.1.0-beta.2.zip` |
+| Beta.2 release | `https://github.com/Sovcat0608/Epicast/releases/tag/v0.1.0-beta.2` |
+| Published beta.1 | `https://github.com/Sovcat0608/Epicast/releases/tag/v0.1.0-beta.1` |
 | Exact package size, SHA256 and file count | `dist/package-verification.json` |
 | Approved media hashes | `tools/media-manifest.json` |
 | This handover | `handover.md` |
 
 Epicast contains 20 Lua modules, two XML actor templates and 18 TGA assets. The installable ZIP contains 45 files including its TOC, player README, changelog and license notices. Its compressed size is approximately 7 MB. Development dependencies, tests, source tooling, this handover, old artwork and historical documents are excluded from the installable ZIP.
 
-Local integration, Lua 5.1 parsing, scope and media audits pass. Packaging verifies every archived entry against its source SHA256. The previous scan-fix beta is installed in `D:/World of Warcraft/_forever_/Interface/AddOns/Epicast`; the latest Cooldown Manager rebuild is ZIP-only, as requested. In-game acceptance of the new detection remains pending. No game UI automation or SavedVariables editing was performed.
+Local integration, Lua 5.1 parsing, scope and media audits pass. Packaging verifies every archived entry against its source SHA256. The previous scan-fix beta is installed in `D:/World of Warcraft/_forever_/Interface/AddOns/Epicast`. The Cooldown Manager beta.1 was subsequently pushed and published to GitHub under user instruction; the user then made the repository public. The About sidebar links to the releases page because GitHub does not feature beta prereleases as Latest. Beta.2 addresses a reproducible trigger-engine failure path after the friend reported all effects stopped; the user subsequently authorized its GitHub publication. The affected client's error/restart evidence remains pending. See `docs/release-0.1.0-beta.2.md` for release identity and asset evidence. No game UI automation or SavedVariables editing was performed.
 
 ## Product contract
 
@@ -40,7 +42,7 @@ Mage-only visibility is on by default. This is class gating, not specialization 
 
 ## Starting and testing
 
-1. Extract `Epicast` into the game's `Interface/AddOns` directory and enable it.
+1. Fully exit WoW, extract `Epicast` into the game's `Interface/AddOns` directory, restart WoW and enable it.
 2. Open `/epicast` or `/epic`. `/epicast dev` toggles developer controls and opens options.
 3. Enable the desired locations. Use the role buttons or **Swap spell / resource locations** to move their content.
 4. Select Central or Edge, then a sister. Drag the outlines or use set size, separation, offset and height controls.
@@ -214,6 +216,16 @@ Testing prerequisite: enable Blizzard's Cooldown Manager, track Missile Barrage 
 Implementation source reference: [Blizzard Forever CooldownViewer.lua](https://raw.githubusercontent.com/Gethe/wow-ui-source/forever/Interface/AddOns/Blizzard_CooldownViewer/CooldownViewer.lua) (`IsActive`, buff `ShouldBeActive`, `OnHide`, pool reset and layout), [native viewer XML](https://raw.githubusercontent.com/Gethe/wow-ui-source/forever/Interface/AddOns/Blizzard_CooldownViewer/CooldownViewer.xml), and [CooldownViewer API declarations](https://raw.githubusercontent.com/Gethe/wow-ui-source/forever/Interface/AddOns/Blizzard_APIDocumentationGenerated/CooldownViewerDocumentation.lua). ProcDoc informed the investigation; no third-party implementation was copied.
 
 Current package verification is in `dist/package-verification.json`; build evidence is in `docs/verification.md`. This rebuild was not installed or published. SavedVariables were neither opened nor modified for this implementation.
+
+### Beta.2 trigger isolation, 2026-11-15
+
+After publication the user reported that their friend now sees no effect triggers at all. Asked for the first Lua error/stack, whether artwork remains visible, and whether installation was followed by a full client restart or only `/reload`. No answer had arrived when this test build was prepared. Do not claim the affected client's root cause is confirmed.
+
+A clean harness loading the release with `CooldownBuffs.lua` omitted reproduces a concrete integration defect: `E.SyncBoundEffect` calls the missing `E.IsCooldownBuffBinding` for every kind of effect, aborting setup at the Tome's fourth layer before the Scroll is created. Cast events subsequently hit the same nil call. A thrown native-reader error can also abort setup/event iteration. The former tests always loaded all modules and only simulated failures inside individual native API calls.
+
+Beta.2 gates the optional bridge by buff kind and guards both its binding detector and its reader with protected calls. Missing/error results use readable aura fallback with explicit diagnostics; unrelated cast/channel/success/pulse paths continue. The new `tests/trigger-isolation.lua` runs in fresh Lua VMs for missing module, missing reader, thrown reader and thrown binding detector. It first failed against beta.1, then passed repeated Blast/Explosion/Missiles/buff cycles, diagnostics and reader recovery with no model reloads, full Apply calls or mock-settings changes. The existing full suite also passes.
+
+`/epicast triggers` now reports trigger-code revision `0.1.0-beta.2`, spell-event counts and every bound effect, including enabled/artwork-visible flags. `module missing`, `reader error` and `binding error` distinguish optional bridge failures; the header retains the latest reader/detector error. Corrected installation instructions require closing WoW completely before extraction and restarting, so newly added files can be discovered. No automatic settings reset, game installation, commit, push or new public release was made as part of this local diagnosis/build. SavedVariables were not accessed.
 
 ## Resources
 

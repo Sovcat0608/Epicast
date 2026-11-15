@@ -1,5 +1,12 @@
 # Changes
 
+## 0.1.0-beta.2
+
+- Prevented a missing or failing Cooldown Manager bridge from aborting effect setup and unrelated spell triggers. Public buff reads remain available as a fallback.
+- Added isolated startup and repeated-cast regressions with the native bridge missing or failing.
+- Expanded `/epicast triggers` to report every binding, the trigger-code version, spell-event counts, enable/visibility flags and native bridge errors.
+- Updated installation instructions to require a full WoW restart after an update that adds files.
+
 ## 0.1.0-beta.1
 
 - Added Missile Barrage detection through Blizzard's Cooldown Manager for combat-restricted buff data, with repeated-proc regressions and tracking diagnostics. Requires Barrage in an enabled native Tracked Buffs or Tracked Bars row.

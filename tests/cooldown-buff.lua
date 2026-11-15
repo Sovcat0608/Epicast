@@ -176,7 +176,7 @@ local messages,oldMessage={},E.Message
 E.Message=function(message)messages[#messages+1]=message end
 local panelShown=E.panel:IsShown()
 SlashCmdList.EPICAST('triggers')
-assert(#messages==3 and messages[2]:find('cooldown=active',1,true))
+assert(#messages>=8 and table.concat(messages,'\n'):find('cooldown=active',1,true),table.concat(messages,'\n'))
 assert(E.panel:IsShown()==panelShown and E.draft==nil)
 E.Message=oldMessage
 

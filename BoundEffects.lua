@@ -5,6 +5,9 @@ local frame,cast,channel
 local overlay={}
 local lastEvent="initialization"
 local auraEvents=0
+local spellEvents=0
+local triggerRevision="0.1.0-beta.2"
+local bridgeError
 local buffPollPending,dead=false,false
 local buffBatch,buffSnapshot=false,nil
 local function public(v)return not (issecretvalue and issecretvalue(v))end
@@ -17,6 +20,27 @@ local function call(fn,...)
     return v,"readable"
 end
 local function name(id)return C_Spell and call(C_Spell.GetSpellName,id)end
+local function rememberBridgeError(value)
+    bridgeError=public(value) and type(value)=="string" and value:sub(1,180) or "unreadable error"
+end
+-- The native buff bridge is optional. A missing file or reader error must not
+-- interrupt configuration/event dispatch for cast, channel or burst effects.
+local function cooldownBinding(b)
+    if not b or b.kind~="buff" then return false end
+    if type(E.IsCooldownBuffBinding)~="function" then return false,"module missing" end
+    local ok,value=pcall(E.IsCooldownBuffBinding,b)
+    if not ok then rememberBridgeError(value);return false,"binding error" end
+    if not public(value) then return false,"restricted" end
+    return value==true
+end
+local function readCooldownBuff()
+    if type(E.ReadCooldownBuff)~="function" then return nil,"module missing" end
+    local ok,value,status=pcall(E.ReadCooldownBuff)
+    if not ok then rememberBridgeError(value);return nil,"reader error" end
+    if not readable(value) or not readable(status) then return nil,"restricted" end
+    if value~=nil and type(value)~="boolean" then return nil,"invalid state" end
+    return value,type(status)=="string" and status or "unknown"
+end
 local function match(b,id,text)
     if b.spell=="" then return false end
     local number=tonumber(b.spell)
@@ -115,14 +139,16 @@ local function active(b)
     if b.kind=="cast" then return cast and match(b,cast.id,cast.name)
     elseif b.kind=="channel" then return channel and match(b,channel.id,channel.name)
     elseif b.kind=="buff" then
-        if E.IsCooldownBuffBinding(b) then
-            local snapshot=buffSnapshot or {E.ReadCooldownBuff()}
+        local supported,cooldownStatus=cooldownBinding(b)
+        if supported then
+            local snapshot=buffSnapshot or {readCooldownBuff()}
             if buffBatch then buffSnapshot=snapshot end
             if type(snapshot[1])=="boolean" then return snapshot[1],"cooldown-"..snapshot[2],snapshot[2] end
             local value,status=aura(b)
             return value,status,snapshot[2]
         end
-        return aura(b)
+        local value,status=aura(b)
+        return value,status,cooldownStatus
     elseif b.kind=="proc" then return proc(b) end
     return false
 end
@@ -134,7 +160,7 @@ local function pollBuffs()
         if dead then return end
         buffBatch=true;buffSnapshot=nil
         for e in pairs(layers) do
-            if E.IsCooldownBuffBinding(e.boundConfig) and usable(e) then
+            if cooldownBinding(e.boundConfig) and usable(e) then
                 lastEvent="COOLDOWN_MANAGER_POLL"
                 E.SyncBoundEffect(e)
             end
@@ -146,7 +172,7 @@ function E.SyncBoundEffect(e)
     if not e.boundConfig then return end
     if not usable(e) then e.boundInput="disabled";E.StopBoundEffect(e);return end
     if dead then E.StopBoundEffect(e);return end
-    if E.IsCooldownBuffBinding(e.boundConfig) then pollBuffs() end
+    if cooldownBinding(e.boundConfig) then pollBuffs() end
     if e.boundTest then return end
     local b=e.boundConfig
     if b.kind=="success" or b.kind=="pulse" then return end
@@ -175,7 +201,7 @@ function E.HandleBoundEvent(event,unit,guid,id)
     else
         if not public(unit) or unit~="player" then return end
         lastEvent=event
-        if event=="UNIT_AURA" then auraEvents=auraEvents+1 end
+        if event=="UNIT_AURA" then auraEvents=auraEvents+1 else spellEvents=spellEvents+1 end
         if event=="UNIT_SPELLCAST_START" then cast=info(false,id,guid);channel=nil
         elseif event=="UNIT_SPELLCAST_CHANNEL_START" then channel=info(true,id,guid);channel.started=GetTime();cast=nil
         elseif event=="UNIT_SPELLCAST_STOP" then if same(cast,guid) then cast=nil end
@@ -196,7 +222,7 @@ function E.HandleBoundEvent(event,unit,guid,id)
                 if eligible and matching then
                     local key=public(guid) and guid or nil
                     if (not e.boundLast or now-e.boundLast>.05) and (not key or key~=e.boundGUID or b.kind=="pulse") then
-                        e.boundLast=now;e.boundGUID=key;play(e,b.duration)
+                        e.boundInput="matched";e.boundLast=now;e.boundGUID=key;play(e,b.duration)
                     end
                 end
             end
@@ -208,18 +234,19 @@ function E.HandleBoundEvent(event,unit,guid,id)
 end
 
 function E.PrintBoundStatus()
-    E.Message(string.format("Buff/proc report: combat=%s, aura events=%d, last=%s",
-        tostring(InCombatLockdown()),auraEvents,lastEvent))
+    E.Message(string.format("Triggers %s: combat=%s, spell events=%d, aura events=%d, last=%s, bridge error=%s",
+        triggerRevision,tostring(InCombatLockdown()),spellEvents,auraEvents,lastEvent,bridgeError or "none"))
     for _,setKey in ipairs({"central","edge"}) do
         for _,side in ipairs({"left","right"}) do
             local entry=E.instances[setKey][side]
             for index,e in ipairs(entry and entry.addedEffectSlots or {}) do
                 local b=e.boundConfig
-                if b and (b.kind=="buff" or b.kind=="proc") then
+                if b then
                     local s=e.nativeSmoke
                     local scene=s and s.slots[1] and s.slots[1].scene
-                    E.Message(string.format("%s/%s #%d model=%d %s (%s): input=%s, cooldown=%s, starts/stops=%d/%d, playing=%s, scene=%s, model=%s, dirty=%s, playback=%s, stopped at=%s",
+                    E.Message(string.format("%s/%s #%d model=%d %s (%s): input=%s, cooldown=%s, enabled=%s, artwork=%s, starts/stops=%d/%d, playing=%s, scene=%s, model=%s, dirty=%s, playback=%s, stopped at=%s",
                         setKey,side,index,e.libraryProfile.fileID,b.spell,b.kind,e.boundInput or "unread",e.boundCooldown or "not used",
+                        tostring(e.effectsEnabled==true and e.nativeWanted==true),tostring(e.frame:IsVisible()),
                         e.boundStarts or 0,e.boundStops or 0,tostring(e.boundPlaying==true),
                         tostring(scene and scene:IsVisible() or false),s and s.status or "missing",
                         tostring(s and s.loadDirty==true or false),e.boundPlayback or "none",e.boundLastStop or "none"))

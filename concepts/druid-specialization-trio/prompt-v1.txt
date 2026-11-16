@@ -1,0 +1,32 @@
+Use case: stylized-concept.
+Asset: THREE matching druid crest sisters for the Epicast Warcraft addon, generated TOGETHER in ONE image.
+Order, left to right: RESTORATION, BALANCE, FERAL. Do not paint these names or any text.
+
+Reference role: The supplied Groveheart crest is the shared Warcraft visual-family and high-fidelity material reference. Keep its compact crest identity, root-bound stone heart, substantial branching crown and shaped wooden accents. Its density is TOO HIGH. Redesign all three with substantially fewer elements and much larger readable forms. Do not copy its many small leaves, three medallions, flower clusters or fine carved pattern density.
+
+Highest priority — small-size readability:
+These must look excellent at about 162 x 216 UI pixels per crest. Use one bold central motif and only two or three supporting motif groups per sister. Broad quiet surfaces, clean silhouette, strong separation of light and dark masses, a few generously sized leaves, thick roots, simple deep grooves. Reduce ornament density by roughly half or more while maintaining the same refined painted fidelity. Simplification is in the design, NOT blur, low resolution, loss of material depth, or flat shapes. Keep colours and highlights restrained. Each crest is a calm static base for later emission, not an activated glowing effect.
+
+Shared construction:
+Three substantial front-facing horned/branched shield-like ornaments, with matching height, visual weight, proportions, perspective, lighting and lower taper. Each has its OWN arrangement of branches, leaves, carved wood and stone; all three must unmistakably remain DRUID. Two strong rising crown arms and a thick root cradle give family resemblance, but vary their curves and the foliage rather than cloning exact outlines. A few broad carved channels can later carry emission. Use at most one small lower fastening/pendant per crest. Keep clear gaps between major branches and use only one or two root curls near the bottom. No dense hanging trinkets or repeated tiny motifs.
+
+LEFT — RESTORATION / healing and nature:
+Warm oak, soft mossy stone, fresh sage/emerald leaves and restrained muted plum accents.
+Dominant central motif: one large sculpted living leaf/sprout heart, clearly readable in a broad stone recess, with strong simple vein channels.
+Supporting motifs: a few prominent maple-shaped green and subdued violet leaves mixed with ordinary long leaves around the root frame; perhaps one modest pale blossom tucked into a branch junction. Thick rounded roots and fresh growth convey healing. The leaf forms should characterize the whole frame rather than sit in individual spell-icon panels. Gentle, nurturing but still chunky Warcraft construction.
+
+MIDDLE — BALANCE / moon, arcane and stars:
+Cool violet-grey stone, weathered dark wood, muted indigo/silver accents, a few broad dusk-green or violet leaves.
+Dominant central motif: one large clean ivory/silver crescent moon set into the stone heart.
+Supporting motifs: a SMALL number of prominent four-point star carvings and a few broad arcane channels following the wood/stone contours. The crown branches curve like a lunar arch. Use actual substantial wood, roots, leaves and stone around the moon; no disconnected cosmic floating ornaments or busy constellation field. A subtly mystical druid crest, not a wizard book or jewellery piece.
+
+RIGHT — FERAL / claws, scratches, fur and teeth:
+Warm rugged wood, charcoal-grey stone, grouped tawny/brown fur, aged ivory, restrained amber/olive accents.
+Dominant central motif: three bold sweeping claw gouges across a broad stone heart, strongly legible as a single claw-mark emblem.
+Supporting motifs: a pair of prominent ivory fangs/claw tips bracketing the stone and a compact band of sculpted fur in large coherent tufts. Incorporate several substantial leaves and root-bound wooden crown branches so it remains part of this DRUID family. A few deliberate deep scratches in wood, not surface-wide damage. No animal face, human hands, skull, blood or gore. Do not render individual noisy hairs.
+
+Fidelity:
+High-fidelity sculpted painterly WARCRAFT fantasy UI illustration. Smooth continuous light-to-shadow transitions across broad three-dimensional forms, clean antialiased contours, controlled crisp accents and clear separation of wood, ivory, stone, fur, metal and foliage. Selective painterly detail at the focal shapes. Avoid granular microtexture, tiny filigree, excessive chips/scratches, crunchy sharpening, muddy blur, plastic CGI, photorealism, pixel art and flat vector style. No neon bloom, particle clouds or bright magical auras.
+
+One-render layout:
+WIDE landscape canvas, approximately 9:4 aspect ratio, at the highest suitable native fidelity. Three complete portrait crests side-by-side in equal-width columns; comfortable transparent gaps between them and outer padding. Match crown height and bottom-tip registration. All branches and leaves fully inside the frame; no overlapping sisters. Genuine transparent alpha around and through the artwork. Exactly three crests, no enlarged fourth object, no thumbnails, no panels, no checkerboard, scenery, ground, cast shadow, titles, labels, watermark or border.

@@ -1,0 +1,46 @@
+{
+  "version": 1,
+  "generatedWith": "built-in image_gen, all three in one render",
+  "order": [
+    "Restoration",
+    "Balance",
+    "Feral"
+  ],
+  "source": "C:\\Users\\info\\.codex\\generated_images\\01a1df15-f1c7-7d50-acd4-1cfa1c7e3f2d\\exec-bb54765b-51f6-4501-9f40-2ee268fa8fea.png",
+  "output": "F:\\Work\\WoW Addons\\Epicast\\concepts\\druid-specialization-trio\\Druid-specializations-review-v1.png",
+  "width": 1881,
+  "height": 836,
+  "pixelFormat": "Format32bppArgb",
+  "cornerAlpha": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "transparentSeparators": [
+    {
+      "between": 1,
+      "fullyTransparentColumns": []
+    },
+    {
+      "between": 2,
+      "fullyTransparentColumns": []
+    }
+  ],
+  "sha256": "4DF558647A644CAB1BCFFBBFF50C6A8456780FFE50D698BE7ACDFE6E379B8131",
+  "prompt": "prompt-v1.txt",
+  "runtimeIntegrated": false,
+  "savedVariablesAccessed": false,
+  "separatorInspection": [
+    {
+      "x": 634,
+      "peakAlpha": 1,
+      "pixelsAtLeast8": 0
+    },
+    {
+      "x": 1240,
+      "peakAlpha": 1,
+      "pixelsAtLeast8": 0
+    }
+  ]
+}

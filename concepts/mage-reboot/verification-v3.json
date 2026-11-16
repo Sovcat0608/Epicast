@@ -1,0 +1,59 @@
+{
+  "Created": "2026-11-16",
+  "Tool": "built-in image_gen.imagegen",
+  "Status": "artwork review only",
+  "ApprovedCenterSource": "Mage-reboot-trio-v2.png",
+  "Final": "Mage-reboot-trio-v3-framed.png",
+  "NativeInitial": "C:\\Users\\info\\.codex\\generated_images\\01a1df15-f1c7-7d50-acd4-1cfa1c7e3f2d\\exec-8c3e6fc4-dae8-4fcc-bb59-91c5705eb44b.png",
+  "NativeFinal": "C:\\Users\\info\\.codex\\generated_images\\01a1df15-f1c7-7d50-acd4-1cfa1c7e3f2d\\exec-1ebe36b7-0e55-44e6-ac54-0cc786dd7a39.png",
+  "Width": 2172,
+  "Height": 724,
+  "PixelFormat": "Format32bppArgb",
+  "EdgeMaxAlpha": 0.0,
+  "EdgePixelsAlphaAtLeast8": 0,
+  "EdgePixelsAlphaAtLeast128": 0,
+  "ByteIdenticalNativeCopies": true,
+  "ProgrammaticImageEdits": false,
+  "Correction": "Frost crown clearance to restore approved upper symbol rays",
+  "Files": [
+    {
+      "Path": "Mage-reboot-trio-v2.png",
+      "Bytes": 2508665,
+      "SHA256": "EC318B8D6C79C6C40FC26FEC2B6F836981F740EFDF8C8847179BCF4D548ACE43"
+    },
+    {
+      "Path": "Mage-reboot-trio-v3-initial.png",
+      "Bytes": 2410558,
+      "SHA256": "5DD9D15C1D72C67EFB83DFA664E235E450B36C8B8C1C3BBC7CC017B2A2D3F5AC"
+    },
+    {
+      "Path": "Mage-reboot-trio-v3.png",
+      "Bytes": 2350284,
+      "SHA256": "54CD2ABE448DD3C0DA37E5C3FC4C8326368E6AF0CD8B12B627E30A3E48676F57"
+    },
+    {
+      "Path": "prompt-v3-crowns-pendants.txt",
+      "Bytes": 4407,
+      "SHA256": "C6E2E3ED2F9FE5A3E445B1DB2B4C19C814B1814D68BE57CD9284EDCD20147983"
+    },
+    {
+      "Path": "prompt-v3-frost-clearance.txt",
+      "Bytes": 1964,
+      "SHA256": "75C1BCBE826E9268CA7DEAA1CE2BF0AE261BF20911187E372999174FE1ED9838"
+    },
+    {
+      "Path": "Mage-reboot-trio-v3-framed.png",
+      "Bytes": 2017612,
+      "SHA256": "7DE3FB0505A5B4CAD0108F80A685836E90D8665ECA5482E4CF55DC57487AAA2B"
+    },
+    {
+      "Path": "prompt-v3-framing.txt",
+      "Bytes": 1561,
+      "SHA256": "26FC2630EC00235B5195CC58AAAB8F1292224A453D6DCE92706068D8868C167C"
+    }
+  ],
+  "PreFramingFinal": "Mage-reboot-trio-v3.png",
+  "PreFramingNative": "C:\\Users\\info\\.codex\\generated_images\\01a1df15-f1c7-7d50-acd4-1cfa1c7e3f2d\\exec-dc4ad9a2-280d-4b18-a948-41c7e4d035a9.png",
+  "PreFramingEdgePixelsAlphaAtLeast128": 57,
+  "Framing": "Built-in image edit adds clear transparent margins, preserving visual designs; no pixel identity claimed"
+}

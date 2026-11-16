@@ -1,0 +1,26 @@
+Use case: precise-object-edit.
+Edit target: image 1, the approved three-crest artwork. Make ONLY the targeted minor revisions below. The user is very happy with this piece: preserve its identity and most of its painting.
+Image 2 is a SHAPE reference for stepped, outward-protruding side pieces on Feral. Render those pieces as STONE, not the brown material in that reference; ignore the checkerboard.
+
+Preserve:
+The three-sister order (Restoration left, Balance middle, Feral right), canvas aspect ratio, relative positions, scale, foundational silhouettes, lighting, painterly Warcraft fidelity, strong contrast and all unmentioned features. Keep the sprout, moon and paw centrepieces; existing medallions and side charms; crown branches/ivory antlers/feline ears; glyphs; fur stripes; fangs; and their current colours and material treatment except where explicitly changed. No new motifs, extra objects, new glow or global repaint/style change. Do not turn this into three newly invented designs.
+
+RESTORATION — LEFT:
+1. Change ONLY the small top-central cap between its branches, currently similar to Balance's triangular cap. Give it a more organic carved-wood/bark outline, with a slightly rounded, asymmetric pointed-leaf shape. Use a distinctly darker walnut/umber hue and readable wood grain. Keep its existing simple pale druid glyph. Make it clearly different from Balance's angular stone cap, without altering the surrounding branches.
+2. Enlarge the existing purple leaves slightly, around 15%, preserving their shapes, positions, number and colour. Do not cover the main sprout or the wooden medallion.
+3. Replace the BOTTOM GREEN LEAF SKIRT below the wooden medallion with a compact tangle of thick sculptural roots. Preserve the prominent purple leaf directly below the medallion, nestled among these roots. Keep the lower taper roughly the same footprint. Leave the upper and side foliage, feathers, twisted-root charms and all other Restoration details intact.
+
+BALANCE — MIDDLE:
+1. Darken ONLY the entangled wooden root framework to a rich dark walnut/cool umber. Keep wood grain and dimensional highlights readable; no flat black, and do not darken the stone, moon, antlers, leaves or feathers.
+2. Replace the exposed brown ROOT TAIL at the very bottom below the stone medallion with a simple sculpted IVORY flourish: two broad curved interlocking ivory tines forming a short tapered tip, related to the ivory antlers' material. Keep the same approximate size/registration and preserve adjacent leaves/feathers. This bottom ornament is visibly ivory throughout, not brown roots with a small ivory cap.
+Keep the stone moon centre, moon medallion, star charms, etched antler cracks, small thorns and glyphs unchanged.
+
+FERAL — RIGHT:
+1. Replace the FEATHER GROUPS at the LOWER-MIDDLE LEFT AND RIGHT SIDES, beside the lower medallion/tooth-charms area, with paired protruding STONE side pieces. Use image 2's stepped, projecting side-wing silhouette as a guide: a few chunky angular grey stone tiers, with broad readable faces, fitting the same general space.
+2. Put matching prominent claw SCRATCHES into BOTH stone side pieces: a clearly matched set of three deep parallel gouges on each side, with consistent spacing and mirrored placement. Clean broad engraved channels and strong local contrast, suitable for later emission masks. No emitted light now. Keep the lower tooth charms hanging in front; do not replace or cover them.
+3. Replace ONLY the central BOTTOM FUR TUFT beneath the ivory medallion with a compact taper of a few broad ivory and muted blue-grey FEATHERS. The feathers must read distinctly from fur.
+Preserve all the other striped fur, the animal ears, ivory paw heart, existing centre scratches, large fangs, ivory fang medallion, tooth charms, wood/root framing, leaves and glyphs.
+
+Finish:
+Maintain the exact established high-fidelity sculpted painterly Warcraft style: smooth continuous shading, clean contours, strong material separation and selective crisp detail. Do not add granular texture, tiny filigree, blur or sharpening. All three retain the approved strong contrast and readable large forms.
+Output exactly the same three complete crests together on genuine transparent alpha, wide landscape layout around 9:4, with clear gaps and complete visible tips. No checkerboard, scenery, ground, shadows, text, labels, border, watermark, fourth crest or alternate panels.

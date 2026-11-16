@@ -1,0 +1,28 @@
+{
+  "Created": "2026-11-16",
+  "Tool": "built-in image_gen.imagegen",
+  "Status": "artwork review only",
+  "Final": "Mage-reboot-trio-v2.png",
+  "NativeSource": "C:\\Users\\info\\.codex\\generated_images\\01a1df15-f1c7-7d50-acd4-1cfa1c7e3f2d\\exec-8f94ea92-d916-4440-b5ef-77c1eda3b8cd.png",
+  "SHA256": "EC318B8D6C79C6C40FC26FEC2B6F836981F740EFDF8C8847179BCF4D548ACE43",
+  "Width": 2172,
+  "Height": 724,
+  "PixelFormat": "Format32bppArgb",
+  "EdgeMaxAlpha": 26.0,
+  "EdgePixelsAlphaAtLeast8": 1,
+  "ByteIdenticalNativeCopy": true,
+  "ProgrammaticImageEdits": false,
+  "Prompt": "prompt-v2-sculpted-centers.txt",
+  "Inputs": [
+    {
+      "Path": "Mage-reboot-trio-v1.png",
+      "Role": "edit target",
+      "SHA256": "942E4E17AE12B669BAA195B61F1891C3D7AFFA17DB0DB7B5C0849050009183DE"
+    },
+    {
+      "Path": "references/Mage-sculpted-center-user-v2.png",
+      "Role": "central construction/material reference",
+      "SHA256": "5CA823DFC62131C174911E8AA1D3F67362CC330B663F5DF7E1F671259AE23504"
+    }
+  ]
+}

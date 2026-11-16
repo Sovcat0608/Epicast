@@ -1,12 +1,12 @@
 local E=...
 Mock.class='DRUID'
-Mock.event('ADDON_LOADED','Epicast');Mock.advance(0)
+Mock.event('ADDON_LOADED','Epicast');Mock.advance(0);E.panel:Hide()
 local db=EpicastDB
 local function layer(id,spell,kind)
  return E.NormalizeAddedEffect({fileID=id,behavior='bound',binding={kind=kind or 'buff',spell=spell,duration=1}})
 end
-db.content.druid.left.addedEffects={layer(166009,'16870'),layer(166011,'Clearcasting'),layer(166062,'400589')}
-db.content.druid.right.addedEffects={layer(166012,'Regrowth','cast'),layer(166033,'Healing Touch','success')}
+db.content.classes.DRUID.slots.balance.addedEffects={layer(166009,'16870'),layer(166011,'Clearcasting'),layer(166062,'400589')}
+db.content.classes.DRUID.slots.restoration.addedEffects={layer(166012,'Regrowth','cast'),layer(166033,'Healing Touch','success')}
 E.Apply();Mock.advance(0)
 local left,right=E.instances.central.left,E.instances.central.right
 local first,second,barrage=unpack(left.addedEffectSlots)
@@ -79,7 +79,7 @@ local name=C_Spell.GetSpellName
 C_Spell.GetSpellName=function(id)if id==16870 then return 'Idées claires'else return name(id)end end
 local row=layer(166009,'Idées claires');E.ConfigureBoundEffect(first,row);E.SyncBoundEffect(first);assert(first.castVisible)
 C_Spell.GetSpellName=name
-E.ConfigureBoundEffect(first,db.content.druid.left.addedEffects[1]);E.SyncBoundEffect(first)
+E.ConfigureBoundEffect(first,db.content.classes.DRUID.slots.balance.addedEffects[1]);E.SyncBoundEffect(first)
 assert(E.IsCooldownBuffBinding({kind='buff',spell='16870'}))
 assert(not E.IsCooldownBuffBinding({kind='proc',spell='16870'}),'Action glow and buff state must remain distinct')
 assert(E.CooldownBuffHint({kind='proc',spell='16870'}):find('While buff active',1,true))
@@ -106,7 +106,7 @@ local report={};E.Message=function(message)report[#report+1]=message end;E.Print
 local text=table.concat(report,'\n')
 assert(text:find('Clearcasting native sample: active',1,true),text)
 assert(text:find('Clearcasting matches=1',1,true),text)
-assert(text:find('Triggers 0.1.0-beta.7',1,true),text)
+assert(text:find('Triggers 0.1.0-beta.13',1,true),text)
 Mock.event('PLAYER_DEAD');visible(false);reads=0;Mock.advance(.2);assert(reads==0)
 omen.isActive=false;Mock.event('PLAYER_ALIVE');visible(false)
 omen.isActive=true;Mock.advance(.11);visible(true)

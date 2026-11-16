@@ -1,22 +1,25 @@
 ## Interface: 16001
 ## Title: Epicast
-## Notes: Independent spell and resource artwork. Arcane Mage and Druid beta.
+## Notes: Independent Mage and Druid spell crests and native effects.
 ## Author: Epicast
-## Version: 0.1.0-beta.7
+## Version: 0.1.0-beta.13
 ## IconTexture: Interface\AddOns\Epicast\Media\EpicastIcon
 ## SavedVariables: EpicastDB
 
 ArcaneData.lua
+ArcanePreset.lua
+MageRebootData.lua
+ClassSpecs.lua
 Model.lua
+IndependentLayout.lua
 Effects.lua
 NativeSmoke.xml
 NativeEffects.lua
 CooldownBuffs.lua
 BoundEffects.lua
 AddedEffects.lua
-MageBooks.lua
 DruidSisters.lua
-Seal.lua
+MageReboot.lua
 Resources.lua
 EffectCatalog.lua
 EffectLibrary.lua

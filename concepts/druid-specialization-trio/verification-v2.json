@@ -1,0 +1,26 @@
+{
+  "version": 2,
+  "generatedWith": "built-in image_gen, all three in one render",
+  "order": [
+    "Restoration",
+    "Balance",
+    "Feral"
+  ],
+  "source": "C:\\Users\\info\\.codex\\generated_images\\01a1df15-f1c7-7d50-acd4-1cfa1c7e3f2d\\exec-1573d3c2-69ab-4396-92f6-ef3f5f2c1be0.png",
+  "output": "F:\\Work\\WoW Addons\\Epicast\\concepts\\druid-specialization-trio\\Druid-specializations-review-v2.png",
+  "reference": "concepts/druid-sisters/Moonwarden-Groveheart-review.png",
+  "width": 1881,
+  "height": 836,
+  "pixelFormat": "Format32bppArgb",
+  "cornerAlpha": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "sha256": "680F62C6C633687D16748E130CC08FA810B54014AC7AC4366BD620ECF522F02C",
+  "prompt": "prompt-v2.txt",
+  "runtimeIntegrated": false,
+  "gameUIAccessed": false,
+  "savedVariablesAccessed": false
+}

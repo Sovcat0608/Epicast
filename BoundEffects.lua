@@ -6,7 +6,7 @@ local overlay={}
 local lastEvent="initialization"
 local auraEvents=0
 local spellEvents=0
-local triggerRevision="0.1.0-beta.7"
+local triggerRevision="0.1.0-beta.13"
 local bridgeError
 local buffPollPending,dead=false,false
 local buffBatch,buffSnapshot=false,nil
@@ -80,12 +80,16 @@ local function animate(e,animation)
     local ok=pcall(function()
         for _,slot in ipairs(s.slots) do
             if not slot.actor:IsLoaded() then error("not ready") end
+            -- Avoid blending a new Stand/intro into the previous Hold pose.
+            -- This is a sequence restart, not a reset of model-global particles.
+            if slot.actor.SetAnimationBlendOperation then pcall(slot.actor.SetAnimationBlendOperation,slot.actor,0) end
             slot.actor:SetAnimation(animation,0,1,0);slot.actor:Show()
         end
         e.castVisible=true;E.PlayNativeSmoke(e)
     end)
     if not ok then e.boundPlayback="animation error";E.StopBoundEffect(e);return false end
     e.boundPlayback="started"
+    e.boundSegment=animation
     return true
 end
 local function later(e,seconds,fn)
@@ -244,20 +248,20 @@ function E.PrintBoundStatus()
         local ok,err=pcall(E.PrintCooldownBuffStatus,keys)
         if not ok then rememberBridgeError(err);E.Message("Native report unavailable: "..bridgeError)end
     end
-    for _,setKey in ipairs({"central","edge"}) do
-        for _,side in ipairs({"left","right"}) do
-            local entry=E.instances[setKey][side]
-            for index,e in ipairs(entry and entry.addedEffectSlots or {}) do
+    for setKey,entries in pairs(E.instances) do
+        for _,entry in pairs(entries) do
+            local side=entry.side
+            for index,e in ipairs(entry.config and entry.addedEffectSlots or {}) do
                 local b=e.boundConfig
                 if b then
                     local s=e.nativeSmoke
                     local scene=s and s.slots[1] and s.slots[1].scene
-                    E.Message(string.format("%s/%s #%d model=%d %s (%s): input=%s, cooldown=%s, enabled=%s, artwork=%s, starts/stops=%d/%d, playing=%s, scene=%s, model=%s, dirty=%s, playback=%s, stopped at=%s",
+                    E.Message(string.format("%s/%s #%d model=%d %s (%s): input=%s, cooldown=%s, enabled=%s, artwork=%s, starts/stops=%d/%d, playing=%s, scene=%s, model=%s, dirty=%s, playback=%s, stopped at=%s, segment=%s",
                         setKey,side,index,e.libraryProfile.fileID,b.spell,b.kind,e.boundInput or "unread",e.boundCooldown or "not used",
                         tostring(e.effectsEnabled==true and e.nativeWanted==true),tostring(e.frame:IsVisible()),
                         e.boundStarts or 0,e.boundStops or 0,tostring(e.boundPlaying==true),
                         tostring(scene and scene:IsVisible() or false),s and s.status or "missing",
-                        tostring(s and s.loadDirty==true or false),e.boundPlayback or "none",e.boundLastStop or "none"))
+                        tostring(s and s.loadDirty==true or false),e.boundPlayback or "none",e.boundLastStop or "none",tostring(e.boundSegment or "none")))
                 end
             end
         end

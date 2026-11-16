@@ -1,0 +1,19 @@
+{
+  "reviewed": "2026-11-16",
+  "source": "concepts/druid-sisters/Moonwarden-Groveheart-review.png",
+  "installedRoot": "D:/World of Warcraft/_forever_/Interface/AddOns/Epicast",
+  "matches": [
+    {
+      "asset": "MoonwardenCASSize768.tga",
+      "repositorySHA256": "984B3A755FC67F50CE35F49A41E7E4899307E4EA6BF85636CCEBD6497E02C917",
+      "installedSHA256": "984B3A755FC67F50CE35F49A41E7E4899307E4EA6BF85636CCEBD6497E02C917"
+    },
+    {
+      "asset": "GroveheartCASSize768.tga",
+      "repositorySHA256": "07252EDF75EFC09E92EEC011503284A3A530FD76B551427700F304F4F7F0AFA5",
+      "installedSHA256": "07252EDF75EFC09E92EEC011503284A3A530FD76B551427700F304F4F7F0AFA5"
+    }
+  ],
+  "gameUIAccessed": false,
+  "savedVariablesAccessed": false
+}

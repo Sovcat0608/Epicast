@@ -1,280 +1,89 @@
 # Epicast handover
 
-Latest live feedback: the user confirmed Druid Clearcasting works after changing both layers from Proc to Buff. Their screenshot shows native 16864/16870 active and both effects playing. They requested the same for **Missile Barrage**; verified beta.7 already has the shared reader and both Arcane defaults use Buff, with installed/source hashes matching and the full suite passing. Use While buff active / aura 400589 and visible native Barrage tracking. No new runtime change or build was needed for that mapping, no SavedVariables were accessed, and Mage live acceptance is still pending. See `docs/druid-clearcasting.md` follow-up.
+## Current source: beta.13 Arcane bake, ready for publication (2026-11-16)
 
-Prepared 2026-11-15. Current built/installed version: **0.1.0-beta.7**; latest published release: **0.1.0-beta.7**. Saved-settings schema **2**, WoW Forever interface **16001**. Added Druid Clearcasting/Omen of Clarity to the native buff bridge after 16870 failed with buff/proc signals. Buff bindings now match the Druid 16864/16870 native tracker; snapshots are per proc, diagnostics are profile-specific and studio guidance explains visible native tracking. Screenshot showed direct aura errors in combat and both native viewers hidden. Live acceptance remains pending; see `docs/druid-clearcasting.md`. Beta.6's **8,723 Forever-filtered models** and placeholder safeguards remain unchanged, as do approved Druid/Arcane artwork and existing saved layers. See `docs/forever-effects.md`, `docs/effect-library.md` and `docs/druid-sisters.md`. Beta.3's tabs/Barrage changes remain included; live Barrage acceptance is still pending.
+User explicitly requested publishing a beta and clarified: bake the in-game effects and spell binding configuration. This authorizes a one-time read of Epicast's Arcane save, overriding the earlier no-read rule for this task only. Read literal data from the 17:16:05.228 UTC save; source SHA256 `9B061597DACEF50CBA6ED14545D0CD400C09E7F158D68C33A154AD112009F892`. No save writes/full snapshots. Only the twelve Arcane effect rows are retained in `tests/fixtures/arcane-beta13.json`; no personal placement or other classes are baked. See `docs/arcane-preset.md`.
 
-## Delivery and current status
+`ArcanePreset.lua` supplies six static/six bound layers for fresh Arcane slots. Existing saved arrays, explicit empties and legacy two-list merge survive; fresh slots no longer incorrectly take the legacy pair defaults. Artwork, schema5, all other defaults and native renderer/reader logic remain unchanged. Full tests including exact export, live preset spell routes, repeated Barrage clears and rapid re-proc during outro pass. `npm ci` and audit passed. All49 media assets are unchanged from beta.12.
 
-The requested sequence was followed: the small EndCapper Arcane beta was built, checked and linked to the user before work on this fork began.
+Prepared `dist/Epicast-0.1.0-beta.13.zip`,80 files/25,922,957 bytes/SHA256 `BC55855E02CAD469CEC050B52B3B8F4896C1B32EABE104CA825F19AC35FD0DEF`; checksum companion and prerelease notes prepared. User authorized source commit/push and GitHub beta publication. No reinstall requested; beta.12 remains installed. Publication receipt will be recorded after remote verification. Abandoned `animation-rnd/` remains local and is excluded from publication.
 
-| Deliverable | Location |
-| --- | --- |
-| Friends' EndCapper Arcane-only beta | `F:/Work/WoW Addons/EndCapper/artifacts/arcane-only-beta/EndCapper-Arcane-Mage-Beta-1.zip` |
-| Independent Epicast source | `F:/Work/WoW Addons/Epicast` |
-| Latest local test ZIP | `dist/Epicast-0.1.0-beta.7.zip` |
-| Beta.7 release | `https://github.com/Sovcat0608/Epicast/releases/tag/v0.1.0-beta.7` |
-| Beta.2 release | `https://github.com/Sovcat0608/Epicast/releases/tag/v0.1.0-beta.2` |
-| Published beta.1 | `https://github.com/Sovcat0608/Epicast/releases/tag/v0.1.0-beta.1` |
-| Exact package size, SHA256 and file count | `dist/package-verification.json` |
-| Approved media hashes | `tools/media-manifest.json` |
-| This handover | `handover.md` |
+## Latest local installation: beta.12, uncorrected Mage option 1 (2026-11-16)
 
-Epicast contains 21 Lua modules, two XML actor templates and 30 TGA assets. The beta.7 ZIP contains 58 files including its TOC, player README, changelog and license notices, totaling 13,246,158 bytes; SHA256 `CBD24D6D64378159464E3CC00F6581AA3F96CD519132199EEE2D3BFBF3F1A3AC`. Development dependencies, tests, source tooling, approved source PNGs, this handover and historical documents are excluded from the installable ZIP.
+The user preferred **the first uncorrected crown/pendant option** and explicitly requested baking/building/installing it. Integrated exact `concepts/mage-reboot/Mage-reboot-trio-v3-initial.png`, SHA256 `5DD9D15C1D72C67EFB83DFA664E235E450B36C8B8C1C3BBC7CC017B2A2D3F5AC`. The corrected/framed v3 versions were not chosen. Do not silently replace the approved source with either later image.
 
-Local integration, Lua 5.1 parsing, scope and media audits pass, including Clearcasting repeated cycles, per-proc snapshot isolation, optional-reader failure and unchanged healing triggers, plus all earlier library/artwork regressions. Packaging verifies every archived entry against its source SHA256. Beta.7 is installed in `D:/World of Warcraft/_forever_/Interface/AddOns/Epicast`: 58 installed payload hashes verified, 6 files changed, replaced addon files backed up under `artifacts/install-20261115-224715`. All 30 artwork assets, catalog and rendering modules remain unchanged from beta.6. No SavedVariables access or game UI automation. The user subsequently authorized pushing and publishing beta.7; see `docs/release-0.1.0-beta.7.md` for its release identity. The previously installed beta.7 ZIP is published unchanged. The friend confirmed beta.2 restored other triggers, but Barrage remains unconfirmed after the subsequent local reader changes.
+New MageRebootData.lua / MageReboot.lua render three independent complete square crests with all floating shards, native six-second phase-preserving hover and no snapping. Eighteen size-specific CAS textures derive from exact source columns with transparent padding, no dropped pixels, no repaint/upscale. Default216×216; native effect arrays/bindings/placement retained. Schema remains5; historical migration geometry remains unchanged. No separate scroll/pendant/shard animation. Resources retain pending art. Druid renderer/media and addon icon are unchanged. See `docs/mage-reboot-integration.md`.
 
-## Product contract
+Full tests/audit pass, including live-handler mock Barrage rearming and new artwork/geometry/phase/class-isolation checks. `npm ci` hit isolated DNS failure; five matching locked dependency versions were restored offline and all124 file hashes checked. Runtime texture preview inspected; in-game acceptance remains separate. All31 Druid/icon hashes unchanged. Evidence under `artifacts/mage-reboot-option1`.
 
-Epicast owns independent artwork frames under `UIParent`. It does not replace, reparent, anchor to or derive positions from Blizzard endcaps or an action bar. The optional **Hide Blizzard endcaps** setting starts off. It changes only the native decorative texture alpha, preserves external alpha changes and restores the latest external value when disabled. Combat defers reconciliation.
+Built `dist/Epicast-0.1.0-beta.12.zip`,79 files/25,921,160 bytes/SHA256 `3B4AF3892E50FEE8643394063DFEC108566A446CD5EB0BBF6DB7AA04494208A4`. Installed in `D:/World of Warcraft/_forever_/Interface/AddOns/Epicast`:33 new/changed,46 unchanged,57 retired files individually backed up/removed via explicit guarded list. All79 installed payloads and57 removals independently rechecked. Backup/report `artifacts/install-20261116-164602/`. SavedVariables files never accessed. No commit/push/publication. Fully restart WoW for new modules; last public release remains beta.7. See `docs/release-0.1.0-beta.12.md`.
 
-There are two physical locations and two content roles:
+## Previous artwork review: Mage reboot v3 crowns/pendants (2026-11-16)
 
-| Physical location | Default role | Initially enabled | Placement |
-| --- | --- | --- | --- |
-| Central set | Spellcasting | Yes | Pair centered near the bottom, with adjustable separation |
-| Edge set | Resources | No | Pair near the lower screen edges, with adjustable inset |
+User approved v2 centers as perfect and requested localized changes: icy sharded Cold Snap crown and low icicle base, molten sharded Combustion crown, knotted-rope Kirin Tor crown with central shard, and crafted matching pendants replacing the lower framed gems. All floating shards and approved centers are preservation requirements.
 
-Each role occupies exactly one location in the saved configuration, even if that location is disabled. Assigning a role to one location moves the other role to the other location. The UI cannot create two Spellcasting sets or two Resource sets. Normalization also repairs duplicate assignments in malformed saves. Central-only, Edge-only, both-on and both-off are supported.
+Built-in imagegen edited v2. First pass obscured Frost upper rays, so a targeted correction restored their crown clearance. A final framing pass fixed 57 intermediate edge pixels at alpha>=128. Selected `concepts/mage-reboot/Mage-reboot-trio-v3-framed.png`, native2172×724RGBA, SHA256 `7DE3FB0505A5B4CAD0108F80A685836E90D8665ECA5482E4CF55DC57487AAA2B`. Final entire edge alpha0; native copy hashes match. Visual center/shard preservation checked without claiming pixel identity. All three native outputs, exact prompts and verification-v3.json retained; no programmatic image edits. V3 additions await review. No runtime/build/install/publication or SavedVariables access.
 
-**Role content follows the role; placement follows the location.** A tuned spell effect stays with Spellcasting when locations swap. Central gap, Edge inset, individual drag offsets and active checkboxes stay with their physical locations. The location's Swap sisters flag remains with that location.
+## Previous artwork review: Mage reboot v2 sculpted centers (2026-11-16)
 
-Approved runtime designs are **Arcane Tome / Arcane Scroll** and **Moonwarden / Groveheart**. Druids automatically use the latter for Spellcasting in either physical location, with a separate tuning bank. No Druid spell-effect presets are included; developer-authored bindings remain available. The optional Resources pair retains its existing Arcane art and class-filter behavior: left Health, right Mana by default. Resource emissions respond to level and an optional small meter shows the percentage. Dedicated Resources artwork remains deferred.
+User accepts the new trio foundations but wants the symbols sculpted/intertwined into the center crest rather than copied onto a panel. Outlines may adapt while staying recognizable; centers should be crystallized and dimensional as in the newly attached Warcraft reference. Built-in imagegen edited v1 with that reference: raised ice ribs/ring, dimensional flame and supported rune rim, faceted Kirin Tor eye/pupil/rays. Surrounding books, crystals, crowns/bases and drapery remain the visual foundations.
 
-The previous Mage-only visibility flag now reads **Restrict Arcane artwork to Mages** and remains on by default. It still applies to Arcane Spellcasting/Resources. Druid Spellcasting is always selected on Druids only, independent of that flag. Class designs apply across specializations/forms; this is not a per-specialization profile system. The older Arcane-only renderer/calibration contracts below remain unchanged.
+Final `concepts/mage-reboot/Mage-reboot-trio-v2.png`, native2172×724RGBA, SHA256 `EC318B8D6C79C6C40FC26FEC2B6F836981F740EFDF8C8847179BCF4D548ACE43`. Copied unchanged from native output; no programmatic image edits. Edge alpha max26, one edge pixel at alpha>=8 and none at>=128. Exact prompt, copied user reference and verification-v2.json retained alongside v1. User subsequently approved the center designs and requested their preservation during crown/pendant edits. No runtime/build/install/publication or SavedVariables access. Central-sculpture direction recorded in AGENTS and concept README.
 
-## Starting and testing
+## Previous artwork review: Mage reboot v1 (2026-11-16)
 
-1. Fully exit WoW, extract `Epicast` into the game's `Interface/AddOns` directory, restart WoW and enable it.
-2. Open `/epicast` or `/epic`. `/epicast dev` toggles developer controls and opens options.
-3. Select **Central set** or **Edge set**, enable that location and choose its role from the explicit menu. **Swap roles between sets** moves both roles atomically.
-4. Select a sister. Central exposes size/separation/position/height; Edge exposes size/inset/height. Each tab remembers its selected sister; resource and spell controls follow the current role.
-5. Save commits the complete configuration. Cancel or closing options discards unsaved previews. Save keeps the panel open with a new clean draft.
-6. In developer mode, **Edit sister's effects** opens the full native model catalog and effect studio. Search names, paths, aliases or numeric FileDataIDs. A preview must load before adding it. Custom artwork controls remain separate from native effect controls.
+After the reset, the user supplied four new references and requested a new sister trio. Cold Snap, Combustion and Kirin Tor are the central symbol foundations; the fourth reference defines the prominent central crest, book/page wings, crown/base, floating crystals and lower drapery. This new brief supersedes the blank Mage direction below; none of the discarded art or prompts was reused.
 
-Both addons can load together because names, saved settings and templates are independent. Their artwork may overlap if both are enabled. Epicast does not automatically change EndCapper's selections or hide its frames.
+Built-in imagegen produced a Frost / Fire / Arcane review sheet. One targeted correction changed Frost's seven upper rays to six paired rays as in the supplied symbol. Final `concepts/mage-reboot/Mage-reboot-trio-v1.png`, native2172×724RGBA, SHA256 `942E4E17AE12B669BAA195B61F1891C3D7AFFA17DB0DB7B5C0849050009183DE`. Final/source copies match; image visually inspected, edge alpha max4 with zero edge pixels at alpha>=8. Exact initial/correction prompts, four references and native provenance are in the new concept directory. No programmatic image edits.
 
-The EndCapper beta is a separate deliverable, with root folder `EndCapper`, version `1.4.7-arcane-beta.1` and saved variable `EndCapperArcaneBetaDB`. Its README directs testers to move the full EndCapper folder aside before extraction so excluded assets are not left behind. It cannot coexist as a second installation of the same addon folder. The beta retains EndCapper's generic settings framework; Epicast is the separately cleaned fork.
+Artwork review only. No runtime/code, package, installation or SavedVariables changes. The source remains the reset beta.11/schema5 described below, awaiting artwork approval and an integration request.
 
-## Source provenance and extraction
+## Previous source: Mage artwork reset (2026-11-16)
 
-The source was the current **working tree**, not just a released commit, at `F:/Work/WoW Addons/EndCapper-GitHub`. Its HEAD was `04ad832c7b5d617370bb3e8fddff0a7e9e12c4fd`; it already contained substantial modified and untracked Arcane, effect-library and Timeworks work. Existing changes were preserved. Do not reset that working tree or assume its HEAD alone can reproduce this fork.
+The user explicitly discarded all prior Mage artwork and art direction to start over. Do not revive requirements from that discarded work in chat history, backups or test fixtures. The subsequent fresh brief and review are recorded above. The general painting guide remains scoped to Druid; the new Mage references supply its current direction. See `docs/mage-artwork-reset.md` for reset scope.
 
-`EndCapper-GitHub/tools/Build-ArcaneBeta.cjs` creates the reduced EndCapper beta. `EndCapper-GitHub/tests/arcane-beta.lua` verifies its scope and settings behavior.
+Deleted the Mage concept workstream (89 files including paintings, references, prompts and research), its bake/preview directory, 36 Mage trio textures and 17 legacy Arcane textures. Removed the active custom Mage renderers, overlay controls, asset tools and media-manifest entries. Resources previously reused Arcane artwork; they now display as Resource 1 / Resource 2 without that art. Druid's 30 textures and the addon icon remain unchanged.
 
-`EndCapper-GitHub/tools/Fork-Epicast.cjs` was the one-time extraction helper. The later one-time pruning helper was archived at `EndCapper/artifacts/arcane-only-beta/epicast-prune-inherited.cjs`. **Do not rerun these over Epicast:** the independent model, core, options, resource implementation, seal renderer and subsequent corrections are authoritative here. Those extraction helpers are not an Epicast build pipeline.
+Mage's Fire/Frost/Arcane slots remain independently editable, labeled artwork pending, with native effects and bindings intact. No retired Mage texture paths are requested. Stable slot/art IDs and numeric legacy geometry survive only for compatibility. In-memory normalization drops retired custom-overlay settings; no SavedVariables files were accessed. No replacement artwork was generated.
 
-The fork copies the 17 approved Arcane artwork textures without resampling, regenerating or sharpening them again. Existing LICENSE and CAS third-party notices were retained; historical EndCapper names in those notices record provenance. The addon icon uses the user-supplied `C:/Users/info/Downloads/Arcane Magenta Sigil Orb.png` (1254 × 1254, SHA256 `0F57E3A8ED8F34C5CB6A263AF3B840CEE48B4770AB7D9AA7B3B8E025540EA601`), downsampled with high-quality bicubic filtering to a 128 × 128 BGRA TGA.
+`npm test` and `npm run audit` passed after the reset. Current-runtime tests cover pending art, preserved placement/selection/native tuning, Druid rendering, every class preview, and repeated Missile Barrage gain/clear alongside cast/channel/pulse triggers. Historical software fixtures preserve earlier trigger regressions but do not ship and are not art references. The manifest now contains 31 textures; TOC has 21 Lua modules plus two XML templates.
 
-## Runtime modules and responsibilities
+## Historical build and installation status before beta.12
 
-| File | Responsibility |
-| --- | --- |
-| `ArcaneData.lua` | Exact approved bounds and baked native effect placements, with explicit binding records |
-| `Model.lua` | Schema, normalization, independent settings, role assignment, art registry and transactional editing |
-| `Effects.lua` | Artwork-relative anchoring, natural-edge native viewport, common effect lifecycle |
-| `NativeSmoke.xml` | Namespaced ModelSceneActor load callback template |
-| `NativeEffects.lua` | Inherited model loading, overlap, camera projection, calibration and readiness handling |
-| `CooldownBuffs.lua` | Read-only Missile Barrage detection from public native tracked-buff state; current metadata mapping and unavailable-state diagnostics |
-| `BoundEffects.lua` | Public spell/aura/proc events, state/burst lifetimes, segment transitions and test triggers |
-| `AddedEffects.lua` | Per-instance native layer pool and binding configuration |
-| `MageBooks.lua` | Arcane-only book/scroll textures, native hover and registered emission atlas playback |
-| `DruidSisters.lua` | Approved Druid sprites, independent native hover/phase, size-specific texture/UV selection |
-| `Seal.lua` | Arcane scroll's custom rotating seal and its delayed hover phase |
-| `Resources.lua` | Resource reads, event updates, emission intensity and optional meters |
-| `EffectCatalog.lua` | 8,723 Forever-filtered spell/particle/supporting world models and 32 preview calibrations |
-| `EffectLibrary.lua` | Lazy name/path/alias search and direct FileDataID lookup |
-| `EffectAnimations.lua` | Known animation segment durations for six of the allowed models |
-| `EffectAuthoring.lua` | Static/Bound creation and declarative binding defaults |
-| `EffectPreview.xml`, `EffectPreview.lua` | Independent preview actor, fitting and segment playback |
-| `EffectControls.lua` | Added-layer selection and placement controls |
-| `BindingControls.lua` | Trigger kind, spell/buff/proc, lifetime, intro/outro and test controls |
-| `EffectBrowser.lua` | Catalog/studio UI and coordination with the selected set/sister |
-| `Options.lua` | New Central/Edge configuration UI, custom artwork panel and Save/Cancel |
-| `Core.lua` | Independent frames, placement, class visibility, combat deferral, native hide and commands |
+Current working code remains beta.11 / schema 5 with this unbuilt reset. No rebuild, installation, commit, push or publication was requested or performed for the reset.
 
-The TOC order is significant. It loads definitions before Core starts the addon. Every Lua chunk receives the same private namespace through `local _, E = ...`. No global EndCapper namespace is used. Actor callback fields and XML templates have Epicast-specific names.
+- Last local ZIP: `dist/Epicast-0.1.0-beta.11.zip`, 116 files, SHA256 `3C6308466FAABBBEE6CF4D5098D06DCCD04E55996B4A73B178F5D8CF7F14C302`. It predates the reset and still includes old Mage art.
+- Last installed: beta.10 / schema 4 at `D:/World of Warcraft/_forever_/Interface/AddOns/Epicast`. ZIP SHA256 `6963C452E40E253F8A2E1C16FCCF3CCC68E3892F0AD4640951D7BA2BFCFED1A7`. Installation backup/report: `artifacts/install-20261116-133621/`.
+- Last public release: beta.7. Existing release records, ZIPs and install backups are historical; none are a current Mage art brief. Never reinstall them expecting this reset.
 
-Removed from the fork: native Edit Mode profiles, old schema migrations, Blizzard cap ownership and geometry, Bartender integration, non-Arcane artwork registries and media, other custom artwork renderers, historical built-in effect profiles, old hardcoded CastEffects binding engine, compatibility aliases to EndCapper saved settings and release/CurseForge automation. Internal generic function names such as `UpdateNativeSmoke`, `MageBooks` and `CropNativeEffect` remain for the inherited rendering contracts; they do not load retired artwork.
+## Current product and layout
 
-## Saved settings and editing
+Epicast is standalone and uses only Epicast namespaces and its own settings. `/epicast` or `/epic` opens options; `/epicast dev` enables the developer studio. Never access SavedVariables files, including for migration, backups, hashing or installation. No game UI/screen automation.
 
-Only `EpicastDB` is read/written. There is no automatic import from EndCapper or its beta, and no dependency on either addon's SavedVariables. Settings are currently account-wide; native layout/profile switching is intentionally absent.
+Schema 5 has independent size/X/Y/visibility for every class/spec and resource slot. Spellcasting and Resources are editor categories, not linked layout groups. No automatic rearrangement, paired sizes, shared gaps or Central/Edge placement. Selecting, showing or editing one crest does not move another. Stable class/spec frame pools prevent cross-class reuse. See `docs/independent-crests.md`.
 
-Abbreviated schema:
+All nine Forever classes have three slots. Players select any combination for their class on first use and later; talent spec changes do not alter selection. Dev Build class menus in both editors preview any class temporarily. Preview ends when options close or dev mode ends. Combat guards defer reconciliation. Save/Cancel covers the complete draft; no settings files are read by tools.
 
-```lua
-EpicastDB = {
-  version = 2,
-  hideBlizzard = false,
-  classOnly = true,
-  sets = {
-    central = { role="spells", enabled=true, size=100, gap=480,
-      x=0, y=0, swapped=false, leftX=0, leftY=0, rightX=0, rightY=0 },
-    edge = { role="resources", enabled=false, size=100, gap=480,
-      x=0, y=0, swapped=false, leftX=0, leftY=0, rightX=0, rightY=0 },
-  },
-  content = {
-    spells = { left=sideConfig, right=sideConfig },
-    resources = { left=sideConfig, right=sideConfig },
-    druid = { left=druidSideConfig, right=druidSideConfig },
-  },
-}
-```
+`IndependentLayout.lua` imports schema-1–4 effective layout once, retaining old scale, gaps/order, facing, offsets and disabled flags as independent coordinates. Bounds for removed art are migration data only. Existing schema-5 placement is not re-migrated. Druid Moonwarden maps to Balance and Groveheart to Restoration; effect/tuning arrays remain intact. Missing Mage Arcane slots merge both legacy native lists once, including duplicates and explicit empties, retaining intrinsic model fitting and bindings while centering the five placement fields. Limit: 32 native layers.
 
-A side config contains its approved art ID, role, size, facing, effects/native flags, optional emission/seal/resource settings and a flat `addedEffects` array. Resource configs forcibly strip binding records and normalize layers to Static. Explicit empty effect arrays remain empty; only missing arrays initialize defaults. Invalid artwork IDs revert to the appropriate class/role default. Native model IDs accept the full integer FileDataID range 1–4,294,967,295, including unlisted but successfully previewed assets. Other numeric inputs remain bounded and reject NaN/infinity. At most 16 native layers are accepted per sister.
+## Druid artwork
 
-`E.Begin` creates a normalized draft; `E.Config` returns draft or saved state; `E.HasChanges` compares normalized settings; `E.Commit` writes only EpicastDB; `E.Cancel` drops the draft. Higher saved schema versions leave this build inactive instead of silently downgrading settings.
+The approved trio is v8, integrated in beta.9. Exact source: `concepts/druid-specialization-trio/Druid-specializations-review-v8.png`, SHA256 `4D592A779782DD20FA9B0BCBD38CE7B018613397EA53A53E0ABC77E4C76CBFC8`. Eighteen size-specific textures plus the original Moonwarden/Groveheart twelve remain. `DruidSisters.lua` retains native six-second hover and phase, transparent padding, disabled pixel/texel snapping and the approved CAS bake. `docs/image-generation-style.md` governs Druid painting. No Druid repaint or animation change was requested in the Mage reset.
 
-`E.GetSide(db, setKey, side)` resolves physical side through the location's sister swap. Its config follows content; its second return identifies the content-side key. `E.GetEffectLibraryTarget` returns the config, physical side and physical set. Manual tests include the physical set in their identity so identical art in the other location cannot receive the trigger.
+## Effects, bindings and known limitations
 
-## Rendering and animation invariants
+The library lists 8,723 locally inspected Forever 1.60.1.70938 effects. Missing/error/empty models and the placeholder cube are excluded; Add requires a successful preview. `tools/forever-effects.json` and `docs/forever-effects.md` record evidence. Do not ship native game binaries or substitute arbitrary IDs. Existing saved native effects remain normalized losslessly except documented fixes.
 
-Follow `AGENTS.md` here and the original `EndCapper/docs/artwork-fidelity.md` standard for any future artwork work. Preserve approved assets, registrations and timing unless explicitly retuned by the user.
+`BoundEffects.lua` uses public spell/aura/overlay events; `CooldownBuffs.lua` additionally polls readable public Cooldown Manager state for supported Buff bindings. Models remain pooled/preloaded with generation and timer-token guards. No cast-time reloads, guessed missile ticks or fabricated resources. Resources support native intensity and optional meters; bound layers are excluded.
 
-- Native Translation hover is six seconds: two three-second IN_OUT legs.
-- Arcane hover amplitude uses the accepted book width relationship, `width * 0.012 + 2`.
-- Pixel-grid snapping is disabled and texel snapping bias is zero on moving custom textures.
-- Size-specific TGA variants retain the accepted maximum CAS bake. Do not add sharpening again at runtime or rebuild from compressed previews.
-- No rocking is introduced for this Arcane pair. The broader project standard allows independent ±3-degree/seven-second rocking where appropriate; that is not permission to alter approved Arcane motion.
-- The scroll's seal retains its 24-second default revolution, six-second hover and one-second lag behind the artwork. Native phase/registration is preserved through routine updates.
-- Emission atlases use two registered textures to blend adjacent frames, with the inherited 32-frame layout. These are masked original glyph/symbol/gem pixels, not newly painted art.
-- Native effects retain the enlarged natural-edge viewport, camera projection, model origin compensation and overlap handling. There is no new straight bottom clipping mask.
-- Resource intensity multiplies emission hosts and native scene alpha after normal rendering. It does not fade the physical book/scroll base.
+Missile Barrage uses Buff, not Proc overlay: aura 400589, talent/tracker 400588. Druid Clearcasting uses Buff 16870 and Omen of Clarity tracker 16864. Both share the safe reader. Public `IsActive()` / `isActive` is preferred; unreadable identity/aura data cannot establish a match. Missing readers/errors must not disable other triggers. Hidden native rows are diagnostic only; a hidden unmatched row must not mask an active visible one. Blizzard's relevant Tracked Buffs/Bars viewer must remain enabled/visible during restricted combat reads.
 
-Media inventory includes seven square size variants (192, 288, 384, 480, 576, 768, 887) for each of ArcaneTome and ArcaneScroll, one emission atlas each, `ArcaneSigilCASSize256.tga`, and `EpicastIcon.tga`. Exact byte lengths and SHA256 are in `tools/media-manifest.json`. The client provides native models by file ID.
+The user confirmed Clearcasting worked after switching to Buff/native tracking, then requested the same path for Missile Barrage. Existing Arcane bindings saved as Proc/name/talent ID normalize to Buff; numeric IDs become 400589. Repeated gain, Arcane Blast clear, and subsequent gain tests pass locally. This does not establish live client acceptance for every case or explain the game's buff-clear mechanic. `/epicast triggers` includes native viewer matches/metadata/read state and each layer's starts/stops/playback; request the full report while a missed proc is active if the issue returns.
 
-## Native effect defaults and binding behavior
+Effect 166602 has only Stand (0), no independent Intro/Hold/End; normalization disables unsupported segment choices. Global particle timelines can still differ after first playback. `docs/effect-playback.md` and `docs/166602-playback.json` contain binary evidence. Never claim mock timing tests establish GPU particle restart behavior.
 
-The unchanged Arcane defaults use eleven native model IDs in thirteen placements. These no longer restrict the effect library:
+## Verification and delivery
 
-| Sister | Effect / ID | Default behavior |
-| --- | --- | --- |
-| Tome | Arcane dungeon fog, 1713497 | Static |
-| Tome | Kirin Tor seal, 243044 | Static |
-| Tome | State arcane hands, 950917 | Static |
-| Tome | Arcane Blast targetprecast, 1699091 | While casting Arcane Blast |
-| Tome | Arcane storm channel, 5054328 | While Missile Barrage buff is present |
-| Tome | Large Void Glow, 166009 | While Missile Barrage buff is present |
-| Scroll | Large Void Glow, 166009 | Static |
-| Scroll | Arcane dungeon fog, 1713497 | Static |
-| Scroll | Jaina arcane cannon missile, 2499922 | Static |
-| Scroll | Arcane Blast impact, 1712386 | Arcane Blast cast success, 1.333 s |
-| Scroll | Arcane Barrage impactchest, 1622612 | Arcane Explosion success, 1.033 s |
-| Scroll | Arcane Shot impactchest, 1545158 | Observed Arcane Missiles pulse, 0.667 s |
-| Scroll | Arcane Surge precast, 4637330 | While channeling Arcane Missiles |
+Run `npm test` and `npm run audit`; package only when requested using `tools/Package.ps1`. The allowlist derives from TOC and `tools/media-manifest.json`; test fixtures, concepts and source tools do not ship. Install only on user request using the guarded addon-only installer, leaving SavedVariables completely alone. Prior ZIPs are not rebuilt automatically. No automatic commit/push/publishing.
 
-The effect's asset name is independent of the spell bound to it. In particular, Arcane Barrage impact art responds to Arcane Explosion, while the book's proc is **Missile Barrage**, as the user explicitly clarified.
-
-Each layer stores file ID, model scale/origin, camera azimuth/elevation, desaturation, front/back order, UI size/angle/X/Y/opacity, animation and behavior. Bound layers add kind, spell/name-or-ID, duration, intro/outro flags and durations. Trigger kinds are Cast, Success, Channel, Pulse, Buff and Proc overlay. The current English default names can be replaced with localized names or numeric spell IDs in the studio; defaults are not automatically localized in this beta.
-
-State triggers stay active while the public state is active. Success/Pulse triggers are bounded bursts. Repeated procs can start again after the prior buff ends. Interrupt/failure cancels channel and pulse state. Token-guarded callbacks prevent removed/reconfigured/disabled layers from being revived by old intro/end timers. Models are played only after readiness checks; long-lived states reconcile after loading, while a transient success arriving before its model is ready is not retrospectively replayed.
-
-The event engine listens to player UNIT_SPELLCAST events, UNIT_AURA, spell activation overlay events, entering world/death/resurrection and combat start. Enabled Missile Barrage buff bindings additionally share a 0.1-second native-state poll, described below. Arcane Missiles pulses use observed successful channel subcasts, with public ID/name matching and short duplicate suppression. It does **not** synthesize five pulses on a guessed timer. A client that withholds those subcast events or exposes only restricted identifiers may not show pulse effects. This requires live acceptance on the target Forever build.
-
-Animation IDs 0 / 158 / 159 are treated as intro/hold/end choices where known. Not every model has all three or uses those semantics identically. Known segment durations are included for six models; unknown availability is labeled unverified. Preview the actual model before enabling intro/outro. A model's own particle/global timeline may not behave like a simple finite sprite animation. No claim is made that every model can seamlessly loop every segment.
-
-Manual trigger tests are available only for bound layers, last a bounded duration, target the selected physical sister/set, stop on context changes or combat, and return to actual live state afterward.
-
-### Repeated Missile Barrage investigation, 2026-11-15
-
-The user reports that Barrage effects trigger once and then fail, while Blast, Explosion, Missiles pulses and channel effects continue to work. They also observe Arcane Blast removing the actual Barrage buff. The current Epicast save retains both default Barrage layers as `buff` bindings with intro/outro disabled. Source and installed `BoundEffects.lua` matched when inspected.
-
-`tests/buff-retrigger.lua` exercises three buff gain → Arcane Blast → buff removal → subsequent gain cycles in combat through real event handlers. Both effects stop and rearm, with no model reloads, full Apply calls or settings writes. This sequence already passed before the patch. Epicast contains no buff-cancellation calls. The game's reason for clearing Barrage remains unverified.
-
-A separate regression failed before the patch when the direct name lookup missed and an earlier aura list entry was restricted. The safe reader collapsed that entry to nil and the scan stopped. The scan now distinguishes readable end-of-list from an unreadable entry and can reach later public aura identities. API errors stop the scan, and it retains the 255-entry bound. Restricted data never establishes a buff match. This is a confirmed code defect and a possible explanation for the live report. The failing live event sequence has not been captured.
-
-`/epicast triggers` prints in-memory diagnostics for buff/proc layers, including lookup outcome, start/stop counts, native readiness, visibility, playback failure and the event associated with the last stop. It works without opening options or developer mode. Run it while a later Barrage buff is active but its effect is absent. A `matched` input with a visible ready scene points toward native visual playback, while `restricted`, `error` or `absent` identifies a detection limitation. The added tests cover those diagnostics, restricted values/tables/fields, repeated clearing/reapplication and recovery after an actor playback error.
-
-The inspected Forever API declares conditional restrictions on aura lookup and enumeration. [Forever UnitAura declarations](https://raw.githubusercontent.com/Gethe/wow-ui-source/forever/Interface/AddOns/Blizzard_APIDocumentationGenerated/UnitAuraDocumentation.lua)
-
-The updated beta.1 passed the full integration suite, the new Barrage regressions and the media/scope audit. Its ZIP contains 44 verified source files, 7,016,724 bytes, SHA256 `D07B6B3CB6C718B6701750A4A4221B66CB165725E3C27A130EED390DCF7A6ED0`. Four changed files were installed and all 44 installed hashes matched the ZIP. Epicast SavedVariables matched the pre-install SHA256. The previous files are in `artifacts/barrage-before-926e1fea3245469f920c915e4d898158`. **Subsequent user feedback: their friend tested and Missile Barrage still did not trigger. The scan fix did not resolve the reported live failure.**
-
-### Online investigation after the failed live test, 2026-11-15
-
-Combat-time aura access is the leading explanation, not yet a captured diagnosis on the affected client. Epicast's `buff` path in `BoundEffects.lua` uses direct name/ID aura lookup and indexed aura enumeration. The current scan correction can reach a later readable aura but cannot identify Missile Barrage if that aura itself is restricted. Other successful cast/channel triggers use different inputs, so their continued operation does not establish that buff reads work. No live `/epicast triggers` output was supplied in this follow-up.
-
-Primary evidence reviewed:
-
-- [ProcDoc v4.14.0 release notes, November 10](https://www.curseforge.com/wow/addons/procdoc/files/9538564/additional-files) explicitly report fixing Missile Barrage and other procs failing during combat. The author switched to matching Forever's Cooldown Manager entries using game data and corrected several spell IDs.
-- [ProcDoc source](https://github.com/wsmaxcy/ProcDoc/blob/main/ProcDoc.lua) maps Barrage aura `400589` to its Cooldown Manager/talent spell `400588`. `CDM.Active` prefers a readable boolean from the icon's `IsActive()` or `isActive`; comments describe direct aura access/hooks as the cause of its earlier regression. Its other fallbacks infer activity from restricted aura-instance presence or icon visibility. Those fallbacks are not a verified signal for Epicast and must not be copied as proof of an active buff. Its settings/layout mutations and synthetic duration/stack tracking are also outside this proposed solution.
-- [Missile Barrage Glow](https://www.curseforge.com/wow/addons/missile-barrage-glow), updated November 11, explains that direct buff reads are hidden in combat and uses Arcane Missiles' mana cost. Its author documents delayed detection when Clearcasting was already active, since both procs make Missiles free. Mana cost alone is therefore not an exact, immediate Barrage signal.
-- [Forever aura API declarations](https://raw.githubusercontent.com/Gethe/wow-ui-source/forever/Interface/AddOns/Blizzard_APIDocumentationGenerated/UnitAuraDocumentation.lua) mark name lookup and indexed reads with conditional aura restrictions. The restriction applies to the data, independently of whether the addon receives an event.
-- [Blizzard's November 2 development notes](https://us.forums.blizzard.com/en/wow/t/wow-forever-beta-development-notes-%E2%80%93-updated-november-2/2360696/9) specify consumption of Barrage at the start of Arcane Missiles and preservation of Clearcasting when both are active. They do not establish that Arcane Blast is intended to consume Barrage. The user's reported Blast removal remains a separate unconfirmed game issue.
-
-Recommended next implementation investigation: a read-only bridge to the matching native Cooldown Manager buff icon, accepting only an actually public active/inactive boolean, with explicit unknown/unavailable diagnostics and no alteration of the player's native layout or settings. Verify whether that icon exists and updates on the affected client; absent/hidden native tracking may limit this route. Do not equate restricted data with a proc or silently invent a proc timer. Keep normal public aura reads as a supported input. Regression coverage must include restricted Barrage data together with repeated native active/inactive transitions, expiration, consumption, missing tracking and unrelated Clearcasting.
-
-At research time the test fixture labeled its synthetic Barrage aura `400588`; the external implementations identify the actual aura as `400589`. Those tests bind by name, so this mismatch does not explain their successful results or the name-bound live failure. The subsequent implementation below corrects the fixture. The research itself changed only this handover.
-
-### Cooldown Manager implementation, 2026-11-15
-
-User authorized implementation, regression tests and a rebuilt beta ZIP, with SavedVariables untouched. `CooldownBuffs.lua` now reads only `BuffIconCooldownViewer` and `BuffBarCooldownViewer`. It resolves each child's current cooldown ID through `C_CooldownViewer.GetCooldownViewerCooldownInfo`, matching Barrage's talent/entry spell `400588` or aura `400589` in base, override, tooltip or linked spell fields. Metadata is re-read each sample so released/reassigned icons cannot retain a cached identity. English default names, current localized Barrage names and either numeric spell ID select this bridge; other buff/proc bindings keep their existing behavior.
-
-Only a public boolean from `IsActive()` or `isActive` establishes native activity. The reader excludes hidden viewers, native editing/demo state, cleared IDs and explicit non-player aura metadata. It never reads aura instances, infers activity from an icon being shown, hooks native functions, changes CVars/layouts, or enables tracking on the user's behalf. Conflicting duplicate native states are unknown. If native detection is unavailable, ordinary safe aura lookup remains the fallback.
-
-`BoundEffects.lua` shares one native snapshot across both layers in each event/poll pass. A single 0.1-second timer samples while a usable Barrage buff layer exists; it catches native updates occurring after Epicast's aura handler and still works when event payloads are restricted. Polling stops when no eligible layers remain or the player dies, and resumes through normal effect/lifecycle reconciliation. No model reload, full Apply or settings write occurs during polling. `/epicast triggers` adds `cooldown=active/inactive/hidden/untracked/unavailable/preview/restricted/error/unknown/conflict` diagnostics.
-
-Testing prerequisite: enable Blizzard's Cooldown Manager, track Missile Barrage under Tracked Buffs or Tracked Bars, and leave that native row enabled and visible outside Edit Mode. A hidden native viewer unregisters aura events and can hold stale state, so it is not used. These requirements are also in the packaged README. No external addon is required. Native public-state availability on the affected client's build is still a live test, not proven by mocks.
-
-`tests/cooldown-buff.lua` first failed against the previous runtime when a native activation followed a restricted aura event without a second event. It now passes alongside the full existing suite. It exercises both book layers, repeated clears/re-procs, consumption, expiry, unchanged Missiles channel/pulses, unrelated Clearcasting, both native viewer types, spell aliases/localization, identity reuse, hidden/edit/demo/unknown/secret/error/conflicting data, missing and late native tracking, public aura fallback, diagnostics, death/resurrection and disabled/removed effects. It asserts zero model reloads or Apply calls and deep equality of mock settings. Existing aura fixtures now use `400589`.
-
-Implementation source reference: [Blizzard Forever CooldownViewer.lua](https://raw.githubusercontent.com/Gethe/wow-ui-source/forever/Interface/AddOns/Blizzard_CooldownViewer/CooldownViewer.lua) (`IsActive`, buff `ShouldBeActive`, `OnHide`, pool reset and layout), [native viewer XML](https://raw.githubusercontent.com/Gethe/wow-ui-source/forever/Interface/AddOns/Blizzard_CooldownViewer/CooldownViewer.xml), and [CooldownViewer API declarations](https://raw.githubusercontent.com/Gethe/wow-ui-source/forever/Interface/AddOns/Blizzard_APIDocumentationGenerated/CooldownViewerDocumentation.lua). ProcDoc informed the investigation; no third-party implementation was copied.
-
-Current package verification is in `dist/package-verification.json`; build evidence is in `docs/verification.md`. This rebuild was not installed or published. SavedVariables were neither opened nor modified for this implementation.
-
-### Beta.2 trigger isolation, 2026-11-15
-
-After publication the user reported that their friend now sees no effect triggers at all. Asked for the first Lua error/stack, whether artwork remains visible, and whether installation was followed by a full client restart or only `/reload`. No answer had arrived when this test build was prepared. Do not claim the affected client's root cause is confirmed.
-
-A clean harness loading the release with `CooldownBuffs.lua` omitted reproduces a concrete integration defect: `E.SyncBoundEffect` calls the missing `E.IsCooldownBuffBinding` for every kind of effect, aborting setup at the Tome's fourth layer before the Scroll is created. Cast events subsequently hit the same nil call. A thrown native-reader error can also abort setup/event iteration. The former tests always loaded all modules and only simulated failures inside individual native API calls.
-
-Beta.2 gates the optional bridge by buff kind and guards both its binding detector and its reader with protected calls. Missing/error results use readable aura fallback with explicit diagnostics; unrelated cast/channel/success/pulse paths continue. The new `tests/trigger-isolation.lua` runs in fresh Lua VMs for missing module, missing reader, thrown reader and thrown binding detector. It first failed against beta.1, then passed repeated Blast/Explosion/Missiles/buff cycles, diagnostics and reader recovery with no model reloads, full Apply calls or mock-settings changes. The existing full suite also passes.
-
-`/epicast triggers` now reports trigger-code revision `0.1.0-beta.2`, spell-event counts and every bound effect, including enabled/artwork-visible flags. `module missing`, `reader error` and `binding error` distinguish optional bridge failures; the header retains the latest reader/detector error. Corrected installation instructions require closing WoW completely before extraction and restarting, so newly added files can be discovered. No automatic settings reset, game installation, commit, push or new public release was made as part of this local diagnosis/build. SavedVariables were not accessed.
-
-## Resources
-
-Supported sources: Health, Mana (0), Energy (3), Rage (1), Focus (2), Runic power (6), and Current power via `UnitPowerType`. Defaults are Health/Mana. The source can be changed per resource sister.
-
-Resource updates listen to player UNIT_HEALTH, UNIT_MAXHEALTH, UNIT_POWER_UPDATE, UNIT_POWER_FREQUENT, UNIT_MAXPOWER and UNIT_DISPLAYPOWER. They do not poll on a per-frame loop. Values are protected-call reads; secret/non-numeric/unavailable data or non-positive maxima yield unknown state. Unknown meters show `—` and use minimum emission intensity rather than stale or invented data.
-
-For a known ratio, intensity is `0.12 + 0.88 * ratio`. Book glyphs, the scroll seal and native ambient layers follow it; the art itself remains opaque. The optional percentage meter is independent of the animation checkbox. Resource layers cannot be given spell bindings, even through malformed saved data. Swapping locations retains resource selection and tuning.
-
-## Development and verification
-
-Run from `F:/Work/WoW Addons/Epicast`:
-
-```powershell
-npm ci --ignore-scripts --no-audit --no-fund
-npm test
-npm run audit
-./tools/Package.ps1
-```
-
-Only Fengari and luaparse are development dependencies. None are installed into WoW. The lockfile is included in the source workspace. Network access is needed for a fresh npm dependency installation unless cached.
-
-`tools/test.cjs` parses all 20 modules as Lua 5.1, then loads them in real TOC order under a UI/game-event mock. Tests run real option, studio and renderer handlers. Covered cases include fresh defaults; all assignment/activation combinations; duplicate-role repair; content-following swaps; Save/Cancel; resource changes and restricted data; authoring bindings/segments; resource binding rejection; repeated buffs and native Cooldown Manager detection; cast/channel/pulse events; interruption; combat deferral; hide/restore; independent settings and frames; inherited animation settings; manual test isolation; stale timer cancellation; disabled-set events; empty arrays; malformed numbers; and individual drag rollback.
-
-`tools/audit.cjs` checks that every runtime Lua/XML file is in the TOC, checks independent names and excluded legacy code, rejects dynamic script execution, verifies the generated full-catalog manifest/uniqueness/format, and validates every approved texture's hash, byte length and uncompressed 32-bit TGA format.
-
-`tools/Package.ps1` uses a positive file allowlist from the TOC, five metadata files and the media manifest. It checks archive entry count and each entry's SHA256 against its source, then writes `dist/package-verification.json`. It does not install, publish, access SavedVariables or invoke Git. Rerun tests/audit before packaging after any change. For deliberate asset changes, review the new source before updating the media manifest; do not regenerate the manifest merely to silence a mismatch.
-
-## Remaining live acceptance
-
-1. Load Epicast without EndCapper; confirm no Lua errors and correct Tome/Scroll registration, hover, emissions and seal.
-2. Exercise Central-only, Edge-only and both; swap roles while both are enabled; verify sizes, offsets, sister swaps, Save/Cancel and reload persistence.
-3. Test optional native endcap hiding and restoring with the target action-bar configuration. Its path currently targets Forever's `MainActionBar.EndCaps` textures.
-4. Test all default Arcane bindings, several consecutive Missile Barrage procs, interrupted Missiles and individual pulse visibility. The local test supplies observed pulses and does not prove the client emits them.
-5. Verify Health/Mana meters and glow intensity while changing levels, including low/zero mana and unsupported resource choices.
-6. Preview intro/hold/end on intended models; test a bound layer; remove it during playback; verify no later ghost activation.
-7. Check options/studio placement on the player's resolution/UI scale. The main panel scales to screen height; unusually narrow screens may require moving the studio/custom panel.
-
-Do not describe local mock validation as live client acceptance. No per-spec art switcher, profile manager, dedicated resource artwork, automatic settings import, new Epicast icon, CurseForge project or release pipeline is configured. These are explicit future work, not hidden dependencies.
-
-## Reference implementation sources
-
-- [Blizzard Forever UnitFrame resource implementation](https://raw.githubusercontent.com/Gethe/wow-ui-source/forever/Interface/AddOns/Blizzard_UnitFrame/Mainline/UnitFrame.lua) — public health/power reads and event-driven updates.
-- [WeakAuras custom triggers](https://github.com/WeakAuras/WeakAuras2/wiki/Custom-Triggers) and [GenericTrigger implementation](https://github.com/WeakAuras/WeakAuras2/blob/main/WeakAuras/GenericTrigger.lua) — event/state trigger reference from the preceding EndCapper work. Epicast has no WeakAuras runtime dependency.
-- [Blizzard Forever ModelSceneActor API](https://raw.githubusercontent.com/Gethe/wow-ui-source/forever/Interface/AddOns/Blizzard_APIDocumentationGenerated/FrameAPIModelSceneFrameActorBaseDocumentation.lua) — native actor API reference.
-
-Future work should extend the independent design/content model rather than restoring action-bar ownership or legacy EndCapper migrations. Preserve role uniqueness, explicit public-event restrictions, per-instance lifecycle ownership, exact asset registrations and Save/Cancel integrity.
+The latest full tests include real current UI and runtime handlers, schema migration/idempotence, class isolation, independent placement, Save/Cancel, native trigger rearming, reader fault isolation, model segment guards, Druid source/texture checks and absence of retired Mage payloads. In-game visual acceptance is always separate.

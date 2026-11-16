@@ -1,0 +1,29 @@
+Use case: precise-object-edit.
+Edit the supplied APPROVED Mage trio sheet. Three sisters remain FROST / FIRE / ARCANE, left to right.
+
+HIGHEST PRIORITY — LOCK THE APPROVED CENTRAL CRESTS:
+The user says their center designs are perfect. Preserve the precise existing geometry, proportions, placement, facets, colors, overlaps and recognizable symbol details of all three centers: Frost's crystalline Cold Snap arches/ring/rays/curling ribs/crossbars/diamond; Fire's sculpted flame and its runic circular rim; Arcane's crystal eye, diamond pupil, curved brow and three tapering lower rays. Do not redraw, simplify, rearrange, correct the ray counts, replace or reimagine any of those central designs. This is a localized crown-and-lower-pendant edit, not a full repaint.
+
+CHANGE ONLY THESE ZONES:
+1. The topmost crown assembly above each approved central emblem.
+2. The framed/shrouded jewel ornament BELOW each central emblem, replacing it with a crafted pendant.
+3. Frost's low central base as specified below.
+
+FROST / COLD SNAP:
+Replace the top silver crown and its single framed diamond with an ICY SHARDED CROWN: a coherent fan of overlapping substantial ice prongs, varied natural shard lengths, sculpted pale-blue/cyan facets and frosted roots. These crown shards are attached structure, not replacements for any existing floating shards. It should join naturally to the existing crest top without covering or changing Cold Snap's central symbol.
+Replace the lower large silver-shrouded diamond jewel ornament with a distinct crafted frost pendant: an elongated carved ice-prism talisman on a short visible silver bail, a restrained handmade mounting and a few clean ice facets. Rework the LOW CENTRAL BASE beneath/around this pendant into tapered downward-facing ICICLES. Preserve the diamond that belongs to the Cold Snap symbol itself above this ornament. Keep the pendant/base compact enough to respect the sheet framing and surrounding drapery.
+
+FIRE / COMBUSTION:
+Replace the upper gold crown/framed gem assembly with a MOLTEN SHARDED CROWN: jagged attached ember-crystal and blackened molten-rock shards, glowing orange-red interiors, dark cooled edges and a few bold heat seams. Sculpt a deliberate crown silhouette with varied prong heights, matching the warm materials of the crest. Avoid a conventional gold crown with another centered diamond.
+Replace the lower framed orange diamond ornament with a crafted molten pendant: a tapered ember shard held by dark forged prongs and a short substantial forged bail, glowing hot cracks through dark material, a clearly designed amulet that echoes the new crown. Do not change the flame, rune ring or its structural supports above it.
+
+ARCANE / KIRIN TOR:
+Replace the upper angular gold crown assembly with a KNotted ROPE CROWN built from thick, convincingly twisted warm ochre/golden rope, neatly interwoven loops and a prominent central knot/cradle holding one vertical faceted AMETHYST SHARD. Rope turns, crossings and shadowed underpasses should visibly read as crafted rope. Let it sit naturally on the existing top shoulders; preserve all gold side structures outside this crown edit.
+Replace the lower gold-shrouded purple diamond ornament with a crafted arcane pendant: a purple prismatic talisman suspended on a short cord loop, with knotted rope binding and restrained gold fittings that echo its rope crown. Clearly distinct from the old broad gold diamond frame. Keep the approved Kirin Tor rays above it unchanged.
+
+STRICT INVARIANTS:
+Maintain EVERY existing floating shard and small satellite shard, with their current positions, shapes, sizes, colors and separation. Do not absorb floating crystals into crowns or remove any.
+Keep the side books, covers, layered page edges, all manuscript/glyph inscriptions, side fittings, cloth drapery, palettes, visual weight and hand-painted finish unchanged.
+Preserve the existing three-column layout, scale and complete silhouettes on genuinely transparent alpha. If a new crown needs space, fit it inside the existing top zone; do not crop tips or rescale whole crests.
+Materials use broad readable crystal/rock facets and rope strands, dimensional shading and clear recesses. Preserve the painting style; no granular noise, extra particle clouds, photorealism or all-over tessellation.
+No new central symbols, labels, text, backdrop or watermark. Return the complete three-sister sheet.

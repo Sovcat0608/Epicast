@@ -4,6 +4,8 @@ function E.UpdateAddedEffects(entry,c)
  for i,row in ipairs(rows)do
   local fx=entry.addedEffectSlots[i]or{frame=entry.frame,art=entry.art};entry.addedEffectSlots[i]=fx
   fx.side=entry.side;fx.setKey=entry.setKey;fx.castArt=c.art;fx.addedIndex=i;fx.alpha=entry.alpha
+  local identity=E.ActiveClass()..":"..c.art..":"..select(2,E.GetSide(E.Config(),entry.setKey,entry.side))
+  if fx.contentIdentity~=identity then E.StopBoundEffect(fx);fx.boundLast=nil;fx.boundGUID=nil;fx.contentIdentity=identity end
   fx.resourceOpacity=row.trailOpacity/100
   E.ConfigureBoundEffect(fx,row);if not fx.boundConfig then fx.castBinding=nil;fx.castVisible=nil end
   fx.effectsEnabled=c.effects~=false;fx.nativeWanted=fx.effectsEnabled and c.nativeSmoke~=false

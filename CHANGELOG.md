@@ -1,5 +1,50 @@
 # Changes
 
+## 0.1.0-beta.13
+
+- Baked the approved in-game Arcane configuration as the defaults for new Arcane slots: 12 layers with exact effect placement, model fitting, opacity and spell bindings.
+- Includes six static layers and Arcane Blast cast/success, Missile Barrage Buff with intro/outro, Arcane Explosion success, and Arcane Missiles pulse/channel bindings.
+- Preserve existing customized and explicitly empty effect lists, personal crest placement, and the legacy two-list Arcane migration. Fire, Frost, Druid and Resources defaults remain unchanged.
+- Added exact-export comparisons and live-handler regressions for fresh defaults, migration, saved tuning, repeated Barrage clears and rapid re-procs during outro. All approved artwork remains unchanged.
+
+## 0.1.0-beta.12
+
+- Integrated the approved uncorrected first crown-and-pendant concept into Fire, Frost and Arcane slots, with all floating crystals included. Eighteen size-specific square textures preserve the source aspect ratio; each complete crest retains six-second native hovering.
+- Replaced the retired Mage books/scrolls and removed their custom-overlay controls. Resources remain without custom artwork; native effects and meters remain available.
+- Preserved native effect configurations, class selection, independent placement, Druid artwork and Missile Barrage tracking. Added current-runtime artwork/hover/phase/size/class-isolation regressions and exact-source asset checks.
+- The local installer backs up and removes an explicit list of retired Mage payload files. SavedVariables files are never accessed.
+- Druid artwork, addon branding and their source assets remain unchanged. Existing release entries below describe historical builds.
+
+## 0.1.0-beta.11
+
+- Replaced Central/Edge placement and matched pairs with independently positioned and sized crests. Showing, hiding, resizing or moving one leaves every other crest unchanged.
+- Reworked options into Spellcasting/Resources lists with a Show checkbox and name selector per crest. Individual size/X/Y, drag, Flip, animation and Reset controls; shared Save/Cancel transaction. Hidden crests remain editable.
+- Replaced the effect studio's Left/Center/Right selector with a crest-name menu. All-class developer authoring and separate scroll controls remain available.
+- Schema 5 converts old shared sizes, spacing, ordering, offsets, facing and visibility into per-crest settings once, preserving effects and bindings. Resources also become independent. Migration never accesses SavedVariables files.
+- Added current-runtime regressions for layout migration, isolation, UI transactions, dragging, class switching, scroll phase and native spell/buff routes. Runtime artwork remains Mage v3 / Druid v8; Mage v5 repaint is a separate review concept.
+
+## 0.1.0-beta.10
+
+- Integrated Fire, Frost and Arcane spellbook crests with separate symmetrical lower scrolls. The books' former bottom ornaments now belong to the scrolls. Each scroll follows the same six-second vertical hover with a persistent one-second phase delay.
+- Added developer scroll size/X/Y and Reset controls per crest, with Save/Cancel and phase-preserving resizing. Added Build class to the effect studio and a Center selector for three-crest editing.
+- Added Mage's three selectable spec slots. Schema 4 combines both old Arcane native effect lists into one Arcane crest, preserving every static/bound model and binding while resetting placement to the center. Increased capacity to 32 layers so a full old pair fits. Fire/Frost start empty; Resources and Druid settings remain intact.
+- Retained the Missile Barrage Buff/Cooldown Manager fix; regression coverage exercises repeated clears and retriggers on the merged stack, plus all previous cast/channel/pulse paths.
+- Added migration, selection, scroll animation/tuning, all-class authoring and asset checks. Built thirty-six size-specific book/scroll textures from the new source pair.
+
+## 0.1.0-beta.9
+
+- Repainted Restoration, Balance and Feral with the approved v8 artwork: angular roots, chunky bevels, broader brushwork, richer colour and strong warm/cool contrast.
+- Rebuilt all eighteen size-specific textures and refreshed visible artwork bounds. Crest sizes, hovering, selected crests, effect tuning and bindings are preserved.
+
+## 0.1.0-beta.8
+
+- Integrated the approved Restoration, Balance and Feral crests. Players choose any combination on first use and can change it later; placement supports one, two or three crests. Resources and the Arcane pair remain separate.
+- Added three independent spec slots for each Forever class except the existing Arcane pair. Schema 3 migrates Groveheart tuning/effects to Restoration and Moonwarden tuning/effects to Balance without replacing Mage or Resources settings. Feral starts without spell presets.
+- Added a temporary developer class selector for building and testing every class. Other classes have independent effect slots awaiting dedicated artwork. Closing options restores the real character class.
+- Upgraded existing Missile Barrage Proc bindings to Buff and canonicalized its numeric talent ID to aura 400589, using the same native Cooldown Manager reader as Clearcasting.
+- Inspected model 166602: it has one Stand sequence and global loops, with no Hold/End segments. Corrected unsupported selections and studio controls; added segment diagnostics and guarded no-blend playback. A fresh model-global particle intro on every trigger is not guaranteed.
+- Added regressions for migration, multi-selection, three-crest placement, class isolation, repeated Barrage and animation lifetimes. New artwork uses eighteen size-specific CAS textures from the exact approved v6 image.
+
 ## 0.1.0-beta.7
 
 - Added Druid Clearcasting/Omen of Clarity support to the read-only Cooldown Manager bridge for While buff active bindings. Matches aura 16870 and native talent entry 16864, with class-aware names and localized aliases.

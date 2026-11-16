@@ -116,7 +116,7 @@ function E.CreateBindingControls(panel,state,button,label,gold,muted)
         for _,v in ipairs(E.BindingKinds)do if b and b.kind==v[1] then ui.kind:SetText(v[2].."  >")end end
         ui.summary:SetText(row and E.AnimationSummary(row.fileID) or "Select an effect")
         for id,button in pairs(ui.segments)do button:SetEnabled(editable and E.AnimationAvailable(row.fileID,id))end
-        for _,key in ipairs({"intro","outro"})do ui[key]:SetChecked(b and b[key] or false);ui[key]:SetEnabled(editable and b~=nil and E.AnimationAvailable(row.fileID,key=="intro" and 0 or 159))end
+        for _,key in ipairs({"intro","outro"})do ui[key]:SetChecked(b and b[key] or false);ui[key]:SetEnabled(editable and b~=nil and row.fileID~=166602 and E.AnimationAvailable(row.fileID,key=="intro" and 0 or 159))end
         local display=b and b.spell or "";local resolved
         if display~="" and C_Spell and C_Spell.GetSpellInfo then
             local ok,v=pcall(C_Spell.GetSpellInfo,tonumber(display)or display)

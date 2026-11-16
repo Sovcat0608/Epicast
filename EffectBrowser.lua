@@ -155,6 +155,9 @@ local function createWindow()
     copy:SetScript("OnClick", function() id:SetFocus(); id:HighlightText() end)
 
     local added=E.CreateLibraryControls(panel,button,label,title,gold,muted)
+    title:SetWidth(310)
+    panel.authorClass=button(panel,"Build class",205);panel.authorClass:SetPoint("TOPLEFT",340,-11)
+    panel.authorClass:SetScript("OnClick",function()E.OpenAuthoringClassMenu(panel.authorClass)end)
     local custom=button(panel,"Custom artwork",145);custom:SetPoint("TOPLEFT",785,-11);panel.custom=custom
     custom:SetScript("OnClick",function()
         panel.customArt=not panel.customArt;added.host:SetShown(not panel.customArt)
@@ -184,14 +187,16 @@ local function createWindow()
     panel.RefreshTarget=function()
         local c=E.GetEffectLibraryTarget()
         if not c then panel:Hide();return end
-        local hasCustom=not E.DruidArtworks[c.art]
-        custom:SetEnabled(hasCustom and not InCombatLockdown())
+        local hasCustom=E.HasCustomArtwork(c)
+        local class=E.ActiveClass();panel.authorClass:SetText("Build class: "..(E.ClassSpecs[class]and E.ClassSpecs[class].name or class).."  v")
+        panel.authorClass:SetEnabled(E.devMode and not InCombatLockdown())
+        custom:SetShown(hasCustom);custom:SetEnabled(hasCustom and not InCombatLockdown())
         if not hasCustom then panel.customArt=false;custom:SetText("Custom artwork")end
         added.Refresh()
         added.host:SetShown(not panel.customArt)
         if E.DockCustomElements then E.DockCustomElements(panel,panel.customArt) end
         addBound:SetEnabled(c.role~="resources" and not InCombatLockdown() and preview and preview.state=="ready" and #E.GetAddedEffects(c)<E.AddedEffectLimit)
-        if panel.saveAll then panel.saveAll:SetEnabled(not InCombatLockdown() and E.HasChanges()) end
+        if panel.saveAll then panel.saveAll:SetEnabled(E.CanSave()) end
         add:SetEnabled(not InCombatLockdown() and preview and preview.state=="ready" and #E.GetAddedEffects(c)<E.AddedEffectLimit)
     end
     panel:RegisterEvent("PLAYER_REGEN_DISABLED");panel:RegisterEvent("PLAYER_REGEN_ENABLED")

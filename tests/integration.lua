@@ -1,8 +1,8 @@
 local E=...
 local original={marker='EndCapper stays independent'};EndCapperDB=original
 Mock.event('ADDON_LOADED','Epicast');Mock.advance(0)
-assert(E.ready and EpicastDB.version==2 and E.instances.central.left.frame:IsShown()and not E.instances.edge.left.frame:IsShown())
-assert(#E.artworks==4 and #E.EffectLibrary.Search('')==E.EffectLibrary.catalogCount and #E.EffectLibrary.Search('166011')==1)
+assert(E.ready and EpicastDB.version==4 and E.instances.central.left.frame:IsShown()and not E.instances.edge.left.frame:IsShown())
+assert(#E.artworks==11 and #E.EffectLibrary.Search('')==E.EffectLibrary.catalogCount and #E.EffectLibrary.Search('166011')==1)
 assert(EpicastDB.sets.central.role=='spells'and EpicastDB.sets.edge.role=='resources')
 for _,central in ipairs({false,true})do for _,edge in ipairs({false,true})do for _,role in ipairs({'spells','resources'})do
  local d=E.Normalize(nil);d.sets.central.enabled=central;d.sets.edge.enabled=edge;E.AssignRole(d,'central',role)
@@ -74,7 +74,7 @@ tex:SetAlpha(.4);Mock.advance(0);assert(tex:GetAlpha()==0)
 E.draft.hideBlizzard=false;E.Apply();assert(tex:GetAlpha()==.4)
 E.SaveEffectStudio();p:Hide();assert(E.draft==nil and EndCapperDB==original)
 assert(E.instances.edge.left.frame.parent==UIParent and E.instances.central.left.frame.parent==UIParent)
-Mock.class='WARRIOR';E.Apply();assert(not E.instances.edge.left.frame:IsShown())
+Mock.class='WARRIOR';E.Apply();assert(E.instances.edge.left.config.art=='none')
 Mock.class='MAGE';E.Apply();assert(E.instances.edge.left.frame:IsShown())
 local book=E.instances.edge.left.mageBooks
 assert(book.book.SetSnapToPixelGridArgs[1]==false and book.book.SetTexelSnappingBiasArgs[1]==0)

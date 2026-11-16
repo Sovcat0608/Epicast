@@ -1,0 +1,137 @@
+{
+  "fileID": 166602,
+  "build": "1.60.1.70938",
+  "root": "f5e8b398da97f055c74ee9898857af83",
+  "sha256": "86620e6147d3a39b5fcc66c9ff4ba7f8e8c315d1a67823fd43deed73d48587f6",
+  "sequences": [
+    {
+      "id": 0,
+      "variation": 0,
+      "durationMs": 1000,
+      "flags": 2080
+    }
+  ],
+  "globalPeriodsMs": [
+    533,
+    1100,
+    767,
+    567,
+    367,
+    1067,
+    700,
+    433,
+    1233,
+    800,
+    500
+  ],
+  "boneTracks": [
+    {
+      "translationGlobal": -1,
+      "rotationGlobal": -1,
+      "scaleGlobal": -1
+    },
+    {
+      "translationGlobal": -1,
+      "rotationGlobal": -1,
+      "scaleGlobal": 0
+    },
+    {
+      "translationGlobal": 1,
+      "rotationGlobal": 2,
+      "scaleGlobal": -1
+    },
+    {
+      "translationGlobal": -1,
+      "rotationGlobal": 5,
+      "scaleGlobal": -1
+    },
+    {
+      "translationGlobal": -1,
+      "rotationGlobal": 8,
+      "scaleGlobal": -1
+    },
+    {
+      "translationGlobal": -1,
+      "rotationGlobal": -1,
+      "scaleGlobal": -1
+    },
+    {
+      "translationGlobal": -1,
+      "rotationGlobal": 3,
+      "scaleGlobal": -1
+    },
+    {
+      "translationGlobal": -1,
+      "rotationGlobal": 6,
+      "scaleGlobal": -1
+    },
+    {
+      "translationGlobal": -1,
+      "rotationGlobal": 9,
+      "scaleGlobal": -1
+    },
+    {
+      "translationGlobal": 4,
+      "rotationGlobal": -1,
+      "scaleGlobal": -1
+    },
+    {
+      "translationGlobal": 7,
+      "rotationGlobal": -1,
+      "scaleGlobal": -1
+    },
+    {
+      "translationGlobal": 10,
+      "rotationGlobal": -1,
+      "scaleGlobal": -1
+    },
+    {
+      "translationGlobal": -1,
+      "rotationGlobal": -1,
+      "scaleGlobal": -1
+    },
+    {
+      "translationGlobal": -1,
+      "rotationGlobal": -1,
+      "scaleGlobal": -1
+    },
+    {
+      "translationGlobal": -1,
+      "rotationGlobal": -1,
+      "scaleGlobal": -1
+    },
+    {
+      "translationGlobal": -1,
+      "rotationGlobal": -1,
+      "scaleGlobal": -1
+    }
+  ],
+  "particles": [
+    {
+      "bone": 12,
+      "rate": [
+        [
+          11.000000953674316
+        ]
+      ],
+      "lifespan": [
+        [
+          0.800000011920929
+        ]
+      ]
+    },
+    {
+      "bone": 5,
+      "rate": [
+        [
+          10
+        ]
+      ],
+      "lifespan": [
+        [
+          0.800000011920929
+        ]
+      ]
+    }
+  ]
+}

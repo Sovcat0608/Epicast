@@ -1,0 +1,29 @@
+Use case: stylized-concept.
+Asset: THREE distinct but related Warcraft DRUID crest sisters, generated together in ONE transparent image. Left-to-right order: RESTORATION, BALANCE, FERAL. No text labels.
+
+Primary request: The previous trio looked like three copies of the same frame. Correct that by returning to the currently installed Moonwarden/Groveheart sister pair in the supplied reference. They share a visual theme but have distinct structures suited to their associations. The new Feral centre MUST be a PAW.
+
+Reference roles:
+The single reference shows the actual installed pair. Its LEFT piece is MOONWARDEN, the design foundation for the MIDDLE BALANCE sister in the new trio. Its RIGHT piece is GROVEHEART, the foundation for the LEFT RESTORATION sister. Preserve their recognizable structural identities and painterly Warcraft materials. This is a faithful family expansion, not three recolours of one shield template. Do not reproduce the reference backdrop.
+
+LEFT — RESTORATION, following original RIGHT GROVEHEART:
+A fuller rounded/oval crest made from interwoven warm oak roots, with a broad circular root cradle and living green sprout/leaf heart. Shorter, spreading wooden branch-antlers with moss and fresh leaf tips; branches really are wood, not a matching pair of huge ivory horns. Use broad green foliage with a few muted violet maple accents. Compact bronze cradle/fittings and a partially visible mossy stone inset provide structure. End with a short substantial braided-root taper and layered leaves. Make it feel abundant, nurturing and grounded, with a rounded, spreading silhouette. Keep the original Groveheart identity clearly recognizable.
+
+MIDDLE — BALANCE, following original LEFT MOONWARDEN:
+A distinctly taller, more slender flowing crest. Long sweeping violet-brown wooden branches: one rises dramatically on the upper left and another curls out on the right, as in Moonwarden's asymmetrical crown. Slender roots flow around a prominent pale moon crescent in a narrow violet stone heart, with a light antique-bronze rim and layered violet/dusk-green leaves descending into a graceful tapered tail. Add only one or two understated star/arcane carvings as supporting accents. Keep this much more vertical and flowing than Restoration's rounded root cradle. Preserve Moonwarden's existing identity rather than replacing it with the Restoration frame.
+
+RIGHT — FERAL, new sibling with its own architecture:
+A broader, lower, more angular root-and-stone crest with a strong paw at its centre. The central PAW is unmistakable: one large animal paw pad below four clearly separated toe pads, carved or inlaid into the broad stone heart. Use a natural bear/cat paw shape, never a human hand, and do not substitute claw scratches for the central paw.
+Build its frame from stout weathered wood, short outward-jutting branch/root prongs and a compact collar of sculpted tawny fur. A few ivory fangs/claw tips and a small number of deep claw scratches support the paw theme. Integrate several broad olive-green leaves, tied roots and stone so it remains DRUID. Give Feral a strong wide shoulder line, a lower crown without tall matching antlers, and a short angular fur/root lower point. This must have a clearly different silhouette from both the rounded Restoration and the slender Balance design. No animal face, skull, blood or gore.
+
+Family resemblance:
+Relate them through warm aged wood, selective bronze, weathered stone, roots, foliage, sculpted material treatment, light direction and overall visual weight. Each has its own construction and distribution of these materials. Do not repeat identical horn shapes, side wings, circular pendant positions, root layouts or outer contours across all three. Vary the crown, shoulders and lower taper deliberately. Retain readable carved channels in the wood for future emission.
+
+Small-size design:
+Continue the user's reduced-intensity direction. One strong central motif plus a few larger supporting shapes per sister. Broad quiet surfaces and clean light/dark separation. Fewer, larger leaves; grouped fur tufts; only selected larger cracks and grooves. Avoid dense trinkets, micro-glyphs or tiny repeated ornaments. Restrained complementary colours, no bright bloom or emission spill. Maintain high fidelity through smooth sculptural shading rather than surface noise. Do not blur or flatten the artwork.
+
+Rendering:
+High-fidelity sculpted painterly WARCRAFT fantasy UI art, matching the provided pair's quality. Smooth continuous value transitions across broad forms, clean antialiased contours, controlled crisp accents, purposeful grouped detail and distinct wood/stone/bronze/fur/leaf materials. Avoid photorealism, plastic CGI, granular microtexture, dithering, crunchy oversharpening, noisy miniature filigree, muddy blur, flat vectors and pixel art.
+
+Composition/output:
+Wide landscape canvas, approximately 9:4, highest suitable native fidelity. Exactly THREE complete front-facing crests side by side in separate columns: Restoration, Balance, Feral. Comparable visual scale and aligned lower registration, but allow Balance's taller, narrower shape and Feral's lower, broader shape; do not force identical silhouette heights. Clear generous transparent gaps, ample outer margin, no overlap or clipped tips. Genuine transparent alpha around and through real gaps. No checkerboard, scenery, ground, shadow, typography, labels, numbers, UI panels, borders, thumbnails, watermark or fourth crest.

@@ -20,10 +20,8 @@ function E.CreateLibraryControls(panel,button,label,title,gold,muted)
     local previous=button(panel,"<",24);previous:SetPoint("TOPLEFT",845,-80)
     local next=button(panel,">",24);next:SetPoint("TOPLEFT",1110,-80)
     local remove=button(panel,"Remove layer",130);remove:SetPoint("TOPLEFT",845,-565);state.remove=remove
-    local left=button(outer,"Left sister",95);left:SetPoint("TOPLEFT",570,-11)
-    local right=button(outer,"Right sister",95);right:SetPoint("TOPLEFT",670,-11)
-    left:SetScript("OnClick",function()E.SelectCapSide("left")end)
-    right:SetScript("OnClick",function()E.SelectCapSide("right")end)
+    local crest=button(outer,"Select crest",210);crest:SetPoint("TOPLEFT",560,-11)
+    crest:SetScript("OnClick",function()E.OpenCrestMenu(crest)end)
     local behind=CreateFrame("CheckButton",nil,placement,"UICheckButtonTemplate");behind:SetPoint("TOPLEFT",845,-405);state.behind=behind
     local behindText=label(placement,"GameFontHighlightSmall",muted);behindText:SetPoint("LEFT",behind,"RIGHT",0,0);behindText:SetText("Behind art")
     local function target()
@@ -96,7 +94,7 @@ function E.CreateLibraryControls(panel,button,label,title,gold,muted)
             if E.StopCastEffectTests then E.StopCastEffectTests() end
             state.testContext=testContext
         end
-        title:SetText("Effects: "..E.SetLabels[mode].." / "..side.." / "..E.artworkByID[c.art].name)
+        title:SetText("Effects: "..E.SetLabels[mode].." / "..E.CrestLabel(E.draft,mode,side))
         caption:SetText(row and (state.selected.."/"..#rows.."  "..row.name.." ("..row.fileID..")") or "No added layers")
         local binding=row and E.GetLayerBinding(c.art,row)
         note:SetText(binding and ("Bound: "..binding.kind.." / "..binding.spell) or "Use Epicast Save / Cancel to finish.")
@@ -107,12 +105,12 @@ function E.CreateLibraryControls(panel,button,label,title,gold,muted)
         if state.bindingControls then state.bindingControls.Refresh(row,c,enabled) end
         remove:SetText("Remove layer")
         previous:SetEnabled(enabled and #rows>1);next:SetEnabled(enabled and #rows>1)
-        left:SetEnabled(side~="left" and not InCombatLockdown());right:SetEnabled(side~="right" and not InCombatLockdown())
+        crest:SetText(E.CrestLabel(E.draft,mode,side).."  v");crest:SetEnabled(not InCombatLockdown())
         state.refreshing=true
         for key,slider in pairs(state.sliders) do slider.control:SetEnabled(enabled);if row then slider:SetValue(row[key]) end end
         behind:SetChecked(row and row.effectLayer=="back" or false);state.refreshing=false
     end
     state.bindingControls=E.CreateBindingControls(panel,state,button,label,gold,muted)
-    state.previous=previous;state.next=next;state.left=left;state.right=right
+    state.previous=previous;state.next=next;state.crest=crest
     return state
 end

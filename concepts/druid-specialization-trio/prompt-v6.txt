@@ -1,0 +1,24 @@
+Use case: precise-object-edit.
+Edit the supplied current three-sister crest image. Make ONLY the following surface-pattern and stone-gouge revisions. Keep the rest of the artwork as closely unchanged as possible.
+
+PRESERVE:
+The Restoration / Balance / Feral order, size, shapes, positions, high-fidelity Warcraft painting, strong contrast, natural materials, colour palette and transparent composition. Retain all six bracelets, their attachment positions, the large purple side leaves and large downward feathers, the central sprout/moon/paw, crest-top glyphs, lower medallions and charms, roots, antlers, feline ears, striped fur, ivory tail, bottom feather taper and all other established features. Do not change the icons/glyphs on crest tops or medallions. No general redesign or added decorative objects.
+
+1. RESTORATION — ORGANIC PATTERNS ON THE TWO PURPLE SIDE LEAVES:
+Remove the isolated pale crescent-and-dot emblems from BOTH large purple leaves emerging from the bracelets. Replace them with graceful DRUIDIC LINE PATTERNS that grow naturally along each leaf's anatomy.
+A flowing central stem follows the actual midrib; a few tapered branching curves, vine-like hooks and gently interwoven leaf-vein strokes spread into the pointed lobes. The design conforms to the painted leaf's curve and veins, flowing from its attachment toward the tip. Use restrained pale sage/ivory markings with readable broad strokes, without excessive fine filigree. Give the two leaves natural mirrored variation.
+It should feel like enchanted botanical vein-work inherent to the leaf, NOT a stamp, logo, badge, circular eye, crescent-dot icon, medallion or text. Preserve the purple colour, leaf size, form, vein texture and bracelet attachment. Leave the smaller bottom purple leaf alone.
+
+2. BALANCE — FLOWING PATTERNS ON THE TWO LARGE FEATHERS:
+Remove the isolated ring/dot and crescent/dot icons from BOTH prominent downward feathers. Replace them with elongated druidic patterns aligned to their SHAPE.
+Run a graceful tapered line along the feather shaft, with a few sweeping, hooked or forked strokes following the diagonal barbs and the natural curvature of each vane. Let the pattern narrow toward the feather tip. Use the existing muted blue-green/ivory colour language, with clear contrast against the feather surface but no glow. The result is an organic feather-length marking, not a small separate symbol placed in the middle.
+Keep the two broad feather silhouettes, colours, size, downward orientation and cuff attachment exactly as established. Do not restore pruned clutter or add extra feathers.
+
+3. FERAL — LARGE GOUGES FOLLOWING THE STONE PROJECTIONS:
+Edit ONLY the scratch groups on the TWO protruding stepped STONE SIDE PIECES beside the lower medallion. Keep the stone pieces themselves, their stepped shape, location and material intact.
+Replace the current upright/diagonal scratch badges with THREE much more prominent elongated claw gouges on each side, running LENGTHWISE with the outward projection of the stone. On the LEFT they sweep from behind the inner root frame outward toward the left stone tips; on the RIGHT they mirror this outward direction toward the right tips. Follow the long, near-horizontal/slightly fanned axes of the individual projecting stone tiers, rather than cutting upright across those shapes.
+Make the grooves deeper, broader and longer, with dark interiors and clean bevelled stone edges. Their strokes should be clearly readable at small size and suitable for later emission. Let the inner parts continue naturally BEHIND the existing roots/fangs/charms; it is fine if only the outer half of a large gouge is visible. Do not shrink a complete little three-slash emblem to fit inside each exposed stone face. Both sides should have matched visual weight and corresponding outward flow.
+Keep the paw's separate central scratch marks unchanged. No new damage elsewhere, no glowing scratches or extra particles.
+
+Fidelity/output:
+Keep smooth sculptural shading, clean antialiased contours and selective crisp detail. No gritty microtexture, blur, crunchy sharpening, global colour change or bright emission. Generate the same three complete crests together on genuine transparent alpha, wide landscape approximately 9:4. Maintain complete tips, transparent gaps and outer padding. No text, labels, scenery, checkerboard, floor, shadows, border, watermark or extra crest.

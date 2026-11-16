@@ -8,6 +8,7 @@ function E.SetLayerBehavior(c,index,behavior)
 end
 function E.AnimationAvailable(id,animation)local m=E.EffectAnimations[id];return not m or m[animation]~=nil end
 function E.AnimationSummary(id)
+ if id==166602 then return"Stand only (1s); no separate intro / hold / end. Global loops and existing particles may resume on replay."end
  local m=E.EffectAnimations[id];if not m then return"Segments unverified. Preview IDs before binding."end
  local function t(s,id)return s..(m[id]and string.format(" %.2fs",m[id])or" —")end
  return t("Stand / intro",0).." | "..t("Hold",158).." | "..t("End",159)

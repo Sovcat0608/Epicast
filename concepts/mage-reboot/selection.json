@@ -1,0 +1,8 @@
+{
+  "selected": "Mage-reboot-trio-v3-initial.png",
+  "sha256": "5DD9D15C1D72C67EFB83DFA664E235E450B36C8B8C1C3BBC7CC017B2A2D3F5AC",
+  "reason": "User explicitly prefers uncorrected option 1 and requests bake/build/install",
+  "date": "2026-11-16",
+  "integratedVersion": "0.1.0-beta.12",
+  "unselectedCorrections": ["Mage-reboot-trio-v3.png", "Mage-reboot-trio-v3-framed.png"]
+}

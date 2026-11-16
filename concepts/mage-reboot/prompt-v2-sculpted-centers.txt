@@ -1,0 +1,26 @@
+Use case: precise-object-edit / stylized-concept.
+Edit IMAGE 1, the current three-sister Mage crest sheet. IMAGE 2 is the construction reference for the CENTRAL CRESTS ONLY: notice how its crystalline Kirin Tor eye is sculpted as a physical part of the frame, with a faceted gem pupil, thick dimensional eyelids and tapering crystal rays fitted into surrounding metalwork.
+
+USER'S CORRECTION: The central motifs in image 1 look like flat symbols placed onto backing panels. REBUILD THE CENTRAL ZONE OF EACH CREST as an intertwined, sculpted crystalline structure. The symbol must BECOME the architecture of the crest, not be a sign displayed on the architecture. You may bend, taper, stretch and facet the symbol's strokes and alter its internal proportions to fit the crest, provided its defining identity remains immediately recognizable. Use the supplied construction reference to understand this transformation, not merely to apply a bevel filter.
+
+KEEP THE FOUNDATIONS: Same three sisters in the same left-to-right order, FROST / FIRE / ARCANE. Preserve their outer silhouettes, scale, distinctive crown and base silhouettes, side book construction, pages and existing hybrid inscriptions, floating side crystals, cloth drapery and thematic colors. Rework the inner edges/connections of crowns and bases as needed to join naturally to the new center. Keep three separate complete crests, original layout, real transparent alpha, no clipped tips or labels.
+
+CENTRAL CONSTRUCTION COMMON TO ALL:
+- Replace the big flat badge-on-panel presentation with multi-level sculpted crystal ribs, thick framing edges, deep dark recesses, overlap and interlocking material transitions.
+- Integrate the motif's outer strokes into the surrounding crest hardware. Endpoints should slot into or continue along structural crown/base fittings, not float as disconnected glowing lines over a blank shield.
+- Actual visual depth: thick side faces, broad reflective crystal facets, raised front planes, recessed sockets, selective painted contact shadows beneath overlaps. Visible dark/vivid side planes as well as bright faces; avoid uniform luminous flat silhouettes.
+- Crystallized, hand-painted fantasy game construction matching image 2, not realistic glass/PBR, a 3D render or solid featureless neon. Keep the emblem's readable macro-shape and a strong uncluttered central focal hierarchy. A few large purposeful facets, no mosaic microtexture.
+
+FROST / LEFT:
+Cold Snap identity remains: SIX upper rays, two arcs framing the central ring, curled lower flourishes with crossed short bars, and the lower diamond.
+Sculpt the SIX rays as two banks of THREE elongated faceted icy insets that grow into the crown rim, with a clear center gap. Transform the arcs into substantial sweeping blue-white crystalline structural arches, joined into dark silver perimeter brackets. The central ring becomes a deep thick beveled crystal annulus with a recessed dark center and visible icy inner walls. Lower curling strokes become angular flowing carved ice ribs that intertwine with the lower silver fittings and converge naturally around the faceted diamond socket. Keep their familiar curling flow and crossed-bar accents without a rigid logo-sticker outline. Deep navy recesses, luminous cyan faces, white-blue edges.
+
+FIRE / MIDDLE:
+Combustion identity remains: a rising flame surrounded by a circular runic enclosure.
+The circular rune ring becomes a thick, sculpted amber-crystal and forged-gold structural rim, sunk into and interconnected with the crest crown and lower supports. Runes are cut into the rim's actual surfaces. Integrate the circle into the frame rather than leaving a perfectly isolated floating badge. The main flame is a large, SOLID sculpted flame-shaped ember crystal built from a few sweeping interlocking faceted tongues, with orange/gold front planes, deep red side faces and dark crevices between tongues. Give the rising flame a clear tangible volume and connection into the rim's lower cradle; preserve recognizable fire silhouette. Keep the old ring/flame hierarchy but eliminate the flat neon outline look. Subtle internal light, strong dimensional shadow.
+
+ARCANE / RIGHT:
+Kirin Tor identity remains: curved brow, almond-shaped eye, prominent central pupil and THREE descending rays, with the center ray longer and outer rays flared/notched.
+Build it like image 2: a faceted purple gem pupil set into deeply sculpted violet crystal eye rims, with an upper crystal arch and three thick tapered prismatic lower rays. These crystal members weave through and seat into the existing gold fittings, descending into the base. Their side faces should be darker indigo with lighter violet front facets and controlled pale highlights, not a flat lavender cutout. Allow the pupil to become a raised diamond gem as in image 2. Keep the lower rays' distinct Kirin Tor proportions and the characteristic gaps between them, but make them structural physical forms with meaningful depth. Avoid extra rays or unrelated symbols.
+
+Preserve the outside artwork and its hand-painted Warcraft-style finish. Render the ENTIRE three-sister sheet, not crops, close-ups or additional isolated variants. Background must stay genuinely transparent. No text labels, watermark, scenery or new page symbols.

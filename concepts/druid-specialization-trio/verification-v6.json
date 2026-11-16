@@ -1,0 +1,24 @@
+{
+  "version": 6,
+  "generatedWith": "built-in image_gen, targeted edit of combined trio",
+  "order": [
+    "Restoration",
+    "Balance",
+    "Feral"
+  ],
+  "source": "C:\\Users\\info\\.codex\\generated_images\\01a1df15-f1c7-7d50-acd4-1cfa1c7e3f2d\\exec-9f2585c2-a81e-40b0-8963-d9bc1ba4bcd3.png",
+  "output": "F:\\Work\\WoW Addons\\Epicast\\concepts\\druid-specialization-trio\\Druid-specializations-review-v6.png",
+  "width": 1881,
+  "height": 836,
+  "pixelFormat": "Format32bppArgb",
+  "cornerAlpha": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "sha256": "19B8EF379608373439750C592AFEEECFE9498C2719E2BC9B7B0201AEE5871B8B",
+  "prompt": "prompt-v6.txt",
+  "runtimeIntegrated": false,
+  "savedVariablesAccessed": false
+}

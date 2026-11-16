@@ -36,7 +36,7 @@ local function profileFor(b,anyKind)
     local id=tonumber(b.spell)
     local spell=b.spell:lower()
     for _,profile in ipairs(profiles)do
-        local class=profile.class and call(function()return select(2,UnitClass("player"))end)
+        local class=profile.class and call(E.ActiveClass)
         if not profile.class or class==profile.class then
             if id then
                 if knownID(profile,id) then return profile end

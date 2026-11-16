@@ -1,72 +1,4 @@
 {
-  "Media/ArcaneScrollBookCASSize192.tga": {
-    "bytes": 262162,
-    "sha256": "dcc5d2f07f9c68d90a30111b1771682d9ba9545b106a8dd4cb1a9619865055d6"
-  },
-  "Media/ArcaneScrollBookCASSize288.tga": {
-    "bytes": 1048594,
-    "sha256": "8926d74a241247f9c271add0fc5586dcc4ca7d7bb90b9a2b59535b079f0739cc"
-  },
-  "Media/ArcaneScrollBookCASSize384.tga": {
-    "bytes": 1048594,
-    "sha256": "a99710db451ef45bdbba67cbe8d7a56dd82d2334fe21a4025297226bd1c9188e"
-  },
-  "Media/ArcaneScrollBookCASSize480.tga": {
-    "bytes": 1048594,
-    "sha256": "4868d1b78ec1a83d0d149e09934447bd7dcc3a4b59395cc9bb446d9221aed250"
-  },
-  "Media/ArcaneScrollBookCASSize576.tga": {
-    "bytes": 4194322,
-    "sha256": "c53a0858810ca109423bf10501621cecdc38ad9965384aee83597aa8c940e03d"
-  },
-  "Media/ArcaneScrollBookCASSize768.tga": {
-    "bytes": 4194322,
-    "sha256": "22518a58c075afe3479fcfe57429c408c44225e641012fdb2e83a58c633dafce"
-  },
-  "Media/ArcaneScrollBookCASSize887.tga": {
-    "bytes": 4194322,
-    "sha256": "121e6921bf6b7fc880ac5c33ddc47717ebc7a1322a55615c7dc82828346a89f4"
-  },
-  "Media/ArcaneScrollEmissionAtlas.tga": {
-    "bytes": 8388626,
-    "sha256": "a9068dd397e5a9ea330d4450936fa769be00ea006dec91bf96dd7aac34c72bb8"
-  },
-  "Media/ArcaneSigilCASSize256.tga": {
-    "bytes": 262162,
-    "sha256": "1d501f44e46c10e48c4d1b20cb0e2a441710c8c67012ede73a03116813e47e94"
-  },
-  "Media/ArcaneTomeBookCASSize192.tga": {
-    "bytes": 262162,
-    "sha256": "570ed3183fe5ef82bdfd7706c53e37e673f4eb20d06f5efeae925843b94cfb66"
-  },
-  "Media/ArcaneTomeBookCASSize288.tga": {
-    "bytes": 1048594,
-    "sha256": "56035aea7c48d87237ae937efcc40ef90a8a8b164397d9939d6281553651f8ed"
-  },
-  "Media/ArcaneTomeBookCASSize384.tga": {
-    "bytes": 1048594,
-    "sha256": "e724969e9cd9b59a430164ac37a357fed7a5568ed29ce374c7af4224680d7a78"
-  },
-  "Media/ArcaneTomeBookCASSize480.tga": {
-    "bytes": 1048594,
-    "sha256": "898409e95abeadf56851461236f25aa5f9bd7b69da5a52391130cdc085ae960a"
-  },
-  "Media/ArcaneTomeBookCASSize576.tga": {
-    "bytes": 4194322,
-    "sha256": "f26669333c84d77e8ea9d3013ba0a61c8c2d63bc4b9138664f93f2c611327605"
-  },
-  "Media/ArcaneTomeBookCASSize768.tga": {
-    "bytes": 4194322,
-    "sha256": "e5ec40f7de0f69335286c60c32a6ad00bdbbf6918594a499a3f87eb2dbcaf31d"
-  },
-  "Media/ArcaneTomeBookCASSize887.tga": {
-    "bytes": 4194322,
-    "sha256": "774e89365576354fe055b7749f7a1fc6148f743bc2a83b4ebc429c5d385e2f29"
-  },
-  "Media/ArcaneTomeEmissionAtlas.tga": {
-    "bytes": 8388626,
-    "sha256": "fd5237bb0d4c5c0711613605a6b437b490b2b7759ff7c73c5f8a26e9f1faa59e"
-  },
   "Media/EpicastIcon.tga": {
     "bytes": 65554,
     "sha256": "15462b3949d99a87fcd3d2e632b8a0d943631a7436c3b441cd0098d48588e0e4"
@@ -118,5 +50,149 @@
   "Media/GroveheartCASSize768.tga": {
     "bytes": 4194322,
     "sha256": "07252edf75efc09e92eec011503284a3a530fd76b551427700f304f4f7f0afa5"
+  },
+  "Media/DruidRestorationCASSize192.tga": {
+    "bytes": 262162,
+    "sha256": "601acd23df741ebad6c3f414a35a6f41a9e6d5e4d647080fd87a41762c904e78"
+  },
+  "Media/DruidRestorationCASSize288.tga": {
+    "bytes": 1048594,
+    "sha256": "304b80bf7b2dc88d6e5a337d3f1fc87e3d4e86b6cf40c87b431b7270242d9e82"
+  },
+  "Media/DruidRestorationCASSize384.tga": {
+    "bytes": 1048594,
+    "sha256": "941d6c485cb46a2c1c5236420af6f8bd0b78c5c2db2a6e5a449a947b531c7790"
+  },
+  "Media/DruidRestorationCASSize480.tga": {
+    "bytes": 2097170,
+    "sha256": "27e333d7d33b8c9a94d92b21cec070800ded0cf7915561443031cdd3da75d6c4"
+  },
+  "Media/DruidRestorationCASSize576.tga": {
+    "bytes": 4194322,
+    "sha256": "3babf25b3bea0830da33ad3cec36b49deade7382fdff437ca921da1f0fbb792e"
+  },
+  "Media/DruidRestorationCASSize660.tga": {
+    "bytes": 4194322,
+    "sha256": "6773d3a98b5ad09f00e2fe73e419890f8ff8c612205d2f90bcd48fd61798459a"
+  },
+  "Media/DruidBalanceCASSize192.tga": {
+    "bytes": 262162,
+    "sha256": "855a2118f2ab5f3188a8e533a86d74f14da8eb33d6075262c6ecaf34b9189984"
+  },
+  "Media/DruidBalanceCASSize288.tga": {
+    "bytes": 1048594,
+    "sha256": "27c44bbb82372dfae1f159036e0c49a5982b80d4ecd7aefc46d7ffe314a6698f"
+  },
+  "Media/DruidBalanceCASSize384.tga": {
+    "bytes": 1048594,
+    "sha256": "58595f120a47310b143e73e6af9a1ad4adc53e0b72c610cb983e555e6e216bd5"
+  },
+  "Media/DruidBalanceCASSize480.tga": {
+    "bytes": 2097170,
+    "sha256": "69b374c9755186295c73080f113b30244fc68732bca86f8e7501b6adde24bc19"
+  },
+  "Media/DruidBalanceCASSize576.tga": {
+    "bytes": 4194322,
+    "sha256": "b0cd78a0ce21cfd9d4f312dd72e25306bc2f15376ceac80061aebeeab1f99f4a"
+  },
+  "Media/DruidBalanceCASSize660.tga": {
+    "bytes": 4194322,
+    "sha256": "b3f4ab74cd28c9b74df6ec387a0c4c0e9837ded57ca7e93679bdd6b58ada4b0a"
+  },
+  "Media/DruidFeralCASSize192.tga": {
+    "bytes": 262162,
+    "sha256": "23d4e8a7d9807f3e08b08ad46f12e0ef0e6fae6f3e36a0ead37cda33a3ee6f59"
+  },
+  "Media/DruidFeralCASSize288.tga": {
+    "bytes": 1048594,
+    "sha256": "e00eefcf698ee23372907c5d95706084f48ea3377930aeaab2945f02681c8a61"
+  },
+  "Media/DruidFeralCASSize384.tga": {
+    "bytes": 1048594,
+    "sha256": "8c68d5abc6473df9e5975c1a021cd5a08318d40ed89ed0826ffdfe1af55a8ccb"
+  },
+  "Media/DruidFeralCASSize480.tga": {
+    "bytes": 2097170,
+    "sha256": "8d4a1771d213ad86139b6bac48fa80b144a1f3ef5d9dc3ceb9d03d1ef4eb0fe7"
+  },
+  "Media/DruidFeralCASSize576.tga": {
+    "bytes": 4194322,
+    "sha256": "11fd0ffdab1fb57776f326c57eaf0d1166649a959707157430ae1731ba175dd4"
+  },
+  "Media/DruidFeralCASSize660.tga": {
+    "bytes": 4194322,
+    "sha256": "44ff2fa1cfb8c393d8d7c82dfbaa6139a098fdc96741de6aa61cdd0c3b19cecd"
+  },
+  "Media/MageRebootFrostCASSize192.tga": {
+    "bytes": 262162,
+    "sha256": "27a1d0d52fa5fbfc925e23c9fb1afb224f773c7db5365394cd8ba643f8a4721e"
+  },
+  "Media/MageRebootFrostCASSize288.tga": {
+    "bytes": 1048594,
+    "sha256": "e5b73b7feccb34c28cb2194e6f2cb4f787584455540e458f14d48630bb3ba87c"
+  },
+  "Media/MageRebootFrostCASSize384.tga": {
+    "bytes": 1048594,
+    "sha256": "f8519ccb3397648bd2b633a758fb2554c827611a5600e7572e310bf2c1063571"
+  },
+  "Media/MageRebootFrostCASSize480.tga": {
+    "bytes": 1048594,
+    "sha256": "98df0c519c4075679a3c63cce3f42f4e2eee85b941f085eb11c9d93bda8e6f53"
+  },
+  "Media/MageRebootFrostCASSize576.tga": {
+    "bytes": 4194322,
+    "sha256": "f68c8d04431e67162d16b5d251fb0cab5e7fe4f0200397ba50308a5edf989eff"
+  },
+  "Media/MageRebootFrostCASSize768.tga": {
+    "bytes": 4194322,
+    "sha256": "52f27061f687b9ecd17c8f236067f52a1a9eece196b109d4c097225062354c23"
+  },
+  "Media/MageRebootFireCASSize192.tga": {
+    "bytes": 262162,
+    "sha256": "1830a0eeff8f10a052c74042dd5c0084ab6018f14d727dcebb3b183da3536474"
+  },
+  "Media/MageRebootFireCASSize288.tga": {
+    "bytes": 1048594,
+    "sha256": "30598db130fd26261b1499e709878e0e102d4bae96008b02176e894968631070"
+  },
+  "Media/MageRebootFireCASSize384.tga": {
+    "bytes": 1048594,
+    "sha256": "982d99c18fc8ec260ac2855fe05a40ddc613587fd56d1792510aad179e8fbdc7"
+  },
+  "Media/MageRebootFireCASSize480.tga": {
+    "bytes": 1048594,
+    "sha256": "ba205c049375745240816064e016d2851db44601b24a85722a0acc0eb0f7ec19"
+  },
+  "Media/MageRebootFireCASSize576.tga": {
+    "bytes": 4194322,
+    "sha256": "557420a32decb504dc238f94a0c648505221c63240384518508ec1af7fc178f0"
+  },
+  "Media/MageRebootFireCASSize768.tga": {
+    "bytes": 4194322,
+    "sha256": "ffa59887ec18d20582981488963f0bb96926d2c533e7983d80c4f55dada5f04c"
+  },
+  "Media/MageRebootArcaneCASSize192.tga": {
+    "bytes": 262162,
+    "sha256": "f61f511ec6285c64af3f20f3a98749bffa2c81b8c414539369de3e3aa21b4801"
+  },
+  "Media/MageRebootArcaneCASSize288.tga": {
+    "bytes": 1048594,
+    "sha256": "e4456d8ab85da557e8e28fb3208c6e8547d9201deb1d4aad0505524a358e24d8"
+  },
+  "Media/MageRebootArcaneCASSize384.tga": {
+    "bytes": 1048594,
+    "sha256": "f398396143669cb7c0b8f35d0f680e9f21b5937e1e13cccd644ebbacd9885ce1"
+  },
+  "Media/MageRebootArcaneCASSize480.tga": {
+    "bytes": 1048594,
+    "sha256": "be0ab099967e7ed5629265966c1a8075bc9730afb950988b701dbcbd916a756c"
+  },
+  "Media/MageRebootArcaneCASSize576.tga": {
+    "bytes": 4194322,
+    "sha256": "de7eaefca4962d3a830dd338a9a0a5192ed3f2350f3fc60447020b3c3389760e"
+  },
+  "Media/MageRebootArcaneCASSize768.tga": {
+    "bytes": 4194322,
+    "sha256": "6c10d5465c8fd4ebbef367ff18a761d3c6fe75ac4e4361cc69355acf55f2d7de"
   }
 }

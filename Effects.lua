@@ -7,14 +7,14 @@ function E.CropNativeEffect(entry,config,scene,viewport,x,y)
  scene:SetCameraFieldOfView(2*math.atan(3/4));if scene.SetViewTranslation then scene:SetViewTranslation(0,0)end;return true
 end
 function E.StopEffects(entry)
- E.StopMageBooks(entry);E.StopMageSigils(entry);E.StopDruidSisters(entry)
+ E.StopDruidSisters(entry);E.StopMageReboot(entry)
  for _,fx in ipairs(entry.addedEffectSlots or{})do if fx.boundConfig then E.StopBoundEffect(fx)else E.StopNativeSmoke(fx)end end
 end
 function E.PlayEffects(entry)
- E.PlayMageBooks(entry);E.PlayMageSigils(entry);E.PlayDruidSisters(entry)
+ E.PlayDruidSisters(entry);E.PlayMageReboot(entry)
  for _,fx in ipairs(entry.addedEffectSlots or{})do E.SyncBoundEffect(fx);E.PlayNativeSmoke(fx)end
 end
 function E.UpdateEffects(entry,c)
  if not entry.effectHooks then entry.frame:HookScript("OnHide",function()E.StopEffects(entry)end);entry.frame:HookScript("OnShow",function()E.PlayEffects(entry)end);entry.effectHooks=true end
- E.UpdateMageBooks(entry,c);E.UpdateMageSigils(entry,c);E.UpdateDruidSisters(entry,c);E.UpdateAddedEffects(entry,c)
+ E.UpdateDruidSisters(entry,c);E.UpdateMageReboot(entry,c);E.UpdateAddedEffects(entry,c)
 end

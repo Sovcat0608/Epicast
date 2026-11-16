@@ -1,12 +1,12 @@
 local _,E=...
 local prefix="Interface\\AddOns\\Epicast\\Media\\"
-local function sampleSize(entry,width)
+local function sampleSize(entry,width,art)
  local scale=entry.frame.GetEffectiveScale and entry.frame:GetEffectiveScale()
  local _,height;if GetPhysicalScreenSize then _,height=GetPhysicalScreenSize()end
- local chosen=768
+ local sizes=art.sizes or E.DruidTextureSizes;local chosen=sizes[#sizes]
  if scale and scale>0 and height and height>0 then
   local pixels=width*scale*height/768
-  for _,size in ipairs(E.DruidTextureSizes)do if size>=pixels then chosen=size;break end end
+  for _,size in ipairs(sizes)do if size>=pixels then chosen=size;break end end
  end
  local h=chosen*4/3;local backingW,backingH=1,1
  while backingW<chosen do backingW=backingW*2 end
@@ -40,7 +40,7 @@ function E.UpdateDruidSisters(entry,c)
  s.art=c.art;s.enabled=true;s.animate=c.effects~=false
  local width=entry.art:GetWidth()*.72;local height=width*4/3
  local amplitude=s.animate and height*.012 or 0
- local size,uv=sampleSize(entry,width);s.textureSize=size
+ local size,uv=sampleSize(entry,width,art);s.textureSize=size
  s.host:SetSize(width,height);s.host:SetFrameLevel(entry.frame:GetFrameLevel()+4);s.host:SetAlpha(entry.alpha)
  s.host:ClearAllPoints();s.host:SetPoint("CENTER",entry.art,"CENTER",0,30*c.size/100-amplitude)
  s.texture:SetTexture(prefix..art.name.."CASSize"..size..".tga");s.texture:SetSize(width,height)

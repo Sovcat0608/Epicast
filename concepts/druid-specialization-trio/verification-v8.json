@@ -1,0 +1,32 @@
+{
+  "version": 8,
+  "createdDate": "2026-11-16",
+  "generatedWith": "built-in image_gen, all three together",
+  "nativeOutput": "C:\\Users\\info\\.codex\\generated_images\\01a1df15-f1c7-7d50-acd4-1cfa1c7e3f2d\\exec-0b206cf1-b85d-4038-bc28-153977d9f692.png",
+  "savedOutput": "F:\\Work\\WoW Addons\\Epicast\\concepts\\druid-specialization-trio\\Druid-specializations-review-v8.png",
+  "width": 1882,
+  "height": 836,
+  "pixelFormat": "Format32bppArgb",
+  "cornerAlpha": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "canvasEdgePixelsAlphaAtLeast128": 0,
+  "sha256": "4D592A779782DD20FA9B0BCBD38CE7B018613397EA53A53E0ABC77E4C76CBFC8",
+  "exactNativeCopy": true,
+  "prompt": "prompt-v8.txt",
+  "referenceAnalysis": "reference-painting-review-v8.md",
+  "references": [
+    {
+      "path": "references/v7/Warcraft-style-user-repaint.png",
+      "role": "sole image input; authoritative composition, iconography, palette and painterly treatment; exclude dark backdrop",
+      "sha256": "2C439D4478F405F82D7861581C7D8A32D910FFC02ADD345F12E8F628FB023162"
+    }
+  ],
+  "visualReview": "Closer to user reference: angular root bends and brush wedges, faceted ivory/stone bevels, grouped leaf/feather/fur strokes and warm/cool colour separation. Sprout, moon and stars, paw, bracelets, medallions, charms, flowing patterns and outward stone gouges retained visually. Not pixel-identical preservation.",
+  "runtimeIntegrated": false,
+  "inGameTested": false,
+  "savedVariablesAccessed": false
+}

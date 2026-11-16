@@ -1,0 +1,28 @@
+Use case: precise-object-edit.
+Edit target: image 1, the current complete three-sister druid crest artwork. Make a tightly scoped revision; preserve the established designs and all unmentioned details.
+Image 2: the exact bracelet/cuff shape reference, with swept projecting rims and a sculpted spiral on the face. These are decorative bands around ROOTS, not wearable items on a character.
+Images 3 and 4: druid symbol references (simple ring/dot, crescent/arc marks), for the new prominent leaves and feathers only.
+
+Keep the trio order, overall scale, positions, proportions, lighting, high-fidelity Warcraft painterly finish and strong contrast. Preserve the current sprout, stone moon and ivory paw centres; all three lower medallions and their charms; Restoration's darker carved top cap and bottom tangled roots with its purple leaf; Balance's ivory antlers and ivory bottom flourish; Feral's ears, striped fur, fangs, scratched stone side pieces and bottom feather taper. Do not redesign the crest shapes or change the palette globally.
+
+CHANGE 1 — RETURN THE ROOT BRACELETS ON ALL THREE:
+Add a pair of clear, substantial bracelets/cuffs to EACH crest: one wrapping the left mid-side root and one wrapping the right mid-side root, flanking the central sprout/moon/paw zone. Six cuffs total. Restore the source reference's recognisable flared upper/lower edges and broad spiral-engraved front surface. The cuffs must visibly ENCIRCLE the roots, with roots entering above and exiting below, dimensional overlap and attachment shadows; not loose badges or pendants.
+Keep the natural-material direction: Restoration's cuffs are lighter carved honey/ochre wood against darker bark, with wood grain rather than metallic shine. Balance's cuffs can be pale weathered ivory with muted carved wood accents. Feral's cuffs use carved bark/aged ivory compatible with its existing bindings. Use the common reference shape to connect the sisters, but respect their material identities.
+Position them at the midsection of the root arms, not at the lower charm row. Do not cover any main centrepiece, medallion or Feral stone scratch groups.
+
+CHANGE 2 — BALANCE'S TWO SIGNATURE FEATHERS:
+On the MIDDLE Balance crest, create exactly TWO dominant large, broad feathers, one emerging from the OUTER LOWER EDGE of EACH new bracelet zone. Their quills visibly tuck into/behind the cuffs. The feathers project slightly outward and their tips point clearly DOWNWARD.
+Use the existing ivory/slate-blue/lilac feather palette, with strong sculpted feather structure and broad readable vane surfaces. Each feather carries a prominent, simple DRUID SYMBOL inspired by images 3–4, painted/etched in a restrained contrasting blue-green/ivory tone. The symbols must read at small size, following the feather surface; no text or tiny runes.
+Prune some of the small purple/green leaves and busy secondary feather layering directly around these two larger feathers. Replace the crowded side clusters with an uncluttered presentation of these two signature feathers. Preserve enough leaves elsewhere to remain druidic. Keep the star charms visible, the central moon unobscured and the ivory bottom flourish unchanged.
+
+CHANGE 3 — RESTORATION'S TWO SIGNATURE PURPLE LEAVES:
+On the LEFT Restoration crest, replace the two existing purple SIDE leaves with two larger, more prominent purple maple-like leaves. One emerges from each new bracelet zone, its stem tucked under the cuff, projecting outward and slightly downward. Make these the clear matching side accents, comparable in visual importance to Balance's feathers.
+Preserve the violet/plum colour, botanical pointed lobes and branching veins. Give EACH leaf a bold simple druid ring/dot/crescent symbol inspired by images 3–4, in a restrained pale sage/ivory colour that contrasts cleanly with purple. No human hand shapes and no floating symbols.
+Do not enlarge or change the preserved single purple leaf in Restoration's bottom root tangle; this request concerns the two SIDE leaves. Preserve the green central sprout, wooden Rejuvenation medallion, twirled root charms, existing ivory feathers and the rest of its natural structure.
+
+FERAL:
+Only add the two root bracelets specified above. Keep its present paw, ears, fur stripes, claws/fangs, ivory medallion, tooth charms, paired scratched-stone sides and bottom feathers otherwise intact.
+
+Finish and output:
+Maintain smooth sculpted painterly shading, clean antialiased contours, clear natural material separation and selective detail. No added glow, bloom, particles, noisy microtexture, blur, sharpening or new thematic objects.
+Exactly the same three complete crests together in one wide landscape image, around 9:4, on genuine transparent alpha. Complete tips with clear outer padding and transparent gaps between crests. No cropping, overlaps between sisters, checkerboard, scenery, ground, shadows, text, labels, border, watermark, thumbnails or extra crest.

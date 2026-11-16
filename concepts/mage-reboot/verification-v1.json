@@ -1,0 +1,63 @@
+{
+  "Created": "2026-11-16",
+  "Tool": "built-in image_gen.imagegen",
+  "Status": "artwork review only",
+  "Order": [
+    "Frost",
+    "Fire",
+    "Arcane"
+  ],
+  "Final": "Mage-reboot-trio-v1.png",
+  "NativeInitial": "C:/Users/info/.codex/generated_images/01a1df15-f1c7-7d50-acd4-1cfa1c7e3f2d/exec-682f9619-6917-4341-8fee-3c2c20e37a12.png",
+  "NativeFinal": "C:/Users/info/.codex/generated_images/01a1df15-f1c7-7d50-acd4-1cfa1c7e3f2d/exec-9f8b2a4c-5b26-4867-bf6b-14a712187eb7.png",
+  "Width": 2172,
+  "Height": 724,
+  "PixelFormat": "32-bit ARGB",
+  "EdgeMaxAlpha": 4,
+  "EdgePixelsAlphaAtLeast8": 0,
+  "ByteIdenticalCopies": true,
+  "ProgrammaticImageEdits": false,
+  "Correction": "Six paired Frost upper rays, matched to supplied symbol",
+  "Files": [
+    {
+      "Path": "Mage-reboot-trio-v1-initial.png",
+      "Bytes": 2543967,
+      "SHA256": "B995BEAC895881AB7F98D2C70BB565004B2E6E9435CF8519B4F1CE36F230D37F"
+    },
+    {
+      "Path": "Mage-reboot-trio-v1.png",
+      "Bytes": 2393007,
+      "SHA256": "942E4E17AE12B669BAA195B61F1891C3D7AFFA17DB0DB7B5C0849050009183DE"
+    },
+    {
+      "Path": "prompt-v1-symbol-correction.txt",
+      "Bytes": 1153,
+      "SHA256": "D1D3AC03316BA5C7ECD1A0346E88C8E003731FF9C6D7AEF9DCB16BCE9BADADC4"
+    },
+    {
+      "Path": "prompt-v1.txt",
+      "Bytes": 5979,
+      "SHA256": "DF8B1B5B6FF4A49BA87556683BBE8432A7C01AF38488FBFE0FABA6BBC44374DB"
+    },
+    {
+      "Path": "references/Cold-Snap-symbol-user.png",
+      "Bytes": 865940,
+      "SHA256": "645BCF22B6EB807AEBBBAC6A805B1F47C5C7240119589CD7C290D0CCE2046781"
+    },
+    {
+      "Path": "references/Combustion-symbol-user.png",
+      "Bytes": 181918,
+      "SHA256": "92CCC0D4CF6E22CB93CFB1865202A36CA813E036F2A171934E7D3FBF6DE4726B"
+    },
+    {
+      "Path": "references/Kirin-Tor-symbol-user.png",
+      "Bytes": 52543,
+      "SHA256": "FDE98A05D96B7DB617B225F29703F9B67F7B712E50626DFBB8AA1A1A6DDF83E6"
+    },
+    {
+      "Path": "references/Mage-composition-user.png",
+      "Bytes": 571354,
+      "SHA256": "5CA823DFC62131C174911E8AA1D3F67362CC330B663F5DF7E1F671259AE23504"
+    }
+  ]
+}

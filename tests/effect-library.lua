@@ -22,9 +22,9 @@ assert(window.preview.state=='ready'and window.preview.actor.modelID==166011 and
 window.addBound:Click();local c=E.GetEffectLibraryTarget()
 assert(#c.addedEffects==1 and c.addedEffects[1].fileID==166011 and c.addedEffects[1].behavior=='bound')
 c.addedEffects[1].binding.spell='12345';E.SaveEffectStudio()
-assert(EpicastDB.content.druid.left.addedEffects[1].fileID==166011)
+assert(EpicastDB.content.classes.DRUID.slots.balance.addedEffects[1].fileID==166011)
 local saved=E.Normalize(EpicastDB)
-assert(saved.content.druid.left.addedEffects[1].fileID==166011 and saved.content.spells.left.addedEffects[4].fileID==originalMage.left.addedEffects[4].fileID)
+assert(saved.content.classes.DRUID.slots.balance.addedEffects[1].fileID==166011 and saved.content.spells.left.addedEffects[4].fileID==originalMage.left.addedEffects[4].fileID)
 c=E.GetEffectLibraryTarget()
 -- Unknown IDs clear a previously successful selection and cannot add that old model.
 local actor=window.preview.actor;local originalLoad=actor.SetModelByFileID
@@ -69,7 +69,7 @@ window.add:Click();assert(#c.addedEffects==1 and not window.add.enabled)
 actor.GetMaxBoundingBox=originalBounds
 window.search:SetText('166011');window.search:emit('OnEnterPressed');Mock.advance(0)
 assert(window.preview.state=='ready');window.add:Click();E.SaveEffectStudio()
-assert(E.Normalize(EpicastDB).content.druid.left.addedEffects[2].fileID==166011)
+assert(E.Normalize(EpicastDB).content.classes.DRUID.slots.balance.addedEffects[2].fileID==166011)
 -- Native Vector3 results, unreadable metadata, and retry after a transient failure.
 local candidate=Viewer.Search('')[10].id
 actor.GetMaxBoundingBox=function()

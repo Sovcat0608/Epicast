@@ -1,0 +1,41 @@
+Use case: stylized-concept.
+Create THREE freshly regenerated matching DRUID CREST sisters together in ONE transparent image. Left to right: RESTORATION, BALANCE, FERAL. No labels.
+
+Reference roles:
+Image 1 is the previous trio: retain Restoration's successful living-sprout/root-cradle concept, but fully redesign/refine all three to the instructions below. Image 2 is the REJUVENATION LEAF shape specifically for Restoration's lower wooden medallion: a jagged pointed maple-like LEAF, never a hand. Images 3 and 4 show stylized druid glyph language: simple crescent/arc, eye-ring and dot marks painted on natural surfaces. Image 5 supplies the pale fur/dark tiger-stripe contrast, restrained blue-grey feather shapes and natural druid markings. Borrow motifs and material character, not the screenshot background or an animal body.
+
+Composition and family:
+Three equally substantial front-facing ornaments with closely matched overall size, similar oval/teardrop crest foundations and lower registration. Give them comparable width and height, including crowns/ears. Do not make Feral miniature or Balance vastly taller. They are clearly a family through proportions, lighting and high-fidelity Warcraft painting, but their internal construction, silhouette accents and materials must feel completely individual. Each retains branches, roots, leaves, wood and some stone accents. Use larger readable forms and strong light/dark contrast for small UI sizes. Fewer prominent motifs, no dense miniature clutter.
+
+Critical pendant rule for EVERY crest:
+Exactly ONE lower central MEDALLION, accompanied by exactly ONE distinct CHARM on EACH SIDE. Three objects altogether, but only the middle is a round medallion. Remove the previous three-disc arrangement. Suspend/bind them naturally with roots, hide or carved wood fittings. No metal, metallic gold/bronze rims or jewellery sheen; separate materials using bark/wood hues, stone and ivory.
+
+LEFT — RESTORATION / healing, nature:
+Keep the existing central setup: living green two-leaf sprout in a rounded interwoven root cradle, green heart/background and rich organic depth. Replace ALL gold/metal-looking bands, rim and cradle with visibly carved wood/bark in contrasting warm honey-brown and darker walnut hues, with clear wood grain.
+A warm rounded root-and-branch structure, leafy wooden antlers, moss, broad green leaves with restrained plum maple accents. Root channels and a few druidic leaf/spiral carvings are clear and natural. Include a modest grouping of sage/ivory feathers.
+LOWER MEDALLION: one wooden disc with the REJUVENATION MAPLE LEAF from image 2 distinctly ETCHED into its surface, legible veins and lobes, a subdued green/plum accent allowed. Not a flower or generic three-leaf sprout.
+SIDE CHARMS: two twirled, curled-root charms, one to each side of that wooden medallion. They are curling organic roots, not circular discs.
+Preserve the strong green focal contrast; no metal anywhere on Restoration.
+
+MIDDLE — BALANCE / moon, arcane, stars:
+The central zone is unmistakably carved STONE: a substantial cool slate/violet stone heart with a prominent pale moon crescent cut/inlaid into it. Warm dark wood and living roots surround it, with broad violet/dusk-green leaves.
+Give it IVORY ANTLERS with a few bold ETCHED STYLIZED CRACKS. These are intentional readable dark carved channels, not granular surface damage. Work very minor thorns into selected root/branch edges.
+LOWER MEDALLION: one STONE disc with a moon ETCHED into it.
+SIDE CHARMS: two distinct small STAR-SHAPED charms, one on each side, carved from pale stone/ivory.
+Add a restrained cluster of slate-blue/lilac/ivory feathers and a few simple druid arc/dot/star glyphs inspired by images 3–4. Maintain strong pale ivory against darker stone and wood. No busy constellation fields or extra medallions.
+
+RIGHT — FERAL / paw, feline ferocity:
+Completely reinvigorate this design. A strong central IVORY zone, not a dark stone slab: aged warm ivory with a prominent animal PAW emblem etched/inlaid in a darker contrasting tone. One broad paw pad beneath FOUR clear toe pads. Keep the paw dominant.
+At the top, where horns would be, give it TWO large recognizable FELINE ANIMAL EARS, naturally incorporated into the crest's fur/root shoulders. No antlers or horns on Feral, and no animal face/head or eyes.
+Use LIGHT cream/silver-tawny fur with broad DARK charcoal tiger-like STRIPES, following sculpted groups of fur as in image 5. Strong pale/dark contrast. Rich grouped fur tufts, not thousands of hair strokes. Interweave substantial branches, root cords, a few olive leaves, small supporting stone accents and blue-grey/ivory feathers.
+Give it more distinctive, generously sized CLAWS and FANGS integrated into the frame, with selected deep scratches. A few strong curved ivory talons/teeth, not a carpet of tiny spikes.
+LOWER MEDALLION: one IVORY disc with a PAIR OF FANGS ETCHED into it, visibly a carved engraving rather than a paw or leaf.
+SIDE CHARMS: one hanging TOOTH charm on either side of the ivory disc.
+A few restrained natural druid crescent/arc/dot markings may appear on fur/wood, inspired by the screenshots. Make this feel like a powerful druid feline relic, not generic heraldry. No blood or gore.
+
+Shared finishing:
+Add complementary natural druid glyphs and feathers to ALL THREE, integrated into their own structures and palettes. Broad carved channels/gaps can support later emission. Strong focal/material contrast with restrained complementary colour; calm painted base, no neon glow or bloom. Preserve variation in leaves, branch curves and material hues.
+High-fidelity sculpted painterly WARCRAFT UI art: broad continuous shading, clean antialiased contours, selective crisp edges, substantial three-dimensional wood/stone/ivory and grouped fur. Avoid noisy microtexture, excessive tiny scratches, uniform filigree, muddy blur, plastic CGI, photorealism, flat vectors and pixel art.
+
+Output:
+One wide landscape canvas approximately 9:4, highest suitable native fidelity. Exactly three complete crests side by side at closely matching scale, with generous transparent gaps and outer padding. All ears, antlers, feathers, root curls and charms fully inside the canvas, no touching/overlap. Genuine transparent alpha, including gaps. No scenery, checkerboard, ground, cast shadow, UI, letters, labels, numbers, border, watermark, extra thumbnails or fourth crest.

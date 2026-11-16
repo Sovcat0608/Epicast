@@ -28,12 +28,8 @@ function E.UpdateResource(entry,c)
  bar:SetSize(math.max(60,entry.frame:GetWidth()*.75),5);bar:ClearAllPoints();bar:SetPoint("BOTTOM",entry.frame,"BOTTOM",0,3);bar:SetFrameLevel(entry.frame:GetFrameLevel()+30)
  if c.resource=="health"then bar:SetStatusBarColor(.3,.85,.55)else bar:SetStatusBarColor(.48,.35,1)end
  bar:SetValue(ratio or 0);bar.text:SetText(label..(ratio and string.format(" %d%%",math.floor(ratio*100+.5))or" —"));bar:SetShown(c.showMeter)
- -- Keep the physical artwork readable; only its emissions respond to resource.
+ -- Native effect intensity follows the resource level.
  local intensity=ratio and(.12+.88*ratio)or .12
- if entry.mageBooks then entry.mageBooks.bookGlowHost:SetAlpha(entry.alpha*intensity)end
- local seal=entry.mageSigils
- local sealConfig=seal and E.GetSigilConfig(c)
- if sealConfig then seal.host:SetAlpha(entry.alpha*sealConfig.opacity/100*intensity)end
  for _,fx in ipairs(entry.addedEffectSlots or{})do
   local s=fx.nativeSmoke;for _,slot in ipairs(s and s.slots or{})do slot.scene:SetAlpha(s.status=="ready"and entry.alpha*(fx.resourceOpacity or 0)*intensity or 0)end
  end

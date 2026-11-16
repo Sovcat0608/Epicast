@@ -10,7 +10,10 @@ for(const f of runtime){
  // Native model paths can legitimately contain names also used by retired art.
  // Exclude only the generated long-string data, never executable Lua code.
  const code=f==='EffectCatalog.lua'?s.replace(/^Viewer\.catalog=\[=\[[\s\S]*\]=\]\s*$/m,'Viewer.catalog=""'):s;
- if(forbidden.test(code))throw Error('Retired runtime reference in '+f);
+ // CDM cosmetics may observe native Edit Mode visibility and hook its show/hide
+ // notifications. This narrow exception does not allow editing native layouts.
+ const scoped=f==='CooldownVisibility.lua'?code.replace(/read\(EditModeManagerFrame,"IsShown"\)/g,'false').replace(/watchScripts\(EditModeManagerFrame\)/g,''):code;
+ if(forbidden.test(scoped))throw Error('Retired runtime reference in '+f);
  if(f.endsWith('.lua'))parser.parse(s,{luaVersion:'5.1'});
  if(/loadstring|RunScript|RunMacroText/.test(s))throw Error('Unexpected dynamic/game execution in '+f);
 }

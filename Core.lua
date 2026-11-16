@@ -58,6 +58,7 @@ function E.Place(entry,s)
 end
 function E.Apply()
  if not E.ready then return end;if InCombatLockdown()then E.pending=true;return end
+ E.ApplyCooldownVisibility()
  local db=E.Config()
  for _,entries in pairs(E.instances)do for _,entry in pairs(entries)do entry.current=false end end
  for _,setKey in ipairs({"spells","resources"})do

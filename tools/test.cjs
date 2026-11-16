@@ -28,6 +28,7 @@ console.log('Current independent-crest runtime, without fixture overrides:');
 run(files,`\nassert(loadfile('tests/independent-crests.lua'))(E)\nassert(loadfile('tests/mage-reset.lua'))(E)\nassert(loadfile('tests/mage-reboot.lua'))(E)`,false,false);
 console.log(`PASS: ${files.length} current modules parsed as Lua 5.1 and loaded in TOC order`);
 run(files,`\nassert(loadfile('tests/arcane-preset.lua'))(E)`,false,false);
+run(files,`\nassert(loadfile('tests/cooldown-visibility.lua'))(E)`,false,false);
 require('./test-arcane-preset.cjs');
 require('./test-druid-assets.cjs');
 require('./test-mage-reset.cjs');

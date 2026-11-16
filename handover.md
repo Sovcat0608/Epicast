@@ -1,5 +1,27 @@
 # Epicast handover
 
+## Beta.14 publication requested (2026-11-16)
+
+The user accepted the installed beta.14 build and explicitly requested publication on GitHub. Prepare tag `v0.1.0-beta.14` and a prerelease with the exact installed ZIP and SHA256 companion. No runtime/default/art edits are needed; local backups, comparison extracts and abandoned experiments stay excluded. The publication receipt below will be finalized after remote verification. See `docs/release-0.1.0-beta.14.md`.
+
+## Current installation: beta.14, Arcane defaults checked (2026-11-16)
+
+User explicitly requested comparing current installed Mage/Arcane printed configuration to the defaults and installing with optional rollback. Read-only literal-data extraction of the 17:43:00.513 UTC Epicast save confirmed all twelve Arcane layers exactly match `tests/fixtures/arcane-beta13.json`: model fit, placement, opacity, playback and spell bindings. `node tools/test-arcane-preset.cjs` independently confirms the runtime preset matches this fixture. No default edits were needed. Only effect data was exported; no SavedVariables writes or full-save snapshots. Comparison/evidence lives in ignored `artifacts/arcane-defaults-beta14/`.
+
+Installed the existing beta.14 ZIP to `D:/World of Warcraft/_forever_/Interface/AddOns/Epicast`:81 payloads verified,11 new/changed,0 retired removals. Nine previous beta.12 files were backed up and independently hash-verified; two files are new. Receipt/backup: `artifacts/install-20261116-174951/`. SavedVariables hash remained unchanged through installation. WoW was running by installation time, so a full restart is required; no live acceptance claimed.
+
+Optional rollback launcher: `artifacts/install-20261116-174951/Rollback-to-beta.12.ps1` (add `-Check` for a dry run). It delegates to `tools/Rollback-Install.ps1`, which validates all current/backup hashes before restoring nine files/removing two new files, refuses later modifications and is idempotent. Real rollback plan passed without applying it; isolated `tools/Test-Rollback.ps1` passed dry-run, restore/remove/retired cases, repeated rollback, drift/corruption and unsafe-path refusal. No game UI automation or Git publication. Public release remains beta.13; the following source-feature record remains applicable.
+
+## Current local source/test ZIP: beta.14 cosmetic CDM hiding (2026-11-16)
+
+User requested research into proc/buff tracking without visible/enabled CDM, with a hide-but-keep-enabled fallback and disclaimer. No reliable general disabled-CDM path for restricted Forever buffs was verified. Primary Forever API/viewer sources and JustAC's author research support alpha0 while leaving native frames shown; native Hide unregisters UNIT_AURA. Never force native refreshes or change CDM's Lua fields. Full sources/rationale: `docs/cooldown-visibility.md`.
+
+Added default-off `hideCooldownManager` to schema5, shared Save/Cancel/Close setting and inline requirements: enable CDM in WoW, track the buff, viewer Always; Epicast hides display only. `CooldownVisibility.lua` owns reversible alpha/input bookkeeping, handles allfour viewers and pooled grandchildren, native Edit Mode/settings reveal, external visual intent, late loads/reparenting/replacement, secret values and protected combat deferral. No native Show/Hide, CVar/config changes, native refresh calls, Lua-field writes, new polling or OnUpdate. The buff reader itself stays read-only and rejects truly hidden viewers; only its setup hint changes.
+
+Full tests pass including alpha-zero Barrage/Clearcasting, repeated gains/clears, real Save/Cancel, original opacity/input restoration, native pool callbacks and forbidden-call guards. `npm ci`/audit passed;27 runtime entries and49 unchanged artwork assets. All effects/presets/art/placement remain unchanged. No SavedVariables access, UI automation or live appearance acceptance claimed.
+
+Local `dist/Epicast-0.1.0-beta.14.zip`:81 files/25,925,680 bytes/SHA256 `00CB3AE2AECC1B28554F1F7DDA82F0475A109C599B5915D706C1C8EAB7EB986C`. Source/archive hashes verified;73 payloads identical to beta.13, seven changed plus one new module. Evidence `artifacts/cooldown-visibility/`; delivery record `docs/release-0.1.0-beta.14.md`. Subsequently installed at the user's request as recorded above. No commit/push/publication; public release remains beta.13. Trigger diagnostic revision stillbeta.13 because BoundEffects.lua is unchanged. Abandoned experiments remain local/untracked.
+
 ## Current public release: beta.13 Arcane bake (2026-11-16)
 
 User explicitly requested publishing a beta and clarified: bake the in-game effects and spell binding configuration. This authorizes a one-time read of Epicast's Arcane save, overriding the earlier no-read rule for this task only. Read literal data from the 17:16:05.228 UTC save; source SHA256 `9B061597DACEF50CBA6ED14545D0CD400C09E7F158D68C33A154AD112009F892`. No save writes/full snapshots. Only the twelve Arcane effect rows are retained in `tests/fixtures/arcane-beta13.json`; no personal placement or other classes are baked. See `docs/arcane-preset.md`.
@@ -8,7 +30,7 @@ User explicitly requested publishing a beta and clarified: bake the in-game effe
 
 Published `dist/Epicast-0.1.0-beta.13.zip`,80 files/25,922,957 bytes/SHA256 `BC55855E02CAD469CEC050B52B3B8F4896C1B32EABE104CA825F19AC35FD0DEF`, with checksum companion at https://github.com/Sovcat0608/Epicast/releases/tag/v0.1.0-beta.13 . Published17:24:33UTC, prerelease=true/draft=false; tag resolves to `36539589b2f9996810342bad4a8f6c652a859cf9`. All80 packaged sources match the release commit; both uploaded sizes/digests verified. Source pushed to main. No reinstall requested; beta.12 remains installed. Source save hash rechecked unchanged. Receipts under `artifacts/arcane-bake-beta13/`; see `docs/release-0.1.0-beta.13.md`. Abandoned `animation-rnd/` and earlier Groveheart experiments remain local and are excluded from publication.
 
-## Latest local installation: beta.12, uncorrected Mage option 1 (2026-11-16)
+## Previous local installation: beta.12, uncorrected Mage option 1 (2026-11-16)
 
 The user preferred **the first uncorrected crown/pendant option** and explicitly requested baking/building/installing it. Integrated exact `concepts/mage-reboot/Mage-reboot-trio-v3-initial.png`, SHA256 `5DD9D15C1D72C67EFB83DFA664E235E450B36C8B8C1C3BBC7CC017B2A2D3F5AC`. The corrected/framed v3 versions were not chosen. Do not silently replace the approved source with either later image.
 

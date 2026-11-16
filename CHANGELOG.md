@@ -1,5 +1,12 @@
 # Changes
 
+## 0.1.0-beta.14
+
+- Added **Hide Cooldown Manager (keep tracking active)**, off by default, with an inline explanation of the WoW setting, tracked-buff and Always-visible viewer requirements.
+- Cosmetic transparency keeps native aura updates running. Mouse interaction on invisible CDM widgets is suppressed; Edit Mode and CDM settings reveal the displays. Save, Cancel and closing options restore the appropriate state.
+- Preserve native visibility, CVars, tracking choices, previous opacity and input settings. Handle late loading and pooled widgets without calling Blizzard's data refresh methods or writing native Lua fields.
+- Added regressions for alpha-zero Barrage/Clearcasting tracking, repeated procs, Save/Cancel, Edit Mode, native layout rebuilds, restricted values and protected input changes during combat. No artwork, effect preset or player-placement changes.
+
 ## 0.1.0-beta.13
 
 - Baked the approved in-game Arcane configuration as the defaults for new Arcane slots: 12 layers with exact effect placement, model fitting, opacity and spell bindings.

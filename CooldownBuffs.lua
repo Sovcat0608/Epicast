@@ -58,7 +58,7 @@ function E.CooldownBuffHint(b)
     local profile=profileFor(b,true)
     if not profile then return end
     if b.kind=="proc" then return "Use While buff active for "..profile.label.."." end
-    if b.kind=="buff" then return "Keep "..profile.track.." visible in Blizzard's Tracked Buffs or Bars." end
+    if b.kind=="buff" then return "Track "..profile.track.." in Tracked Buffs or Bars (Always). Epicast may hide the display." end
 end
 local function matches(info,profile)
     for _,key in ipairs({"spellID","overrideSpellID","overrideTooltipSpellID"}) do

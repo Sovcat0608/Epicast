@@ -77,10 +77,11 @@ function E.RefreshOptions()
  local resource=E.editorSet=="resources";p.resource:SetShown(resource);p.resource:SetEnabled(unlocked);p.resource:SetText("Resource: "..c.resource.."  v")
  p.meter:SetShown(resource);p.meter:SetChecked(c.showMeter);p.meter:SetEnabled(unlocked);p.spellHelp:SetShown(not resource);p.report:SetShown(not resource);p.report:SetEnabled(unlocked and #c.addedEffects>0)
  p.openEffects:SetShown(E.devMode);p.openEffects:SetEnabled(unlocked);p.hide:SetChecked(db.hideBlizzard);p.hide:SetEnabled(unlocked);p.class:SetChecked(db.classOnly);p.class:SetEnabled(unlocked);p.cancel:SetEnabled(unlocked)
+ p.hideCooldown:SetChecked(db.hideCooldownManager);p.hideCooldown:SetEnabled(unlocked)
  E.refreshing=false;E.UpdateSaveButton();if E.EffectLibrary then E.EffectLibrary.RefreshTarget()end
 end
 local function create()
- local p=CreateFrame("Frame","EpicastOptions",UIParent,"BackdropTemplate");E.panel=p;p:SetSize(640,714);p:SetPoint("CENTER");p:SetFrameStrata("DIALOG");p:SetMovable(true);p:SetClampedToScreen(true);p:EnableMouse(true);p:RegisterForDrag("LeftButton")
+ local p=CreateFrame("Frame","EpicastOptions",UIParent,"BackdropTemplate");E.panel=p;p:SetSize(640,824);p:SetPoint("CENTER");p:SetFrameStrata("DIALOG");p:SetMovable(true);p:SetClampedToScreen(true);p:EnableMouse(true);p:RegisterForDrag("LeftButton")
  p:SetScript("OnDragStart",p.StartMoving);p:SetScript("OnDragStop",p.StopMovingOrSizing);p:SetBackdrop({bgFile="Interface\\Buttons\\WHITE8X8",edgeFile="Interface\\Buttons\\WHITE8X8",edgeSize=1});p:SetBackdropColor(.045,.035,.075,.98);p:SetBackdropBorderColor(.5,.35,.7,.9)
  label(p,"EPICAST · Crests",20,-18);p.authorClass=button(p,"",218,-12,314,function()E.OpenAuthoringClassMenu(p.authorClass)end);button(p,"Close",560,-10,60,function()p:Hide()end);p.tabs={}
  for i,key in ipairs({"spells","resources"})do local tab=button(p,E.SetLabels[key],18+(i-1)*306,-52,298,function()E.SelectCrest(key)end);p.tabs[key]=tab;tab.selected=tab:CreateTexture(nil,"OVERLAY");tab.selected:SetColorTexture(.7,.45,1,1);tab.selected:SetPoint("BOTTOMLEFT",0,-4);tab.selected:SetSize(298,3)end
@@ -101,12 +102,14 @@ local function create()
  p.report=button(p,"Trigger report",466,-499,148,function()E.PrintBoundStatus()end);p.openEffects=button(p,"Edit this crest's effects",18,-550,240,function()E.EffectLibrary.Open()end)
  label(p,"Drag a visible crest's outline to move it.",278,-558,340)
  p.hide=checkbox(p,"Hide Blizzard endcaps",18,-604,function(v)E.draft.hideBlizzard=v;change()end);p.class=checkbox(p,"Restrict resource art to Mages",324,-604,function(v)E.draft.classOnly=v;change()end)
- label(p,"Class preview ends on Close. Save includes all crests; Cancel discards previews.",18,-643,604);p.pending=label(p,"",18,-678,290)
- p.save=button(p,"Save",324,-668,136,function()E.SaveEffectStudio()end);p.cancel=button(p,"Cancel",472,-668,136,function()E.CancelEffectStudio();p:Hide()end)
+ p.hideCooldown=checkbox(p,"Hide Cooldown Manager (keep tracking active)",18,-640,function(v)E.draft.hideCooldownManager=v;change()end);p.hideCooldown.label:SetWidth(570)
+ p.cooldownHelp=label(p,"Buff/proc effects that use Cooldown Manager require it to be enabled in WoW settings, with the buff tracked and its viewer set to Always. This option hides the display without disabling tracking. CDM is revealed in Edit Mode and its settings.",48,-680,550);p.cooldownHelp:SetHeight(66)
+ label(p,"Class preview ends on Close. Save includes all crests; Cancel discards previews.",18,-754,604);p.pending=label(p,"",18,-789,290)
+ p.save=button(p,"Save",324,-779,136,function()E.SaveEffectStudio()end);p.cancel=button(p,"Cancel",472,-779,136,function()E.CancelEffectStudio();p:Hide()end)
  p:SetScript("OnHide",function()if E.EffectLibrary then E.EffectLibrary.Close()end;E.StopBoundTests();E.ClearAuthoringClass();E.Cancel();E.Apply()end);tinsert(UISpecialFrames,"EpicastOptions");p:Hide();return p
 end
 function E.OpenOptions()
  if not E.ready or InCombatLockdown()then return end
  local p=E.panel or create();E.Begin();if E.setupPending then E.editorSet="spells";E.editorSide=nil end
- E.setupPending=false;p:SetScale(math.max(.35,math.min(1,(UIParent:GetHeight()-30)/714)));p:Show();E.RefreshOptions();E.Apply()
+ E.setupPending=false;p:SetScale(math.max(.35,math.min(1,(UIParent:GetHeight()-30)/824)));p:Show();E.RefreshOptions();E.Apply()
 end

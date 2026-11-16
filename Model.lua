@@ -113,7 +113,7 @@ function E.NormalizeSide(value,side,role,designKey)
  return c
 end
 function E.Normalize(value)
- local v=tableOr(value);local result={version=E.schemaVersion,hideBlizzard=v.hideBlizzard==true,classOnly=v.classOnly~=false,content={}}
+ local v=tableOr(value);local result={version=E.schemaVersion,hideBlizzard=v.hideBlizzard==true,hideCooldownManager=v.hideCooldownManager==true,classOnly=v.classOnly~=false,content={}}
  for _,role in ipairs({"spells","resources"})do local r=tableOr(tableOr(v.content)[role]);result.content[role]={};for _,side in ipairs({"left","right"})do result.content[role][side]=E.NormalizeSide(r[side],side,role)end end
  result.content.classes=E.NormalizeClasses(tableOr(v.content))
  if not(type(v.version)=="number"and v.version>=5)then E.MigrateIndependentLayout(result,v)end

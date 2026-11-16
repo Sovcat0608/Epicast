@@ -1,6 +1,6 @@
 # Epicast — Mage and Druid crests
 
-**0.1.0-beta.13 · WoW Forever (16001)**
+**0.1.0-beta.14 · WoW Forever (16001)**
 
 Independent artwork and native effects for spells and resources. Mages choose **Fire, Frost and Arcane** book crests; Druids choose **Balance, Feral and Restoration**. Each complete crest has gentle six-second hovering, with independently adjustable size and position.
 
@@ -21,6 +21,7 @@ Close WoW completely before installing or updating. Extract the `Epicast` folder
 - Drag a visible crest's outline to move only that crest. **Reset this crest's placement** affects only the selected artwork. No crest is assigned to a fixed side or paired with another.
 - Resource 1 and Resource 2 currently have no custom artwork and start hidden. Each has its own visibility, size, position, resource and meter. Choose health, mana, energy, rage, focus, runic power or current power. Native effect intensity and optional meters follow the current level.
 - **Hide Blizzard endcaps** is optional and off by default. Epicast never uses them for its placement.
+- **Hide Cooldown Manager (keep tracking active)** is optional and off by default. It makes CDM's four displays transparent while preserving native tracking. Edit Mode and CDM settings temporarily reveal them; Save/Cancel also covers this setting.
 - **Restrict resource art to Mages** controls the Resources class filter. Spellcasting crests always belong to your character's class during normal play. Talent specialization and shapeshift form do not alter your selection.
 
 Use **`/epicast dev`** to toggle developer controls. **Build class**, at the top of both the main window and effect studio, previews any of the nine Forever classes for authoring and manual effect tests. Each class has three independent spec slots. Other classes' slots await dedicated artwork and can already hold effects. Close options or turn off developer mode to restore your character's class; the preview class is never saved.
@@ -33,7 +34,7 @@ Model **166602** contains only Stand (animation 0), with no separate Intro/Hold/
 
 Bindings use public player events. Some models lack intro/hold/end segments, and some game data may be restricted. Unverified segments are labeled; unavailable resource values display `—`. No guessed projectile timers or synthetic resource readings are used.
 
-Missile Barrage and Druid Clearcasting effects also read Blizzard's Cooldown Manager during combat. Enable the Cooldown Manager and include **Missile Barrage** or **Omen of Clarity / Clearcasting** in **Tracked Buffs** or **Tracked Bars**. Keep the viewer enabled and visible outside Edit Mode. Epicast uses its public active state and does not change your tracking settings. Ordinary readable buff data remains a fallback when native tracking is unavailable.
+Missile Barrage and Druid Clearcasting effects also read Blizzard's Cooldown Manager during combat. Enable the Cooldown Manager in WoW settings and include **Missile Barrage** or **Omen of Clarity / Clearcasting** in **Tracked Buffs** or **Tracked Bars**. Set the relevant viewer to **Always** in Edit Mode. You can then use Epicast's **Hide Cooldown Manager** option to hide its display without disabling tracking. Setting a viewer to Hidden or disabling CDM in WoW stops native tracking; Epicast does not change those game settings. Ordinary readable buff data remains a fallback when native tracking is unavailable.
 
 For Druid Clearcasting, choose **Bound → While buff active**, enter **16870**, click **Bind spell**, then Save. The native tracker may identify it by Omen of Clarity **16864**; Epicast matches both. Missile Barrage likewise uses **While buff active**, with aura **400589**; existing Arcane Barrage layers incorrectly saved as Proc are upgraded automatically. **While proc glows** tracks action-button overlay signals and is a separate trigger. The native tracker must remain available when the game restricts direct buff reads.
 

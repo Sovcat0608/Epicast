@@ -16,3 +16,7 @@ Installation and publication receipts follow below when verified. No SavedVariab
 - Backup/receipt: `artifacts/install-20261116-194722/`; optional `Rollback-to-beta.15.ps1 -Check` checks without applying. File rollback preflight passed. After WoW has saved schema6, beta.15's deliberate newer-schema guard will make that older build inactive; file rollback does not downgrade saved preferences.
 - Independent ZIP comparison to beta.15:8 changed existing payloads,2 added modules,73 identical payloads,0 removals. All49 media files and12 protected preset/native/library modules byte-identical.
 - `artifacts/beta16-package-comparison.json`, `beta16-install-independent.json`, `beta16-test.log`, `beta16-audit.log` hold verification evidence. No SavedVariables access or game UI automation.
+
+## Publication
+
+Published [v0.1.0-beta.16](https://github.com/Sovcat0608/Epicast/releases/tag/v0.1.0-beta.16) on2026-11-16 at19:49:20UTC, prerelease=true/draft=false. Annotated tag targets `8d4577eadf415ae7611bac7fba5aab103983d9db`; every one of the83 packaged payloads matches its committed Git blob. Main/tag were pushed atomically. The exact installed/tested ZIP and SHA256 companion were uploaded; both sizes and GitHub SHA256 digests were verified before and after publication. Remote tag was independently checked. No private artifacts, full-save backups or abandoned experiments were tracked. Receipts: `artifacts/publish-beta16/`. No live-client visual acceptance claimed.

@@ -1,6 +1,8 @@
 # Epicast handover
 
-## Current work: beta.16 / schema6 (2026-11-16)
+## Current installed and public release: beta.16 / schema6 (2026-11-16)
+
+Published https://github.com/Sovcat0608/Epicast/releases/tag/v0.1.0-beta.16 at19:49:20UTC; prerelease=true/draft=false. Tag `8d4577eadf415ae7611bac7fba5aab103983d9db` matches all83 payloads. ZIP25,932,556bytes, SHA256 `A409919DDC6889FFBB28C9713A1CBE834FDD94C61B200F52FF656EDE9162D26C`; uploaded ZIP/checksum sizes/digests and remote tag verified. Installed83 files (10 changed/new,73 unchanged,0 removed),8 backups verified under `artifacts/install-20261116-194722/`. Full tests/audit pass; all49 textures unchanged. Full restart required for new modules.
 
 User explicitly authorized native Warcraft tab styling, authoritative crest-owned effect bakes, build/install and GitHub beta publication. Supersedes all older saved-effect preservation rules below. Normal preferences remain; stale effect arrays/empty overrides no longer mask the approved twelve-layer Arcane bake. Developer edits are RAM-only with effect-only JSON export and validated compiler. All artwork and native trigger/CDM code remain unchanged. See `docs/crest-bakes.md` and `docs/release-0.1.0-beta.16.md`. No SavedVariables files accessed for this work.
 

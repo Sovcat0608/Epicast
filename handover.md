@@ -1,8 +1,8 @@
 # Epicast handover
 
-## Beta.14 publication requested (2026-11-16)
+## Current public release: beta.14 CDM display hiding (2026-11-16)
 
-The user accepted the installed beta.14 build and explicitly requested publication on GitHub. Prepare tag `v0.1.0-beta.14` and a prerelease with the exact installed ZIP and SHA256 companion. No runtime/default/art edits are needed; local backups, comparison extracts and abandoned experiments stay excluded. The publication receipt below will be finalized after remote verification. See `docs/release-0.1.0-beta.14.md`.
+The user accepted the installed beta.14 build and explicitly requested publication on GitHub. Published https://github.com/Sovcat0608/Epicast/releases/tag/v0.1.0-beta.14 at18:05:15UTC, prerelease=true/draft=false. Annotated tag resolves to `0103ec4e7c67eb619eb4cbe744ebb71d7d304a54`; all81 source payloads match that commit. Main and tag pushed. The exact tested ZIP and checksum companion have matching uploaded sizes and GitHub SHA256 digests. Full tests/audit passed again. No runtime/default/art edits, reinstall or SavedVariables access for publication; local backups, comparison extracts and abandoned experiments stay excluded. Receipts: `artifacts/publish-beta14/`; details: `docs/release-0.1.0-beta.14.md`.
 
 ## Current installation: beta.14, Arcane defaults checked (2026-11-16)
 
@@ -22,7 +22,7 @@ Full tests pass including alpha-zero Barrage/Clearcasting, repeated gains/clears
 
 Local `dist/Epicast-0.1.0-beta.14.zip`:81 files/25,925,680 bytes/SHA256 `00CB3AE2AECC1B28554F1F7DDA82F0475A109C599B5915D706C1C8EAB7EB986C`. Source/archive hashes verified;73 payloads identical to beta.13, seven changed plus one new module. Evidence `artifacts/cooldown-visibility/`; delivery record `docs/release-0.1.0-beta.14.md`. Subsequently installed at the user's request as recorded above. No commit/push/publication; public release remains beta.13. Trigger diagnostic revision stillbeta.13 because BoundEffects.lua is unchanged. Abandoned experiments remain local/untracked.
 
-## Current public release: beta.13 Arcane bake (2026-11-16)
+## Previous public release: beta.13 Arcane bake (2026-11-16)
 
 User explicitly requested publishing a beta and clarified: bake the in-game effects and spell binding configuration. This authorizes a one-time read of Epicast's Arcane save, overriding the earlier no-read rule for this task only. Read literal data from the 17:16:05.228 UTC save; source SHA256 `9B061597DACEF50CBA6ED14545D0CD400C09E7F158D68C33A154AD112009F892`. No save writes/full snapshots. Only the twelve Arcane effect rows are retained in `tests/fixtures/arcane-beta13.json`; no personal placement or other classes are baked. See `docs/arcane-preset.md`.
 

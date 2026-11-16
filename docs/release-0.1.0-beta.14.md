@@ -1,13 +1,15 @@
 # Epicast 0.1.0-beta.14
 
-Built and installed 2026-11-16. The user accepted the installed build and requested GitHub publication. Release tag: `v0.1.0-beta.14`; release type: beta prerelease. Local installation is beta.14. Publication receipt will be recorded after the uploaded assets and tag are verified.
+Published: https://github.com/Sovcat0608/Epicast/releases/tag/v0.1.0-beta.14 — **2026-11-16 18:05:15 UTC**. GitHub reports prerelease=true and draft=false. The annotated tag resolves to source commit `0103ec4e7c67eb619eb4cbe744ebb71d7d304a54`; all81 packaged sources match that commit. Both uploaded asset sizes and GitHub SHA256 digests match the local ZIP/checksum. Publication receipts are in ignored `artifacts/publish-beta14/`.
+
+Built and installed 2026-11-16. The user accepted the installed build and requested GitHub publication. Release tag: `v0.1.0-beta.14`; release type: beta prerelease. The last verified local installation is beta.14; no reinstall or SavedVariables access was performed for publication.
 
 - Archive: `dist/Epicast-0.1.0-beta.14.zip`
 - Files:81; bytes:25,925,680.
 - SHA256: `00CB3AE2AECC1B28554F1F7DDA82F0475A109C599B5915D706C1C8EAB7EB986C`.
 - Schema5 and all49 artwork textures/Arcane preset unchanged.
 
-The release uses the exact ZIP installed for testing, with a companion `.zip.sha256`. Full regression tests and the audit are rerun for publication; evidence is retained in ignored `artifacts/publish-beta14/`. Local backups, effect-only save extracts and abandoned artwork/animation experiments are excluded from Git and the release ZIP.
+The release uses the exact ZIP installed for testing, with a companion `.zip.sha256`. Full regression tests and the audit passed again for publication; evidence is retained in ignored `artifacts/publish-beta14/`. Local backups, effect-only save extracts and abandoned artwork/animation experiments are excluded from Git and the release ZIP.
 
 Adds the optional **Hide Cooldown Manager (keep tracking active)** checkbox and inline requirements. It preserves native shown state and tracking while hiding all four displays cosmetically, reveals them for native Edit Mode/settings, and restores previous opacity/input settings on Cancel or uncheck. See [research and implementation](cooldown-visibility.md).
 

@@ -76,10 +76,18 @@ end
 function CreateFrame(kind,name,parent,template)
  local w=widget(kind,parent,name)
  w.template=template
+ if template=='PanelTopTabButtonTemplate'then
+  w:SetSize(10,32)
+  w:SetScript('OnShow',function(self)PanelTemplates_TabResize(self,self.parent.tabPadding,nil,self.parent.minTabWidth,self.parent.maxTabWidth)end)
+  w:RegisterEvent('DISPLAY_SIZE_CHANGED');w:SetScript('OnEvent',function(self)if self:IsVisible()then self:emit('OnShow')end end)
+ end
  if template=='MinimalSliderWithSteppersTemplate'then w.Slider=widget('Slider',w);function w:Init(v,lo,hi)self.Slider.minimum=lo;self.Slider.maximum=hi;self.Slider.value=v end end
  return w
 end
-function PanelTemplates_TabResize(t,_,width)t:SetSize(width,32)end
+function PanelTemplates_TabResize(t,padding,width,minWidth,maxWidth)
+ local natural=#t:GetText()*6+(Mock.tabFontExtra or 0)+20+(padding or 0)
+ t:SetWidth(width or math.max(minWidth or 40,math.min(maxWidth or math.huge,natural)))
+end
 function PanelTemplates_SelectTab(t)t.tabSelected=true;t:Disable()end
 function PanelTemplates_DeselectTab(t)t.tabSelected=false;t:Enable()end
 UIParent=widget('Frame');UIParent:SetSize(1920,1080)

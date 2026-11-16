@@ -1,5 +1,9 @@
 # Epicast handover
 
+## Current installed local test build: beta.17 (2026-11-16)
+
+User asked for adjacent tabs, an Open effects button in developer mode and any record of lost Restoration tuning. Native tab OnShow/display events shrink widths, exposing the fixed X offsets from beta.16; tab rows now use sibling anchors and natural sizing. Open effects moved to the crest header so Placement and Behavior both expose it. Scoped read-only recovery from the already archived pre-reset Epicast backup found nine exact Restoration layers. They are now the shipped DRUID:restoration bake; no live account files were accessed. See `docs/restoration-recovery.md` and `docs/release-0.1.0-beta.17.md`. Full tests/audit passed. Built and installed83-file beta.17 ZIP (25,933,980bytes, SHA256 `A35F31C6CD9ED8FD444210171F054E5F8DB544A2F4B42E4F1A31D1DFB98DAB0B`):5 changed,78 identical,0 removals; all83 installed hashes and5 backups independently verified. Backup/rollback preflight `artifacts/install-20261116-200109/`. The user accepted the installed result and explicitly requested beta.17 GitHub publication. Publish the exact verified ZIP without runtime changes; publication receipt will be recorded in `docs/release-0.1.0-beta.17.md`.
+
 ## Current installed and public release: beta.16 / schema6 (2026-11-16)
 
 Published https://github.com/Sovcat0608/Epicast/releases/tag/v0.1.0-beta.16 at19:49:20UTC; prerelease=true/draft=false. Tag `8d4577eadf415ae7611bac7fba5aab103983d9db` matches all83 payloads. ZIP25,932,556bytes, SHA256 `A409919DDC6889FFBB28C9713A1CBE834FDD94C61B200F52FF656EDE9162D26C`; uploaded ZIP/checksum sizes/digests and remote tag verified. Installed83 files (10 changed/new,73 unchanged,0 removed),8 backups verified under `artifacts/install-20261116-194722/`. Full tests/audit pass; all49 textures unchanged. Full restart required for new modules.

@@ -34,6 +34,7 @@ run(files,`\nassert(loadfile('tests/arcane-preset.lua'))(E)`,false,false);
 run(files,`\nassert(loadfile('tests/cooldown-visibility.lua'))(E)`,false,false);
 run(files,`\nassert(loadfile('tests/options-redesign.lua'))(E)`,false,false);
 run(files,`\nassert(loadfile('tests/crest-bakes.lua'))(E)`,false,false);
+run(files,`\nassert(loadfile('tests/restoration-recovery.lua'))(E)`,false,false);
 require('./test-crest-bakes.cjs');
 require('./test-arcane-preset.cjs');
 require('./test-druid-assets.cjs');

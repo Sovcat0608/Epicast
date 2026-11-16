@@ -118,6 +118,10 @@ local function descendant(frame,ancestor)
 end
 local function bounds(frame)
  if frame==p then return 0,0,frame.width,frame.height end
+ if frame.point and type(frame.point[2])=='table'then
+  local point=frame.point;assert(point[1]=='TOPLEFT'and point[3]=='TOPRIGHT','Unexpected relative anchor')
+  local x,y,w=bounds(point[2]);return x+w+point[4],y-point[5],frame.width,frame.height
+ end
  local x,y=bounds(frame.parent);local point=frame.point or{'TOPLEFT',0,0}
  assert(point[1]=='TOPLEFT','Unexpected interactive anchor')
  return x+(point[2]or 0),y-(point[3]or 0),frame.width,frame.height
@@ -142,3 +146,27 @@ for _,size in ipairs({{1920,1080},{1280,720},{800,600}})do
 end
 UIParent:SetSize(1920,1080)
 print('PASS: main UI action targets stay inside the panel without overlap; footer survives all pages and 1080p/720p/800x600 scaling')
+
+-- Native OnShow/display resizing must never separate neighbouring tabs.
+local function checkTabRows()
+ for _,pair in ipairs({{p.mainTabs.crests,p.mainTabs.settings},{p.tabs.spells,p.tabs.resources},{p.detailTabs.placement,p.detailTabs.behavior}})do
+  local a,b=unpack(pair);local ax,ay,aw=bounds(a);local bx,by=bounds(b)
+  near(bx-(ax+aw),12);near(ay,by)
+ end
+end
+E.SelectOptionsPage('crests');E.SelectCrestPage('placement')
+for _,extra in ipairs({0,14,0})do
+ Mock.tabFontExtra=extra
+ for _,tabs in ipairs({p.mainTabs,p.tabs,p.detailTabs})do for _,t in pairs(tabs)do t:emit('OnShow')end end
+ Mock.event('DISPLAY_SIZE_CHANGED');checkTabRows();checkLayout()
+end
+-- Effects entry is available beside the crest title on either detail page.
+assert(not p.openEffects:IsShown());E.SetDeveloperMode(true);E.SelectCrest('spells','arcane')
+assert(p.openEffects:IsVisible()and p.openEffects:GetText()=='Open effects'and p.placement:IsVisible())
+local saved=E.Copy(EpicastDB);typeValue('x','44.25');p.openEffects:Click()
+assert(E.EffectLibrary.window:IsVisible()and E.GetEffectLibraryTarget()==current()and current().x==44.25)
+assert(equal(EpicastDB,saved),'Opening the library saved a pending placement')
+E.EffectLibrary.Close();E.SelectCrestPage('behavior');assert(p.openEffects:IsVisible());p.openEffects:Click();assert(E.EffectLibrary.window:IsVisible())
+E.EffectLibrary.Close();Mock.combat=true;E.RefreshOptions();p.openEffects:Click();assert(not E.EffectLibrary.window:IsVisible())
+Mock.combat=false;E.SetDeveloperMode(false);assert(not p.openEffects:IsShown())
+print('PASS: adjacent native tabs after OnShow/display font resizing; dev Open effects on both pages, pending input ownership, no implicit Save and combat guards')

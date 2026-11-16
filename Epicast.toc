@@ -2,7 +2,7 @@
 ## Title: Epicast
 ## Notes: Independent Mage and Druid spell crests and native effects.
 ## Author: Epicast
-## Version: 0.1.0-beta.16
+## Version: 0.1.0-beta.17
 ## IconTexture: Interface\AddOns\Epicast\Media\EpicastIcon
 ## SavedVariables: EpicastDB
 

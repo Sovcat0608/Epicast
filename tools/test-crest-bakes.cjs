@@ -23,5 +23,8 @@ try{
  if(lauxlib.luaL_dostring(L,to_luastring(program))!==lua.LUA_OK)throw Error(to_jsstring(lua.lua_tostring(L,-1)));
 }finally{lua.lua_close(L);}
 const manifest=JSON.parse(fs.readFileSync('tools/crest-bakes.json','utf8'));
+const recovered=JSON.parse(fs.readFileSync('tests/fixtures/restoration-recovered.json','utf8'));
+validateBake(recovered);assert.equal(recovered.effects.length,9);
+assert.deepEqual(manifest['DRUID:restoration'],recovered.effects,'Recovery must preserve all archived Restoration layer/binding values');
 assert.equal(fs.readFileSync('CrestBakes.lua','utf8'),render(manifest),'Generated bake source is stale');
 console.log('PASS: real in-game JSON export, exact field preservation, data-only compiler/round-trip, 29 valid crest identities and invalid/placeholder/private-data rejection');

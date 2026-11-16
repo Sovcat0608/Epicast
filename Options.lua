@@ -17,9 +17,12 @@ local function checkbox(parent,text,x,y,width,fn)
  local b=CreateFrame("CheckButton",nil,parent,"UICheckButtonTemplate");b:SetSize(28,28);b:SetPoint("TOPLEFT",x,y)
  b.label=label(b,text,32,-7,width);b:SetScript("OnClick",function(self)if not InCombatLockdown()then fn(self:GetChecked()==true)end end);return b
 end
-local function tab(parent,text,x,y,w,fn)
+local function tab(parent,text,x,y,fn,previous)
  local b=CreateFrame("Button",nil,parent,"PanelTopTabButtonTemplate")
- b:SetText(text);b:SetPoint("TOPLEFT",x,y);PanelTemplates_TabResize(b,0,w)
+ b:SetText(text);PanelTemplates_TabResize(b,0)
+ -- Native OnShow/display events resize tabs to their labels. Follow the actual
+ -- previous tab width so that every row stays together after native resizing.
+ if previous then b:SetPoint("TOPLEFT",previous,"TOPRIGHT",12,0)else b:SetPoint("TOPLEFT",x,y)end
  b:SetScript("OnClick",function()if not InCombatLockdown()then fn()end end);return b
 end
 local function target()return E.draft and E.GetSide(E.draft,E.editorSet,E.editorSide)end
@@ -243,11 +246,13 @@ local function create()
  p.header:SetScript("OnDragStart",function()p:StartMoving()end);p.header:SetScript("OnDragStop",function()p:StopMovingOrSizing()end)
  label(p,"EPICAST",20,-16,200,"GameFontNormalLarge");p.context=label(p,"",20,-40,650)
  p.close=button(p,"Close",684,-17,136,function()p:Hide()end,true)
- p.mainTabs={crests=tab(p,"Crests",18,-82,150,function()E.SelectOptionsPage("crests")end),settings=tab(p,"Settings",178,-82,150,function()E.SelectOptionsPage("settings")end)}
+ p.mainTabs={crests=tab(p,"Crests",18,-82,function()E.SelectOptionsPage("crests")end)}
+ p.mainTabs.settings=tab(p,"Settings",0,0,function()E.SelectOptionsPage("settings")end,p.mainTabs.crests)
  p.crests=CreateFrame("Frame",nil,p);p.crests:SetPoint("TOPLEFT",18,-114);p.crests:SetSize(804,450)
  local list=box(p.crests,0,0,268,450);local detail=box(p.crests,280,0,524,450)
  p.settings=box(p,18,-114,804,450)
- p.tabs={spells=tab(list,"Spellcasting",12,-12,118,function()E.SelectCrest("spells")end),resources=tab(list,"Resources",138,-12,118,function()E.SelectCrest("resources")end)}
+ p.tabs={spells=tab(list,"Spellcasting",12,-12,function()E.SelectCrest("spells")end)}
+ p.tabs.resources=tab(list,"Resources",0,0,function()E.SelectCrest("resources")end,p.tabs.spells)
  p.collection=label(list,"",12,-58,240,"GameFontNormal");p.authorClass=button(list,"",12,-50,244,function()E.OpenAuthoringClassMenu(p.authorClass)end)
  p.choiceHint=label(list,"",12,-86,244);p.choiceHint:SetHeight(36);p.crestRows={}
  for i=1,3 do
@@ -265,9 +270,14 @@ local function create()
   end)
   row.active.label:ClearAllPoints();row.active.label:SetPoint("TOPLEFT",-2,-32)
  end
- p.subject=label(detail,"",18,-16,488,"GameFontNormalLarge");p.detailMeta=label(detail,"",18,-44,488)
+ p.subject=label(detail,"",18,-16,310,"GameFontNormalLarge");p.detailMeta=label(detail,"",18,-44,488)
+ p.openEffects=button(detail,"Open effects",346,-16,160,function()
+  if not E.FlushPlacementInputs()then E.RefreshOptions();return end
+  E.EffectLibrary.Open()
+ end)
  p.artNotice=label(detail,"",18,-64,488)
- p.detailTabs={placement=tab(detail,"Placement",18,-104,230,function()E.SelectCrestPage("placement")end),behavior=tab(detail,"Behavior",268,-104,238,function()E.SelectCrestPage("behavior")end)}
+ p.detailTabs={placement=tab(detail,"Placement",18,-104,function()E.SelectCrestPage("placement")end)}
+ p.detailTabs.behavior=tab(detail,"Behavior",0,0,function()E.SelectCrestPage("behavior")end,p.detailTabs.placement)
  p.placement=CreateFrame("Frame",nil,detail);p.placement:SetPoint("TOPLEFT",0,-136);p.placement:SetSize(524,300)
  p.behavior=CreateFrame("Frame",nil,detail);p.behavior:SetPoint("TOPLEFT",0,-136);p.behavior:SetSize(524,300)
  local layout=p.placement;p.inputs={};p.sliders={};p.placementButtons={}
@@ -304,9 +314,8 @@ local function create()
  end)
  p.meter=checkbox(behavior,"Show meter",280,-103,180,function(v)target().showMeter=v;change()end)
  p.resourceHelp=label(behavior,"",18,-148,488);p.resourceHelp:SetHeight(44)
- p.openEffects=button(behavior,"Effect library",18,-214,152,function()E.EffectLibrary.Open()end)
- p.exportBake=button(behavior,"Copy crest bake",182,-214,152,function()E.ShowCrestBakeExport()end)
- p.report=button(behavior,"Trigger report",346,-214,152,function()E.PrintBoundStatus()end)
+ p.exportBake=button(behavior,"Copy crest bake",18,-214,230,function()E.ShowCrestBakeExport()end)
+ p.report=button(behavior,"Trigger report",280,-214,218,function()E.PrintBoundStatus()end)
  p.studioHint=label(behavior,"",18,-260,488);p.studioHint:SetHeight(32)
  local settings=p.settings
  label(settings,"Game interface",20,-18,744,"GameFontNormalLarge")

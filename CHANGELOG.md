@@ -1,5 +1,12 @@
 # Changes
 
+## 0.1.0-beta.17
+
+- Grouped each main tab row side by side. Relative anchors follow Warcraft's automatic tab resizing instead of leaving fixed gaps.
+- Moved **Open effects** beside the crest title in developer mode, available from both Placement and Behavior. Opening it applies pending placement text to the draft without saving preferences.
+- Recovered the nine recorded Restoration effect layers and bindings from the pre-reset backup and baked them into the crest. Exact tuning is retained for Regrowth, Healing Touch, Rejuvenation, Swiftmend and two static accents. Arcane and artwork are unchanged.
+- Added regressions for native tab resizing, developer button access and the recovered Restoration effects. Normal player preferences remain separate from crest bakes.
+
 ## 0.1.0-beta.16
 
 - Effects and spell bindings now belong to each shipped crest. Updates apply the latest bake to existing installations automatically; old saved effect copies and empty lists no longer override it. Arcane uses the approved twelve-layer configuration for everyone.

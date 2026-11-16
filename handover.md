@@ -1,12 +1,12 @@
 # Epicast handover
 
-## Current source: beta.13 Arcane bake, ready for publication (2026-11-16)
+## Current public release: beta.13 Arcane bake (2026-11-16)
 
 User explicitly requested publishing a beta and clarified: bake the in-game effects and spell binding configuration. This authorizes a one-time read of Epicast's Arcane save, overriding the earlier no-read rule for this task only. Read literal data from the 17:16:05.228 UTC save; source SHA256 `9B061597DACEF50CBA6ED14545D0CD400C09E7F158D68C33A154AD112009F892`. No save writes/full snapshots. Only the twelve Arcane effect rows are retained in `tests/fixtures/arcane-beta13.json`; no personal placement or other classes are baked. See `docs/arcane-preset.md`.
 
 `ArcanePreset.lua` supplies six static/six bound layers for fresh Arcane slots. Existing saved arrays, explicit empties and legacy two-list merge survive; fresh slots no longer incorrectly take the legacy pair defaults. Artwork, schema5, all other defaults and native renderer/reader logic remain unchanged. Full tests including exact export, live preset spell routes, repeated Barrage clears and rapid re-proc during outro pass. `npm ci` and audit passed. All49 media assets are unchanged from beta.12.
 
-Prepared `dist/Epicast-0.1.0-beta.13.zip`,80 files/25,922,957 bytes/SHA256 `BC55855E02CAD469CEC050B52B3B8F4896C1B32EABE104CA825F19AC35FD0DEF`; checksum companion and prerelease notes prepared. User authorized source commit/push and GitHub beta publication. No reinstall requested; beta.12 remains installed. Publication receipt will be recorded after remote verification. Abandoned `animation-rnd/` remains local and is excluded from publication.
+Published `dist/Epicast-0.1.0-beta.13.zip`,80 files/25,922,957 bytes/SHA256 `BC55855E02CAD469CEC050B52B3B8F4896C1B32EABE104CA825F19AC35FD0DEF`, with checksum companion at https://github.com/Sovcat0608/Epicast/releases/tag/v0.1.0-beta.13 . Published17:24:33UTC, prerelease=true/draft=false; tag resolves to `36539589b2f9996810342bad4a8f6c652a859cf9`. All80 packaged sources match the release commit; both uploaded sizes/digests verified. Source pushed to main. No reinstall requested; beta.12 remains installed. Source save hash rechecked unchanged. Receipts under `artifacts/arcane-bake-beta13/`; see `docs/release-0.1.0-beta.13.md`. Abandoned `animation-rnd/` and earlier Groveheart experiments remain local and are excluded from publication.
 
 ## Latest local installation: beta.12, uncorrected Mage option 1 (2026-11-16)
 

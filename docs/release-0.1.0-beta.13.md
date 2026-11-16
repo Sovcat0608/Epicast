@@ -2,6 +2,8 @@
 
 Repository: https://github.com/Sovcat0608/Epicast
 
+Published: https://github.com/Sovcat0608/Epicast/releases/tag/v0.1.0-beta.13 — **2026-11-16 17:24:33 UTC**. GitHub reports prerelease=true and draft=false. The annotated tag resolves to source commit `36539589b2f9996810342bad4a8f6c652a859cf9`; all80 packaged sources match that commit. Both uploaded asset sizes and GitHub SHA256 digests match the local ZIP/checksum. Publication receipts are in ignored `artifacts/arcane-bake-beta13/`.
+
 Release tag: `v0.1.0-beta.13`. Release type: beta prerelease. User authorized baking the in-game Arcane effects/bindings and publishing to GitHub on 2026-11-16.
 
 Installable asset: `Epicast-0.1.0-beta.13.zip`, **80 files**, **25,922,957 bytes**. SHA256:

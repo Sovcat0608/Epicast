@@ -54,21 +54,6 @@ function E.NormalizeClasses(content)
    local bank={slots={},active={},configured=prior.configured==true};result[class]=bank
    for i,spec in ipairs(definition.slots)do
     local value=slots[spec[1]]
-    local legacy=type(content.spells)=="table"and content.spells or{}
-    if class=="MAGE"and spec[1]=="arcane"and value==nil and(legacy.left~=nil or legacy.right~=nil)then
-     -- Migrate once, in memory at addon load. Retain both lists, including
-     -- duplicates and explicit empty arrays. Keep intrinsic model fitting;
-     -- reset the five user placement fields just like Reset placement.
-     local merged={addedEffects={}}
-     for _,side in ipairs({"left","right"})do
-      local source=E.NormalizeSide(legacy[side],side,"spells")
-      for _,row in ipairs(source.addedEffects)do
-       local r=E.Copy(row);for _,field in ipairs(E.devEffectFields)do r[field[1]]=nil end
-       r.effectLayer="front";merged.addedEffects[#merged.addedEffects+1]=E.NormalizeAddedEffect(r)
-      end
-     end
-     value=merged
-    end
     if class=="DRUID"and value==nil then
      local legacyArt=spec[1]=="balance"and"moonwarden"or(spec[1]=="restoration"and"groveheart")
      if legacyArt then for _,side in ipairs({"left","right"})do
@@ -77,6 +62,7 @@ function E.NormalizeClasses(content)
      end end
     end
     bank.slots[spec[1]]=E.NormalizeSide(value,"left","spells",spec[3]or"none")
+    E.CrestOwners[bank.slots[spec[1]]]=class..":"..spec[1]
     if active then bank.active[spec[1]]=active[spec[1]]==true
     else bank.active[spec[1]]=class=="DRUID"and spec[1]~="feral"or class=="MAGE"and spec[1]=="arcane"or class~="DRUID"and class~="MAGE"and i==1 end
    end

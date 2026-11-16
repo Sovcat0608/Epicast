@@ -1,5 +1,20 @@
 # Changes
 
+## 0.1.0-beta.16
+
+- Effects and spell bindings now belong to each shipped crest. Updates apply the latest bake to existing installations automatically; old saved effect copies and empty lists no longer override it. Arcane uses the approved twelve-layer configuration for everyone.
+- Retain player crest selections, size, position, facing, animation/visibility and resource/global preferences. Schema6 stores only these player settings; no manual SavedVariables deletion is needed.
+- Developer effect edits are temporary previews. Save session keeps them until reload; Copy crest bake exports them for inclusion in an addon release. Added a validated effect-only bake compiler and regression tests for upgrades, precision, session isolation and normal player settings.
+- Changed the main UI tabs to Warcraft's native raised gold/bronze style. Includes the Crests/Settings UI redesign from the unpublished beta.15 test build; library layout and all artwork remain unchanged.
+
+## 0.1.0-beta.15
+
+- Rebuilt the main UI around Crests and Settings, with artwork thumbnail cards, separate Show toggles, and Placement / Behavior pages for the selected crest.
+- Replaced wide position sliders with exact signed/decimal fields, 1/10-unit nudges, keyboard navigation and selected-crest alignment/reset. Size supports both a slider and exact input.
+- Added a read-only overview of configured spell responses, explicit resource preview restrictions, and a discoverable session-only Developer mode toggle. The effect library window is unchanged.
+- Kept Save all changes / Cancel visible across pages; Close identifies when it discards unsaved work. Typed values stay with their original crest; navigation alone does not change saved settings.
+- Reduced panel height from 824 to 632 and fit both screen dimensions. Drag outlines appear only while placing crests. Added regressions for transactions, precision inputs, class previews, combat, library handoff and layout bounds. Artwork, bindings, defaults and schema 5 are unchanged.
+
 ## 0.1.0-beta.14
 
 - Added **Hide Cooldown Manager (keep tracking active)**, off by default, with an inline explanation of the WoW setting, tracked-buff and Always-visible viewer requirements.

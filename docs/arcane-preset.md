@@ -1,5 +1,7 @@
 # Arcane effect bake — beta.13
 
+> Current beta.16/schema6 supersedes effect-save ownership described below: crest effects are shipped definitions, developer edits are session-only, and only normal UI preferences persist. See [crest bakes](crest-bakes.md). Main tabs use native Warcraft attached tabs; library layout is unchanged.
+
 On 2026-11-16 the user clarified: “Bake the in-game effects and spell binding configuration.” This authorized reading Epicast's saved Arcane configuration without modifying it. Only the twelve `content.classes.MAGE.slots.arcane.addedEffects` rows were exported; personal placement, other classes, account identifiers and the full saved database are not included in the published fixture.
 
 Source save timestamp: **2026-11-16 17:16:05.228 UTC**. Source SHA256: `9B061597DACEF50CBA6ED14545D0CD400C09E7F158D68C33A154AD112009F892`. The source was parsed as literal Lua data, never executed. Local read receipt is ignored under `artifacts/arcane-bake-beta13/`. The source file remains unchanged.

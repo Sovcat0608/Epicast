@@ -1,5 +1,5 @@
 local _,E=...
-E.schemaVersion=5
+E.schemaVersion=6
 E.LegacyMageArtworks={arcaneTome=true,arcaneScroll=true}
 E.MageSpecSlots={mageFire=true,mageFrost=true,mageArcane=true}
 E.artworks={{id="arcaneTome",name="Resource 1",width=162,height=216,pending=true},
@@ -34,7 +34,9 @@ E.devEffectFields={{"trailSize","Effect size (%)",50,200},{"trailAngle","Effect 
  {"trailX","Origin X",-150,150},{"trailY","Origin Y",-150,150},{"trailOpacity","Effect opacity (%)",0,100}}
 local function number(v,d,lo,hi)if type(v)~="number" or v~=v or v==math.huge or v==-math.huge then return d end;return math.max(lo,math.min(hi,v))end
 E.Number=number
-function E.Copy(v)if type(v)~="table" then return v end;local t={};for k,x in pairs(v)do t[k]=E.Copy(x)end;return t end
+-- Ownership is runtime metadata, never a field in saved player preferences.
+E.CrestOwners=setmetatable({},{__mode="k"})
+function E.Copy(v)if type(v)~="table" then return v end;local t={};for k,x in pairs(v)do t[k]=E.Copy(x)end;E.CrestOwners[t]=E.CrestOwners[v];return t end
 local function equal(a,b)if type(a)~=type(b)then return false end;if type(a)~="table" then return a==b end;for k,v in pairs(a)do if not equal(v,b[k])then return false end end;for k in pairs(b)do if a[k]==nil then return false end end;return true end
 local function tableOr(v)return type(v)=="table" and v or {}end
 function E.UV(c,flip)if not flip then return unpack(c)end;return c[5],c[6],c[7],c[8],c[1],c[2],c[3],c[4]end
@@ -80,14 +82,12 @@ function E.NormalizeAddedEffect(v)
  end
  return r
 end
-function E.GetAddedEffects(c)return c.addedEffects or{}end
-function E.EditAddedEffects(c)c.addedEffects=c.addedEffects or{};return c.addedEffects end
 function E.AddLibraryEffect(c,value)
  if not E.devMode then return end;local r=E.NormalizeAddedEffect(value);if not r or(c.role=="resources"and r.behavior=="bound")then return end
  if not E.EffectLibrary or not E.EffectLibrary.IsAvailable(r.fileID)then return end
  local rows=E.EditAddedEffects(c);if #rows>=E.AddedEffectLimit then return end;rows[#rows+1]=r;return #rows
 end
-function E.RemoveLibraryEffect(c,index)if E.devMode and type(index)=="number"and index>=1 and index<=#E.GetAddedEffects(c)then table.remove(c.addedEffects,index)end end
+function E.RemoveLibraryEffect(c,index)if E.devMode and type(index)=="number"and index>=1 and index<=#E.GetAddedEffects(c)then table.remove(E.EditAddedEffects(c),index)end end
 function E.NormalizeSide(value,side,role,designKey)
  local v=tableOr(value);role=role=="resources"and"resources"or"spells"
  local design=E.Designs[role=="spells"and designKey=="druid"and"druid"or"arcane"]
@@ -95,21 +95,9 @@ function E.NormalizeSide(value,side,role,designKey)
  if designKey=="none"or E.DruidArtworks[designKey]or E.MageSpecSlots[designKey]then art=designKey end
  local kinds={};for _,k in ipairs(E.ResourceKinds)do kinds[k[1]]=true end
  local c={art=art,role=role,size=number(v.size,100,25,400),x=number(v.x,0,-8000,8000),y=number(v.y,0,-2000,3000),enabled=v.enabled==true,flip=type(v.flip)=="boolean"and v.flip or false,
-  effects=v.effects~=false,nativeSmoke=v.nativeSmoke~=false,resource=kinds[v.resource]and v.resource or(side=="left"and"health"or"mana"),showMeter=v.showMeter~=false}
+  effects=v.effects~=false,resource=kinds[v.resource]and v.resource or(side=="left"and"health"or"mana"),showMeter=v.showMeter~=false}
  if type(v.flip)~="boolean"then c.flip=E.LegacyMageArtworks[art]~=nil and side=="right"end
- c.addedEffects={};local rows=v.addedEffects
- if type(rows)~="table"then
-  if role=="spells"then rows=E.AddedEffectDefaults[art]or{}
-  else local glow=E.Copy(E.AddedEffectDefaults.arcaneScroll[1]);glow.trailOpacity=35;rows={glow}end
- end
- for i=1,math.min(#rows,E.AddedEffectLimit)do local r=E.NormalizeAddedEffect(rows[i]);if r then
-  if role=="resources"then r.behavior="static";r.binding=nil
-  elseif(E.LegacyMageArtworks[art]or art=="mageArcane")and r.binding then
-   local b=r.binding;local id=tonumber(b.spell)
-   if (b.kind=="proc"or b.kind=="buff")and(id==400588 or id==400589 or b.spell:lower()=="missile barrage")then b.kind="buff";if id then b.spell="400589"end end
-  end
-  c.addedEffects[#c.addedEffects+1]=r
- end end
+ if role=="resources"then E.CrestOwners[c]="RESOURCE:"..side end
  return c
 end
 function E.Normalize(value)
@@ -117,13 +105,14 @@ function E.Normalize(value)
  for _,role in ipairs({"spells","resources"})do local r=tableOr(tableOr(v.content)[role]);result.content[role]={};for _,side in ipairs({"left","right"})do result.content[role][side]=E.NormalizeSide(r[side],side,role)end end
  result.content.classes=E.NormalizeClasses(tableOr(v.content))
  if not(type(v.version)=="number"and v.version>=5)then E.MigrateIndependentLayout(result,v)end
+ result.content.spells=nil -- legacy geometry import is complete; no obsolete pair state in saves
  return result
 end
 function E.Config()return E.draft or EpicastDB end
-function E.Begin()if not E.draft then E.draft=E.Normalize(EpicastDB)end end
-function E.HasChanges()return E.draft~=nil and not equal(E.Normalize(E.draft),E.Normalize(EpicastDB))end
-function E.Commit()EpicastDB=E.Normalize(E.Config());E.draft=nil end
-function E.Cancel()E.draft=nil end
+function E.Begin()if not E.draft then E.draft=E.Normalize(EpicastDB);E.authorDraft=E.Copy(E.authorSession or{})end end
+function E.HasChanges()return E.draft~=nil and(not equal(E.Normalize(E.draft),E.Normalize(EpicastDB))or E.AuthorHasChanges(equal))end
+function E.Commit()EpicastDB=E.Normalize(E.Config());E.authorSession=E.Copy(E.authorDraft or{});E.draft=nil;E.authorDraft=nil end
+function E.Cancel()E.draft=nil;E.authorDraft=nil end
 function E.GetSide(db,setKey,side)
  if setKey=="resources"then return db.content.resources[side],side end
  local bank=setKey=="spells"and E.ClassBank(db)

@@ -251,7 +251,7 @@ local function createWindow()
         local b=button(panel,v[1],155);b:SetPoint("BOTTOMLEFT",325+(i-1)*165,144);panel.segmentButtons[v[2]]=b
         b:SetScript("OnClick",function()if selected and E.AnimationAvailable(selected.id,v[2]) then animation:SetText(tostring(v[2]));play(true)end end)
     end
-    local save=button(panel,"Save all changes",140);save:SetPoint("BOTTOMLEFT",845,16);panel.saveAll=save
+    local save=button(panel,"Save session",140);save:SetPoint("BOTTOMLEFT",845,16);panel.saveAll=save
     save:SetScript("OnClick",function()if E.SaveEffectStudio then E.SaveEffectStudio()end;panel.RefreshTarget()end)
     local cancel=button(panel,"Cancel changes",140);cancel:SetPoint("BOTTOMLEFT",995,16)
     cancel:SetScript("OnClick",function()panel:Hide();if E.CancelEffectStudio then E.CancelEffectStudio()end end)

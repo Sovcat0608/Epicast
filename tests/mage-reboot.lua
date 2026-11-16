@@ -36,8 +36,8 @@ bank.slots.fire.effects=false;E.Apply();assert(s.host:IsVisible()and not s.hover
 local metrics=GetPhysicalScreenSize;GetPhysicalScreenSize=nil;bank.slots.fire.size=25;E.Apply();assert(s.textureSize==768);GetPhysicalScreenSize=metrics
 E.SetCrestEnabled(E.draft,'spells','fire',false);E.Apply();assert(not fire.frame:IsVisible()and not s.host:IsShown()and not s.hover.playing)
 E.SetCrestEnabled(E.draft,'spells','fire',true);bank.slots.fire.effects=true;E.Apply();assert(s.hover.playing)
-local arc=instances.arcane;local effects=bank.slots.arcane.addedEffects
+local arc=instances.arcane;local effects=E.GetAddedEffects(bank.slots.arcane)
 E.SetAuthoringClass('DRUID');assert(not arc.frame:IsVisible()and not arc.mageReboot.host:IsShown())
-E.SetAuthoringClass('MAGE');assert(arc==E.GetEntry('spells','arcane')and arc.mageReboot.host:IsVisible()and effects==E.ClassBank(E.draft).slots.arcane.addedEffects)
+E.SetAuthoringClass('MAGE');assert(arc==E.GetEntry('spells','arcane')and arc.mageReboot.host:IsVisible()and effects==E.GetAddedEffects(E.ClassBank(E.draft).slots.arcane))
 assert(E.GetEntry('resources','left').mageReboot==nil,'Resources must not reuse the new Mage art')
 print('PASS: exact Mage slot mapping, real render/geometry, square aspect, texture sizing/UV/flip, six-second native phase/static/hide recovery, independent tuning and class isolation')

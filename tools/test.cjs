@@ -9,7 +9,10 @@ function run(selected,tail,legacyPair=true,historical=true){
  const L=lauxlib.luaL_newstate();lualib.luaL_openlibs(L);
  lua.lua_pushcfunction(L,L=>{const f=to_jsstring(lua.lua_tostring(L,1)),s=to_luastring(fs.readFileSync(f,'utf8'));if(lauxlib.luaL_loadbuffer(L,s,s.length,to_luastring('@'+f))!==lua.LUA_OK)return lua.lua_error(L);return 1});lua.lua_setglobal(L,to_luastring('loadfile'));
  const script=`local M=assert(loadfile('tests/mock.lua'))()\nlocal E={}\n`+selected.map(f=>`assert(loadfile('${historical&&fs.existsSync('tests/fixtures/schema4/'+f)?'tests/fixtures/schema4/'+f:f}'))('Epicast',E)`).join('\n')+(legacyPair?`\nassert(loadfile('tests/legacy-pair.lua'))(E)`:'')+tail;
- try{if(lauxlib.luaL_dostring(L,to_luastring(script))!==lua.LUA_OK)throw Error(to_jsstring(lua.lua_tostring(L,-1)));}finally{lua.lua_close(L);}
+ try{if(lauxlib.luaL_dostring(L,to_luastring(script))!==lua.LUA_OK)throw Error(to_jsstring(lua.lua_tostring(L,-1)));
+  lua.lua_getglobal(L,to_luastring('EpicastBakeTestExport'));
+  if(lua.lua_isstring(L,-1)){fs.mkdirSync('artifacts/crest-bakes',{recursive:true});fs.writeFileSync('artifacts/crest-bakes/test-export.json',to_jsstring(lua.lua_tostring(L,-1)));}
+ }finally{lua.lua_close(L);}
 }
 console.log('Schema-4 compatibility fixtures with current shared effect/animation/reader modules:');
 run(files,`\nassert(loadfile('tests/integration.lua'))(E)\nassert(loadfile('tests/buff-retrigger.lua'))(E)\nassert(loadfile('tests/cooldown-buff.lua'))(E)`);
@@ -29,6 +32,9 @@ run(files,`\nassert(loadfile('tests/independent-crests.lua'))(E)\nassert(loadfil
 console.log(`PASS: ${files.length} current modules parsed as Lua 5.1 and loaded in TOC order`);
 run(files,`\nassert(loadfile('tests/arcane-preset.lua'))(E)`,false,false);
 run(files,`\nassert(loadfile('tests/cooldown-visibility.lua'))(E)`,false,false);
+run(files,`\nassert(loadfile('tests/options-redesign.lua'))(E)`,false,false);
+run(files,`\nassert(loadfile('tests/crest-bakes.lua'))(E)`,false,false);
+require('./test-crest-bakes.cjs');
 require('./test-arcane-preset.cjs');
 require('./test-druid-assets.cjs');
 require('./test-mage-reset.cjs');

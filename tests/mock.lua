@@ -21,7 +21,7 @@ end
 function hooksecurefunc(object,key,fn)local old=object[key];object[key]=function(self,...)local value=old(self,...);fn(self,...);return value end end
 local function widget(kind,parent,name)
  local w={kind=kind,parent=parent,name=name,shown=true,enabled=true,scripts={},events={},width=100,height=100,alpha=1,level=1,text=""}
- for method in ([=[EnableMouse EnableMouseWheel RegisterForDrag SetFrameStrata SetMovable SetClampedToScreen SetBackdrop SetBackdropColor SetBackdropBorderColor SetColorTexture SetAutoFocus SetMaxLetters SetMaxLines SetTextColor SetJustifyH SetNormalTexture SetHighlightTexture SetDisabledTexture SetFontString SetDisabledFontObject SetDrawLayer SetCameraNearClip SetCameraFarClip SetCameraFieldOfView SetLightAmbientColor SetLightDiffuseColor SetDesaturation SetNumeric SetBlendMode SetSnapToPixelGrid SetTexelSnappingBias SetCameraPosition SetCameraOrientationByAxisVectors SetPosition SetPitch SetYaw SetRoll SetViewInsets SetViewTranslation SetPaused SetStatusBarTexture SetStatusBarColor SetSmoothing SetOrder SetDuration SetOffset SetOrigin SetDegrees SetLooping]=]):gmatch('%S+')do
+ for method in ([=[SetMultiLine SetFontObject SetScrollChild EnableMouse EnableMouseWheel RegisterForDrag SetFrameStrata SetMovable SetClampedToScreen SetBackdrop SetBackdropColor SetBackdropBorderColor SetColorTexture SetAutoFocus SetMaxLetters SetMaxLines SetTextColor SetJustifyH SetNormalTexture SetHighlightTexture SetDisabledTexture SetFontString SetDisabledFontObject SetDrawLayer SetCameraNearClip SetCameraFarClip SetCameraFieldOfView SetLightAmbientColor SetLightDiffuseColor SetDesaturation SetNumeric SetBlendMode SetSnapToPixelGrid SetTexelSnappingBias SetCameraPosition SetCameraOrientationByAxisVectors SetPosition SetPitch SetYaw SetRoll SetViewInsets SetViewTranslation SetPaused SetStatusBarTexture SetStatusBarColor SetSmoothing SetOrder SetDuration SetOffset SetOrigin SetDegrees SetLooping]=]):gmatch('%S+')do
   local key=method;w[key]=function(self,...)self[key..'Args']={...}end
  end
  function w:GetName()return self.name end
@@ -46,9 +46,13 @@ local function widget(kind,parent,name)
  function w:SetEnabled(v)self.enabled=v end
  function w:Enable()self.enabled=true end;function w:Disable()self.enabled=false end
  if kind=='EditBox'then w.SetEnabled=nil end
- function w:SetText(v)self.text=v;self:emit('OnTextChanged',false)end;function w:GetText()return self.text end
+ function w:SetFontString(font)self.fontString=font end
+ function w:SetText(v)self.text=v;if self.fontString then self.fontString:SetText(v)end;self:emit('OnTextChanged',false)end;function w:GetText()return self.text end
  function w:SetChecked(v)self.checked=v end;function w:GetChecked()return self.checked end
- function w:HasFocus()return self.focus end;function w:SetFocus()self.focus=true end;function w:ClearFocus()self.focus=false end;function w:HighlightText()end
+ function w:HasFocus()return self.focus end
+ function w:SetFocus()local had=self.focus;self.focus=true;if not had then self:emit('OnEditFocusGained')end end
+ function w:ClearFocus()local had=self.focus;self.focus=false;if had then self:emit('OnEditFocusLost')end end
+ function w:HighlightText()end
  function w:StartMoving()end;function w:StopMovingOrSizing()end
  function w:SetValue(v)self.value=v;self:emit('OnValueChanged',v)end;function w:GetValue()return self.value end
  function w:SetMinMaxValues(a,b)self.minimum=a;self.maximum=b end
@@ -71,9 +75,13 @@ local function widget(kind,parent,name)
 end
 function CreateFrame(kind,name,parent,template)
  local w=widget(kind,parent,name)
+ w.template=template
  if template=='MinimalSliderWithSteppersTemplate'then w.Slider=widget('Slider',w);function w:Init(v,lo,hi)self.Slider.minimum=lo;self.Slider.maximum=hi;self.Slider.value=v end end
  return w
 end
+function PanelTemplates_TabResize(t,_,width)t:SetSize(width,32)end
+function PanelTemplates_SelectTab(t)t.tabSelected=true;t:Disable()end
+function PanelTemplates_DeselectTab(t)t.tabSelected=false;t:Enable()end
 UIParent=widget('Frame');UIParent:SetSize(1920,1080)
 UISpecialFrames={};SlashCmdList={};MinimalSliderWithSteppersMixin={Label={Right=1}}
 MenuUtil={CreateContextMenu=function(owner,fn)Mock.menu={};fn(owner,{CreateRadio=function(_,name,selected,callback)Mock.menu[#Mock.menu+1]={name=name,selected=selected,choose=callback}end})end}

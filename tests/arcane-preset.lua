@@ -5,23 +5,23 @@ local function equal(a,b)
 end
 local defaults=E.Copy(E.AddedEffectDefaults.mageArcane)
 local fresh=E.Normalize(nil);local c=fresh.content.classes.MAGE.slots.arcane
-assert(#c.addedEffects==12 and equal(c.addedEffects,defaults),'Fresh Arcane must use exact approved effects and bindings')
+assert(#E.GetAddedEffects(c)==12 and equal(E.GetAddedEffects(c),defaults),'Fresh Arcane must use exact approved effects and bindings')
 assert(equal(fresh,E.Normalize(fresh)),'Defaults must be idempotent')
-assert(#fresh.content.classes.MAGE.slots.fire.addedEffects==0 and #fresh.content.classes.MAGE.slots.frost.addedEffects==0)
+assert(#E.GetAddedEffects(fresh.content.classes.MAGE.slots.fire)==0 and #E.GetAddedEffects(fresh.content.classes.MAGE.slots.frost)==0)
 local resources=E.Copy(fresh.content.resources);local druid=E.Copy(fresh.content.classes.DRUID)
-assert(equal(E.NormalizeSide(nil,'left','spells','mageArcane').addedEffects,defaults))
--- Existing authoring, placement, hidden selections and intentional empties win.
-c.addedEffects[1].trailOpacity=3;c.addedEffects[4].binding.duration=2.5
+-- Legacy developer data is discarded; player placement and selections remain.
+c.addedEffects=E.Copy(defaults);c.addedEffects[1].trailOpacity=3;c.addedEffects[4].binding.duration=2.5
 c.size=143;c.x=-411;c.y=87;c.flip=true;fresh.content.classes.MAGE.active.arcane=false
-local edited=E.Copy(fresh);assert(equal(E.Normalize(edited),edited))
-c.addedEffects={};assert(#E.Normalize(fresh).content.classes.MAGE.slots.arcane.addedEffects==0)
+local edited=E.Normalize(fresh);assert(edited.content.classes.MAGE.slots.arcane.addedEffects==nil)
+assert(equal(E.GetAddedEffects(edited.content.classes.MAGE.slots.arcane),defaults))
+c.addedEffects={};assert(#E.GetAddedEffects(E.Normalize(fresh).content.classes.MAGE.slots.arcane)==12)
 assert(equal(E.Normalize(fresh).content.resources,resources)and equal(E.Normalize(fresh).content.classes.DRUID,druid))
 assert(equal(E.AddedEffectDefaults.mageArcane,defaults),'User edits must not mutate defaults')
 local legacy=E.Normalize({version=2,content={spells={left={},right={}}}})
-assert(#legacy.content.classes.MAGE.slots.arcane.addedEffects==13,'Legacy merge must retain both old lists')
+assert(#E.GetAddedEffects(legacy.content.classes.MAGE.slots.arcane)==12,'Old paired effects must yield to the current bake')
 local empty=E.Normalize({version=2,content={spells={left={addedEffects={}},right={addedEffects={}}}}})
-assert(#empty.content.classes.MAGE.slots.arcane.addedEffects==0)
-print('PASS: exact Arcane defaults, fresh/missing arrays, legacy merge, intentional empties, saved tuning/placement/class isolation and idempotence')
+assert(#E.GetAddedEffects(empty.content.classes.MAGE.slots.arcane)==12)
+print('PASS: exact Arcane bake replaces stale/empty/pair effects, with preference/class isolation and idempotence')
 
 EpicastDB=nil;Mock.event('ADDON_LOADED','Epicast');Mock.advance(0)
 E.panel.save:Click();E.panel:Hide()

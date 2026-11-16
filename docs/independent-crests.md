@@ -1,5 +1,7 @@
 # Independent crests — beta.11 / schema 5
 
+> Current beta.16/schema6 supersedes effect-save ownership described below: crest effects are shipped definitions, developer edits are session-only, and only normal UI preferences persist. See [crest bakes](crest-bakes.md). Main tabs use native Warcraft attached tabs; library layout is unchanged.
+
 The user removed the corner/edge/center implementation, shared spacing/sizing and matched pairs. Every Spellcasting spec and each Resource artwork now has its own position, size and visibility. A crest's identity is its class/spec key (or resource key), never its screen position. Hiding another crest, changing selections or resizing a neighbor cannot move it.
 
 ## Data and migration
@@ -13,6 +15,8 @@ X is an offset from UIParent's horizontal center. Y is the visible crest frame's
 Earlier Druid artwork-aware migration and Arcane effect consolidation still run before placement import. Existing schema-4 Arcane effects are not merged or centered again. Binding and intrinsic model settings remain unchanged.
 
 ## UI and rendering
+
+The beta.15 main UI supersedes the original layout below: Crests / Settings, thumbnail card selection, Placement / Behavior pages, precise inputs, and a persistent shared Save/Cancel footer. Categories, per-crest ownership and transactions are unchanged. See [the audit and current interaction design](ui-ux-audit.md).
 
 The main window has **Spellcasting / Resources** categories, three or two named rows with individual Show checkboxes, and one selected-crest editor. Size/X/Y, Flip, animation, Reset and dragging affect only the selected config. Hidden crests remain selectable and editable. Resource kind/meter controls appear in Resources. Save commits the whole draft transaction; Cancel/Close rolls it back. First-use Save can accept defaults directly.
 

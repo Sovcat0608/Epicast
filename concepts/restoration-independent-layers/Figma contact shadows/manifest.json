@@ -1,0 +1,15 @@
+{
+  "name": "Epicast Restoration layer study",
+  "id": "1853068826673417709",
+  "api": "1.0.0",
+  "main": "build.js",
+  "editorType": [
+    "figma"
+  ],
+  "documentAccess": "dynamic-page",
+  "networkAccess": {
+    "allowedDomains": [
+      "none"
+    ]
+  }
+}

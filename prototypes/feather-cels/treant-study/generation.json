@@ -1,0 +1,32 @@
+{
+  "request": {
+    "model": "wan2.2-ti2v-5b-native",
+    "size": "608x704",
+    "num_frames": 49,
+    "steps": 40,
+    "guidance": 5,
+    "fps": 16,
+    "seed": 48617,
+    "prompt": "Locked front camera. Animate this exact isolated hand-painted carved wooden treant face on a flat blue gray background. An extremely subtle slow inhale. The whole face tips up just a few degrees while the lower jaw goes down a few pixels, making the existing dark mouth slightly wider open. One gentle continuous motion, not talking. The face remains centered with its brow and eyes aligned. Preserve every original angular wood facet, glowing green eyes, shape of the nose, chin, and painted highlights. Keep color and illumination constant.",
+    "negative_prompt": "camera movement, zoom, yaw, roll, talking, teeth added, tongue, blinking, eye movement, glow changing, photorealism, repaint, new texture, morphing silhouette, exaggerated action, particles, smoke, detailed background"
+  },
+  "inputSha256": "c2d80c03ef7884f7c314c6836e13335b1abacac147cba8807c20b204fb8dc66c",
+  "result": {
+    "created": 1795059346,
+    "model": "wan2.2-ti2v-5b-native",
+    "video": {
+      "width": 608,
+      "height": 704,
+      "num_frames": 49,
+      "fps": 16,
+      "steps": 40,
+      "guidance_scale": 5.0,
+      "seed": 48617,
+      "mode": "image-to-video",
+      "duration_seconds": 3.062
+    },
+    "timings": {
+      "total_seconds": 58.958
+    }
+  }
+}

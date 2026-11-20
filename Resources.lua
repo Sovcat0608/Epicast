@@ -30,12 +30,12 @@ function E.UpdateResource(entry,c)
  bar:SetValue(ratio or 0);bar.text:SetText(label..(ratio and string.format(" %d%%",math.floor(ratio*100+.5))or" —"));bar:SetShown(c.showMeter)
  -- Native effect intensity follows the resource level.
  local intensity=ratio and(.12+.88*ratio)or .12
- for _,fx in ipairs(entry.addedEffectSlots or{})do
-  local s=fx.nativeSmoke;for _,slot in ipairs(s and s.slots or{})do slot.scene:SetAlpha(s.status=="ready"and entry.alpha*(fx.resourceOpacity or 0)*intensity or 0)end
- end
+ for _,fx in ipairs(entry.addedEffectSlots or{})do E.UpdateNativeEffectAlpha(fx,intensity)end
 end
 function E.RefreshResources()
  for _,entries in pairs(E.instances or{})do for _,entry in pairs(entries)do if entry.config then E.UpdateResource(entry,entry.config)end end end
+ local w=E.EffectLibrary and E.EffectLibrary.window;local preview=w and w.crestPreview
+ if preview and preview.frame:IsVisible()and preview.config then E.UpdateResource(preview,preview.config)end
 end
 local frame=CreateFrame("Frame")
 for _,event in ipairs({"UNIT_HEALTH","UNIT_MAXHEALTH","UNIT_POWER_UPDATE","UNIT_POWER_FREQUENT","UNIT_MAXPOWER","UNIT_DISPLAYPOWER"})do frame:RegisterUnitEvent(event,"player")end

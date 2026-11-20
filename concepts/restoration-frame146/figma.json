@@ -1,0 +1,67 @@
+{
+  "fileKey": "9GLlCGWEVCrVTLlR644Jt2",
+  "section": "543:969",
+  "stage": "543:971",
+  "ref": "543:970",
+  "sources": 19,
+  "linkedContacts": 64,
+  "test": {
+    "chinShiftY": 8,
+    "rootReceiverShadowShiftY": 8,
+    "restored": true,
+    "noShadowOutsideRegisteredPaint": true
+  },
+  "figmaPaintFilters": [
+    {
+      "exposure": -0.09,
+      "shadows": -0.09
+    },
+    {
+      "exposure": -0.085,
+      "shadows": -0.08
+    },
+    {},
+    {
+      "exposure": -0.085,
+      "shadows": -0.1
+    },
+    {
+      "shadows": -0.08
+    },
+    {
+      "shadows": -0.08
+    },
+    {
+      "exposure": -0.1,
+      "shadows": -0.12
+    },
+    {
+      "exposure": -0.08,
+      "shadows": -0.1
+    },
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {
+      "exposure": -0.02
+    },
+    {},
+    {
+      "exposure": -0.05,
+      "shadows": -0.075
+    },
+    {},
+    {
+      "exposure": -0.045,
+      "shadows": -0.095
+    }
+  ],
+  "comparisonGrid": {
+    "node": "552:1218",
+    "step": 50,
+    "visible": false
+  }
+}

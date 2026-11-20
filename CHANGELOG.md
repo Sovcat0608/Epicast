@@ -1,5 +1,51 @@
 # Changes
 
+## 0.1.0-beta.18.segments.8
+
+- The Rejuvenation leaf starts swaying on the second Channel frame while its glow builds, then carries that motion into Hold.
+
+## 0.1.0-beta.18.segments.7
+
+- Fixed the doubled fabric tip near the end of Impact. Each banner and its contact shadow now settle into the same Idle pose.
+- Rejuvenation now returns to its first Idle frame after Channel and Impact while its independent hover continues.
+
+## 0.1.0-beta.18.segments.6
+
+- Added independent hover and spell-driven Channel and Impact animation to the Restoration crown symbol and Rejuvenation leaf.
+
+## 0.1.0-beta.18.segments.5
+
+- Updated the Restoration Treant's Idle, Channel and Impact animations with solid jaw motion and contact shading that follows the chin.
+- Added authored Channel entry and release for the Treant, with an exact return to the resting face after Channel and Impact.
+- Increased the left green shoulder's Channel and Impact bend while keeping it attached to the branch.
+
+## 0.1.0-beta.18.segments.4
+
+- Baked the six reviewed Restoration crown and shoulder leaf animations at all six texture sizes. Channel loops twice as fast with a stronger shuffle and glow. Impact peaks on its second frame, then settles back to Idle.
+
+## 0.1.0-beta.18.segments.1
+
+- Added **All** to Artwork Config. Move native effects between locked Restoration artwork segments in the live preview.
+- Bind a spell to individual animated segments and choose Channel or Impact where supported. Copy crest bake includes those bindings and the mixed layer order.
+
+## 0.1.0-beta.18.idle.2
+
+- Baked the animated Restoration crest at six size-specific resolutions with Lanczos2 and CAS. The existing four-second idle loop and native hover retain their timing.
+
+## 0.1.0-beta.18.idle.1
+
+- Local Restoration animation test. The crest plays the approved four-second idle loop at 8 FPS, including feather, foliage, treant, banner and vine motion.
+
+## 0.1.0-beta.18
+
+- Rebuilt the developer studio with adjacent **Effect Library / Artwork Config** tabs. Search and isolated previews now lead to one **Add effect layer** action; binding is optional afterward.
+- Added a full selectable layer sidebar containing effects and actual artwork, with front/back ordering, visibility and opacity. Each crest's existing complete floating artwork appears as one real layer.
+- Added a large live crest preview using the game renderer, with Fit/zoom, native viewport cropping and isolated response tests. Placement and Playback controls include exact inputs, wheel nudging, animation presets and segment timing.
+- Added a per-crest spell waiting room. Queue spells before effects exist, choose a signal, then bind to the selected effect. Unbinding retains the spell for reuse; one spell can drive multiple layers.
+- Effects can follow a selected artwork layer's native six-second hover, with matching phase and independent placement offsets. Effects remain independently pooled; casts do not reload models or write configuration.
+- Extended crest bake exports/compiler to include stable layer identities, order, artwork settings and waiting-room spells. Developer changes remain session-only; player preferences and all shipped effect/artwork defaults are preserved.
+- Added workflow, ordering, motion, preview isolation, capacity, input, combat, layout and bake round-trip regressions. Local test build only; installation and publication are separate.
+
 ## 0.1.0-beta.17
 
 - Grouped each main tab row side by side. Relative anchors follow Warcraft's automatic tab resizing instead of leaving fixed gaps.

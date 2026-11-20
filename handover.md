@@ -1,5 +1,313 @@
 # Epicast handover
 
+## Rejuvenation Channel opening
+
+The preview and addon source use 12 moving Start poses over 500 ms. The registered fan starts at the exact Idle paint and shadow, picks up the approved Channel sway on the second cel and builds its emission on that moving silhouette. Hold continues at the 13th pose of the 32-frame loop. An interruption during Start retraces the displayed entry poses to rest. The source tip travels about 23 px during entry, compared with 3 px in segments.7. Installed segments.8 in WoW Forever. All 352 files matched the package. The verified rollback covers 55 replacements and one addition in artifacts/install-20261120-094337/. SavedVariables were untouched. Use /reload for the initial test, with a full restart if old textures persist.
+
+## Restoration fabric and Rejuvenation return to Idle
+
+The addon source and desktop preview now draw a single fabric pose through Impact. The final left and right poses match Idle frames 22 and 26 respectively (one-based), and each banner resumes from that frame. Shard contact textures use the same silhouette through the return. All 32 combinations of side, shard material and slide position matched across the handoff.
+
+Rejuvenation retains its approved Wan animation and separate hover. The 32-frame Channel loop has two short release strips at its upright crossings. A stop during entry reverses the entry, and a stop during Hold settles from the displayed frame. Both strips and the final Impact frame match the first Idle painting and contact shadow byte for byte. The native state tests exercise release from every Hold frame, early cancellation and the Impact handoff. Full tests, media audit, desktop preview checks and 3,054 atlas comparisons across six sizes passed. Installed local test build 0.1.0-beta.18.segments.7 in WoW Forever. All 351 installed files matched the verified package. Rollback verification covered 123 replaced files and three additions. The receipt is in artifacts/install-20261120-090805/. SavedVariables were untouched.
+
+## Restoration floating symbol and leaf test build
+
+Version `0.1.0-beta.18.segments.6` adds both preview animations to the native segmented renderer. The crown uses the preview's sampled rock, separation, blue light and collision poses. Its impact starts from the separated Channel pose. Rejuvenation uses the original registered preview cels. Both use independent hover phases and ship Regrowth cast or channel → Channel and Rejuvenation success → Impact artwork mappings. The installed bake comparison found only those two new artwork mappings.
+
+Full tests, media audit and 2,442 atlas cel comparisons passed across all six sizes. The verified 348-file package is under `dist/restoration-floating-test/`. Installation completed after WoW closed and carried forward the newest crest bake. The install receipt and 52 verified rollback copies are under `artifacts/install-20261119-232448/`.
+
+## Restoration solid-jaw test build
+
+Installed `0.1.0-beta.18.segments.5` in WoW Forever. The game bake uses the approved rigid-jaw motion and stronger left green shoulder. The Treant keeps its native rest paint at the edges, plays authored Channel entry and release around the Hold loop, and restarts Idle from the exact rest cel after Channel and Impact. The chin casts onto the stationary centre of the roots, with softened contact edges and separate moving shard and vine regions.
+
+The full suite, media audit and 1,092 atlas cel comparisons across six Lanczos2 and CAS banks passed. The 331-file install changed 51 files, including nine additions, and preserved the installed effect and spell bake. The package is under `dist/restoration-treant-test/`. The installer and rollback files are under `artifacts/install-20261119-231041/`. SavedVariables were outside the install. Live client visual acceptance is pending. The floating crown and Rejuvenation motion continue in the desktop preview.
+
+## Restoration Treant shared rest cycle
+
+The latest desktop pass moves the carved chin as one rigid piece through Idle, Channel and Impact. Its bevels, grain and tip travel together. Fresh Wan runs refine the jaw transitions, and registration preserves the approved upper face and the exact chin pixels after translation. The chin rises 26 px at exhale, drops up to 35 px during Channel, and drops 46 px at the peak roar. Channel and Impact retain their approved mouth dimensions. The contact fields follow the new silhouette, including the moving-shard overlap. The current atlases are in `treant-study/rigid-jaw/`, with the previous `rest-cycle/` preserved. Evidence is in `artifacts/restoration-motion-refinement/treant-rigid-jaw/`.
+
+The desktop preview uses three new local Wan renders conditioned on the stored registered Treant face. Each uses the identical static pose for its first and last key. Registered cels lock the horizontal mouth corners and exposed pupil positions. Wan contributes local painted detail around the moving jaw and brows. The cast field around the jaw is rebuilt for both cheek layouts.
+
+Idle is a four-second breath. Channel runs a 500 ms authored start and release, shortened when the cast is brief, with a 667 ms breathing Hold loop. Ending from either Start or Hold carries the current pose into the release. The one-second Impact keeps the mouth's 108 px measured width and increases its height from 53 to 104 px. Both full brows lower over roughly half of the visible eye area. The face returns to the exact stored rest frame before the Idle clock restarts at zero after Channel or Impact. The crest's other animation clocks carry on independently.
+
+The moving-shard compositor uses compact foreground paint and contact crops from the same selected Treant cel as the rest of the crest. This repairs the two dark rectangles caused by clearing the old face rectangles while trying to draw from an obsolete numeric cel index. Start, Hold and End passed in both cheek layouts, including both sides of the ramp blend. All six primary face atlases remain byte-identical. Before and after captures are under `artifacts/restoration-motion-refinement/treant-rest-cycle/wood-overlap/`.
+
+The Wan guides, receipts, contact sheets and browser checks are under `artifacts/restoration-motion-refinement/treant-rest-cycle/`. Preview assets use the separate `treant-study/rest-cycle/` atlas. The earlier roar is preserved as a review asset.
+
+## Restoration Treant roar and floating crown symbol
+
+The desktop preview replaces the Treant's previous nod with a planted twelve-cel roar over one second. The brow pinches inward and the jaw opens to about 2.8 times the resting visible aperture at peak. The forehead, eye line and nose stay registered. The bake recomputes the contact field around the moving jaw for both cheek layouts.
+
+The crown ball and crescent use their original registered paint as two independent elements. The collected glyph has a separate 6.92-second hover and a 3-second Idle rock and gap cycle. Channel keeps the moon steady at wider separation with a shaking ball and blue emission. Impact immediately scales to 120%, brings the ball into contact with the crescent at 150 ms, then rebounds into the live Idle pose within one second. Channel ramps interpolate a single pair of pieces. The old fixed paint and contact are replaced in the preview, and the moving cast clips to the existing receivers.
+
+Browser evidence and timing captures are in `artifacts/restoration-motion-refinement/roar-crown/`. The crown uses a full-resolution local patch, with matching pixels for incremental and fresh draws. In headless runs the Channel median was 6 ms in both configurations, with isolated 52–57 ms frames with the crown active. The prototype keeps the historical animation in the base preview path. The game build and saved settings were outside this preview pass.
+
+## Restoration left green shoulder refinement
+
+The stronger-bend pass uses the same approved live Idle attachment and keeps the horizontal pose guide unchanged. Fresh local Wan renders increased measured blade excursion from 2.71 to 4.61 px in Channel and from 5.14 to 9.36 px in Impact. The branch contact remains pixel-locked, and the visible shoulder centre stays within 0.57 px of any Idle pose. The desktop preview now selects `artifacts/restoration-leaf-wan-refinement/left-shoulder-strong-bend/`, with the prior contact-approved pass preserved for comparison.
+
+The previous active clips used the original static shoulder, whose exposed shape sat about five pixels outward from the approved live Idle. Both active clips were rerendered in local Wan from live Idle cel 11, selected as the closest pose to the median Idle silhouette. The 88 px stem guard and a 6 px zone around the registered bough hold the attachment alpha fixed. Bending is concentrated farther out on the blades. Existing Channel and Impact timing carries through.
+
+The contact-approved baseline is `artifacts/restoration-leaf-wan-refinement/left-shoulder-live-anchor/`. Its earlier study and prior preview atlases are preserved. The main preview rebuilds receiver-masked contact shadows for the selected cels. The runtime source baker reads the selection for a later build.
+
+The exposed shoulder centre moved at most 0.565 px between any Idle cel and any active cel. Chromium checked all 16 Idle phases against both active states, exact restoration at Impact completion, and unchanged preload compositing. The contact comparison and verification are in the active review directory. This is a desktop preview update.
+
+## Restoration Channel texture preload
+
+The desktop preview decodes and retains the large source atlases used by Channel and its Idle blend before enabling the Channel button. Canvas geometry, blend order, animation clocks and the 1445 × 1400 backing surface retain the full-resolution settings. The UI shows Preparing Channel while the atlases load.
+
+Three cold Chromium runs cut the longest first-second Channel frame from 377–395 ms to 29–46 ms. Channel became ready about 0.6 seconds after Idle. The retained atlas pixels amount to about 349 MiB as RGBA. Exact comparisons of Idle, the Channel ramp, Channel Hold and Impact matched the previous renderer pixel for pixel in separate browser sessions. All 32 base Idle poses matched. Evidence is under `artifacts/restoration-motion-refinement/`.
+
+## Restoration desktop preview performance rollback
+
+Restored the full-resolution canvas and compositing from before the performance pass after the user reported artifacts. The preview retains the Treant and Rejuvenation motion and contact-shadow updates below. The profiling captures remain under `artifacts/restoration-motion-refinement/`.
+
+## Restoration Treant and Rejuvenation preview
+
+The main desktop preview now uses the reviewed four-second Treant breath and the independent Rejuvenation leaf. The selected Treant pass retains the previous upward inhale and reduces the visible mouth opening by about 72% at exhale. The leaf has a 6.83-second hover against the six-second crest, a four-second Idle wave, a 1⅓-second Channel loop and a one-second Impact. Impact reaches 1.306× the resting fan width on its second frame. The new Channel and Impact guides use the painted green and purple glow references registered to the original leaf.
+
+The contact review found fixed crown shadows on the installed backboard. The desktop preview now removes Rejuvenation's fixed shadow before the moving crown is drawn, then draws the moving leaf contact and reflected light together under the foreground. The chin contact follows the jaw silhouette. Both cheek views, cast interruption and the original 32-frame Idle capture passed browser checks. The installed `segments.4` build and `resto-crest-v1` backup are unchanged. Raw passes, review sheets and validation are under `artifacts/restoration-motion-refinement/`.
+
+## Restoration Wan leaf test build
+
+Installed `0.1.0-beta.18.segments.4` in WoW Forever on 2026-11-19. The six crown and shoulder segments use the reviewed Wan Channel and Impact cels. Channel has 16 cels per third of a second. Impact has 12 cels over one second and peaks on the second cel. The current bake maps Regrowth cast to Channel and Rejuvenation cast success to Impact for all six layers. The build uses the existing in-game contact shading.
+
+The full suite, media audit and all 1,008 cel placements across six size-specific Lanczos2 and CAS banks passed verification. All 322 installed files and 32 rollback copies matched their archives. The package is under `dist/restoration-leaf-wan-test/` and the receipt is under `artifacts/install-20261119-190149/`. The `resto-crest-v1` checksums still match. SavedVariables were left untouched.
+
+## Restoration crest v1 checkpoint
+
+Installed Epicast `0.1.0-beta.18.segments.3` in WoW Forever on 2026-11-19 with the all-state fabric and shard contact shading and the current project bake. The full suite and media audit passed. All 321 installed files matched the package and staged source by SHA-256. The installer replaced three files, added 59 contact atlas pages and verified all three rollback copies. SavedVariables were left untouched.
+
+`artifacts/resto-crest-v1/` contains the exact install ZIP, the 2,491-file artwork and cel backup, the size-specific atlas packer, checksums and the install receipt. The artwork archive includes the registered editable layer paintings, contact fields, raw cels and verification samples. Live visual acceptance is pending.
+
+## Spell Mappings test build
+
+Installed `0.1.0-beta.18.segments.2` in WoW Forever on 2026-11-19. The local test bake maps **Clearcasting (16870) → While buff active → Channel** on both feathers and **Regrowth → While casting → Channel / Cast succeeds → Impact** on Treant Face. The version and test mappings were applied in the staged package. The project bake remains the source for future builds.
+
+The full test suite and media audit passed. A separate run loaded the staged addon and verified both requested mappings with mock game events. All 262 installed files matched the ZIP, with 12 verified rollback copies and six new shard-contact atlases. In-game review is pending. The package is under `dist/restoration-spell-mappings/` and the receipt is under `artifacts/spell-mappings-test-20261119-164246/artifacts/install-20261119-164621/`. SavedVariables were left untouched.
+
+Developer mode starts enabled on the test branch via `defaultDeveloperMode` in `Core.lua`. The toggle still applies to the current session. The Epicast minimap button opens options and is discoverable by OneForAll's **Collect minimap buttons** feature.
+
+## Restoration shard contact shading
+
+Fabric-to-shard contact now follows each banner's Idle, Channel and Impact cels against both resting and extended wood. Channel uses sampled blend levels on its ramps. Hiding a banner removes its contribution from the shard's contact field. The bake derives that field from the registered banner silhouette and uses the existing size-specific Lanczos2 and CAS recipe. All 220 earlier textures retain their hashes.
+
+The renderer tests cover staggered triggers, interruption and retraction, separate left and right states, mirroring and hidden cloth. Decoded verification covers 10,944 cel references across six sizes with identical receiver alpha and no RGB discontinuity at the internal texture cuts or their gutters. See `artifacts/restoration-segments/fabric-contact-state-matrix.png` and `fabric-contact-verification.json` in the same folder. The change awaits an in-game test.
+
+The shard renderer samples seven positions along the approved 28-pixel Channel travel in the registered master. The wood's own contact shade samples the fixed casters in crest coordinates. Each shard independently casts onto the backboard and upper roots. At rest, both receivers use their original atlas frames. During motion, a contact band replaces only the affected area, and the lower vines continue on their own clock. These are baked pixels on the existing Studio layers.
+
+`tools/Build-RestorationSegments.py` now builds the six contact pages with the existing Lanczos2 and CAS recipe. All 214 pre-existing media hashes match. The 360 new cels preserve alpha and match the original RGB along internal tile cuts. The decoded Hold comparison is in `artifacts/restoration-segments/shard-contact-hold-comparison.png`.
+
+## Segmented Restoration studio
+
+**Artwork Config → All** lists the front-to-back stack. Forward and Backward move native effects across locked artwork positions. Restoration has 22 artwork entries, including the two cheek layers in their hidden starting state. The registered contact shading is baked into the artwork frames. The other crests use their existing artwork entries.
+
+Bind mode accepts animated artwork, native effects or both. The gear beside a spell opens the Spell Mappings sidebar. Choose a native game trigger and check the artwork states it should drive. The same panel sets a native effect's trigger. New artwork links wait for mappings. The carved shards support Channel. The feathers, six fans, cloth and treant support Channel and Impact. Test response previews either supported state. The shared spell-event reader supplies aura, proc glow and Cooldown Manager state for both artwork and native effects. Copy crest bake v5 stores explicit artwork mappings and upgrades v4 bindings in memory on load.
+
+`tools/Build-RestorationSegments.py` uses the registered Restoration layers and authored animation sources. Run the desktop idle capture and the size-specific idle bake before it to prepare the crest registration in `artifacts/restoration-idle-cas-build/bake.json`. The segment baker packs 532 cels at each of the six Lanczos2 + CAS sizes. Studio uses the layer renderer for Restoration. In normal play, Restoration selects it when the active bake carries segment settings and otherwise uses the idle atlas.
+
+Source tests cover actual scene frame levels, locked order, mixed spell assignment, Channel interruption, Impact playback and compiler validation. The offline resting comparison is in `artifacts/restoration-segments/resting-comparison.png`. In-game acceptance is pending.
+
+Installed local test build `0.1.0-beta.18.segments.1` in WoW Forever on 2026-11-19. All 256 archive and installed payloads matched by SHA-256, including 59 segment atlases with 3,192 verified cel references. The full test suite and media audit passed. The install updated 75 files and verified 14 rollback copies in `artifacts/install-20261119-145848/`. The ZIP is in `dist/restoration-segments-test/`. Installation stayed inside the Epicast AddOns folder.
+
+## Size-specific Restoration idle test (2026-11-19)
+
+Local build `0.1.0-beta.18.idle.2` uses the same 32 captured idle poses as idle.1. The registered unsharpened cels feed the shared premultiplied Lanczos2 sampler and CAS 1.0 / 0.65 bake at widths 192, 288, 384, 480, 576 and 660. The same physical-pixel size selector chooses the static or animated variant. The animated renderer loads the selected atlas bank, preserves phase when the size changes, and uses 660 when screen metrics are unavailable. The four-second loop at 8 FPS and native six-second hover retain their timing.
+
+The full addon tests and media audit passed. The 195-file ZIP was installed in WoW Forever and independently hash-verified, with 112 changed files and 13 verified rollback copies. Installation stayed inside the Epicast AddOns directory. Build evidence is in `artifacts/restoration-idle-cas-build/bake.json` and the receipt is in `artifacts/install-20261119-143104/independent-verification.json`. In-game visual review is pending.
+
+## Restoration idle test build (2026-11-19)
+
+The approved full-etch shard Channel is archived in `artifacts/restoration-shard-channel-approved/` with 53 verified source, preview and render files. The desktop reference retains 28 px slide travel, the full-etch peak sprites and the shared Channel phase clock.
+
+Local build `0.1.0-beta.18.idle.1` uses the approved desktop idle composition with hidden cheek leaves. `tools/Capture-RestorationIdle.cjs` samples the live compositor at 125 ms. `tools/Build-RestorationIdle.py` verifies the 4-second loop and packs 32 registered poses into eight native TGA pages. The atlas preserves the previous crest’s visible height and centre with uniform scaling. `RestorationIdle.lua` plays the cels within the existing Druid host, alongside native hover and the player’s animation toggle. This build's artwork animation covers Idle only.
+
+Full tests and media audit passed. Installed in WoW Forever with 96 payload hashes verified, 13 changed files and four verified rollback copies. Installation stayed inside the Epicast AddOns directory. The ZIP is in `dist/restoration-idle-test/`. See `artifacts/install-20261119-141250/independent-verification.json` for the receipt and `artifacts/restoration-idle-build/bake.json` for the frame registration. In-game review is pending.
+
+## Restoration inner etch ImageGen comparison (2026-11-19)
+
+The third trial uses two native ImageGen stills edited from the same shared input, registered to the original wood. Masked linear-light interpolation produces a five-second clip with a single pulse, a dark endpoint in all four carvings and stationary silhouettes. The comparison retains Griffin and Wan as raw outputs. The three-way playback, start/pulse/end overview, saved prompts, native keyframes and timing notes are in `prototypes/feather-cels/wood-channel-study/painted-reference/inner-etch-review/model-comparison/`.
+
+## Restoration inner etch Griffin and Wan comparison (2026-11-19)
+
+The approved inner-etch paintings were rendered together on one shared input with the same motion brief. One Griffin HD render charged 10 credits, and one native Wan 2.2 5B render ran locally. Griffin pulsed the existing cuts and finished dark, with a short green bloom around its peak. Wan increased the green toward the end and introduced bright shapes on neighbouring wood. The shared input, receipts, raw clips, Griffin RGBA sprite sheet and paired playback are in `prototypes/feather-cels/wood-channel-study/painted-reference/inner-etch-review/model-comparison/`. The crest preview still uses the approved frame-controlled lighting.
+
+## Fabric contact shadows during Channel (2026-11-19)
+
+The moving-wood preview uses the same fabric cel for the painted banner and its contact field. The flag field stays in crest coordinates and is clipped to the sliding wood, alongside the remaining fixed casters. The earlier wood overlay used a static field for the entire foreground. Verified all six Hold cels and their visible shadow changes in both cheek layouts.
+
+## Restoration paired lighting on both shards (2026-11-19)
+
+Both wood shards now use registered painted light in the desktop preview. The right shard's ImageGen plates preserve its own rising upper cut and forked lower notch. The transparent paintings, prompts and registered mask are in `prototypes/feather-cels/wood-channel-study/painted-reference/right-glow/`. Both sides share the same Wan-derived Hold curve and Channel Start and End fades. The original shard alpha is preserved, and no colour changes outside each registered lighting mask. Both cheek layouts were checked through Hold, a manual End and interruption by Impact.
+
+## Restoration paired wood lighting test (2026-11-19)
+
+The left shard in the desktop preview fades a registered light pass from the matched ImageGen lit and unlit paintings. Green reflection is transferred onto the original shard pixels inside a fixed mask, with identical alpha at both endpoints. The stronger lit PNG, the unlit edit, both prompts and the registered mask are in `prototypes/feather-cels/wood-channel-study/painted-reference/strong-glow/`. The first 22 frames of the stored Wan trial contribute only a measured Hold brightness curve sampled inside that mask. The preview controls Start, Hold and End, holds the current pulse level at the start of a manual End and extinguishes the light on Impact. These boundaries were verified with both cheek layouts. The existing right-side light treatment is retained for comparison.
+
+## Restoration painted wood glow reference (2026-11-19)
+
+The stronger ImageGen variant in `prototypes/feather-cels/wood-channel-study/painted-reference/strong-glow/` has near-white green cores and broader reflected light on the wood, with 99% silhouette overlap at half alpha. The repeat Wan run used the initial settings and seed for comparison. It dimmed the brighter glow modestly and added stray green trails late in the clip. The transparent still, prompt, input and verified Wan result are retained.
+
+The left shard has a new transparent ImageGen lighting study with green cores in the carved recesses and reflected light painted onto the adjacent bevels. The 1884 × 835 master, exact prompt, matte-backed Wan input, verified local output and job records are in `prototypes/feather-cels/wood-channel-study/painted-reference/`. Wan preserved the stationary composition and dimmed the light slightly. The final frame still glows. The reference remains separate from the crest preview.
+
+## Restoration carved wood Channel (2026-11-19)
+
+The wood shards have one static pose for Idle and Impact. In the desktop preview, Channel Start moves each shard and its contact field 28 pixels outward across the authored 0.5-second ramp. Hold keeps the translation fixed, and End reverses it. A brighter local Wan pose-guided trial supplied the registered green glow profile, palette and slight Hold variation. The preview gates that independent light layer with the same Channel phases. `prototypes/feather-cels/wood-channel-study/` contains the layered assets, bake recipe, raw Wan trials and playback capture. Verified automatic and manual endings, immediate interruption into Impact, and both cheek layouts. The installed game addon has no changes from this study.
+
+## Restoration sprout fork placement (2026-11-19)
+
+The desktop preview places the carved sprout fork and its registered contact field 30 pixels below the original registration on the 1125 × 1400 crest canvas. This is 25 pixels below the first placement pass. The vertical gap from the fork tips to the small leaf cluster now measures 120 pixels against 121 in the supplied reference. The base composites and treant Idle, Channel and Impact overlays use the new position with cheek leaves shown or hidden. The Figma source and isolated animation cels retain their original registration.
+
+## Restoration treant Impact (2026-11-19)
+
+The treant nods once, lowers its inner brows, and shuts its jaw into a downturned seam before easing back to Idle. The 12 cels use the one-second feather Impact schedule. The native Wan trial retained an open jaw, so the preview articulates the original painted face and recomputes its contact shading. `prototypes/feather-cels/treant-study/bake_impact.py` writes independent face cels and registered overlays for both cheek visibility variants. The desktop preview was checked for immediate Channel interruption, repeat playback, and the final Idle handoff.
+
+The 12 approved reverse-curl banner files and recipes are preserved in `artifacts/restoration-banner-impact-approved/`.
+
+## Restoration cloth banner Impact (2026-11-19)
+
+The reverse-tip study ran through the local Wan 2.2 5B Native queue. The plain-image trials introduced objects. The pose-guided left clip produced a strong upturned tip, while the direct and mirrored right trials produced shallower motion. The live crest uses the left curl as a motion reference and bends only the original painted tails, with the underside shaded during the turn. The moon and tree each peak once on frame two at 83 ms and return to their Idle brightness. The raw trials are under `prototypes/feather-cels/fabric-flag-study/wan-impact/`. The previous banner bake is preserved in `artifacts/restoration-banner-impact-v1/`.
+
+The two worn banner ends snap outward once, peak on frame two at 83 ms, and ease back to their live Idle pose. They use the feather Impact schedule of 12 cels in one second. The wraps and their glyphs stay fixed. `prototypes/feather-cels/fabric-flag-study/bake_impact.py` writes a separate atlas and contact-aware overlay for each banner. Headless preview verification covered immediate interruption from Channel, final Idle handoff and unclipped atlas coverage. The 11 approved leaf Impact files are preserved in `artifacts/restoration-leaf-impact-approved/`.
+
+## Restoration leaf Impact preview (2026-11-19)
+
+The upper-left autumn fan and left green shoulder use their registered Idle paintings as Impact sources. Their fixed zones extend into the blade bases, and their contact fields follow the revised curl. The other four atlases are byte-identical to the previous pass.
+
+The desktop preview at `prototypes/feather-cels/index.html` plays Impact for all six crown and shoulder leaf fans. Impact immediately interrupts Channel Start, Hold or End. The 12 cels use the feather Impact schedule for one second of playback. Each fan opens its C-shaped curve backward from a fixed stem. The bend and vein flash peak on cel 2 at 83 ms, then ease into the ongoing Idle phase. `leaf-impact-study/bake_impact.py` writes six independent transparent WebP atlases plus the registered composite with receiver-clipped contact shadows. The preview retains the moving feathers behind the leaf region, 3× leaf Channel playback, and the hidden cheek leaves. The prototype is separate from addon runtime assets.
+
+## Restoration faded moon and tree test build (2026-11-18)
+
+The latest assembled Frame 145 export includes the treant face, autumn rosette, both purple side maples and mauve cloth glyphs. The original paint alpha is preserved on both wraps. The exact transparent stage export is `concepts/restoration-autumn-treant/Frame 145 worn wraps.png`. To reproduce `Restoration registered.png`, crop to its alpha bounds, thumbnail to fit 628 × 805 with Pillow Lanczos and alpha-composite centered horizontally at optical Y 444.5 on a transparent 660 × 880 canvas. Then run `tools/Prepare-DruidTrio.ps1` and `node tools/Build-DruidTrio.cjs`. Full tests and media audit passed. All 87 installed files matched the ZIP in `dist/restoration-worn-wraps/`. Seven-file rollback receipt in `artifacts/install-20261118-210348/`.
+
+## Restoration white-veined maple test build (2026-11-18)
+
+Frame 145 and the local beta.18 install now use the first orchid repaint with pale veins on both side maples. The paint and linked contact fields share the same registered sources as the game bake. The existing 19 poses and native bounds are preserved. Both source PNGs are in `concepts/restoration-maple-refinement/` with the suffix `-white-veins.png`. The preparation steps below still apply. The ZIP is in `dist/restoration-white-veins/`, with the six-texture install backup in `artifacts/install-20261118-204403/`.
+
+## Restoration Rejuvenation pose (2026-11-18)
+
+Frame 145 has 19 painted pieces, including the S-stalk leaf and purple backboard. The four rotated pieces retain their angles, and the right maple retains its custom crop. Each source component contains a Pose that controls its paint and linked contact field. The 73 caster instances use 18 receiver masks. The original layout is available as a hidden frame. [Editable crest](https://www.figma.com/design/9GLlCGWEVCrVTLlR644Jt2/Sovcat?node-id=495-772)
+
+Run `concepts/restoration-rejuvenation/prepare_pose.py`, then `tools/Prepare-DruidTrio.ps1` and `node tools/Build-DruidTrio.cjs`. The pose manifest records the frame dimensions, stack order, transforms and crop. The compositor checks that shadows preserve the complete paint stack’s alpha. The six Restoration textures share the registered 660 × 880 source and the existing whole-crest motion. Native visible bounds are (17, 86) to (642, 803), exclusive.
+
+Local beta.18 test ZIP in `dist/restoration-rejuvenation-pose/`. Full tests and media audit passed. Verified all 87 installed files against the archive and preflighted the seven-file rollback in `artifacts/install-20261118-203243/`. In-game visual acceptance is pending.
+
+## Restoration preferred pose test build (2026-11-18)
+
+The preferred Sovcat frame 481:689 now contains a 20-piece editable master with receiver-masked contact shadows. Edit the Pose inside a source component to move its paint and shadow together. A hidden copy of the previous loose layout is inside the same frame. The new layout uses the author's enlarged side and basal maple leaves. Both cuff-to-maple and maple-to-feather links were moved, verified and restored in Figma. [Preferred layout](https://www.figma.com/design/9GLlCGWEVCrVTLlR644Jt2/Sovcat?node-id=481-689)
+
+Run `concepts/restoration-maple-refinement/prepare_pose.py` to recreate the registered RGBA source from the measured pose, isolated paintings and shadow-ready kit. The Druid trio preparation and bake now read that source for Restoration. Its six runtime textures share the existing whole-crest hover and authored effects. The full suite, media audit and 87-file package verification passed. Installed the beta.18 test ZIP from `dist/restoration-maple-pose/`. The eight-file rollback receipt is in `artifacts/install-20261118-195106/`. This install also includes the existing small-effect clipping change. In-game visual acceptance is pending.
+
+## Segmented crest artwork (2026-11-18)
+
+Restoration is the approved construction reference for future layered crests. The editable study has nine groups assembled from 21 independently painted pieces. Its Figma playground also has 21 loose images with their contact shadows baked in. The project rule and its acceptance checks are in the [segmented crest build guide](docs/segmented-crest-artwork.md).
+
+## Small native effect render surfaces (2026-11-18)
+
+Force of Nature Impact is Forever model 166205. In build 1.60.1.70938 its M2 has two particle emitters, five ribbons and a single 4.034-second Stand sequence. The current Restoration bake requests 158 after the intro. The viewport change preserves animation requests and bake values.
+
+The shared native renderer now gives each effect up to 96 UI units of additional render room per edge, with a 90-degree FOV limit. Screen projection and the authored origin stay registered because viewport width and the tangent of the half FOV increase proportionally. Both the game crest and Artwork Config use this path. The outer Studio preview still bounds its canvas.
+
+The real Studio size controls and current renderer were exercised at 5%, 10%, 27%, 100% and 200% with the Force of Nature Impact fit. The old installed renderer fails the new margin assertion. The new source passes and preserves model instances, animation starts, size and registration. The archive recovery test uses the recorded Restoration fixture so new user bakes can evolve while compiler validation still checks every shipped definition. Full tests and audit passed. The visible result in the WoW client awaits testing.
+
+## Opt-in bind mode and spell assignments (2026-11-18)
+
+Ordinary Effect Studio clicks select one layer or spell and show linked rows in blue or green. **Enter bind mode** enables staged multi-selection. **Save binding** creates the links, and Save or Cancel exits the mode. Expand a spell to see every linked effect, then click a child row to choose that link's trigger. New links default to Cast succeeds and existing links keep their trigger when restaged. Trigger edits reuse the current bake format and change only the selected pairing.
+
+The full suite and audit passed, including mixed channel/success playback for one spell, trigger preservation across rebinding, v3 compilation, and pagination of a 32-effect spell branch. Installed beta.18 from `dist/bind-mode/Epicast-0.1.0-beta.18.zip` with all 87 payloads and four rollback backups independently verified. The rollback dry run passed. The install receipt is under `artifacts/install-20261118-002342/`. The installer did not access SavedVariables. In-game testing is pending.
+
+## In-game Effect Studio quick bind (2026-11-18)
+
+Artwork, Static and Bound now filter distinct layer types. Quick bind starts from an effect or waiting spell and stages multiple targets in the other panel. Existing links are highlighted separately in blue for spells and green for effects. A staged panel displays selection styling. One native scene per effect placement responds to multiple spells and remains active when another sustained trigger still applies. The Playback spell menu edits and tests each response. Multi-trigger bakes use v3. The compiler still supports v1/v2, and player preferences use the existing schema.
+
+Built and installed the Quick Bind beta.18 from `dist/quick-bind/Epicast-0.1.0-beta.18.zip` at the user's request. All 87 installed files match the ZIP, and all 12 replacement backups were verified. The rollback dry run passed. Receipt: `artifacts/install-20261118-000655/install-verification.json`. Full tests and audit passed. The Restoration compiler test now expects the existing two-second Rejuvenation burst. The installer did not access SavedVariables. In-game testing is pending.
+
+## In-game size controls and crest draw order (2026-11-17)
+
+Crest placement and effect-layer size controls now start at 5%, including the bake compiler's effect range. Selecting a static effect clears the waiting-room selection, and selecting a bound effect highlights its assigned spell. Live crest frames use the High draw layer so artwork and effects appear above the action bars and the frames pass mouse input through during play. The addon suite and audit pass. Built and installed beta.18 from `dist/crest-controls/Epicast-0.1.0-beta.18.zip` at the user's request. All 87 installed files and seven replacement backups independently match their hashes. The receipt is in `artifacts/install-20261117-230221/`. In-game visual review is pending.
+
+## Crest Baker installs for reload (2026-11-17)
+
+The desktop tool now compiles the pasted crest into the project and installs its generated `CrestBakes.lua` into the confirmed WoW Forever Epicast folder. It verifies the existing TOC, backs up and hashes the old installed bake, atomically replaces the file and verifies the result. Success instructs `/reload`. The updated executable is `artifacts/crest-baker/Epicast Crest Baker - Bake and Reload.exe`; the original executable was open and preserved. Tests used a temporary installed folder to verify replacement, backup, repeat behavior and incompatible-TOC rejection. No real bake or installed file was changed during these tests. No player profile or SavedVariables access.
+
+## Offline web Effect Studio replica (2026-11-17)
+
+User requested a full replica of the current in-game Effect Library / Artwork Config UI. The isolated prototype now opens that editor at http://127.0.0.1:4318; `/lab.html` retains the earlier renderer laboratory. Start/stop scripts remain under `prototypes/renderer/`.
+
+The web studio reads shipped definitions only: all9 classes,29 crest/resource slots and8723 Forever effects. Both main tabs, paginated selectable layer/artwork stack, depth ordering, full-crest preview, whole-step numeric/sliders/chevrons, drag placement, visibility/opacity, playback timing, per-crest spell waiting room and binding/unbinding, simulated signals, artwork-motion attachment, Save/Discard checkpoints and version-2 Copy/Download exports are implemented. Exports validate with the existing bake compiler and are suitable for the Crest Baker; the web tool does not bake/install/publish automatically. Save session is RAM-only; download/copy is required before browser reload/close. Artwork remains the actual complete Mage/Druid texture layer.
+
+The full renderer uses one WebGL/WASM context for up to32 persistent M2 scenes plus artwork; library preview has one separate context. Full-stage targets and premultiplied GPU composition preserve native additive RGB. Complete12-effect Arcane rendering exposed an upstream uniform-buffer indexing bug across multiple scene arrays; the reproducible patch fixes its range traversal. Targets are privately owned rather than reused through the upstream screenshot pool. The native model/shader/animation data remains unchanged. The newly installed beta.18 FOV differs from the earlier lab calibration; projection was updated to match the current installed Lua, and264 numerical comparisons now pass.
+
+Verification: existing44 renderer regressions passed, including sustained5054328 Hold,166602 replays, clipping/resize/depth/attachment and no asset reloads during ordinary playback. New studio browser tests cover full Arcane/Restoration, real effect pixels independent of artwork, editor workflows, session rollback, binding, all29 compiler-valid exports, resource restrictions and32-layer capacity. Full addon suite and audit also passed. Evidence is under ignored `prototypes/renderer/results/`; details in `prototypes/renderer/studio-notes.md`. Installed payload hashes were checked before/after tests. No SavedVariables, installation, media or shipped bakes were modified by this task; concurrent addon/baker changes were preserved. Browser material/easing parity and every catalogue entry still need user acceptance; no game UI automation was used.
+
+## Windows Crest Baker (2026-11-17)
+
+Open `artifacts/crest-baker/Epicast Crest Baker.exe`, paste the export from the Epicast studio and click Bake. The desktop tool sends the paste to the existing compiler on stdin and updates the selected crest in `tools/crest-bakes.json` and generated `CrestBakes.lua`. The tool can be rebuilt with `tools/Build-CrestBaker.ps1`. Tested with the real WinForms controls and a temporary project copy, including UTF-8 round trip, invalid/private field rejection, preservation of another crest and rollback on a failed Lua replacement. Full tests and audit passed. The real bake files retained their original hashes during verification. No player data access.
+
+## Current installation — beta.18 Size and Angle sliders (2026-11-16)
+
+Placement now has whole-step sliders, chevrons and numeric fields for Size and Angle as well as X, Y and Opacity. The new controls preview changes immediately and Save session applies them to the game crest. Tests cover size and angle changes through Save. The full suite and audit passed. Installed the verified `Epicast-Size-Angle-Sliders` ZIP at the user's request. Independently verified all 87 installed files and the `EffectControls.lua` backup. The receipt and backup are under `artifacts/install-20261116-235248/`. Use `/reload` to test the new controls in WoW.
+
+## Offline renderer camera, Hold and clipping follow-up (2026-11-16)
+
+User authorized fixing prototype5054328 Hold, camera/scale and clipping, explicitly excluding installed addon and SavedVariables changes. Work is isolated to `prototypes/renderer/` plus this handover/AGENTS note. No runtime Lua, bakes or assets edited by this task. Concurrent addon changes in this shared checkout were observed and left alone.
+
+The old camera reproduces blank frames while Hold158, all seven emitters and live particles remain active. Its auto-fit uses tiny Intro sequence bounds and places the camera roughly0.465 model units from their centre, behind a1-unit near plane. The header's sentinel collision bounds were an early hypothesis, ruled out by tracing the actual sequence-bounds path. Explicit Epicast camera calibration resolves the blank samples without sequence/particle changes or timed model reloads. Final sustained comparison: original binary49/75 blank, rebuilt engine/old camera49/75 blank, calibrated0/75 blank over three12.5-second Holds. Actual cameras and sample diagnostics: `prototypes/renderer/results/ab-probe.json`.
+
+Native-equivalent model scale/origin, azimuth/elevation/roll, near/far planes, anchor offsets, art-relative sizing and doubled viewport FOV are implemented in `projection.js` and `native/EpicastCamera.h`. Full-panel framebuffers and off-centre projection replace per-effect384px boxes; only the outer preview panel clips. Zoom supports20–150%; resize/paused edits update the projection without model reloads.264 numerical cases run the installed Lua code read-only, rather than comparing two copies of browser math.44 browser checks cover real pixels, interleaved depth, hover attachment, repeated166602 and5054328, cold reload, extended particles beyond the old square, resize and HTTP/network restrictions. The root test suite/audit passed after concurrent edits settled; one earlier run caught a transient effect-studio assertion during those edits.
+
+Reproducible renderer source is Marlamin/WebWowViewerCpp wtl4017528, built with portable Emscripten6.0.11. Pinned original shaders remain byte-identical; only camera/diagnostic/build adapters are patched. `Setup-Compiler.ps1`, `Build-Renderer.ps1`, and the binary/recipe manifest reproduce/validate the ignored local build. Original binaries remain available solely for negative controls. See prototype README/renderer-notes/THIRD-PARTY for details. Start/stop remain loopback-only on4318. No renderer redistribution, bake exporter, installation or SavedVariables access. Game material/lighting fidelity remains manual; web IN_OUT easing approximation and lack of particle/global-clock rewind claims remain. Broader effects and32-layer performance are not certified.
+
+## Previous installation — beta.18 preview scale and artwork lock (2026-11-16)
+
+The studio uses the same full square model viewport, field of view and actor geometry as the game for every layer, including Dungeon Fog. A scroll viewport bounds the stage separately. Zoom scales the complete crest, and the 1:1 control uses the game crest’s effective UI scale. Follow artwork motion reads the artwork’s native animation phase and eased progress and updates the real ModelScene anchors with one shared update frame for visible attached effects. Whole-number placement controls carry forward. Automated checks cover all twelve Arcane viewports across zoom levels, save parity, artwork lock and unlock, bound playback cleanup and permanent bake motion. Installed the verified `Epicast-Shared-Viewport` ZIP at the user's request. All 87 installed files and six previous-file backups verified independently. Receipt and backups are under `artifacts/install-20261116-234409/`. Use `/reload` to test the 1:1 scale, artwork lock and native particle clipping at the scroll viewport edge.
+
+## Local beta.18 whole steps and Dungeon Fog preview (2026-11-16)
+
+Origin X, Origin Y and Opacity accept whole numbers. Sliders and chevrons step by one. Existing fractional bake values are preserved until edited. Read-only inspection of the local Forever 1.60.1.70938 assets confirmed that all ten catalogued `7fx dungeonfog` variants have meshes and no ribbons or particle emitters. Their studio scenes keep the game camera and square viewport at each zoom level. A separate clip frame limits fog to the preview stage. The regression compares fog camera, viewport and anchor at Fit and higher zoom, and checks that a reused scene returns to the regular particle path. Full tests and audit passed. The verified 87-file ZIP is in `Epicast-Fog-Preview`. Install preflight found five replacements and no removals. This build awaits installation and in-game visual verification.
+
+## Previous installation — beta.18 placement sliders (2026-11-16)
+
+Origin X, Origin Y and Opacity use native sliders with 0.1-step chevrons and exact numeric fields. Dragging and nudging update the studio preview. Save session applies the previewed values to the game crest. Automated checks cover saved X/Y projection and opacity, and saved bound opacity on a spell event. The full suite and audit passed. The verified 87-file build from `Epicast-Placement-Sliders` was installed at the user's request. All 87 files and eight previous file backups were independently verified. The receipt and backups are under `artifacts/install-20261116-231634/`. Use `/reload` to load the update. In-game visual comparison is pending.
+
+## Local beta.18 live placement controls (2026-11-16)
+
+Placement previews valid numeric edits as the user types. Enter or focus loss applies them to the game and the session draft. Escape restores the applied value. Placement shows the selected bound effect in its main animation so it can be adjusted without casting. Playback restores normal spell behavior in the preview and offers the existing response test. Full tests and audit passed. The verified 87-file ZIP in `Epicast-Live-Placement` also includes the preview alignment fix below. Install preflight found eight replacements and no removals. The build awaits installation and in-game verification.
+
+## Local beta.18 preview alignment fix (2026-11-16)
+
+Corrected the studio crop offset to use UI coordinates, preserving the in-game effect origin and projection at Fit and other zoom levels. The studio crest takes its hover phase from the visible in-game crest. Resource opacity updates use the same native alpha calculation and crop checks as the renderer. The studio regression verifies that editing X, Y and opacity through the controls gives both scenes the same placement and opacity values. Full tests and audit passed. The `Epicast-Preview-Parity` artifact contains the verified 87-file ZIP. Install preflight found six replacements and no removals. In-game visual verification is pending.
+
+## Offline renderer prototype, 2026-11-16
+
+User authorized a local browser renderer proof of concept using a full crest, multiple effects, floating movement and repeated playback including166602, with installed addon and SavedVariables explicitly untouched. Implemented only under `prototypes/renderer/`, plus this continuation record/AGENTS. No addon build/install/publication or runtime changes.
+
+`Start-Prototype.ps1` / `Stop-Prototype.ps1` manage a hidden local Node server at127.0.0.1:4318. `Setup.ps1` verifies pinned wow.tools.local revision3b1df6a6908cd06629625cb55a900f3267895920 JS/WASM/shader-data hashes. Actual Forever1.60.1.70938 M2/SKIN/BLP dependencies are verified/read in memory through existing LocalCASC; no native binaries exported or shipped. No account settings access. Browser rendering is offline after initial dependencies. Complete existing CAS textures are decoded directly without changing source art.
+
+Restoration uses166694/166602/1519919; Arcane uses166009/5054328/1699091. Three isolated WASM contexts per scene, front/behind controls, six-second ±1.2% hover and optional attachment, real available sequence IDs plus baked Intro/Main/End durations, five-cycle show/play/release/hide and cold-scene comparison.33 headless WebGL checks include framebuffer/screenshot differences, each layer's visible contribution, depth, registration, repeated166602, no cast-time scene loads or new asset requests, loopback-only network and HTTP read restrictions. Both source and installed87-file payload hashes are unchanged; root npm test/audit passed. Evidence in ignored `prototypes/renderer/results/verification.json`, restoration.png, arcane.png and recorded WebM. Test uses SwiftShader, not a hardware performance benchmark.
+
+Material limitation:5054328 produced visible pixels in the first diagnostic probe but is unreliable/blank across subsequent playback runs, including sustained Hold. It explicitly fails the compatibility assessment, separately from passed prototype checks. UI and report flag this; do not call it fully compatible or infer a native-game bug.166602 remains Stand-only and sequence reselection does not establish emitter/global-clock rewind. Hidden prototype layers continue simulation. Native camera/FOV/origin/roll mapping is not exact; current preview uses upstream auto-fit and rough bake-derived screen placement, so there is deliberately no config export. A production editor still needs shared multi-model rendering, exact camera mapping, broader material/animation coverage, native comparisons and bake round-trip integration. No game UI automation. Installed beta.18/public beta.17 remain as below. Prior uncommitted beta.18 work and abandoned animation directories remain untouched.
+
+## Current installation — beta.18 Layers filters (2026-11-16)
+
+Artwork Config now has All, Static and Bound pills. All shows the complete stack, including crest artwork. Static and Bound show effects of the chosen type. Static rows read “Static · always active”. A new effect added from the library is revealed even if Bound was active. Full tests and audit passed. The 87-file Layers filter ZIP from `Epicast-Layer-Filters` was installed in the WoW Forever Epicast folder at the user's request. All 87 installed payloads and the three backups were independently verified. The receipt and rollback files are under `artifacts/install-20261116-224550/`. Use `/reload` to load the update in the open client. In-game testing is pending.
+
+## Previous installation — beta.18 studio test build (2026-11-16)
+
+User explicitly requested installing beta.18. Installed the unchanged87-file ZIP (SHA25632F24CC60A912DDB35573D408D455B1348CF9CAAAFDD54633A6B4AD5A2AF2704) to D:/World of Warcraft/_forever_/Interface/AddOns/Epicast. Independent verification passed for all87 payloads and15 original addon backups;19 changed (15 replaced +4 new),68 identical,0 removed. Receipt/backups: artifacts/install-20261116-221739/; independent-verification.json records checks. WoW was closed at preflight. SavedVariables never accessed; no runtime source changes, game UI automation, commit, push or publication. Public beta.17 remains. Start/restart the client for new TOC entries; native visual acceptance is still pending. See docs/release-0.1.0-beta.18.md.
+
+
+## Current local source: beta.18 developer effect studio (2026-11-16)
+
+Implemented the requested UI audit/rework. User confirmed waiting-room spells belong to each crest and its bake. Effect Library now searches/previews/adds one unbound effect layer; Artwork Config has the full selectable artwork/effect stack, interleaved depth, full-crest live native preview, Placement/Playback controls, and spell waiting room with optional binding/unbinding. Motion attachment follows the selected real artwork's native six-second hover with matching phase. Current crests have one complete artwork layer; no art was separated or regenerated.
+
+Player preference schema6 and approved Arcane/Restoration defaults are unchanged. Studio metadata is developer RAM/shipped bake only. V2 export/compiler validates stable IDs/order, artwork properties, waiting spells and motion targets; legacy v1 remains supported. Preview is separately pooled, tests are preview-only, live events work, close/tab cleanup removes preview bindings. Native projection cropping avoids generic child clipping. No cast-time model loads or config writes.
+
+Full tests/audit passed plus focused final UI checks. All49 artwork assets unchanged. The87-file source/archive-verified ZIP is dist/Epicast-0.1.0-beta.18.zip,25,940,501 bytes,SHA25632F24CC60A912DDB35573D408D455B1348CF9CAAAFDD54633A6B4AD5A2AF2704. Offline handler-based layout previews under artifacts/studio-ui are approximate skins without GPU particles. Audit/architecture: docs/effect-studio-audit.md; test-build receipt/manual checks: docs/release-0.1.0-beta.18.md.
+
+No installation, commit, push or publication authorized/requested in this turn. Public and installed beta.17 remain unchanged. No SavedVariables access or game UI automation. New TOC modules require a full restart after a later installation. In-game particle stacking/cropping and hover alignment remain manual acceptance. Abandoned animation-rnd and concepts/groveheart-restoration directories remain untouched and untracked.
+
+
 ## Current installed and public release: beta.17 (2026-11-16)
 
 User asked for adjacent tabs, an Open effects button in developer mode and any record of lost Restoration tuning. Native tab OnShow/display events shrink widths, exposing the fixed X offsets from beta.16; tab rows now use sibling anchors and natural sizing. Open effects moved to the crest header so Placement and Behavior both expose it. Scoped read-only recovery from the already archived pre-reset Epicast backup found nine exact Restoration layers. They are now the shipped DRUID:restoration bake; no live account files were accessed. See `docs/restoration-recovery.md` and `docs/release-0.1.0-beta.17.md`. Full tests/audit passed. Built and installed83-file beta.17 ZIP (25,933,980bytes, SHA256 `A35F31C6CD9ED8FD444210171F054E5F8DB544A2F4B42E4F1A31D1DFB98DAB0B`):5 changed,78 identical,0 removals; all83 installed hashes and5 backups independently verified. Backup/rollback preflight `artifacts/install-20261116-200109/`. The user accepted the installed result and requested publication. Published https://github.com/Sovcat0608/Epicast/releases/tag/v0.1.0-beta.17 at20:06:58UTC, prerelease=true/draft=false. Tag `687189e3ee2a19894697ff0dc779d119019828b1` matches all83 payloads; remote tag and both uploaded ZIP/checksum sizes and SHA256 digests verified. No runtime changes/rebuild/reinstall or SavedVariables access for publication. See `docs/release-0.1.0-beta.17.md` and ignored `artifacts/publish-beta17/`.

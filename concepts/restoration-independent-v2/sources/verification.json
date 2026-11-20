@@ -1,0 +1,94 @@
+{
+  "canvas": [
+    660,
+    880
+  ],
+  "layer_order": [
+    "Dangling roots",
+    "Leaf and moss backboard",
+    "Crown and understory foliage",
+    "Central sprout",
+    "Striped white feather clusters",
+    "Purple leaves",
+    "Carved sprout fork",
+    "Night elf boughs, medallion and charms",
+    "Crown glyph"
+  ],
+  "generated_source_sheets": 21,
+  "whole_registered_sprites": 21,
+  "registration_scale": "Uniform per piece, with transparent fractional bottom padding",
+  "contact_field_only_on_painted_receivers": true,
+  "all_solo_layers_match_clean_png": true,
+  "test_poses": [
+    "Rest",
+    "Foliage offset",
+    "Opposite offset",
+    "Roots offset",
+    "Boughs and jewelry hidden"
+  ],
+  "offset_pose": {
+    "canopy": [
+      -5,
+      -3
+    ],
+    "purple": [
+      6,
+      -4
+    ],
+    "sprout": [
+      3,
+      -3
+    ],
+    "feathers": [
+      -5,
+      3
+    ],
+    "glyph": [
+      0,
+      -2
+    ]
+  },
+  "independent_root_layer": true,
+  "single_branch_and_jewelry_paint": true,
+  "shoulder_pixels_darkened_by_12_or_more": 1590,
+  "resting_svg_mean_difference_on_gray_8bit": 0.1118,
+  "native_Figma_visual_test": {
+    "crest": "449:140",
+    "root_paint": "469:277",
+    "source_sheet": "478:274",
+    "independent_mask_motion_verified": true,
+    "assembled_screenshot_reviewed": true,
+    "game_size_preview": [
+      162,
+      216
+    ]
+  },
+  "source_sha256": {
+    "angled-cuffs-and-roots.png": "36a770b92d47dc2488abc63bf4be585e5d99d99e2c1f2259ac6fb4f2afb74652",
+    "cloth-bound-boughs.png": "8895cd4bf9089eef87eae3e3f15a9e3ea8a08438f8f5d247d5cc4d04760c3626",
+    "converging-boughs.png": "265f0f21bfd1bf0989308c03334d6aa32d42416f0aeadad5c68cd6754d0c3702",
+    "core.png": "9cb62a3273340aaf5727943a8be10ba84200cc7b5f8bdf167c5f3cef6720af78",
+    "dangling-roots.png": "2b9b5f64353e0d2fc6bcb7f32b1a5c5af567825cb6f7d6ca84d5e1e1a55d463a",
+    "feathers.png": "b7c3745ceca3b618865ddb7ebd64cc5f7c227658c12ad58d4eda368f62a03134",
+    "fittings.png": "3f700be1e325379e00376d91ffc049dd1f9e3b89773d5899a39ca99acb4ca384",
+    "glyph.png": "bf7bc75dbbece63ce28d2ba4e7e0f072c8f9dad2ffdc373b5e04c1ddcedc79be",
+    "green.png": "c5258276233a6b77580ebe52919b067f32cf564a41afb06cafd7c783ba3002c5",
+    "moss-backboard.png": "31991c2f8d857b109b94fa383b093b5f6e3175e0d632e906bdd626549ba1a8e0",
+    "night-elf-boughs.png": "287f6f37687cb84224ec3ceb5f3411e772a474cbf944ea692526ad076a9a4119",
+    "pendants.png": "4415e1b24825d9681cfc382330df1999abee10b68f574afcf515ab0257a4d2e2",
+    "pine.png": "3ae8033cf799a55e05ec5fd074ed80aa46ea2af1c72d9137b1424001e324fac7",
+    "purple.png": "f77589fbba54b15e7319962f16aee04eaea9d8c2cda640c9258b65e56e80c1f9",
+    "sprout.png": "ca52172c74411c5f50989f5a376026ca059d8ac6fc250df8fca4f220ac1a3441",
+    "striped-feather-clusters.png": "84af460d899b9af2c584daa3b3577c3cdf2c8fc314a9668349487d727be88d5b",
+    "understory.png": "00cb8ac07795157bb6fd29a7ca50c7830c47826fcd4d2caf0705d9192e06476c",
+    "vines-and-foliar-rosette.png": "9c4c78fc197263272e3a6dd4a4ea15c110334975f33252e000747a77227dbd32",
+    "wood.png": "5c3bc7c4b676110d50eeb4252c3b1c51a865d62f33f30531a90ee91df734d54f",
+    "yoke-bracer-branches.png": "0cf9414133b39eb4ec7dac323f97148ca31a54631e12d15e3e3ffaa911d9a0c0",
+    "yoke.png": "4a6335644239ee1cf121920994a00fc62f34166a364c88164c6d94e99e931ec8"
+  },
+  "native_builder_local_check": {
+    "component_sources": 9,
+    "linked_caster_receiver_pairs": 29
+  },
+  "independent_svg_rasterizer_mean_difference_on_gray_8bit": 0.1203
+}

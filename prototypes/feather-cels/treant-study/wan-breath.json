@@ -1,0 +1,32 @@
+{
+  "request": {
+    "model": "wan2.2-ti2v-5b-native",
+    "size": "608x704",
+    "num_frames": 33,
+    "steps": 40,
+    "guidance": 6,
+    "fps": 16,
+    "seed": 84321,
+    "prompt": "Front-facing game sprite, static camera. A carved wooden treant face comes to life. Over two seconds its wooden lower jaw slowly hinges downward, making the existing dark open mouth visibly taller. The nose and the glowing green eyes lift as its head leans back for a deep, deliberate inhale. Hold the inhale at the end of the shot. Individual faceted bark plates smoothly articulate. The outer cheeks stay aligned, and the blue gray background and lighting stay constant.",
+    "negative_prompt": "sideways turn, zoom, cuts, speech, added objects, smoke, text, changing background, new colors"
+  },
+  "inputSha256": "c2d80c03ef7884f7c314c6836e13335b1abacac147cba8807c20b204fb8dc66c",
+  "result": {
+    "created": 1795059429,
+    "model": "wan2.2-ti2v-5b-native",
+    "video": {
+      "width": 608,
+      "height": 704,
+      "num_frames": 33,
+      "fps": 16,
+      "steps": 40,
+      "guidance_scale": 6.0,
+      "seed": 84321,
+      "mode": "image-to-video",
+      "duration_seconds": 2.062
+    },
+    "timings": {
+      "total_seconds": 40.969
+    }
+  }
+}

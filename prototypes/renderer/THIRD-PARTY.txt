@@ -1,0 +1,34 @@
+Renderer prototype dependencies
+
+The locally downloaded vendor/project.js, project.wasm and project.data are
+unmodified browser builds distributed by wow.tools.local, revision
+3b1df6a6908cd06629625cb55a900f3267895920:
+https://github.com/Marlamin/wow.tools.local/tree/3b1df6a6908cd06629625cb55a900f3267895920/wwwroot/mv
+
+wow.tools.local credits Deamon87's WebWowViewerCpp for rendering:
+https://github.com/Deamon87/WebWowViewerCpp
+Its own MIT license is downloaded as vendor/LICENSE. That license is not an
+assertion that every transitive renderer component has the same license.
+The downloaded binaries remain ignored local dependencies, outside Epicast's
+addon manifest and release ZIP. Review transitive terms before redistribution.
+
+The active local build now uses Marlamin's WebWowViewerCpp wtl fork at
+4017528a7edf10a06714643716cf4a5fc56854cf:
+https://github.com/Marlamin/WebWowViewerCpp/tree/4017528a7edf10a06714643716cf4a5fc56854cf
+Epicast adds an explicit ModelScene-equivalent camera and read-only animation
+diagnostics. native/patch-source.cjs is the reproducible patch. The original
+shader payload is unchanged. Source/submodules and compiled outputs remain
+ignored local dependencies. No renderer redistribution is performed.
+
+Portable build dependencies: Emscripten6.0.11 (emsdk revision
+708dcbcc9ee23bc7d2dad44fc90db377e38b771c), CMake3.31.6, Ninja1.11.1.4,
+and the pinned source's mathfu/oneTbb submodules. Their own terms apply.
+
+Playwright 1.56.1 is an isolated development dependency, installed only under
+this prototype directory. Chromium is in .browsers/. Neither is required by
+the addon or by the local server when using an existing browser.
+
+World of Warcraft models/textures/animations remain in the user's installed
+client. The local server reads and verifies them in memory through the
+existing LocalCASC reader. No native game binaries are shipped or persisted
+in this prototype, and no CDN fallback is used.

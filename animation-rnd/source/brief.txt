@@ -1,0 +1,276 @@
+# Epicast — High-Fidelity 2D Animation R&D (Druid Artwork V2)
+
+## Objective
+
+Develop an experimental, high-fidelity bitmap animation pipeline for the supplied Druid artwork, intended for the Epicast World of Warcraft: Forever addon.
+
+Our visual inspiration is MapleStory's fluid, charming, hand-crafted 2D sprite animations, elevated with modern resolution, smooth movement and detailed painted textures.
+
+We want the original illustration to come alive through subtle, organic motion.
+
+**This is a standalone R&D experiment. Do not modify Epicast's production code, approved assets, existing animations or SavedVariables.**
+
+## 1. Analyse the supplied artwork
+
+The image features:
+
+- Two large, symmetrical antler-like wooden structures at the upper left and right
+- Twisting brown vines wrapping around the antlers and central stone
+- Hanging moss and small foliage clusters
+- A circular green tree symbol near the top centre
+- A large green leaf emblem within a blue stone centrepiece
+- Two side panels containing smaller leaf emblems
+- Three bronze circular medallions along the lower portion
+- A pink, star-shaped flower within the central medallion
+- A hanging cluster of overlapping green leaves and curling vines at the bottom
+
+The illustration has a transparent background and an intricate, painterly fantasy-game aesthetic.
+
+The source image must remain the visual authority. Do not replace, simplify or reinterpret its details.
+
+## 2. Investigate the animation technique
+
+Determine the most effective way to produce high-quality, frame-based 2D bitmap animations from the original artwork.
+
+Evaluate:
+
+- Python/OpenCV mesh deformation
+- Piecewise affine or thin-plate spline warping
+- 2D skeletal animation
+- AI-assisted segmentation
+- Automated background reconstruction
+- Deterministic keyframe interpolation
+
+Blender may be considered for 2D compositing or rigging, but 3D modelling is not required.
+
+The final output must consist of actual bitmap frames suitable for WoW sprite-sheet playback.
+
+Avoid generative AI redraws of individual animation frames.
+
+## 3. Experiment A — Hanging foliage animation
+
+**Target:** The large hanging green leaf cluster beneath the three bronze medallions.
+
+Create a gentle, organic swaying animation.
+
+Desired behaviour:
+
+1. Begin in the exact original resting pose.
+2. Individual leaves gradually bend and sway.
+3. Upper leaves move subtly while lower leaves move more noticeably.
+4. Overlapping leaves move with slightly different timing.
+5. The cluster settles naturally back into its original pose.
+
+Duration: 1.6 seconds.
+
+Target: 32 frames at 20 FPS.
+
+Use deformation meshes rather than simple rigid rotation wherever practical.
+
+The leaves should bend and flex while preserving their original painted textures and vein details.
+
+Do not move the bronze medallions or surrounding wooden frame.
+
+## 4. Experiment B — Hanging moss reaction
+
+**Target:** The hanging moss strands around the upper-central stone and twisting vines.
+
+Create a short, responsive flutter animation that could be triggered by a spell cast.
+
+Desired behaviour:
+
+1. Begin with the moss completely still.
+2. A gentle wave travels through the hanging strands.
+3. Individual strands bend and lag behind one another.
+4. The movement briefly intensifies.
+5. The strands gradually settle back into their original positions.
+
+Duration: 1.2 seconds.
+
+Target: 24 frames at 20 FPS.
+
+The movement should resemble a magical breeze passing through the artwork.
+
+Preserve the original moss texture and avoid obvious rubber-like stretching.
+
+## 5. Experiment C — Central leaf emblem
+
+**Target:** The large green leaf inside the blue stone centrepiece.
+
+This is an experiment in subtle illustrated shape deformation rather than physical movement.
+
+Desired behaviour:
+
+1. Begin with the original leaf shape.
+2. The outer edges curl inward slightly.
+3. The leaf appears to gather energy.
+4. The leaf expands gently, with a subtle organic ripple.
+5. It returns to the exact original shape.
+
+Duration: 1.2 seconds.
+
+Target: 24 frames at 20 FPS.
+
+The stone surround must remain completely stationary.
+
+The leaf's painted veins, highlights and shading must remain attached to the deforming surface.
+
+Avoid excessive stretching or visible texture distortion.
+
+If the result looks unnatural, reduce the deformation rather than adding more visual effects.
+
+## 6. Preserve the original artwork
+
+The following elements must remain static during these experiments:
+
+- The large antler structures
+- The main bronze frame
+- The stone centrepiece
+- The three bronze medallions
+- The two side leaf panels
+- The green tree emblem near the top
+
+Do not animate the entire composition.
+
+Do not regenerate the artwork.
+
+Do not alter the original colour palette, texture style, lighting or proportions.
+
+Animated regions must remain perfectly aligned with their original positions.
+
+Where a moving element reveals previously hidden artwork, reconstruct the exposed background or prepare a clean static plate.
+
+Avoid leaving stationary duplicates beneath animated elements.
+
+## 7. Build an automated bitmap animation pipeline
+
+Create a reproducible pipeline that:
+
+1. Loads the original high-resolution PNG.
+2. Identifies the selected animation regions.
+3. Produces visual masks and anchor-point previews.
+4. Separates moving elements into transparent bitmap layers.
+5. Reconstructs any necessary underlying background.
+6. Builds deformation meshes with stable anchor points.
+7. Defines resting and animated key poses.
+8. Interpolates intermediate frames using smooth easing.
+9. Renders transparent RGBA PNG sequences.
+10. Packs those frames into sprite-sheet atlases.
+11. Generates animated GIF or video previews.
+12. Generates full-artwork composite previews for visual inspection.
+
+All animations must retain the original artwork's coordinate system.
+
+Support independent animation playback for each motif.
+
+Use deterministic processing so identical inputs and parameters produce identical outputs.
+
+## 8. Animation quality requirements
+
+Prioritise:
+
+- Fluid, organic movement
+- Stable painted textures
+- Smooth transitions between frames
+- Subtle secondary motion
+- Natural acceleration and deceleration
+- Correct overlap and layering
+- Clean transparent edges
+- Seamless return to the resting pose
+
+Avoid:
+
+- AI-style morphing
+- Texture swimming
+- Unnatural stretching
+- Wobbling stone or metal
+- Duplicated foliage
+- Edge halos
+- Frame jitter
+- Excessive deformation
+- Visible snapping when an animation finishes
+
+The result should feel like a professionally animated, high-resolution 2D game asset.
+
+## 9. Output requirements
+
+Create an isolated `animation-rnd` directory.
+
+Organise the output into:
+
+- `source/` — untouched reference artwork
+- `masks/` — segmentation masks and previews
+- `rigs/` — deformation meshes and anchor configurations
+- `animations/` — keyframes and motion parameters
+- `frames/` — transparent rendered frame sequences
+- `atlases/` — packed sprite sheets
+- `previews/` — animated GIF/video and composite previews
+- `reports/` — findings and quality assessment
+
+Produce a side-by-side comparison of the original artwork and each animated experiment.
+
+Include a full-composition preview demonstrating how the animated layers integrate with the static artwork.
+
+Export animation frames at sufficient resolution to preserve the original painted detail.
+
+Do not downscale the source unnecessarily.
+
+## 10. Validation and iteration
+
+For each experiment, evaluate:
+
+- Naturalness of movement
+- Preservation of original texture
+- Quality of segmentation
+- Background reconstruction
+- Animation smoothness
+- Frame consistency
+- Seamless resting-pose recovery
+- Potential suitability for Epicast
+
+Perform no more than three meaningful refinement passes per experiment.
+
+If automated segmentation is unreliable, report the affected regions and produce an annotated preview for manual review.
+
+Do not conceal poor results using blur, excessive glow or additional particles.
+
+## 11. Constraints
+
+Do not modify Epicast runtime code.
+
+Do not change existing approved artwork.
+
+Do not access or modify SavedVariables.
+
+Do not integrate the animations into WoW yet.
+
+Do not create an animation editor.
+
+Do not attempt to animate every element.
+
+Do not expand the project beyond these three experiments.
+
+## 12. Final deliverables
+
+Provide:
+
+1. Three completed animation experiments.
+2. Transparent PNG frame sequences.
+3. Sprite-sheet atlases.
+4. Animated previews.
+5. Full-artwork composite previews.
+6. Reproducible scripts.
+7. A concise technical findings report.
+8. A recommendation for the best production animation technique.
+
+**Stop after completing the experiments and reporting the findings.**
+
+The next phase will be decided after reviewing the actual animation quality.
+
+## Success criteria
+
+The experiments are successful if the original artwork appears to come alive through convincing, high-fidelity 2D animation without losing its painterly appearance.
+
+The final animations should feel like an evolution of MapleStory-style sprite animation, not a static illustration being mechanically distorted.
+
+**Visual quality takes priority over implementation complexity.**

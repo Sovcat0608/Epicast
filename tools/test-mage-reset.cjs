@@ -8,5 +8,8 @@ const toc=fs.readFileSync('Epicast.toc','utf8');
 for(const file of ['MageBooks.lua','MageCrests.lua','MageCrestData.lua','Seal.lua']){
  assert(!fs.existsSync(file));assert(!toc.includes(file));
 }
-assert.equal(Object.keys(manifest).length,49,'Thirty Druid textures, eighteen new Mage textures and addon icon remain');
+const originalAssets=Object.keys(manifest).filter(name=>
+ !/^Media\/RestorationIdle(?:CASSize(?:192|288|480|576|660)Page)?\d\d\.tga$/.test(name) &&
+ !/^Media\/Restoration(?:Segments|ShardContacts|FabricContacts|TreantContacts)CASSize(?:192|288|384|480|576|660)Page\d+\.tga$/.test(name));
+assert.equal(originalAssets.length,49,'Thirty static Druid textures, eighteen Mage textures and addon icon remain');
 console.log('PASS: retired Mage art absent from source/media/package manifest; Druid and icon payload retained');

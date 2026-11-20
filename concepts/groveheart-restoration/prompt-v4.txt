@@ -1,0 +1,17 @@
+Use case: precise-object-edit.
+Edit target: Image 1, the approved Groveheart restoration crest v3. Make a tightly scoped revision, preserving the crest exactly apart from the spell emblems and their emitted light.
+Supporting references: Image 2 is Rejuvenation; image 3 is Regrowth. The user identifies their central shapes as LEAVES. Follow that intent literally: botanical leaf silhouettes, never human hands.
+
+KEEP UNCHANGED: the entire composition, proportions, symmetrical grouping, ivory antler horns, heavy tangled roots, moss, grey-purple carved stone, stepped carved wooden side wings, bronze fittings, three pendant frames, lower leaf skirt and curling roots. Keep the exact relative positions and sizes of the five emblem locations. Preserve the hand-painted Warcraft style, rich dimensional materials, ordinary highlights and shadows, complete silhouette, transparent padding and portrait 3:4 framing. Do not redesign, add or remove any crest structure.
+
+CHANGE 1 — LEAF SYMBOLS:
+Replace BOTH human hand/palm symbols in the side-wing inlays with clearly botanical broad jagged/lobed leaves corresponding to images 2 and 3. These are pointed, serrated, asymmetrically lobed maple-like fantasy leaf shapes with a short fine stalk, a strong central midrib and branching veins. Use angular tapering lobes that connect into a single blade; no rounded fingertip shapes, fingers, thumbs, wrists, palms, arms or any hand anatomy.
+Keep the two leaf emblems balanced in size and grouped as a matching pair. Left/Rejuvenation: pale sage-green leaf with subtle muted plum-violet accents in its surrounding inset. Right/Regrowth: fresh soft green leaf with restrained deeper green surrounding accents. Their silhouette should clearly recall the supplied leaf spell icons, with painterly material depth suitable for the existing crest. Do not copy the icons' square framing, corner numbers or intense bloom.
+
+CHANGE 2 — SUBTLE STATIC COLOUR:
+Tone down the saturated complementary colours and glowing outlines on ALL FIVE spell emblems. This is the calm static base artwork for future animated glows, not the glowing/activated state.
+Retain every motif: top branching tree (Wild Growth), two side leaves (Rejuvenation and Regrowth), central diagonal leaf (Healing Touch), lower central star/blossom (Swiftmend).
+Render these as readable softly lit, carved or enamel-like coloured inlays: subdued green tree; quiet violet/green side accents; jade central leaf with a thin soft pale cyan edge; lower blossom in soft pink, ivory and muted blue. Preserve colour identities and clear shapes, but strongly reduce neon saturation, white-hot cores, radiating energy, bloom and light spill. Let the wood, ivory, stone, roots and bronze carry most of the image's visual weight. Do not desaturate the entire crest or flatten its normal painterly lighting. No additional glow layers or animation frames.
+
+Fidelity: high-fidelity sculpted painterly Warcraft fantasy UI illustration, broad smooth value transitions, clean antialiased contours, selective crisp accents and distinct ivory/wood/stone/metal materials. Preserve detail without crunchy sharpening, granular microtexture, muddy blur or plastic rendering.
+Output: exactly one complete edited crest on genuine transparent alpha. No scenery, checkerboard, ground, cast shadow, text, labels, numbers, watermark or extra panels.

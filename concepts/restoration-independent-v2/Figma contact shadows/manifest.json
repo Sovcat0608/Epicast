@@ -1,0 +1,15 @@
+{
+  "name": "Epicast Restoration \u00b7 layered repaint",
+  "id": "1853074561971348820",
+  "api": "1.0.0",
+  "main": "build.js",
+  "editorType": [
+    "figma"
+  ],
+  "documentAccess": "dynamic-page",
+  "networkAccess": {
+    "allowedDomains": [
+      "none"
+    ]
+  }
+}

@@ -1,0 +1,1 @@
+const innerLeafIdle = [{"slot": [247, 232, 276, 273], "columns": 4, "frames": 16, "frameMs": 125, "sheet": "inner-leaf-study/left-scene.webp", "coverage": "inner-leaf-study/left-coverage.webp"}, {"slot": [609, 229, 280, 276], "columns": 4, "frames": 16, "frameMs": 125, "sheet": "inner-leaf-study/right-scene.webp", "coverage": "inner-leaf-study/right-coverage.webp"}];

@@ -1,0 +1,27 @@
+{
+  "prompt": "Locked still view. Both wooden shards stay perfectly still with their existing carvings intact. The green light filling every cut gives one gentle breathing pulse in the first half, then the light and its nearby reflections steadily fade all the way to the dark natural wood by the last frame. The slate backdrop is completely steady.",
+  "seconds": 5,
+  "input_sha256": "a4f7d9ef41436dcc02e8f7a4ef886c97a7e8ce68e1bbde9e34cd8bd40b981e04",
+  "source_layers": [
+    {
+      "name": "left",
+      "sha256": "f3faaa09255f151fa0aa9a65eb48b1af332bb1da0501d866c25c80e33fed0515",
+      "rect": [
+        103,
+        26,
+        498,
+        221
+      ]
+    },
+    {
+      "name": "right",
+      "sha256": "a0b8ed4d3fe2ebcc0defcc684048ce3d02d77fafac4eb89fab233ccf1dd577cb",
+      "rect": [
+        103,
+        263,
+        498,
+        225
+      ]
+    }
+  ]
+}

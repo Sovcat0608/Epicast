@@ -1,0 +1,45 @@
+{
+  "tool": "Built-in ImageGen",
+  "figma": "495:772",
+  "prompts": {
+    "Left": "One inventory sprite: three hand-hewn pieces of ancient bronze-brown bark arranged in a compact stair-step stack. NOTHING except the 3 wooden planks. Their flat right ends align vertically, outer LEFT ends protrude differing distances, longest at top. Front view with a little top bevel; proportion width 1.35 times height. Outer tips are gently wedge-shaped and have slightly different splits. Three different, small druid motifs carved into the outer left third of the boards: one waning crescent, a sprouting fork, a curled seed. Tiny desaturated moss-jade mineral inclusions deep in each groove, uneven short facets just a shade lighter than the wood. Make the incisions part of angled wood grain, with some crystal disappearing beneath a timber lip. Old forest druid craftsmanship, no faces or figural carvings, no mount or post. Chunky Warcraft equipment art with broad sculpted planes, warm bevels, plum-brown shadow, calm midtones and clean contours. Isolated fully on transparent background with padding all around.",
+    "Right": "Paint a new RIGHT-hand sister to this bark attachment. Match the hand-carved wood, material palette and brush scale of the reference. ONLY three overlapping rugged wooden boards, plain vertically aligned LEFT attachment ends; the splintered, outward pointing tips extend RIGHT in steps, longest at top. Invent new irregular thickness, contour and grain for each slat. Close to the RIGHT tip of each board carve a different small druidic groove: a single long almond-shaped leaf with a short central vein on the top, a two-peak hill chevron on the middle, and a short winding river S on the bottom. The grain curls naturally around these hollows and a few dusty olive mineral facets sit inside the deepest cut. No luminous outlining or applied objects. Intentionally different patterns from the source. Compact stack with limited empty vertical space, front view, top-left sunlight. Broad confident Warcraft equipment illustration. No standalone ornament, support post or face, no text. Genuine transparent background and room around every silhouette.",
+    "Roots": "Precisely repaint this isolated bottom pendant segment for a restoration druid UI illustration. Retain the two established olive green curling hanging vines at the outer sides, as close as possible to their existing silhouette and color, tips and asymmetry. Replace ALL the central burnt orange autumn leaves with a compact fan of dark umber ROOTS. The brown roots start slightly spread out across the top, descend, curve INWARD, weave across one another, then converge to a single asymmetrical tapered central point at the bottom. Leave a few long narrow negative spaces between the roots, particularly near the lower tip. Aim for 4 or 5 large readable bands of root: earthy raw umber, deep espresso in crevices, muted warm russet highlights on knuckles. Knobbly and slightly flattened with organic changes of thickness. Paint the upper root shoulders fully for the underlap. Front-facing painterly Warcraft illustration with a few broad planar brushstrokes and a strong silhouette at 40 pixels tall. Absolutely no leaves, rosette, feather, face, plaques, ornaments or other crest parts. Transparent background, all tips clear of the canvas edges. Match the reference width, height and register."
+  },
+  "references": {
+    "Right": "New left plank painting",
+    "Roots": "Previous Restoration outer vines and autumn rosette"
+  },
+  "registeredFills": [
+    [
+      "532:964",
+      -0.10000000149011612,
+      "5437a51e6491ea3d72933381adfdd725748f10b0"
+    ],
+    [
+      "517:740",
+      0,
+      "893a2c62e97e0c36574df8b4c61b80adc3794c65"
+    ],
+    [
+      "532:963",
+      -0.10000000149011612,
+      "42a0d5f0432eba9ff49df507440418fc9315cfad"
+    ],
+    [
+      "517:700",
+      0,
+      "e4fbcd444c46f87628c42acd165af7b0f83db667"
+    ],
+    [
+      "517:694",
+      -0.10000000149011612,
+      "caa966c2ea9af260bd0161fd4955af80e3d9629d"
+    ],
+    [
+      "517:695",
+      0,
+      "016d192a819bc66c95b37700a77404f05f4e346a"
+    ]
+  ]
+}

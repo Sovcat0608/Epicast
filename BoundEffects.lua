@@ -1,6 +1,7 @@
 local _,E=...
 -- Player-only declarative triggers. No user Lua, protected actions or model reloads.
 local layers=setmetatable({}, {__mode="k"})
+local artwork=setmetatable({}, {__mode="k"})
 local frame,cast,channel
 local overlay={}
 local lastEvent="initialization"
@@ -72,6 +73,7 @@ function E.StopBoundEffect(e)
         e.boundLastStop=lastEvent
     end
     e.boundToken=(e.boundToken or 0)+1;e.boundPlaying=false;e.castVisible=false;e.boundTest=nil
+    e.boundDriver=nil;e.boundBurst=nil;e.boundSustain=nil
     E.StopNativeSmoke(e)
 end
 local function animate(e,animation)
@@ -96,17 +98,25 @@ local function later(e,seconds,fn)
     local token=e.boundToken
     C_Timer.After(seconds,function()if layers[e] and e.boundToken==token then fn() end end)
 end
+local function resumeSustain(e)
+    if not e.boundSustain or e.boundTest then return false end
+    e.boundDriver=e.boundSustain;e.boundBurst=nil
+    e.boundToken=e.boundToken+1
+    if e.boundSegment~=e.libraryProfile.animation then animate(e,e.libraryProfile.animation) end
+    return true
+end
 local function finish(e)
-    local b=e.boundConfig
+    local b=e.boundDriver
+    if not b then return end
+    if e.boundBurst and resumeSustain(e) then return end
     e.boundPlaying=false;e.boundToken=(e.boundToken or 0)+1
     if b.outro and animate(e,159) then later(e,b.outroDuration,function()E.StopBoundEffect(e);E.SyncBoundEffect(e)end)
     else E.StopBoundEffect(e);E.SyncBoundEffect(e) end
 end
-local function play(e,burst,test)
+local function play(e,b,burst,test)
     e.boundToken=(e.boundToken or 0)+1
-    local b=e.boundConfig
     if not animate(e,b.intro and 0 or e.libraryProfile.animation) then E.StopBoundEffect(e);return false end
-    e.boundPlaying=true;e.boundTest=test
+    e.boundPlaying=true;e.boundTest=test;e.boundDriver=b;e.boundBurst=burst~=nil
     e.boundStarts=(e.boundStarts or 0)+1
     if b.intro then later(e,b.introDuration,function()animate(e,e.libraryProfile.animation)end) end
     if burst then later(e,burst+(b.intro and b.introDuration or 0),function()finish(e)end) end
@@ -158,6 +168,26 @@ local function active(b)
     elseif b.kind=="proc" then return proc(b) end
     return false
 end
+local function hasCooldownBinding(bindings)
+    for _,b in ipairs(bindings) do if cooldownBinding(b) then return true end end
+    return false
+end
+local function burstMatches(b,id,now)
+    if b.kind=="success" then return match(b,id) end
+    if b.kind~="pulse" or not channel or not match(b,channel.id,channel.name) or now-(channel.started or now)<=.05 then return false end
+    if match(b,id) then return true end
+    if not public(id) or type(id)~="number" then return false end
+    local pulseName=name(id)
+    local channelName=channel.name or (channel.id and name(channel.id))
+    return type(pulseName)=="string" and type(channelName)=="string" and pulseName==channelName
+end
+local function artworkActive(b)
+    if b.kind=="cast" and cast and cast.completed then return false end
+    return active(b)
+end
+local function artworkVisible(controller)
+    return controller.animate and controller.host:IsVisible()
+end
 local function pollBuffs()
     if buffPollPending or dead then return end
     buffPollPending=true
@@ -166,9 +196,15 @@ local function pollBuffs()
         if dead then return end
         buffBatch=true;buffSnapshot={}
         for e in pairs(layers) do
-            if cooldownBinding(e.boundConfig) and usable(e) then
+            if usable(e) and hasCooldownBinding(e.boundConfigs) then
                 lastEvent="COOLDOWN_MANAGER_POLL"
                 E.SyncBoundEffect(e)
+            end
+        end
+        for controller,bindings in pairs(artwork) do
+            if artworkVisible(controller) and hasCooldownBinding(bindings) then
+                E.SyncRestorationSignals(controller,artworkActive)
+                pollBuffs()
             end
         end
         buffBatch=false;buffSnapshot=nil
@@ -178,28 +214,40 @@ function E.SyncBoundEffect(e)
     if not e.boundConfig then return end
     if not usable(e) then e.boundInput="disabled";E.StopBoundEffect(e);return end
     if dead then E.StopBoundEffect(e);return end
-    if cooldownBinding(e.boundConfig) then pollBuffs() end
+    if hasCooldownBinding(e.boundConfigs) then pollBuffs() end
     if e.boundTest then return end
-    local b=e.boundConfig
-    if b.kind=="success" or b.kind=="pulse" then return end
-    local isActive,status,cooldownStatus=active(b)
-    e.boundInput=status or (isActive and "active" or "inactive")
-    e.boundCooldown=cooldownStatus
-    if isActive then
-        if not e.boundPlaying then play(e) end
+    local sustain,firstStatus,firstCooldown,activeStatus,activeCooldown
+    for _,b in ipairs(e.boundConfigs) do
+        if b.kind~="success" and b.kind~="pulse" then
+            local matched,status,cooldown=active(b)
+            firstStatus=firstStatus or status or "inactive"
+            firstCooldown=firstCooldown or cooldown
+            if matched and (not sustain or e.boundDriver==b) then
+                sustain=b;activeStatus=status or "active";activeCooldown=cooldown
+            end
+        end
+    end
+    if firstStatus then e.boundInput=activeStatus or firstStatus;e.boundCooldown=activeCooldown or firstCooldown end
+    e.boundSustain=sustain
+    if e.boundPlaying and e.boundBurst then return end
+    if sustain then
+        if not e.boundPlaying then play(e,sustain)
+        else e.boundDriver=sustain end
     elseif e.boundPlaying then finish(e) end
 end
 local function same(current,guid)
     return current and (not public(guid) or not guid or not current.key or current.key==guid)
 end
 function E.HandleBoundEvent(event,unit,guid,id)
+    local interruptedChannel
     if event=="PLAYER_REGEN_DISABLED" then lastEvent=event;E.StopBoundTests();return end
     if event=="PLAYER_ENTERING_WORLD" or event=="PLAYER_DEAD" or event=="PLAYER_ALIVE" or event=="PLAYER_UNGHOST" then
         lastEvent=event
         dead=event=="PLAYER_DEAD"
         cast=nil;channel=nil;overlay={}
         for e in pairs(layers) do E.StopBoundEffect(e) end
-        if event=="PLAYER_DEAD" then return end
+        for controller in pairs(artwork) do E.SyncRestorationSignals(controller,nil,nil,nil,true) end
+        if dead then return end
         cast=info(false);channel=info(true)
     elseif event=="SPELL_ACTIVATION_OVERLAY_GLOW_SHOW" or event=="SPELL_ACTIVATION_OVERLAY_GLOW_HIDE" then
         lastEvent=event
@@ -214,28 +262,47 @@ function E.HandleBoundEvent(event,unit,guid,id)
         elseif event=="UNIT_SPELLCAST_CHANNEL_STOP" then if same(channel,guid) then channel=nil end
         elseif event=="UNIT_SPELLCAST_INTERRUPTED" or event=="UNIT_SPELLCAST_FAILED" or event=="UNIT_SPELLCAST_FAILED_QUIET" then
             if same(cast,guid) then cast=nil end
-            if same(channel,guid) then channel=nil;for e in pairs(layers) do if e.boundConfig.kind=="pulse" then E.StopBoundEffect(e) end end end
+            if same(channel,guid) then
+                channel=nil
+                interruptedChannel=true
+            end
         elseif event=="UNIT_SPELLCAST_SUCCEEDED" then
             local now=GetTime()
+            if cast and ((public(guid) and guid and cast.key==guid) or
+                (not cast.key and public(id) and id and cast.id==id)) then cast.completed=true end
             for e in pairs(layers) do
-                local b=e.boundConfig
-                local eligible=b.kind=="success" or (b.kind=="pulse" and channel and match(b,channel.id,channel.name) and now-(channel.started or now)>.05)
-                local matching=match(b,id)
-                if not matching and eligible and b.kind=="pulse" and public(id) and type(id)=="number" then
-                    local pulseName=name(id);local channelName=channel.name or (channel.id and name(channel.id))
-                    matching=type(pulseName)=="string" and type(channelName)=="string" and pulseName==channelName
-                end
-                if eligible and matching then
-                    local key=public(guid) and guid or nil
-                    if (not e.boundLast or now-e.boundLast>.05) and (not key or key~=e.boundGUID or b.kind=="pulse") then
-                        e.boundInput="matched";e.boundLast=now;e.boundGUID=key;play(e,b.duration)
+                for _,b in ipairs(e.boundConfigs) do
+                    if burstMatches(b,id,now) then
+                        local key=public(guid) and guid or nil
+                        local previous=e.boundSignals[b]
+                        if not previous or (now-previous.time>.05 and (not key or key~=previous.key or b.kind=="pulse")) then
+                            e.boundInput="matched";e.boundSignals[b]={time=now,key=key};play(e,b,b.duration)
+                        end
+                        break
                     end
                 end
             end
         end
     end
     buffBatch=true;buffSnapshot={}
-    for e in pairs(layers) do E.SyncBoundEffect(e) end
+    for e in pairs(layers) do
+        E.SyncBoundEffect(e)
+        if interruptedChannel and e.boundDriver and e.boundDriver.kind=="pulse" and not resumeSustain(e) then
+            E.StopBoundEffect(e)
+        end
+    end
+    if not dead then
+        local success=event=="UNIT_SPELLCAST_SUCCEEDED"
+        local now=success and GetTime()
+        local burst=success and function(b)return burstMatches(b,id,now)end
+        local key=success and public(guid) and guid or nil
+        for controller,bindings in pairs(artwork) do
+            if artworkVisible(controller) then
+                E.SyncRestorationSignals(controller,artworkActive,burst,key)
+                if hasCooldownBinding(bindings) then pollBuffs() end
+            end
+        end
+    end
     buffBatch=false;buffSnapshot=nil
 end
 
@@ -244,7 +311,16 @@ function E.PrintBoundStatus()
         triggerRevision,tostring(InCombatLockdown()),spellEvents,auraEvents,lastEvent,bridgeError or "none"))
     if type(E.PrintCooldownBuffStatus)=="function" then
         local keys={}
-        for e in pairs(layers)do local supported,key=cooldownBinding(e.boundConfig);if supported then keys[key]=true end end
+        for e in pairs(layers)do
+            for _,b in ipairs(e.boundConfigs)do
+                local supported,key=cooldownBinding(b);if supported then keys[key]=true end
+            end
+        end
+        for _,bindings in pairs(artwork)do
+            for _,b in ipairs(bindings)do
+                local supported,key=cooldownBinding(b);if supported then keys[key]=true end
+            end
+        end
         local ok,err=pcall(E.PrintCooldownBuffStatus,keys)
         if not ok then rememberBridgeError(err);E.Message("Native report unavailable: "..bridgeError)end
     end
@@ -252,7 +328,7 @@ function E.PrintBoundStatus()
         for _,entry in pairs(entries) do
             local side=entry.side
             for index,e in ipairs(entry.config and entry.addedEffectSlots or {}) do
-                local b=e.boundConfig
+                local b=e.boundDriver or e.boundConfig
                 if b then
                     local s=e.nativeSmoke
                     local scene=s and s.slots[1] and s.slots[1].scene
@@ -276,26 +352,53 @@ local function initialize()
     frame:SetScript("OnEvent",function(_,...)E.HandleBoundEvent(...)end)
     cast=info(false);channel=info(true)
 end
+function E.SetArtworkSignalController(controller,bindings)
+    artwork[controller]=bindings and #bindings>0 and bindings or nil
+    if not artwork[controller] then return end
+    initialize()
+    if not dead and artworkVisible(controller) then
+        E.SyncRestorationSignals(controller,artworkActive)
+        if hasCooldownBinding(bindings) then pollBuffs() end
+    end
+end
 function E.ConfigureBoundEffect(e,row)
-    local b=row and row.behavior=="bound" and row.binding
-    local signature=b and table.concat({row.fileID,b.kind,b.spell,row.animation,b.duration,tostring(b.intro),tostring(b.outro),b.introDuration,b.outroDuration},"|")
-    if signature~=e.boundSignature then E.StopBoundEffect(e);e.boundLast=nil;e.boundGUID=nil;e.boundSignature=signature end
-    e.boundConfig=b;layers[e]=b and true or nil
-    if b then e.castBinding={kind="custom",label=b.kind..": "..b.spell};initialize() end
+    local bindings=row and row.behavior=="bound" and (row.bindings or {row.binding}) or {}
+    local first=bindings[1]
+    local signature
+    if first then
+        local fields={row.fileID,row.animation}
+        for _,b in ipairs(bindings) do
+            fields[#fields+1]=table.concat({b.kind,#b.spell,b.spell,b.duration,tostring(b.intro),tostring(b.outro),b.introDuration,b.outroDuration},"|")
+        end
+        signature=table.concat(fields,"|")
+    end
+    if signature~=e.boundSignature then
+        E.StopBoundEffect(e);e.boundSignals={};e.boundSignature=signature
+        e.boundConfigs=bindings
+    end
+    e.boundConfig=first;layers[e]=first and true or nil
+    if first then e.castBinding={kind="custom",label=first.kind..": "..first.spell};initialize() end
 end
 function E.StopBoundTests()
+    if E.StopArtworkTests then E.StopArtworkTests()end
     for e in pairs(layers) do if e.boundTest then E.StopBoundEffect(e);E.SyncBoundEffect(e) end end
 end
 function E.TestBoundEffect(side,art,index)
     if not E.devMode or InCombatLockdown() then return false end
     E.StopBoundTests()
     for e in pairs(layers) do
-        if e.setKey==E.editorSet and e.side==side and e.castArt==art and e.addedIndex==index and usable(e) then
+        if not e.preview and e.setKey==E.editorSet and e.side==side and e.castArt==art and e.addedIndex==index and usable(e) then
             local b=e.boundConfig
-            return play(e,(b.kind=="success" or b.kind=="pulse") and b.duration or 3,true)
+            return play(e,b,(b.kind=="success" or b.kind=="pulse") and b.duration or 3,true)
         end
     end
     return false
+end
+function E.TestStudioEffect(e,bindingIndex)
+    if not E.devMode or InCombatLockdown()or not e or not e.preview or not e.boundConfig or not usable(e)then return false end
+    E.StopBoundTests();local b=e.boundConfigs[bindingIndex or 1]
+    if not b then return false end
+    return play(e,b,(b.kind=="success"or b.kind=="pulse")and b.duration or 3,true)
 end
 
 E.StopCastEffectTests=E.StopBoundTests

@@ -1,0 +1,38 @@
+[
+  {
+    "side": "left",
+    "source": "concepts/restoration-frame146/registered/04-paint.png",
+    "sha256": "b6b3d44b27526c1af724661a7a9aa66a9663105685a67e8e19b3aa44277f5a34",
+    "crest_box": [
+      125,
+      784,
+      325,
+      144
+    ],
+    "video_box": [
+      27,
+      38,
+      650,
+      288
+    ],
+    "edited_pixels": 3393
+  },
+  {
+    "side": "right",
+    "source": "concepts/restoration-frame146/registered/05-paint.png",
+    "sha256": "e2303eb289febafd21eca83233496bd492ca8eb80c61bec8ca951d65f62c1962",
+    "crest_box": [
+      680,
+      784,
+      325,
+      147
+    ],
+    "video_box": [
+      27,
+      370,
+      650,
+      294
+    ],
+    "edited_pixels": 4148
+  }
+]

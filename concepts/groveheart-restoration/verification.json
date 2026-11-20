@@ -1,0 +1,16 @@
+{
+  "Width": 1086,
+  "Height": 1448,
+  "PixelFormat": "Format32bppArgb",
+  "CornerAlpha": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "CentreAlpha": 252,
+  "SHA256": "C0D17692009E8AA65597F6E8DADD0D99FD269715A1B94F677E3B8FE212F295F9",
+  "File": "concepts\\groveheart-restoration\\Groveheart-restoration-v1.png",
+  "Generator": "Built-in image_gen",
+  "RuntimeIntegrated": false
+}

@@ -1,0 +1,13 @@
+{
+  "name": "epicast-renderer-prototype",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node server.cjs",
+    "test": "node test-projection.cjs && node test.cjs && node test-studio.cjs",
+    "test:studio": "node test-studio.cjs",
+    "test:hold": "node probe-ab.cjs"
+  },
+  "dependencies": { "fengari": "0.1.5" },
+  "devDependencies": { "playwright": "1.56.1" }
+}

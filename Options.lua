@@ -28,6 +28,8 @@ end
 local function target()return E.draft and E.GetSide(E.draft,E.editorSet,E.editorSide)end
 local function change()E.Apply();E.RefreshOptions()end
 local function pendingInput()
+ local w=E.EffectLibrary and E.EffectLibrary.window
+ for _,input in pairs(w and w:IsShown()and w.layerControls and w.layerControls.inputs or{})do if input.dirty then return true end end
  for _,input in pairs(E.panel and E.panel.inputs or{})do if input.dirty then return true end end
  return false
 end
@@ -52,12 +54,14 @@ E.editorKeys={};E.optionsPage="crests";E.crestPage="placement"
 local function selectionID(group)return E.ActiveClass()..":"..group end
 local function displayNumber(value)return (string.format("%.2f",value):gsub("%.?0+$",""))end
 local function discardInputs()
+ if E.DiscardStudioInputs then E.DiscardStudioInputs()end
  for key,input in pairs(E.panel and E.panel.inputs or{})do
   input.dirty=false;input.owner=nil;input:ClearFocus()
   if target()then input:SetText(displayNumber(target()[key]))end
  end
 end
 function E.FlushPlacementInputs()
+ if E.FlushStudioInputs and not E.FlushStudioInputs()then return false end
  local valid=true;local changed=false
  for key,input in pairs(E.panel and E.panel.inputs or{})do
   if input.dirty then
@@ -157,6 +161,7 @@ local function preview(texture,c)
  if not art.path then return end
  local height=192*art.height/art.width;local backingH=1;while backingH<height do backingH=backingH*2 end
  texture:SetTexture((art.path:gsub("CASSize%d+%.tga$","CASSize192.tga")))
+ if texture.SetDesaturation then texture:SetDesaturation(E.DruidArtworks[c.art]and E.DruidArtworkDesaturation or 0)end
  texture:SetSize(56*art.width/art.height,56);texture:SetTexCoord(E.UV({0,0,0,height/backingH,.75,0,.75,height/backingH},c.flip))
 end
 local function selectedTabs(tabs,current,unlocked)
@@ -168,8 +173,8 @@ end
 local function responseSummary(c)
  if not c.effects then return "Animation and effects are currently off."end
  local groups,order={},{}
- for _,fx in ipairs(E.GetAddedEffects(c))do if fx.behavior=="bound"and fx.binding then
-  local b=fx.binding;local spell=b.spell;local group=groups[spell]
+ for _,fx in ipairs(E.GetAddedEffects(c))do for _,b in ipairs(E.GetEffectBindings(fx))do
+  local spell=b.spell;local group=groups[spell]
   if not group then
    local name=spell~=""and spell or "No spell bound"
    if tonumber(spell)and C_Spell and C_Spell.GetSpellName then
@@ -283,11 +288,12 @@ local function create()
  local layout=p.placement;p.inputs={};p.sliders={};p.placementButtons={}
  label(layout,"Size (%)",18,-4,250,"GameFontNormal")
  local control=CreateFrame("Frame",nil,layout,"MinimalSliderWithSteppersTemplate");control:SetPoint("TOPLEFT",18,-33);control:SetSize(346,20)
- control:Init(100,25,400,375,{});p.sliders.size=control.Slider;p.sliders.size.control=control
+ local minSize,maxSize=E.crestSizeMin,E.crestSizeMax
+ control:Init(100,minSize,maxSize,maxSize-minSize,{});p.sliders.size=control.Slider;p.sliders.size.control=control
  p.sliders.size:HookScript("OnValueChanged",function(_,v)if not E.refreshing and not InCombatLockdown()and target()then
-  E.FlushPlacementInputs();target().size=E.Number(math.floor(v+.5),100,25,400);change()
+  E.FlushPlacementInputs();target().size=E.Number(math.floor(v+.5),100,minSize,maxSize);change()
  end end)
- p.inputs.size=numberInput(layout,"size",396,-26,102,25,400)
+ p.inputs.size=numberInput(layout,"size",396,-26,102,minSize,maxSize)
  for i,spec in ipairs({{"x","Horizontal (from center)",-8000,8000},{"y","Height (from bottom)",-2000,3000}})do
   local key=spec[1];local x=i==1 and 18 or 280;label(layout,spec[2],x,-79,226,"GameFontNormal")
   p.placementButtons[#p.placementButtons+1]=button(layout,"-",x,-105,28,function()nudge(key,-1)end)

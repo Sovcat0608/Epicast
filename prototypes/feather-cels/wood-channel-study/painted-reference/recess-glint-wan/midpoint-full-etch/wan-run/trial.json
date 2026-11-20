@@ -1,0 +1,39 @@
+{
+  "model": "wan2.2-ti2v-5b-native",
+  "source_revision": "921dbaf3f1674a56f47e83fb80a34bac8a8f203e",
+  "runtime_revision": "1ea34ff48f87168174e12956e200b1d908b1c5ff",
+  "fps": 16,
+  "frames": 49,
+  "midpoint_frame": 24,
+  "seed": 509429,
+  "steps": 36,
+  "guidance": 6.5,
+  "conditioning": {
+    "guide_frames": [
+      0,
+      8,
+      16,
+      24,
+      32,
+      40,
+      48
+    ],
+    "latent_indices": [
+      0,
+      2,
+      4,
+      6,
+      8,
+      10,
+      12
+    ],
+    "encode_calls": 1,
+    "mask_calls": 1,
+    "editable_spatial_latent_fraction": 0.31198
+  },
+  "prompt": "A fixed hand-painted game sprite shot of two stationary carved wooden shards. Every original carved recess gradually emits yellow-lime light across its full width. The shaded inner walls and soft reflection on the neighboring carved bevels follow the supplied poses through a smooth rise to full emission in the middle and a smooth fade to dark wood at the end. The two shards and all original paint stay perfectly still.",
+  "negative_prompt": "camera movement, new glyphs, moving wood, shifting carvings, opaque green fill, line-only lighting, glow outside the etches, moving streaks, smoke, particles, flicker",
+  "midpoint_sha256": "a8dd1709391a455d91be61cfd217970a04e8ed4e2ba4fa85d17d731b94dc53b2",
+  "raw_sha256": "921fc0cb79d7d1da6b861f61a1afde91de1d680346f0305952f0252202d0f3a1",
+  "elapsed_seconds": 97.06
+}

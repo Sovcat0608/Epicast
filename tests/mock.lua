@@ -20,11 +20,12 @@ function Mock.advance(dt)
 end
 function hooksecurefunc(object,key,fn)local old=object[key];object[key]=function(self,...)local value=old(self,...);fn(self,...);return value end end
 local function widget(kind,parent,name)
- local w={kind=kind,parent=parent,name=name,shown=true,enabled=true,scripts={},events={},width=100,height=100,alpha=1,level=1,text=""}
+ local w={kind=kind,parent=parent,name=name,shown=true,enabled=true,scripts={},events={},width=100,height=100,alpha=1,level=parent and parent.level+1 or 1,text=""}
  for method in ([=[SetMultiLine SetFontObject SetScrollChild EnableMouse EnableMouseWheel RegisterForDrag SetFrameStrata SetMovable SetClampedToScreen SetBackdrop SetBackdropColor SetBackdropBorderColor SetColorTexture SetAutoFocus SetMaxLetters SetMaxLines SetTextColor SetJustifyH SetNormalTexture SetHighlightTexture SetDisabledTexture SetFontString SetDisabledFontObject SetDrawLayer SetCameraNearClip SetCameraFarClip SetCameraFieldOfView SetLightAmbientColor SetLightDiffuseColor SetDesaturation SetNumeric SetBlendMode SetSnapToPixelGrid SetTexelSnappingBias SetCameraPosition SetCameraOrientationByAxisVectors SetPosition SetPitch SetYaw SetRoll SetViewInsets SetViewTranslation SetPaused SetStatusBarTexture SetStatusBarColor SetSmoothing SetOrder SetDuration SetOffset SetOrigin SetDegrees SetLooping]=]):gmatch('%S+')do
   local key=method;w[key]=function(self,...)self[key..'Args']={...}end
  end
  function w:GetName()return self.name end
+ function w:RegisterForClicks(...)self.clicks={...}end
  function w:SetSize(a,b)self.width=a;self.height=b end
  function w:GetSize()return self.width,self.height end
  function w:SetWidth(a)self.width=a end;function w:SetHeight(a)self.height=a end
@@ -33,6 +34,8 @@ local function widget(kind,parent,name)
  function w:SetAlpha(a)self.alpha=a end;function w:GetAlpha()return self.alpha end
  function w:SetFrameLevel(a)self.level=a end;function w:GetFrameLevel()return self.level end
  function w:SetParent(p)self.parent=p end
+ function w:GetParent()return self.parent end
+ function w:SetClipsChildren(enabled)self.clipsChildren=enabled end
  function w:SetPoint(...)self.point={...}end;function w:ClearAllPoints()self.point=nil end
  function w:SetAllPoints(p)self.allPoints=p or self.parent end
  function w:SetScript(k,fn)self.scripts[k]=fn end
@@ -44,6 +47,7 @@ local function widget(kind,parent,name)
  function w:IsVisible()return self.shown and(not self.parent or self.parent:IsVisible())end
  function w:SetShown(v)if v then self:Show()else self:Hide()end end
  function w:SetEnabled(v)self.enabled=v end
+ function w:IsEnabled()return self.enabled end
  function w:Enable()self.enabled=true end;function w:Disable()self.enabled=false end
  if kind=='EditBox'then w.SetEnabled=nil end
  function w:SetFontString(font)self.fontString=font end
@@ -81,7 +85,22 @@ function CreateFrame(kind,name,parent,template)
   w:SetScript('OnShow',function(self)PanelTemplates_TabResize(self,self.parent.tabPadding,nil,self.parent.minTabWidth,self.parent.maxTabWidth)end)
   w:RegisterEvent('DISPLAY_SIZE_CHANGED');w:SetScript('OnEvent',function(self)if self:IsVisible()then self:emit('OnShow')end end)
  end
- if template=='MinimalSliderWithSteppersTemplate'then w.Slider=widget('Slider',w);function w:Init(v,lo,hi)self.Slider.minimum=lo;self.Slider.maximum=hi;self.Slider.value=v end end
+ if template=='MinimalSliderWithSteppersTemplate'then
+  w.Slider=widget('Slider',w);w.Back=widget('Button',w);w.Forward=widget('Button',w)
+  function w:Init(v,lo,hi,steps)
+   self.Slider.minimum=lo;self.Slider.maximum=hi;self.Slider.value=v
+   self.Slider:SetPoint('TOPLEFT',19,0);self.Slider:SetSize(self.width-38,self.height)
+   self.Back:SetPoint('RIGHT',self.Slider,'LEFT',-4,0);self.Back:SetSize(11,19)
+   self.Forward:SetPoint('LEFT',self.Slider,'RIGHT',4,0);self.Forward:SetSize(9,18)
+   local step=(hi-lo)/steps
+   local function nudge(delta)self.Slider:SetValue(math.max(lo,math.min(hi,self.Slider:GetValue()+delta)))end
+   self.Back:SetScript('OnClick',function()nudge(-step)end)
+   self.Forward:SetScript('OnClick',function()nudge(step)end)
+  end
+  function w:SetEnabled(enabled)
+   self.enabled=enabled;self.Slider:SetEnabled(enabled);self.Back:SetEnabled(enabled);self.Forward:SetEnabled(enabled)
+  end
+ end
  return w
 end
 function PanelTemplates_TabResize(t,padding,width,minWidth,maxWidth)
@@ -92,7 +111,17 @@ function PanelTemplates_SelectTab(t)t.tabSelected=true;t:Disable()end
 function PanelTemplates_DeselectTab(t)t.tabSelected=false;t:Enable()end
 UIParent=widget('Frame');UIParent:SetSize(1920,1080)
 UISpecialFrames={};SlashCmdList={};MinimalSliderWithSteppersMixin={Label={Right=1}}
-MenuUtil={CreateContextMenu=function(owner,fn)Mock.menu={};fn(owner,{CreateRadio=function(_,name,selected,callback)Mock.menu[#Mock.menu+1]={name=name,selected=selected,choose=callback}end})end}
+MenuUtil={CreateContextMenu=function(owner,fn)
+ Mock.menu={}
+ local function item(kind,name,selected,callback)
+  Mock.menu[#Mock.menu+1]={kind=kind,name=name,selected=selected,choose=callback}
+ end
+ fn(owner,{
+  CreateRadio=function(_,name,selected,callback)item("radio",name,selected,callback)end,
+  CreateCheckbox=function(_,name,selected,callback)item("checkbox",name,selected,callback)end,
+  CreateButton=function(_,name,callback)item("button",name,nil,callback)end,
+ })
+end}
 function Mock.event(event,...)
  local snapshot={};for _,f in ipairs(Mock.frames)do snapshot[#snapshot+1]=f end
  for _,f in ipairs(snapshot)do if f.events[event]then f:emit('OnEvent',event,...)end end

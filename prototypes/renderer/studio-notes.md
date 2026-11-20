@@ -1,0 +1,29 @@
+# Offline Effect Studio implementation — 2026-11-17
+
+Scope: replica of the current Effect Library / Artwork Config workflow. Only the isolated prototype and handover notes changed. Runtime Lua, approved media, shipped bakes and the installed addon were not changed; account files were never accessed. Other work in the shared checkout continued independently.
+
+## Data and authoring
+
+`studio-data.cjs` loads the shipped TOC modules with the existing test mock in a fresh Fengari VM. It normalizes all nine class banks and resource slots, then calls the addon's own studio-state/export functions. These are default definitions, not personal settings. The full Forever catalogue and presets come from `EffectCatalog.lua`. `/api/model` validates allowed IDs and placeholder bounds, describes actual local sequences and lazily registers M2/SKIN/BLP/animation dependencies. Asset bytes stay in a bounded128MiB RAM cache. Routes remain loopback-only, Host/Origin checked and GET-only.
+
+`studio-state.js` owns per-crest drafts, stable layer/spell IDs, order, bindings and session checkpoints. The UI has two top tabs and Placement/Playback sub-tabs, layer and spell panels, actual artwork entries, preview controls, numeric/range edits and direct preview dragging. All DOM text comes through textContent, not HTML injection. Bake exports include only the existing version-2 schema and pass the authoritative compiler for all29 shipped crest slots. Session saving is deliberately RAM-only, matching the in-game studio. Copy/Download is required to retain work after closing the browser.
+
+Signals are explicit offline simulations. Success/pulse are timed; cast/channel/buff/proc are started and stopped by the test control. The real binding kind/name/durations are exported unchanged. Missile Barrage retains the shipped `buff` mapping. No game signal hooks or SavedVariables bridge was introduced. 166602 only accepts sequence0 and disables unsupported intro/outro.
+
+## Shared renderer
+
+The pinned WTL source build now exposes a registry of persistent `M2Scene` instances. It retains the upstream cull/update/draw pipeline, asynchronous asset cache and animation/material implementations. Each scene has its own native-equivalent camera and private full-stage framebuffer; native texture IDs are composited with a small premultiplied-alpha GPU quad pass. Artwork RGB is premultiplied on upload. Additive native RGB with zero alpha is retained. Desaturation and opacity apply in the compositor, without editing native shaders.
+
+Framebuffer allocation uses pool lifetime `-1`: these targets belong to persistent layers, not the upstream short-lived screenshot pool. Reorder, placement, visibility and binding tests reuse loaded scenes. Removing or changing crest releases scene ownership; the pipeline retains outstanding frame references until safe. Library and crest rendering use two contexts total, regardless of layer count. Capacity is32 effects plus artwork.
+
+The full12-layer Arcane case exposed a real upstream `GDeviceGL33::updateBuffers` bug. When a uniform buffer filled across multiple scene arrays, the flush loop reused the current scene's index in earlier arrays and could call an out-of-bounds virtual function. The patch now visits the lexicographic half-open range from the last upload cursor to the current cursor, and resets the index to zero for later arrays in the final flush. This fixes both missing uniforms and the observed WASM signature-mismatch trap. The patch is reproduced from the pinned upstream commit by `native/patch-source.cjs`; the compiled manifest hashes the camera, studio bridge and patch recipe. `native/map-stack.cjs` maps WASM offsets to source for diagnosis.
+
+The updated installed beta.18 changed FOV from the earlier prototype calibration. Current `projection.js` follows `2 atan(3/8)` while retaining the doubled864-unit viewport and explicit native basis. All264 installed-Lua projection comparisons pass. The standalone library uses the same FOV with its own frame-sized view. Complete-stage targets avoid a local per-effect clipping rectangle; preview borders still intentionally clip the stage.
+
+## Verification and limits
+
+The beta.18 parity pass reads crest bounds and offsets from the addon's `GetCapGeometry`. Fit uses the native stage margins, while 1:1 uses the shipped default crest size in CSS pixels. Placement previews valid whole-number edits before committing them. Escape restores the committed value, and invalid edits block navigation until corrected or cleared. Positioning a bound effect shows its main sequence directly. Test response runs through its binding, with the burst duration after the intro and a three-second main phase for sustained signals. The separate spell simulator can hold those signals until stopped.
+
+`test-studio.cjs` exercises full Arcane/Restoration loading, native pixels with artwork hidden, artwork depth movement, ID search/add, placement, motion attachment, binding, waiting-room removal,166602 repeated playback without new scenes, Save/Discard, exports through the actual compiler, class isolation, resources restrictions,5054328 Hold and32-layer capacity. The existing lab tests cover repeated sustained Hold, cold comparison, responsive projection, clipping, depth, hover and zero additional asset loads on replay. Installed payload hashes are compared before/after tests; no account files are included in that scan.
+
+All catalogue entries are available for search, but browser material support is not certified for every model. Native lighting, easing and final visual fidelity still require user comparison in game. Six-second hover and phase are preserved within the web session; no rocking is added. No particle/global-clock rewind is claimed. The explicit Reload preview control recovers from a renderer failure; it is not part of ordinary playback. No network publication, addon install or game UI automation was performed.

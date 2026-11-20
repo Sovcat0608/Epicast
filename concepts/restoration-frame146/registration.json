@@ -1,0 +1,337 @@
+[
+  {
+    "name": "Left bound feathers",
+    "x": 39,
+    "y": 446,
+    "w": 196,
+    "h": 354,
+    "sx": 16,
+    "sy": 430,
+    "sw": 249,
+    "sh": 396,
+    "casters": [
+      2,
+      4,
+      10,
+      18
+    ],
+    "contactStrength": {}
+  },
+  {
+    "name": "Right bound feathers",
+    "x": 895,
+    "y": 446,
+    "w": 190,
+    "h": 334,
+    "sx": 873,
+    "sy": 430,
+    "sw": 244,
+    "sh": 376,
+    "casters": [
+      2,
+      5,
+      11,
+      18
+    ],
+    "contactStrength": {
+      "Boughs, printed wraps, charms and treant": 0.85
+    }
+  },
+  {
+    "name": "Gabled purple backboard",
+    "x": 215,
+    "y": 92,
+    "w": 706,
+    "h": 988,
+    "sx": 195,
+    "sy": 79,
+    "sw": 754,
+    "sh": 1036,
+    "casters": [
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18
+    ],
+    "contactStrength": {}
+  },
+  {
+    "name": "Converging roots and hanging vines",
+    "x": 375,
+    "y": 930,
+    "w": 410,
+    "h": 419,
+    "sx": 352,
+    "sy": 913,
+    "sw": 465,
+    "sh": 460,
+    "casters": [
+      4,
+      5,
+      6,
+      7,
+      18
+    ],
+    "contactStrength": {}
+  },
+  {
+    "name": "Left split slats",
+    "x": 125,
+    "y": 784,
+    "w": 325,
+    "h": 144,
+    "sx": 108,
+    "sy": 772,
+    "sw": 371,
+    "sh": 193,
+    "casters": [
+      6,
+      16,
+      18
+    ],
+    "contactStrength": {}
+  },
+  {
+    "name": "Right split slats",
+    "x": 680,
+    "y": 784,
+    "w": 325,
+    "h": 147,
+    "sx": 658,
+    "sy": 772,
+    "sw": 371,
+    "sh": 197,
+    "casters": [
+      7,
+      16,
+      17,
+      18
+    ],
+    "contactStrength": {}
+  },
+  {
+    "name": "Left cheek foliage",
+    "x": 294,
+    "y": 873,
+    "w": 237,
+    "h": 387,
+    "sx": 273,
+    "sy": 862,
+    "sw": 285,
+    "sh": 432,
+    "casters": [
+      16,
+      18
+    ],
+    "contactStrength": {}
+  },
+  {
+    "name": "Right cheek foliage",
+    "x": 622,
+    "y": 875,
+    "w": 221,
+    "h": 337,
+    "sx": 602,
+    "sy": 863,
+    "sw": 270,
+    "sh": 385,
+    "casters": [
+      16,
+      18
+    ],
+    "contactStrength": {}
+  },
+  {
+    "name": "Left autumn crown",
+    "x": 96,
+    "y": 17,
+    "w": 367,
+    "h": 329,
+    "sx": 76,
+    "sy": 5,
+    "sw": 415,
+    "sh": 377,
+    "casters": [
+      10,
+      12,
+      18
+    ],
+    "contactStrength": {}
+  },
+  {
+    "name": "Right green crown",
+    "x": 673,
+    "y": 45,
+    "w": 315,
+    "h": 301,
+    "sx": 659,
+    "sy": 33,
+    "sw": 356,
+    "sh": 349,
+    "casters": [
+      11,
+      13,
+      14,
+      18
+    ],
+    "contactStrength": {}
+  },
+  {
+    "name": "Left green shoulder",
+    "x": 28,
+    "y": 248,
+    "w": 272,
+    "h": 296,
+    "sx": 8,
+    "sy": 237,
+    "sw": 321,
+    "sh": 335,
+    "casters": [
+      12,
+      18
+    ],
+    "contactStrength": {}
+  },
+  {
+    "name": "Right autumn shoulder",
+    "x": 883,
+    "y": 309,
+    "w": 198,
+    "h": 201,
+    "sx": 863,
+    "sy": 300,
+    "sw": 245,
+    "sh": 237,
+    "casters": [
+      13,
+      18
+    ],
+    "contactStrength": {}
+  },
+  {
+    "name": "Left inner crown",
+    "x": 299,
+    "y": 284,
+    "w": 172,
+    "h": 169,
+    "sx": 281,
+    "sy": 273,
+    "sw": 219,
+    "sh": 206,
+    "casters": [
+      14,
+      15,
+      18
+    ],
+    "contactStrength": {
+      "Boughs, printed wraps, charms and treant": 0.65
+    }
+  },
+  {
+    "name": "Right inner crown",
+    "x": 661,
+    "y": 281,
+    "w": 176,
+    "h": 172,
+    "sx": 641,
+    "sy": 271,
+    "sw": 222,
+    "sh": 209,
+    "casters": [
+      14,
+      15,
+      18
+    ],
+    "contactStrength": {
+      "Boughs, printed wraps, charms and treant": 0.7
+    }
+  },
+  {
+    "name": "Ivory crown glyph",
+    "x": 509,
+    "y": 198,
+    "w": 122,
+    "h": 109,
+    "sx": 499,
+    "sy": 194,
+    "sw": 146,
+    "sh": 132,
+    "casters": [
+      18
+    ],
+    "contactStrength": {}
+  },
+  {
+    "name": "Rejuvenation leaf",
+    "x": 453,
+    "y": 410,
+    "w": 230,
+    "h": 287,
+    "sx": 443,
+    "sy": 405,
+    "sw": 258,
+    "sh": 320,
+    "casters": [
+      16,
+      17,
+      18
+    ],
+    "contactStrength": {}
+  },
+  {
+    "name": "Carved sprout fork",
+    "x": 382,
+    "y": 575,
+    "w": 376,
+    "h": 271,
+    "sx": 358,
+    "sy": 561,
+    "sw": 433,
+    "sh": 320,
+    "casters": [
+      17,
+      18
+    ],
+    "contactStrength": {}
+  },
+  {
+    "name": "Forehead shoot",
+    "x": 533,
+    "y": 725,
+    "w": 153,
+    "h": 85,
+    "sx": 524,
+    "sy": 716,
+    "sw": 177,
+    "sh": 120,
+    "casters": [
+      18
+    ],
+    "contactStrength": {}
+  },
+  {
+    "name": "Boughs, printed wraps, charms and treant",
+    "x": 164,
+    "y": 150,
+    "w": 817,
+    "h": 963,
+    "sx": 132,
+    "sy": 131,
+    "sw": 895,
+    "sh": 1064,
+    "casters": [],
+    "contactStrength": {}
+  }
+]

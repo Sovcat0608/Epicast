@@ -1,0 +1,23 @@
+Use case: stylized-concept.
+Asset: Groveheart restoration Druid crest, artwork-only review v3 for a Warcraft addon. Generate exactly ONE complete, front-facing ornament on genuine transparent alpha.
+
+Primary request: Reimagine the right-hand Groveheart crest with much more of the ORIGINAL WARCRAFT CREST architecture in image 1: heavy tangled roots, aged IVORY HORNS with darker tips, substantial carved wood panels, mossy grey stone, a compact shield body and hanging carved medallions. The restoration spells should be OBVIOUS, recognizable magical symbols grouped into this crest, only naturalized enough to belong to its materials. Do not disguise all of them as ordinary foliage.
+
+Reference roles:
+Image 1 is the strongest composition, silhouette and Warcraft design reference. Restore its broad horned shoulders, chunky stepped wooden side wings, root-bound central stone, three round lower pendants and tapered leaf/root skirt. Its grey checkerboard is NOT part of the artwork and must not appear.
+Images 2–5 are the exact spell appearance references: Rejuvenation, Regrowth, Healing Touch, Swiftmend. Reproduce their distinctive symbol silhouettes and colours as painted magical inlays/talismans; omit icon squares, UI borders and corner numbers. The fifth spell, Wild Growth, is the bright green branching-tree/trunk silhouette with upward-fanning roots/branches from the user's icon.
+
+Design and grouping:
+A compact, near-bilaterally-symmetrical, weighty Warcraft druid crest. Paired upward-curving ivory antler horns grow from root-wrapped shoulders, with moss and broad leaves at their bases. Sculpted, stepped walnut/brown wooden wing panels flank a mossy purple-grey stone shield. Strong root knots bind the assembly; occasional bronze fittings and the three round carved wood/bronze pendants retain Groveheart's identity. Make stone, ivory and carved wood unmistakably different materials. Keep green foliage subordinate to these heavier forms.
+
+Arrange the five spell symbols in an intentional, legible hierarchy:
+1. CENTRAL FOCAL INLAY: Healing Touch's vivid jade leaf and pale cyan-white halo, clearly resembling its icon, inset into a broad carved stone recess.
+2. MATCHING SHOULDER PANELS: a matched pair of relief/inlay sockets within the carved wooden side wings. LEFT Rejuvenation: the recognizable pale green-white open hand/palm silhouette with vivid violet-magenta radiating spell energy. RIGHT Regrowth: the corresponding pale green-white open hand/palm silhouette with lime/emerald radiating spell energy. Keep these two balanced and visibly related, not replaced by leaf veins.
+3. UPPER KEYSTONE: Wild Growth's upward-fanning luminous green tree glyph engraved in mossy stone, rooted visually into the wooden crown.
+4. LOWER CENTRE PENDANT: Swiftmend's compact pale pink-white burst/blossom with cyan-blue outer rays, a distinct magical emblem in the middle round talisman. The other two round pendants carry quieter carved druidic relief.
+
+Each spell emblem is unmistakably present and separable at a glance, anchored into a real part of the crest with carved rims and reflected local colour. No detached spell icons, floating hands, rectangular UI buttons, or busy rainbow aura. No large central crescent competing with the healing leaf. Restrained glow preserves hand/leaf/tree/star shapes.
+
+Style: confidently WARCRAFT hand-painted fantasy equipment/UI art. Stout exaggerated forms, chunky ivory horn volumes, deep shadowed root crevices, broad carved wood facets, softly worn stone and controlled bevel highlights. High-fidelity sculpted painterly illustration: smooth continuous value transitions across broad forms, clean antialiased contours, clear material separation and purposeful grouped detail. Selective larger cracks and wear; no granular microtexture, dithering, crunchy sharpening, noisy tiny filigree, photorealism, plastic CGI, delicate art-nouveau ornament or airy botanical tree sculpture.
+
+Output: single centred crest, portrait 3:4 canvas, complete silhouette and generous transparent margin around both horns, all side wings and the taper. Genuine transparent background including intended gaps; no baked checkerboard, scenery, ground, shadow, labels, text, numbers, watermarks or second sister. Preserve actual paint detail and coherent large forms for small UI readability.

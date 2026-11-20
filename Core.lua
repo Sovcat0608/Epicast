@@ -1,4 +1,5 @@
 local addonName,E=...
+local defaultDeveloperMode=true
 E.instances={spells={},resources={}};E.editorSet="spells";E.editorSide=nil
 function E.GetEntry(group,key,class)
  return E.instances[group][group=="spells"and((class or E.ActiveClass())..":"..key)or key]
@@ -35,7 +36,9 @@ end
 local function editing()return E.panel and E.panel:IsShown()and E.draft and not InCombatLockdown()end
 local function dragging()return editing()and E.CanDragCrests()end
 local function create(setKey,side,class)
- local frame=CreateFrame("Frame",nil,UIParent);frame:SetFrameStrata("BACKGROUND");frame:SetFrameLevel(10);frame:Hide()
+ local frame=CreateFrame("Frame",nil,UIParent)
+ -- Above the action bars, with the artwork and effects inheriting this strata.
+ frame:SetFrameStrata("HIGH");frame:SetFrameLevel(10);frame:EnableMouse(false);frame:Hide()
  local entry={frame=frame,side=side,setKey=setKey,class=class,alpha=1};entry.art=frame:CreateTexture(nil,"ARTWORK");entry.art:SetAlpha(0)
  local handle=CreateFrame("Button",nil,frame,"BackdropTemplate");entry.handle=handle;handle:SetAllPoints();handle:SetFrameStrata("DIALOG");handle:SetFrameLevel(80)
  handle:SetBackdrop({edgeFile="Interface\\Buttons\\WHITE8X8",edgeSize=1});handle:SetBackdropBorderColor(.6,.4,1,.7);handle:EnableMouse(true);handle:RegisterForDrag("LeftButton");handle:Hide()
@@ -85,16 +88,43 @@ function E.Apply()
   E.StopEffects(entry);entry.frame:Hide();entry.handle:Hide();entry.handle:SetScript("OnUpdate",nil)
  end end end
  E.UpdateBlizzardVisibility();E.pending=false
+ if E.RefreshStudioPreview then E.RefreshStudioPreview()end
+end
+local launcher
+local function createLauncher()
+ if launcher or not Minimap then return end
+ launcher=CreateFrame("Button","EpicastMinimapButton",Minimap)
+ launcher:SetSize(31,31)
+ launcher:SetPoint("CENTER",Minimap,"LEFT",1,-24)
+ launcher:SetFrameStrata("MEDIUM")
+ launcher:SetFrameLevel(Minimap:GetFrameLevel()+8)
+ launcher:RegisterForClicks("LeftButtonUp")
+
+ local icon=launcher:CreateTexture(nil,"ARTWORK")
+ icon:SetTexture("Interface\\AddOns\\Epicast\\Media\\EpicastIcon")
+ icon:SetSize(23,23)
+ icon:SetPoint("CENTER")
+ launcher:SetHighlightTexture("Interface\\Minimap\\UI-Minimap-ZoomButton-Highlight","ADD")
+ launcher:SetScript("OnClick",function()E.OpenOptions()end)
+ launcher:SetScript("OnEnter",function(self)
+  GameTooltip:SetOwner(self,"ANCHOR_LEFT")
+  GameTooltip:AddLine("Epicast")
+  GameTooltip:AddLine("Click to open options",1,1,1)
+  GameTooltip:Show()
+ end)
+ launcher:SetScript("OnLeave",function(self)if GameTooltip:IsOwned(self)then GameTooltip:Hide()end end)
 end
 local events=CreateFrame("Frame")
 for _,event in ipairs({"ADDON_LOADED","PLAYER_ENTERING_WORLD","PLAYER_REGEN_ENABLED","PLAYER_REGEN_DISABLED","UI_SCALE_CHANGED","DISPLAY_SIZE_CHANGED","PLAYER_SPECIALIZATION_CHANGED"})do events:RegisterEvent(event)end
 events:SetScript("OnEvent",function(_,event,name)
  if event=="ADDON_LOADED"and name==addonName then
   if type(EpicastDB)=="table"and type(EpicastDB.version)=="number"and EpicastDB.version>E.schemaVersion then E.Message("Saved settings are from a newer Epicast. This build is inactive.");return end
-  EpicastDB=E.Normalize(EpicastDB);E.ready=true;E.Apply()
+  EpicastDB=E.Normalize(EpicastDB);E.devMode=defaultDeveloperMode;E.ready=true;E.Apply()
+  createLauncher()
   local bank=E.ClassBank(EpicastDB)
   if bank and not bank.configured then E.setupPending=true;C_Timer.After(0,function()if E.setupPending then E.OpenOptions()end end)end
  elseif E.ready then
+  if event=="PLAYER_ENTERING_WORLD"then createLauncher()end
   if event=="PLAYER_REGEN_DISABLED"then for _,entries in pairs(E.instances)do for _,entry in pairs(entries)do entry.handle:Hide();entry.handle:SetScript("OnUpdate",nil)end end
   else E.Schedule();if E.setupPending then E.OpenOptions()end end
   if E.panel and E.panel:IsShown()then E.RefreshOptions()end

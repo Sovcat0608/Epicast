@@ -6,6 +6,7 @@ local function equal(a,b)
 end
 local function near(a,b)assert(math.abs(a-b)<.00001,tostring(a)..' ~= '..tostring(b))end
 EpicastDB=nil;Mock.event('ADDON_LOADED','Epicast');Mock.advance(0)
+E.SetDeveloperMode(false)
 local p=E.panel
 local function typeValue(key,text)
  local input=p.inputs[key];assert(input:IsVisible(),'Typing into hidden input')
@@ -52,7 +53,10 @@ print('PASS: first-use multi-selection, pure navigation, selection/visibility se
 enter('x','-8001');assert(current().x==-8000)
 enter('x','8001');assert(current().x==8000)
 enter('size','999');assert(current().size==400)
-enter('size','0');assert(current().size==25)
+enter('size','0');assert(current().size==5)
+p.sliders.size:SetValue(6);p.sliders.size.control.Back:Click()
+assert(current().size==5);p.save:Click()
+assert(EpicastDB.content.classes.MAGE.slots.fire.size==5)
 enter('x','-413.5');local x=current().x
 for _,invalid in ipairs({'','-','abc','1e999'})do enter('x',invalid);near(current().x,x);assert(p.inputNotice:GetText():find('valid number',1,true))end
 typeValue('x','777'):emit('OnEscapePressed');near(current().x,x);near(tonumber(p.inputs.x:GetText()),x)
@@ -73,6 +77,7 @@ print('PASS: exact signed/decimal input, bounds, invalid values, Escape/focus/Ta
 
 -- Main navigation controls placement handles, not runtime crest visibility.
 local entry=E.GetEntry('spells','fire');assert(entry.handle:IsVisible())
+assert(entry.frame.SetFrameStrataArgs[1]=='HIGH' and entry.frame.EnableMouseArgs[1]==false)
 p.detailTabs.behavior:Click();assert(not entry.handle:IsShown()and entry.frame:IsVisible())
 p.motion:Click();assert(not current().effects and p.responses:GetText():find('currently off',1,true));p.motion:Click()
 p.mainTabs.settings:Click();assert(not entry.handle:IsShown()and entry.frame:IsVisible())
@@ -118,19 +123,24 @@ local function descendant(frame,ancestor)
 end
 local function bounds(frame)
  if frame==p then return 0,0,frame.width,frame.height end
- if frame.point and type(frame.point[2])=='table'then
-  local point=frame.point;assert(point[1]=='TOPLEFT'and point[3]=='TOPRIGHT','Unexpected relative anchor')
-  local x,y,w=bounds(point[2]);return x+w+point[4],y-point[5],frame.width,frame.height
+ local function offset(anchor,width,height)
+  local x=anchor:find('LEFT')and 0 or anchor:find('RIGHT')and width or width/2
+  local y=anchor:find('TOP')and 0 or anchor:find('BOTTOM')and height or height/2
+  return x,y
  end
- local x,y=bounds(frame.parent);local point=frame.point or{'TOPLEFT',0,0}
- assert(point[1]=='TOPLEFT','Unexpected interactive anchor')
- return x+(point[2]or 0),y-(point[3]or 0),frame.width,frame.height
+ local point=frame.point or{'TOPLEFT',0,0};local relative=type(point[2])=='table'
+ local x,y,width,height=bounds(relative and point[2] or frame.parent)
+ local ax,ay=offset(relative and point[3] or point[1],width,height)
+ local bx,by=offset(point[1],frame.width,frame.height)
+ local dx,dy=point[2],point[3]
+ if relative then dx,dy=point[4],point[5]end
+ return x+ax-bx+(dx or 0),y+ay-by-(dy or 0),frame.width,frame.height
 end
 local function checkLayout()
  assert(p.save:IsVisible()and p.cancel:IsVisible()and p.close:IsVisible())
  local widgets={}
  for _,frame in ipairs(Mock.frames)do
-  if descendant(frame,p)and frame:IsVisible()and frame.point and(frame.kind=='Button'or frame.kind=='CheckButton'or frame.kind=='EditBox')then
+  if descendant(frame,p)and frame:IsVisible()and frame.point and(frame.kind=='Button'or frame.kind=='CheckButton'or frame.kind=='EditBox'or frame.kind=='Slider')then
    local x,y,w,h=bounds(frame);assert(x>=0 and y>=0 and x+w<=p.width and y+h<=p.height,'Control escapes panel: '..frame:GetText())
    for _,other in ipairs(widgets)do local a,b,c,d=bounds(other)
     assert(x+w<=a or a+c<=x or y+h<=b or b+d<=y,'Overlapping hit areas: '..frame:GetText()..' / '..other:GetText())

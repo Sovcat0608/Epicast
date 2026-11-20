@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Epicast · Feather animation</title>
+<style>
+:root{color-scheme:dark;font-family:"Segoe UI",sans-serif;color:#f3ecdc;background:#141914}
+*{box-sizing:border-box}body{margin:0;min-height:100vh;display:flex;flex-direction:column}
+header,footer{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:18px 28px}
+header{border-bottom:1px solid #3a4036}h1{font-family:Georgia,serif;font-size:22px;font-weight:normal;margin:0}
+header span,footer span{font-size:13px;color:#c2c5b9}
+main{flex:1;display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:1px;background:#394034}
+figure{margin:0;display:flex;flex-direction:column;min-width:0;background:#212720}
+figcaption a{color:inherit;margin-inline-start:12px}
+figcaption{padding:14px 20px;color:#d2d8c9;font-size:13px}
+.stage{flex:1;display:grid;place-items:center;min-height:0;background:radial-gradient(ellipse,#394239 0,#232b24 68%,#20261f 100%)}
+canvas{display:block;max-width:100%;object-fit:contain}#crest{height:min(66vh,560px);width:auto}
+#crest.actual{width:var(--ui-width,162px);height:auto}#detail{width:min(100%,420px);height:auto;max-height:66vh}
+footer{flex-wrap:wrap;border-top:1px solid #3a4036}fieldset{border:0;margin:0;padding:0;display:flex;gap:8px;flex-wrap:wrap}
+button{border:1px solid #67735e;color:#e9eee4;background:#292f29;border-radius:5px;font:inherit;font-size:14px;padding:8px 16px;cursor:pointer}
+.channel-duration{display:flex;align-items:center;gap:6px;font-size:13px;color:#d2d8c9}
+.channel-duration input{width:4.5rem;background:#171c17;color:inherit;border:1px solid #67735e;border-radius:4px;padding:5px}
+button:hover,button:focus-visible{background:#424d3c}button[aria-pressed=true]{background:#dae5c7;color:#1f2b1b}
+@media(max-width:650px){header,footer{padding:12px}main{grid-template-columns:1.3fr 1fr}figure figcaption{padding:8px}#crest{height:auto;width:100%}#crest.actual{width:min(162px,100%)}}
+</style>
+<header><h1>Restoration · Crown and feathers</h1><fieldset aria-label="Feather animation state"><button id="idle" aria-pressed="false" disabled>Idle</button><button id="channel" aria-pressed="false" disabled>Channel</button><button id="impact" disabled>Play impact</button><label class="channel-duration">Channel duration (s) <input id="channel-duration" type="number" inputmode="decimal" min="0.1" step="any" value="3" disabled></label></fieldset></header>
+<main>
+<figure><figcaption>Assembled crest</figcaption><div class="stage"><canvas id="crest" aria-label="Restoration crest with moving crown leaves and feathers"></canvas></div></figure>
+<figure><figcaption><label>Detail <select id="focus"><option value="crown">Full crown</option><option value="feather">Right feathers</option></select></label><a href="crown-ludo/shoulder-comparison.webp">Compare shoulder frames</a></figcaption><div class="stage"><canvas id="detail" width="515" height="552" aria-label="Enlarged attachment detail"></canvas></div></figure>
+</main>
+<footer><fieldset aria-label="Preview controls">
+<button id="toggle" disabled>Pause</button><button id="rest" aria-pressed="false" disabled>Static reference</button><button id="scale" aria-pressed="false">UI size</button>
+<button id="show-cheeks" type="button">Show cheek leaves</button>
+</fieldset><span id="status" role="status">Loading crest…</span></footer>
+<script src="tracks.js"></script>
+<script src="channel.js"></script>
+<script src="impact.js"></script>
+<script src="crown/idle.js?v=krita"></script>
+<script src="crown-preview.js?v=channel-cache"></script>
+<script src="shoulder-study/breeze/track.js"></script>
+<script src="shoulder-study/ignis-keyframes/track.js"></script>
+<script src="shoulder-study/griffin/track.js"></script>
+<script src="shoulder-study/griffin-benchmark/track.js"></script>
+<script src="shoulder-study/griffin-broad/track.js"></script>
+<script src="shoulder-study/griffin-delay/track.js"></script>
+<script src="shoulder-study/griffin-quiet/track.js"></script>
+<script src="shoulder-study/right-bend/track.js"></script>
+<script src="crown-ludo/autumn-track.js"></script>
+<script src="shoulder-study/solo.js?v=channel-cache"></script>
+<script src="treant-study/track.js"></script>
+<script src="treant-study/impact/track.js"></script>
+<script src="treant-study/rigid-jaw/track.js?v=treant-rigid-jaw"></script>
+<script src="treant-study/rest-preview.js?v=treant-wood-contact"></script>
+<script src="right-crown-study/spine-bend/track.js"></script>
+<script src="crest-motion-batch/track.js"></script>
+<script src="inner-leaf-study/track.js"></script>
+<script src="fabric-flag-study/track.js"></script>
+<script src="fabric-flag-study/channel-track.js"></script>
+<script src="fabric-flag-study/impact-track.js?v=reverse-tip"></script>
+<script src="leaf-channel-study/track.js?v=leaf-speed-3"></script>
+<script src="leaf-impact-study/track.js?v=leaf-impact-3"></script>
+<script src="leaf-wan-refinement/preview/tracks.js?v=shoulder-strong-bend"></script>
+<script src="wood-channel-study/track.js?v=full-etch"></script>
+<script src="wood-channel-study/preview.js?v=treant-wood-contact"></script>
+<script src="channel-playback.js?v=paired-light"></script>
+<script src="resto-motion-refinement/preview/tracks.js?v=motion-review-1"></script>
+<script src="resto-motion-refinement/preview/crown/tracks.js?v=shoulder-strong-bend"></script>
+<script src="resto-motion-refinement/preview.js?v=channel-cache"></script>
+<script src="crown-symbol/track.js?v=floating-crown"></script>
+<script src="crown-symbol/preview.js?v=floating-crown-2"></script>
+<script src="preview.js?v=treant-wood-contact"></script></html>

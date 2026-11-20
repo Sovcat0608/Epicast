@@ -1,0 +1,1 @@
+const treantImpact = {"slot": [374, 769, 396, 390], "frames": 12, "columns": 4, "frameMs": 83.33333333333333, "sheet": "treant-study/impact/treant-impact-scene.webp", "coverage": "treant-study/impact/treant-impact-coverage.webp", "period": 1000, "durations": [83, 84, 83, 83, 84, 83, 83, 84, 83, 83, 84, 83], "fps": 12, "mix": [1, 1, 1, 1, 1, 1, 0.96, 0.86, 0.68, 0.45, 0.2, 0]};

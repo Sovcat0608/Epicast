@@ -1,0 +1,1 @@
+const griffinBenchmarkStudy = {"slot": [-24, 196, 376, 400], "frames": [4, 4, 3, 3, 2, 2, 1, 0, 0, 0, 1, 1, 2, 2, 3, 4], "frameMs": 125, "columns": 6, "sheet": "shoulder-study/griffin-benchmark/scene.webp", "pairedSheet": "shoulder-study/griffin-benchmark/pairedSheet.webp"};

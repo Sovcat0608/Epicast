@@ -1,0 +1,1 @@
+const griffinShoulderStudy = {"slot": [-24, 196, 376, 400], "frames": [2, 2, 3, 4, 5, 1, 1, 0, 0, 1, 1, 5, 4, 3, 2, 2], "frameMs": 125, "columns": 4, "sheet": "shoulder-study/griffin/scene.webp", "pairedSheet": "shoulder-study/griffin/pairedSheet.webp"};

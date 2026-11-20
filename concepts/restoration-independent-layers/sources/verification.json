@@ -1,0 +1,220 @@
+{
+  "canvas": [
+    660,
+    880
+  ],
+  "reference_file_sha256": "6773d3a98b5ad09f00e2fe73e419890f8ff8c612205d2f90bcd48fd61798459a",
+  "png_hashes": {
+    "Static wood backdrop": "c012c1eabadc7d840ce80951898cc17420bf6ec2bc807bc6263ba396e615f8a0",
+    "Upper green leaves": "e883b21044ca9ded7a184aff0dc824ecfd05e6defde686e51506e3914e78574b",
+    "Lower ivory leaves": "e945ade11876bded5c3b4629a4b9da3763feca62fc8ed6d808889ad43e68b5aa",
+    "Purple leaves": "5f66fd59207a334aa33cf1419a18067ce363c87908a65cfb09645d972c4ccfd1",
+    "Central sprout": "ff2df5189df708dd17865ec2ece2390922ae52e1b12bf66d6e7c5e7c6eeb729a",
+    "Crown glyph": "1cdc8824ef062bbcae894592b7b4c6574b312421511dca1271ddf178a9e588cf",
+    "Static front": "2542f065b4221d8dbbb064957f93099a8ec07467ba97c4b61935a271dc8eb467"
+  },
+  "native_source_hashes": {
+    "bridges-grooved.png": "5de0de1b4c015f865babfbf1dbc8cc5a7eca37a54b6611aea16b0a71ec49dcba",
+    "bridges.png": "1227f57891a7fc3cff175bd54a8576fa7ca4df06ce2cf48824d1535e14ce6381",
+    "canopy.png": "bf4ab290312e6a88a239700ff721a88cc05c6c195caf4cb5d5d1058545efaa86",
+    "core.png": "2a6c981b62a845625ad96cb127c11e0bad0c0a42107f15890ecbaec6ce4af9df",
+    "front.png": "a1441313fa0c4b3561a3a75db0e1ae8cb2d20327b86420c8a411df0f46ca0b78",
+    "glyph.png": "4f5c0b130618eca679fd86396f14ca09403bde05132b8aaa94300e32cccf44f5",
+    "ivory.png": "b9980fd441817ff3ff6ec9fe8f8d3c7b4c505ce66cacc31db2f2145ac6f76eac",
+    "live-restoration-reference.png": "eb84e834451b8385bcf814d13d0fc47e34880867492d280c8e851be51709ee95",
+    "purple.png": "d62a81638408979e5a855b477ea23585eef689a5898a955ff694a052ea639e29",
+    "sprout.png": "0581d442690d948cf4451f0249cf5da05b6f1a4ec3f95266ff95f5931c83de72"
+  },
+  "attachment_window": {
+    "x": [
+      -8,
+      8
+    ],
+    "y": [
+      -6,
+      6
+    ],
+    "alpha_threshold": 170,
+    "checks": [
+      {
+        "group": "canopy",
+        "whole_piece": 1,
+        "attachment_xy": [
+          233,
+          158
+        ],
+        "minimum_front_alpha": 252
+      },
+      {
+        "group": "canopy",
+        "whole_piece": 2,
+        "attachment_xy": [
+          444,
+          159
+        ],
+        "minimum_front_alpha": 252
+      },
+      {
+        "group": "canopy",
+        "whole_piece": 3,
+        "attachment_xy": [
+          178,
+          182
+        ],
+        "minimum_front_alpha": 252
+      },
+      {
+        "group": "canopy",
+        "whole_piece": 4,
+        "attachment_xy": [
+          496,
+          181
+        ],
+        "minimum_front_alpha": 252
+      },
+      {
+        "group": "canopy",
+        "whole_piece": 5,
+        "attachment_xy": [
+          167,
+          172
+        ],
+        "minimum_front_alpha": 252
+      },
+      {
+        "group": "canopy",
+        "whole_piece": 6,
+        "attachment_xy": [
+          519,
+          175
+        ],
+        "minimum_front_alpha": 252
+      },
+      {
+        "group": "canopy",
+        "whole_piece": 7,
+        "attachment_xy": [
+          336,
+          459
+        ],
+        "minimum_front_alpha": 252
+      },
+      {
+        "group": "canopy",
+        "whole_piece": 8,
+        "attachment_xy": [
+          351,
+          463
+        ],
+        "minimum_front_alpha": 250
+      },
+      {
+        "group": "purple",
+        "whole_piece": 1,
+        "attachment_xy": [
+          190,
+          355
+        ],
+        "minimum_front_alpha": 252
+      },
+      {
+        "group": "purple",
+        "whole_piece": 2,
+        "attachment_xy": [
+          351,
+          596
+        ],
+        "minimum_front_alpha": 252
+      },
+      {
+        "group": "purple",
+        "whole_piece": 3,
+        "attachment_xy": [
+          494,
+          351
+        ],
+        "minimum_front_alpha": 252
+      },
+      {
+        "group": "ivory",
+        "whole_piece": 1,
+        "attachment_xy": [
+          193,
+          362
+        ],
+        "minimum_front_alpha": 252
+      },
+      {
+        "group": "ivory",
+        "whole_piece": 2,
+        "attachment_xy": [
+          502,
+          357
+        ],
+        "minimum_front_alpha": 252
+      },
+      {
+        "group": "sprout",
+        "whole_piece": 1,
+        "attachment_xy": [
+          343,
+          402
+        ],
+        "minimum_front_alpha": 253
+      }
+    ]
+  },
+  "offset_A": {
+    "canopy": [
+      -8,
+      -6
+    ],
+    "purple": [
+      8,
+      -6
+    ],
+    "ivory": [
+      -7,
+      6
+    ],
+    "sprout": [
+      6,
+      5
+    ],
+    "glyph": [
+      0,
+      -3
+    ]
+  },
+  "offset_B": {
+    "canopy": [
+      8,
+      6
+    ],
+    "purple": [
+      -8,
+      6
+    ],
+    "ivory": [
+      7,
+      -6
+    ],
+    "sprout": [
+      -6,
+      -5
+    ],
+    "glyph": [
+      0,
+      3
+    ]
+  },
+  "all_7_solo_clean": true,
+  "receiver_alpha_unchanged_across_all_3_poses": true,
+  "svg_paint_roundtrip": "identical",
+  "native_Figma_visual_review": "pending",
+  "independent_svg_raster_max_premultiplied_channel_delta": 2,
+  "native_figma_builder_local_structure": {
+    "component_sources": 7,
+    "linked_caster_receiver_pairs": 21
+  }
+}

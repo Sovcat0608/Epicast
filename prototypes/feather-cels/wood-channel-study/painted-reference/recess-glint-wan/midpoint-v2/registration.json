@@ -1,0 +1,59 @@
+{
+  "midpoint_sha256": "213f93da9e1f5af0778bff9e025a2fcf267e08d64166d8a803ff2d4bd4886eca",
+  "sprites": [
+    {
+      "side": "left",
+      "source": "wood-channel-study\\left-wood.webp",
+      "source_sha256": "e2fd6de587674fe17f3dd45c454f59da2363ef3fb9c7ec88a43e07c794f20428",
+      "live_glow": "wood-channel-study\\painted-reference\\recess-glint-wan\\left-glint.png",
+      "live_glow_sha256": "6742c967cc87583cd3351095efa751c69fa1aafbf31cac255263ae875194c625",
+      "midpoint_sha256": "18ebbea89feac55c5ff08ce0094bf2fad3c78d50cb207487dbdd7c024749ab95",
+      "canvas": [
+        325,
+        144
+      ],
+      "affected_native_pixels": 1088,
+      "first_pose": [
+        125,
+        784
+      ],
+      "held_pose": [
+        97,
+        784
+      ],
+      "wan_box": [
+        27,
+        38,
+        650,
+        288
+      ]
+    },
+    {
+      "side": "right",
+      "source": "wood-channel-study\\right-wood.webp",
+      "source_sha256": "1f2d4b5b6ffdd789bfc1bf4a93478a955c4402162e9819b72679bc578f0af76d",
+      "live_glow": "wood-channel-study\\painted-reference\\recess-glint-wan\\right-glint.png",
+      "live_glow_sha256": "9b2b1baf6fec9397965c5b3eae7c9b80f58dbbe3391b9fbc40b36d4b50fe79e8",
+      "midpoint_sha256": "6fb34eee539a6bcfe966f9658dc683c84941237f24173bfcae8a67949e5b0e65",
+      "canvas": [
+        325,
+        147
+      ],
+      "affected_native_pixels": 1224,
+      "first_pose": [
+        680,
+        784
+      ],
+      "held_pose": [
+        708,
+        784
+      ],
+      "wan_box": [
+        27,
+        370,
+        650,
+        294
+      ]
+    }
+  ]
+}

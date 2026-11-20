@@ -3,10 +3,27 @@ local _,E=...
 -- may override them. Developer edits live only in RAM while the editor is open.
 local baked={}
 function E.GetCrestBakeKey(c)return E.CrestOwners[c]end
+local function upgradeArtwork(studio)
+ for id,bindings in pairs(studio.artworkBindings or {})do
+  if bindings[1] and bindings[1].kind then
+   local grouped,bySpell={},{}
+   for _,binding in ipairs(bindings)do
+    local key=binding.spell:lower()
+    local link=bySpell[key]
+    if not link then
+     link={spell=binding.spell,mappings={}};bySpell[key]=link;grouped[#grouped+1]=link
+    end
+    local kinds=binding.kind=="channel" and {"cast","channel"} or {"success"}
+    for _,kind in ipairs(kinds)do link.mappings[#link.mappings+1]={state=binding.kind,kind=kind}end
+   end
+   studio.artworkBindings[id]=grouped
+  end
+ end
+end
 local function definition(c)
  local key=E.GetCrestBakeKey(c);if not key then return{}end
  if not baked[key]then
-  local rows=E.CrestBakes[key]
+  local data=E.CrestBakes[key];local rows=data and(data.effects or data)
   if not rows then
    if c.role=="resources"then local glow=E.Copy(E.AddedEffectDefaults.arcaneScroll[1]);glow.trailOpacity=35;rows={glow}
    else rows=E.AddedEffectDefaults[c.art]or{}end
@@ -15,14 +32,17 @@ local function definition(c)
   for i=1,math.min(#rows,E.AddedEffectLimit)do
    local r=E.NormalizeAddedEffect(rows[i])
    if r then
-    if c.role=="resources"then r.behavior="static";r.binding=nil end
-    if key=="MAGE:arcane"and r.binding then
-     local b=r.binding;local id=tonumber(b.spell)
-     if(b.kind=="proc"or b.kind=="buff")and(id==400588 or id==400589 or b.spell:lower()=="missile barrage")then b.kind="buff";if id then b.spell="400589"end end
+    if c.role=="resources"then r.behavior="static";r.binding=nil;r.bindings=nil end
+    if key=="MAGE:arcane"then
+     for _,b in ipairs(r.bindings or {r.binding})do
+      local id=tonumber(b.spell)
+      if(b.kind=="proc"or b.kind=="buff")and(id==400588 or id==400589 or b.spell:lower()=="missile barrage")then b.kind="buff";if id then b.spell="400589"end end
+     end
     end
     result[#result+1]=r
    end
   end
+  if data and data.studio then result.studio=E.Copy(data.studio);upgradeArtwork(result.studio)end
   baked[key]=result
  end
  return baked[key]
@@ -57,15 +77,21 @@ local function json(v,array)
  if type(v)=="number"then return string.format("%.17g",v)end
  if type(v)~="table"then return tostring(v)end
  local parts={}
- if array then for _,row in ipairs(v)do parts[#parts+1]=json(row)end;return'['..table.concat(parts,',')..']'end
+ if array or #v>0 then for _,row in ipairs(v)do parts[#parts+1]=json(row)end;return'['..table.concat(parts,',')..']'end
  local keys={};for k in pairs(v)do keys[#keys+1]=k end;table.sort(keys)
- for _,k in ipairs(keys)do parts[#parts+1]=quote(k)..':'..json(v[k])end
+ for _,k in ipairs(keys)do parts[#parts+1]=quote(k)..':'..json(v[k],k=="order"or k=="spells"or k=="mappings")end
  return'{'..table.concat(parts,',')..'}'
 end
 function E.ExportCrestBake(c)
  if not authoring()or not E.GetCrestBakeKey(c)then return end
- local rows={};for _,row in ipairs(E.GetAddedEffects(c))do rows[#rows+1]=E.NormalizeAddedEffect(row)end
- return'{"format":"epicast-crest-bake","version":1,"crest":'..quote(E.GetCrestBakeKey(c))..',"effects":'..json(rows,true)..'}'
+ local rows,hasMultiple={},false
+ for _,row in ipairs(E.GetAddedEffects(c))do
+  local normalized=E.NormalizeAddedEffect(row)
+  rows[#rows+1]=normalized;hasMultiple=hasMultiple or normalized.bindings~=nil
+ end
+ local studio=E.GetAddedEffects(c).studio
+ local version=studio and studio.artworkBindings and 5 or hasMultiple and 3 or studio and 2 or 1
+ return'{"format":"epicast-crest-bake","version":'..version..',"crest":'..quote(E.GetCrestBakeKey(c))..',"effects":'..json(rows,true)..(studio and(',"studio":'..json(studio))or'')..'}'
 end
 function E.ShowCrestBakeExport()
  if InCombatLockdown()then return end

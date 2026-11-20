@@ -1,0 +1,21 @@
+Use case: stylized-concept.
+Asset: one transparent portrait PNG of Groveheart, the RIGHT-HAND restoration Druid sister ornament for Epicast, a Warcraft addon. Artwork review iteration v2.
+
+Primary request: Fully repaint Groveheart with naturally integrated restoration spell appearances, while strongly preserving its SOLID CREST / SHIELD structure and Warcraft visual language.
+
+Reference roles: Image 1 is the approved sister pair. Use ONLY THE RIGHT-HAND GROVEHEART as the primary composition, silhouette, materials and painting-style reference. Do not output its left sister. Images 2, 3, 4 and 5 are Rejuvenation, Regrowth, Healing Touch and Swiftmend spell-appearance references respectively; borrow their distinctive shapes and colour relationships, never their square borders, corner numbers or UI framing. Wild Growth is the fifth spell motif: a luminous green trunk spreading upwards into multiple green branches.
+
+Structure is the highest priority: a compact, substantial, front-facing, rounded oval druidic CREST with a visible thick antique-bronze perimeter, a solid deep-violet inset backing, a heavy interwoven oak-root wreath, two branching antler-like crown arms, broad layered green/violet foliage, three round bronze pendant medallions across its lower face and a short braided-root taper. Match the right crest's proportions and visual weight. Keep the bronze rim and solid shield backing clearly readable. This is a Warcraft equipment/UI emblem, not a freestanding tree illustration or an airy botanical sculpture. Repaint the whole crest, retaining this architecture.
+
+Weave the five spell appearances into the physical crest:
+- Healing Touch: the central sprout becomes a sculpted jade healing leaf / paired-leaf heart, held in the original chunky bronze cradle, softly edged in pale cyan-white light.
+- Rejuvenation: several broad violet/magenta leaves grown into one side of the wreath, with pale green-white palmate vein shapes recalling the icon.
+- Regrowth: fresh lime-green leaves and new shoots on the other side, with a concentrated pale green palmate burst at their growth point.
+- Swiftmend: a small blue-pink-white star-shaped blossom set into a woody junction of the crest. Its few stout petals and concentrated luminous centre are clear and iconic.
+- Wild Growth: emerald branching sap or carved tree relief spreading upward through the inset backing and into the wooden crown. Make the branch paths a physical part of the ornament.
+
+All motifs are grown, carved or inset into one coherent crest, with clear local regions that could later respond to spells. Preserve dominant warm oak, antique bronze, forest green and violet. Keep coloured light local and subordinate to the sculptural forms; avoid five competing glowing badges.
+
+Style: recognizably Warcraft hand-painted druid/Night Elf fantasy UI art, slightly exaggerated chunky proportions, strong dark recesses and broad illuminated planes, heavy bevelled bronze, weighty twisting wood and deliberate large leaf shapes. High-fidelity sculpted painterly fantasy UI illustration: smooth continuous shading, clean antialiased contours, controlled crisp accents, clear material separation and purposeful grouped detail. Rich but restrained emission, readable at small UI scale. Avoid granular microtexture, excessive tiny scratches/filigree, crunchy sharpening, muddy blur, plastic CGI, photorealism, delicate art-nouveau jewelry or an ethereal tree shrine.
+
+Composition: exactly one complete crest centred on a 3:4 portrait canvas, generous transparent outer padding, all crown branches and lower root taper inside the frame. Genuine transparent alpha around the ornament and through actual gaps. No scenery, ground, cast shadow, text, labels, spell numbers, square icon tiles, watermark or second sister.

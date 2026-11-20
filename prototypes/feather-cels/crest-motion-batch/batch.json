@@ -1,0 +1,47 @@
+{
+  "treant": {
+    "id": "0dfffe49e9be45e3b6817f25ad89fee0",
+    "input_sha256": "c2d80c03ef7884f7c314c6836e13335b1abacac147cba8807c20b204fb8dc66c",
+    "request": {
+      "model": "wan2.2-ti2v-5b-native",
+      "fps": 16,
+      "steps": 36,
+      "guidance": 6,
+      "size": "608x704",
+      "num_frames": 33,
+      "seed": 509025,
+      "prompt": "Orthographic front view of the exact painted wooden treant. Its heavy carved eyebrows tighten into an angrier scowl. Its luminous green eyes brighten, with small concentrated light inside the sockets. It holds its mouth wide open, taking two quick, rhythmic breaths. The wooden lower jaw moves down and back up slightly on each breath. Stable forehead attachment, fixed camera, retain the existing bark shapes, carved planes, colors and solid blue-gray background.",
+      "negative_prompt": "speech, added teeth, tongue, flashing light, eye beam, zoom, camera movement, rotation, smoke"
+    }
+  },
+  "vines": {
+    "id": "99645276271544a4a92b3dd8beff5071",
+    "input_sha256": "27f4901c791bb8aaf7f410c827f3547b6d53f855d1d243f7d7c71478dd644ef2",
+    "request": {
+      "model": "wan2.2-ti2v-5b-native",
+      "fps": 16,
+      "steps": 36,
+      "guidance": 6,
+      "size": "640x640",
+      "num_frames": 49,
+      "seed": 509026,
+      "prompt": "Locked front view of the painted ornament. Two hanging green vine tendrils sway freely in a soft cross-breeze. The left curl swings first; the right vine responds a moment later and hangs a little heavier. The existing curls ease in separate phases, with their small ends trailing the sway. The center wood and upper vine attachments remain planted exactly. Preserve the original vines, texture, shape, and solid matte background.",
+      "negative_prompt": "new vines, mirror-synchronized movement, violent wind, rotating wood, camera movement"
+    }
+  },
+  "fabric": {
+    "id": "20e84cc7e4644e009bd9c6095d13c6e4",
+    "input_sha256": "a8df9db750c9a45b8abd20e7ce2bdd212532958fc74657997de567bbac7a9790",
+    "request": {
+      "model": "wan2.2-ti2v-5b-native",
+      "fps": 16,
+      "steps": 36,
+      "guidance": 6,
+      "size": "640x544",
+      "num_frames": 49,
+      "seed": 509028,
+      "prompt": "Two stationary carved wood boughs side by side. Each is wrapped in printed purple cloth. Keep wood, the tight wrap and the painted crescent and tree perfectly fixed. Only the frayed free hem at the bottom of each thick cloth lifts and relaxes in a soft wind. Small sequential ripples cross the worn triangular ends, softly curling the tips. The cloth moves as fabric with visible folds, retaining its cut edge, paint, color and strong broad highlights, on the solid blue-gray background.",
+      "negative_prompt": "unwrapping, fabric replacement, moving symbols, stretching wood, camera movement, new banner"
+    }
+  }
+}

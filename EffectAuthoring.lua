@@ -1,10 +1,10 @@
 local _,E=...
 E.BindingKinds={{"success","Cast succeeds"},{"cast","While casting"},{"channel","While channeling"},{"pulse","Channel pulse"},{"buff","While buff active"},{"proc","While proc glows"}}
-function E.GetLayerBinding(_,row)if row.behavior=="bound"then return row.binding end end
+function E.GetLayerBinding(_,row)if row.behavior=="bound"then return row.bindings and row.bindings[1] or row.binding end end
 function E.SetLayerBehavior(c,index,behavior)
  if c.role=="resources"and behavior=="bound"then return end
  local r=E.EditAddedEffects(c)[index];if not r then return end;r.behavior=behavior
- if behavior=="bound"then r.binding=r.binding or{kind="success",spell="",duration=1,intro=false,outro=false,introDuration=.5,outroDuration=.5}end
+ if behavior=="bound"and not(r.binding or r.bindings)then r.binding={kind="success",spell="",duration=1,intro=false,outro=false,introDuration=.5,outroDuration=.5}end
 end
 function E.AnimationAvailable(id,animation)local m=E.EffectAnimations[id];return not m or m[animation]~=nil end
 function E.AnimationSummary(id)

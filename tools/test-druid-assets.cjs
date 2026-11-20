@@ -31,4 +31,41 @@ for(const art of ['DruidRestoration','DruidBalance','DruidFeral'])for(const w of
  }
  assert(solid>w*h*.4&&transparent>w*h*.25,'A solid crest and genuine transparency must survive');
 }
-console.log('PASS: exact approved trio v8 source, eighteen 3:4 CAS textures, native-size fallback, alpha coverage and power-of-two padding');
+const restoration=fs.readFileSync('concepts/restoration-autumn-treant/Restoration registered.png');
+assert.equal(crypto.createHash('sha256').update(restoration).digest('hex'),'196ee273be9359041f9e811d1b84b54d8fa3d85a33d709e298d7db71cc74a682');
+const native=fs.readFileSync('Media/DruidRestorationCASSize660.tga');
+const stride=native.readUInt16LE(12);
+let bounds=[660,880,0,0];
+for(let y=0;y<880;y++)for(let x=0;x<660;x++)if(native[18+4*(y*stride+x)+3]>=8){
+ bounds=[Math.min(bounds[0],x),Math.min(bounds[1],y),Math.max(bounds[2],x+1),Math.max(bounds[3],y+1)];
+}
+assert.deepEqual(bounds,[17,86,642,802]);
+console.log('PASS: registered Restoration pose and native bounds, Druid source provenance, 18 size-specific textures and transparent padding');
+
+for (const width of [192,288,384,480,576,660]) {
+ const height=width*4/3,stem=width===384?'RestorationIdle':`RestorationIdleCASSize${width}Page`;
+ const files=fs.readdirSync('Media').filter(name=>new RegExp(`^${stem}\\d{2}\\.tga$`).test(name)).sort();
+ const frames=new Set();
+ let remaining=32;
+ for(const file of files){
+  assert(remaining>0,'Unexpected extra atlas page');
+  const t=fs.readFileSync(`Media/${file}`),tw=t.readUInt16LE(12),th=t.readUInt16LE(14);
+  assert.deepEqual([t[2],t[16],t[17]],[2,32,40]);
+  assert(tw<=1024&&th<=1024&&tw>=width&&th>=height);
+  const columns=Math.floor(tw/width),cells=Math.min(remaining,columns*Math.floor(th/height));
+  for(let cell=0;cell<cells;cell++){
+   const x=cell%columns*width,y=Math.floor(cell/columns)*height,digest=crypto.createHash('sha256');
+   for(let row=0;row<height;row++){
+    const start=18+4*((y+row)*tw+x),data=t.subarray(start,start+width*4);
+    assert.equal(data[3]+data[width*4-1],0,'Transparent cel side guard');
+    if(row===0||row===height-1)assert(data.every((value,i)=>i%4!==3||value===0),'Transparent cel top/bottom guard');
+    digest.update(data);
+   }
+   frames.add(digest.digest('hex'));
+  }
+  remaining-=cells;
+ }
+ assert.equal(remaining,0);
+ assert.equal(frames.size,32);
+}
+console.log('PASS: six size-specific Restoration Idle banks, 32 distinct RGBA frames per size and transparent atlas guards');

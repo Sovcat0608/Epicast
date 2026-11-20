@@ -1,0 +1,13 @@
+{
+  "video": "wan-breath.mp4",
+  "sourceFrames": [
+    0,
+    8
+  ],
+  "eyeLiftInVideoPx": 13.982822504352725,
+  "jawDropInVideoPx": 13.540000000000873,
+  "faceLiftPx": 4.357104759888751,
+  "jawDropPx": 4.219119453925187,
+  "cornerSpreadPx": 1.25,
+  "frameCount": 32
+}

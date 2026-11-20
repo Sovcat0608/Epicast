@@ -1,0 +1,1 @@
+const shoulderStudy = {"slot": [-24, 196, 376, 400], "frames": [0, 0, 1, 1, 2, 3, 4, 5, 6, 7, 7, 8, 8, 1, 1, 0], "frameMs": 125, "columns": 4, "sheet": "shoulder-study/breeze/scene.webp", "pairedSheet": "shoulder-study/breeze/pairedSheet.webp"};

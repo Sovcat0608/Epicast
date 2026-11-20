@@ -1,0 +1,10 @@
+{
+  "reference": "../../concepts/restoration-frame146/registered/01-paint.png",
+  "source": "right-painted-blades.png",
+  "dimensions": [
+    1254,
+    1254
+  ],
+  "alpha": "RGBA",
+  "prompt": "Production two-part transparent RGBA sprite sheet. Faithfully reproduce the right-hand feather cluster in the supplied Restoration crest reference as two separate complete feathers, painting the hidden underlap. No metal or bindings in this asset. TWO COLUMNS on a square clear canvas with generous completely empty gutter. LEFT column: one long broad front feather tip pointing down RIGHT, quill emerges at the upper left with short robust quill for tucking into metal; subtle pale plum stripes across ivory and lavender fans. RIGHT column: one shorter, slightly narrower muted taupe mauve rear feather almost vertical, tip down slightly to right, same quill at top. Keep shaft and tips completely within respective cells and generous margins. Very close to the actual reference brush shapes and silhouette, with large tapered angular painted strokes, distinct material planes and a few purposeful notches. No other objects, words, frame, shadow outside silhouettes or background. Keep the two elements separate with no contact; no rendered crest."
+}

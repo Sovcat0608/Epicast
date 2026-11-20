@@ -1,0 +1,1 @@
+const clip = {"frames": 8, "fps": 4, "columns": 4, "rows": 2, "cell": [128, 256], "crest": [1125, 1400], "slot": [8, 368, 256, 512], "patch": [8, 518, 256, 298], "state": "idle", "segment": "Left bound feathers"};

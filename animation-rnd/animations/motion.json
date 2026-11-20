@@ -1,0 +1,50 @@
+{
+  "time_sampling": "i/(frame_count-1); every stored frame held for 1/20 second; both endpoints exactly resting",
+  "A-foliage": {
+    "method": "anchored triangular mesh",
+    "cycles": 1.05,
+    "envelope_power": 2,
+    "tip_falloff": 1.65,
+    "vertical_ratio": 0.12,
+    "secondary_ratio": 0.12
+  },
+  "B-moss": {
+    "method": "anchored triangular mesh with travelling bend",
+    "cycles": 1.35,
+    "envelope_power": 2,
+    "tip_falloff": 1.4,
+    "vertical_ratio": 0.035,
+    "secondary_ratio": 0.16
+  },
+  "C-leaf": {
+    "method": "anchored triangular mesh with transverse contraction and small ripple",
+    "curl_keyframes": [
+      [
+        0,
+        0
+      ],
+      [
+        0.25,
+        0.018
+      ],
+      [
+        0.43,
+        0.045
+      ],
+      [
+        0.65,
+        -0.016
+      ],
+      [
+        0.82,
+        0.005
+      ],
+      [
+        1,
+        0
+      ]
+    ],
+    "ripple_pixels": 0.35
+  },
+  "notes": "Source pixels sampled once per frame. No new painted frames, particles, glows, global motion or runtime implementation."
+}

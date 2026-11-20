@@ -20,7 +20,8 @@ near(d.slots.balance.size,100);near(d.slots.restoration.size,162.5)
 local wb=E.GetCapGeometry(d.slots.balance,false);local wr=E.GetCapGeometry(d.slots.restoration,false)
 near(d.slots.restoration.x,70-wb/2-105+12);near(d.slots.balance.x,70+wr/2+105-18)
 near(d.slots.restoration.y,45);near(d.slots.balance.y,28)
-assert(d.slots.restoration.addedEffects==nil and #E.GetAddedEffects(d.slots.restoration)==9)
+local freshDruid=E.Normalize(nil).content.classes.DRUID.slots
+assert(d.slots.restoration.addedEffects==nil and equal(E.GetAddedEffects(d.slots.restoration),E.GetAddedEffects(freshDruid.restoration)))
 local res=db.content.resources.left;assert(res.enabled and res.flip and res.size==150)
 near(res.x,-960+E.GetLegacyCapGeometry(res,res.flip)/2+33+8)
 assert(equal(db,E.Normalize(db)),'Independent normalization repeats legacy placement')
@@ -34,7 +35,9 @@ local moved=E.Normalize(edge);near(moved.content.classes.DRUID.slots.feral.x,47)
 local older={version=2,content={spells={left={addedEffects={{fileID=166009,behavior='bound',binding={kind='proc',spell='400588'}}}},right={addedEffects={}}},druid={left={art='moonwarden',addedEffects={}},right={art='groveheart',addedEffects={}}}}}
 local migrated=E.Normalize(older);local arc=migrated.content.classes.MAGE.slots.arcane
 assert(#E.GetAddedEffects(arc)==12 and E.GetAddedEffects(arc)[4].binding.kind=='buff')
-assert(#E.GetAddedEffects(migrated.content.classes.DRUID.slots.balance)==0 and #E.GetAddedEffects(migrated.content.classes.DRUID.slots.restoration)==9)
+for _,spec in ipairs({"balance","restoration"})do
+ assert(equal(E.GetAddedEffects(migrated.content.classes.DRUID.slots[spec]),E.GetAddedEffects(freshDruid[spec])))
+end
 local max=Old.Normalize(nil);max.sets.central.size=200;max.content.classes.MAGE.slots.arcane.size=200
 assert(E.Normalize(max).content.classes.MAGE.slots.arcane.size==400)
 local extreme=Old.Normalize(nil);extreme.sets.central.x=2000;extreme.sets.central.rightX=2000;extreme.sets.central.gap=1800

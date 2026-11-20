@@ -15,7 +15,7 @@ for _,spec in ipairs({"Fire","Frost","Arcane"})do
 end
 E.DruidArtworks={moonwarden={name="Moonwarden",bounds={42,14,751,998}},groveheart={name="Groveheart",bounds={15,81,730,976}}}
 E.DruidTextureSizes={192,288,384,480,576,768}
-for _,v in ipairs({{"druidRestoration","DruidRestoration",{16,42,644,847}},{"druidBalance","DruidBalance",{30,29,630,847}},{"druidFeral","DruidFeral",{22,37,638,848}}})do
+for _,v in ipairs({{"druidRestoration","DruidRestoration",{17,86,642,802}},{"druidBalance","DruidBalance",{30,29,630,847}},{"druidFeral","DruidFeral",{22,37,638,848}}})do
  E.DruidArtworks[v[1]]={name=v[2],bounds=v[3],sourceWidth=660,sourceHeight=880,sizes={192,288,384,480,576,660}}
 end
 E.artworkByID={};for _,v in ipairs(E.artworks)do E.artworkByID[v.id]=v end
@@ -30,7 +30,8 @@ end
 E.SetLabels={spells="Spellcasting",resources="Resources"}
 E.RoleLabels={spells="Spellcasting",resources="Resources"}
 E.ResourceKinds={{"health","Health"},{"mana","Mana",0},{"energy","Energy",3},{"rage","Rage",1},{"focus","Focus",2},{"runic","Runic power",6},{"power","Current power"}}
-E.devEffectFields={{"trailSize","Effect size (%)",50,200},{"trailAngle","Effect angle (degrees)",-180,180},
+E.crestSizeMin, E.crestSizeMax = 5, 400
+E.devEffectFields={{"trailSize","Effect size (%)",5,200},{"trailAngle","Effect angle (degrees)",-180,180},
  {"trailX","Origin X",-150,150},{"trailY","Origin Y",-150,150},{"trailOpacity","Effect opacity (%)",0,100}}
 local function number(v,d,lo,hi)if type(v)~="number" or v~=v or v==math.huge or v==-math.huge then return d end;return math.max(lo,math.min(hi,v))end
 E.Number=number
@@ -61,6 +62,26 @@ end
 function E.HasCustomArtwork()return false end
 E.AddedEffectLimit=32
 function E.ValidEffectID(id)return type(id)=="number"and id>=1 and id<=4294967295 and id==math.floor(id)end
+function E.GetEffectBindings(row)
+ if not row or row.behavior~="bound"then return{}end
+ return row.bindings or (row.binding and {row.binding}) or {}
+end
+function E.NewEffectBinding(spell,kind)
+ return {spell=spell or "",kind=kind or "success",duration=1,intro=false,outro=false,introDuration=.5,outroDuration=.5}
+end
+function E.SetEffectBindings(row,bindings)
+ row.behavior=#bindings>0 and "bound" or "static"
+ row.binding=#bindings==1 and bindings[1] or nil
+ row.bindings=#bindings>1 and bindings or nil
+end
+local bindingKinds={cast=true,success=true,channel=true,pulse=true,buff=true,proc=true}
+local function normalizeBinding(value,standOnly)
+ local b=tableOr(value)
+ return {kind=bindingKinds[b.kind] and b.kind or "success",
+  spell=type(b.spell)=="string" and b.spell:sub(1,100):match("^%s*(.-)%s*$") or "",
+  duration=number(b.duration,1,.05,60),intro=not standOnly and b.intro==true,
+  outro=not standOnly and b.outro==true,introDuration=number(b.introDuration,.5,.05,10),outroDuration=number(b.outroDuration,.5,.05,10)}
+end
 function E.NormalizeAddedEffect(v)
  if type(v)~="table" or not E.ValidEffectID(v.fileID)then return end
  local r={fileID=v.fileID,name=type(v.name)=="string" and v.name:sub(1,100)or("Model "..v.fileID),
@@ -69,32 +90,43 @@ function E.NormalizeAddedEffect(v)
  azimuth=number(v.azimuth,0,-360,360),elevation=number(v.elevation,0,-90,90),desaturation=number(v.desaturation,0,0,1),effectLayer=v.effectLayer=="back" and "back"or"front",
  behavior=v.behavior=="bound" and "bound"or"static"}
  local defaults={100,90,0,0,70};for i,s in ipairs(E.devEffectFields)do r[s[1]]=number(v[s[1]],defaults[i],s[3],s[4])end
- if r.behavior=="bound" or type(v.binding)=="table" then
-  local b=tableOr(v.binding);local kinds={cast=true,success=true,channel=true,pulse=true,buff=true,proc=true}
-  r.binding={kind=kinds[b.kind]and b.kind or"success",spell=type(b.spell)=="string"and b.spell:sub(1,100):match("^%s*(.-)%s*$")or"",
-   duration=number(b.duration,1,.05,60),intro=b.intro==true,outro=b.outro==true,introDuration=number(b.introDuration,.5,.05,10),outroDuration=number(b.outroDuration,.5,.05,10)}
+ local standOnly=r.fileID==166602
+ if r.behavior=="bound" and type(v.bindings)=="table" then
+  local bindings,seen={},{}
+  for i=1,math.min(#v.bindings,64)do
+   local b=normalizeBinding(v.bindings[i],standOnly)
+   local key=b.spell:lower()
+   if key~="" and not seen[key] then bindings[#bindings+1]=b;seen[key]=true end
+  end
+  E.SetEffectBindings(r,bindings)
+ elseif r.behavior=="bound" or type(v.binding)=="table" then
+  r.binding=normalizeBinding(v.binding,standOnly)
  end
- -- This model has only Stand (0), not independent intro/hold/end segments.
- -- Preserve all placement/binding tuning while repairing earlier unverified IDs.
- if r.fileID==166602 then
-  r.animation=0
-  if r.binding then r.binding.intro=false;r.binding.outro=false end
+ -- This model only supports Stand (0).
+ if standOnly then r.animation=0 end
+ if type(v.layerID)=="string"and v.layerID:match("^fx%d+$")then r.layerID=v.layerID end
+ if v.enabled==false then r.enabled=false end
+ if v.followArtwork=="artwork"then r.followArtwork=v.followArtwork
+ elseif E.RestorationSegments then
+  for _,segment in ipairs(E.RestorationSegments)do
+   if v.followArtwork==segment.id then r.followArtwork=v.followArtwork;break end
+  end
  end
  return r
 end
 function E.AddLibraryEffect(c,value)
  if not E.devMode then return end;local r=E.NormalizeAddedEffect(value);if not r or(c.role=="resources"and r.behavior=="bound")then return end
  if not E.EffectLibrary or not E.EffectLibrary.IsAvailable(r.fileID)then return end
- local rows=E.EditAddedEffects(c);if #rows>=E.AddedEffectLimit then return end;rows[#rows+1]=r;return #rows
+ local rows=E.EditAddedEffects(c);if #rows>=E.AddedEffectLimit then return end;rows[#rows+1]=r;if E.StudioEffectAdded then E.StudioEffectAdded(rows)end;return #rows
 end
-function E.RemoveLibraryEffect(c,index)if E.devMode and type(index)=="number"and index>=1 and index<=#E.GetAddedEffects(c)then table.remove(E.EditAddedEffects(c),index)end end
+function E.RemoveLibraryEffect(c,index)if E.devMode and type(index)=="number"and index>=1 and index<=#E.GetAddedEffects(c)then local rows=E.EditAddedEffects(c);if E.StudioEffectRemoving then E.StudioEffectRemoving(rows,index)end;table.remove(rows,index)end end
 function E.NormalizeSide(value,side,role,designKey)
  local v=tableOr(value);role=role=="resources"and"resources"or"spells"
  local design=E.Designs[role=="spells"and designKey=="druid"and"druid"or"arcane"]
  local art=(v.art==design.left or v.art==design.right)and v.art or design[side]
  if designKey=="none"or E.DruidArtworks[designKey]or E.MageSpecSlots[designKey]then art=designKey end
  local kinds={};for _,k in ipairs(E.ResourceKinds)do kinds[k[1]]=true end
- local c={art=art,role=role,size=number(v.size,100,25,400),x=number(v.x,0,-8000,8000),y=number(v.y,0,-2000,3000),enabled=v.enabled==true,flip=type(v.flip)=="boolean"and v.flip or false,
+ local c={art=art,role=role,size=number(v.size,100,E.crestSizeMin,E.crestSizeMax),x=number(v.x,0,-8000,8000),y=number(v.y,0,-2000,3000),enabled=v.enabled==true,flip=type(v.flip)=="boolean"and v.flip or false,
   effects=v.effects~=false,resource=kinds[v.resource]and v.resource or(side=="left"and"health"or"mana"),showMeter=v.showMeter~=false}
  if type(v.flip)~="boolean"then c.flip=E.LegacyMageArtworks[art]~=nil and side=="right"end
  if role=="resources"then E.CrestOwners[c]="RESOURCE:"..side end

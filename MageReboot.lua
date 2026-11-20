@@ -35,7 +35,7 @@ function E.UpdateMageReboot(entry,c)
   for order=1,2 do local leg=s.hover:CreateAnimation("Translation");leg:SetOrder(order);leg:SetDuration(3);leg:SetSmoothing("IN_OUT");s.legs[order]=leg end
  end
  E.StopMageReboot(entry)
- if s.art~=c.art then s.elapsed=0 end
+ if entry.artworkPhase then s.elapsed=entry.artworkPhase elseif s.art~=c.art then s.elapsed=0 end
  s.art=c.art;s.enabled=true;s.animate=c.effects~=false
  local width,height=art.width*c.size/100,art.height*c.size/100
  local amplitude=s.animate and height*.012 or 0

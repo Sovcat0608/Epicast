@@ -1,0 +1,31 @@
+Use case: stylized-concept.
+Asset: one newly painted Groveheart restoration-Druid crest for Epicast, artwork review v5. Portrait 3:4, genuine transparent background.
+
+Primary request: Rethink this as ONE organic Warcraft crest made from an amalgamation of restoration spells. Spell associations are distributed through the materials of the ENTIRE frame, with a single prominent central motif shared by every spell. The previous arrangement of individual spell emblems in separate panels is retired.
+
+Reference roles:
+Image 1 is the primary ORIGINAL CREST architecture and silhouette reference: broad horned shoulders, chunky carved wooden side wings, root-bound central stone, small lower medallions, layered leaf skirt and curling vines. Ignore its checkerboard.
+Image 2 is ONLY a rendering/material fidelity reference: its smooth sculpted Warcraft painting, substantial aged ivory horns, warm carved wood, moss, bronze and purple-grey stone are desirable. Do not copy its isolated leaf panels, top tree-symbol plaque or flower-button arrangement.
+
+Composition:
+Create a compact, substantial, front-facing horned druid crest closely related to image 1. Two slightly varied ivory horn/antler structures rise from root-wrapped shoulders. Stepped, shaped wooden accents flank a large central stone heart. Twisting roots visibly connect crown, shoulders, sides and lower taper. Retain three small subdued carved wooden/bronze pendants as structural ornament, not spell indicators. Keep a coherent shield-like body and bold Warcraft silhouette; do not turn this into a freestanding tree, open botanical wreath or delicate jewelry.
+
+Central motif:
+One dominant pale ivory/sage crescent carved into the central stone heart, recalling the original reference. Include simple flowing nature/leaf etching within this one sculpted crescent. Its broad, restrained pearlescent surface is the common focal motif that can later take any spell's emission colour. Keep it clearly larger and more visually important than the other carvings. No separate spell symbol inside each region and no second competing focal emblem.
+
+Spell associations must recur ACROSS the whole crest:
+- Rejuvenation: substantial maple-shaped leaves in muted violet, plum and a few dusty magenta variations, with legible branching veins. Repeat them among the crown, both shoulders, side growth and lower leaf skirt.
+- Regrowth: clearly maple-shaped green leaves in varied fresh green, olive and emerald, interwoven with the purple maple leaves at several levels on BOTH sides.
+- Healing Touch: ordinary elongated pointed leaves with a central vein, in natural sage/jade/forest greens. Mix these through the same root and foliage structure, with enough shape contrast to identify this family.
+- Wild Growth: the actual wood, branches and roots composing the frame. Give them prominent natural splits, broad recessed channels, winding grain lines and a few clearly carved nature glyphs. Let these channels connect visually toward the central heart so a future glow can travel across the whole crest.
+- Swiftmend: a handful of small, softly coloured pink/ivory blossoms with muted blue-violet outer petals, plus related petal-shaped carved accents distributed at branch junctions and around the lower fittings. These belong to the frame's growth, not a dedicated flower badge.
+
+Use natural variation in leaf size, angle, overlap, colour and growth direction. Balance overall visual weight without making a mechanically mirrored plant pattern. Intermix the purple maple, green maple and elongated leaves; never assign one whole side to one spell. Keep branches, stone, ivory, gaps and carved wood visibly present between foliage groups. Purposeful large forms, not a dense carpet of tiny leaves.
+
+Future emission-friendly base:
+Make the wood's gaps/grooves and carved glyphs broad, deep, readable and consistent with real wood construction. Include clear negative spaces between selected roots and branches. Veins and carving channels have definite edges suitable for later masks. Paint the calm resting state: understated complementary colours, dark groove interiors and only ordinary material highlights. No baked neon glow, luminous spill, particles, magical ribbons, electrical arcs or light rays. We will animate emission later; do not generate animation frames or a layer sheet now.
+
+Rendering fidelity:
+High-fidelity sculpted painterly WARCRAFT fantasy UI illustration. Broad continuous shading, clean antialiased contours, chunky carved planes, selective crisp accents and distinct ivory, wood, stone, bronze and foliage. Rich but controlled colour. Avoid granular microtexture, excessive tiny scratches/filigree, crunchy sharpening, muddy blur, photorealism, flat vector art and plastic CGI. Make the five material families readable at small UI scale.
+
+Output: exactly ONE complete crest centred with generous transparent margins; all horns, leaves and root curls inside the canvas. Genuine alpha around the silhouette and through real gaps. No checkerboard, scenery, floor, shadow, labels, text, spell numbers, icon squares, isolated spell panels, human hands, watermark or second crest.

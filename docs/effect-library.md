@@ -1,5 +1,7 @@
 # Full native effect library
 
+The **beta.18 developer UI** now separates Effect Library (search/preview/add) from Artwork Config (ordered layers, full crest preview, controls and per-crest waiting-room binding). See [the current studio audit and workflow](effect-studio-audit.md). Catalog provenance and the8,723-model Forever filter below are unchanged; references to old static/bound creation controls are historical.
+
 Current **beta.6** filters this source index to **8,723 models inspected in Forever 1.60.1.70938**, with runtime placeholder rejection. Numeric lookup obeys the same filter; arbitrary unlisted previews are no longer supported. See [Forever compatibility](forever-effects.md) for the file checks, regression coverage and delivery evidence. Schema 2 and existing saved layers remain unchanged.
 
 The sections below preserve beta.5's source/provenance history. The user first removed the Arcane-only scope, then requested Forever filtering after encountering error-cube placeholders. `tools/Build-EffectCatalog.cjs` now applies `tools/forever-effects.json` to those same pinned source inputs and records the availability-manifest hash in its output manifest.

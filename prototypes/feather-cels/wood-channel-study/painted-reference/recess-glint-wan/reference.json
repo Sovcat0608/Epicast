@@ -1,0 +1,26 @@
+[
+  {
+    "side": "left",
+    "source": "04-paint.png",
+    "sha256": "b6b3d44b27526c1af724661a7a9aa66a9663105685a67e8e19b3aa44277f5a34",
+    "box": [
+      125,
+      784,
+      325,
+      144
+    ],
+    "mask_pixels": 1115
+  },
+  {
+    "side": "right",
+    "source": "05-paint.png",
+    "sha256": "e2303eb289febafd21eca83233496bd492ca8eb80c61bec8ca951d65f62c1962",
+    "box": [
+      680,
+      784,
+      325,
+      147
+    ],
+    "mask_pixels": 1255
+  }
+]

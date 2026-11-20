@@ -1,0 +1,77 @@
+const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict'),crypto=require('node:crypto');
+process.env.PLAYWRIGHT_BROWSERS_PATH=path.join(__dirname,'.browsers');
+const {chromium}=require('playwright'),{createServer}=require('./server.cjs');
+const {validateBake}=require('../../tools/Build-CrestBake.cjs');
+const out=path.join(__dirname,'results');fs.mkdirSync(out,{recursive:true});
+const installed='D:/World of Warcraft/_forever_/Interface/AddOns/Epicast';
+function hashes(dir){const result={};function walk(p){for(const e of fs.readdirSync(p,{withFileTypes:true})){const f=path.join(p,e.name);if(e.isDirectory())walk(f);else result[path.relative(dir,f)]=crypto.createHash('sha256').update(fs.readFileSync(f)).digest('hex');}}walk(dir);return result;}
+(async()=>{
+ const before=hashes(installed),app=createServer({port:4321});await app.listen();const report={checks:[],errors:[],external:[]};let browser,page;
+ const check=(s,v=true)=>{assert.ok(v,s);report.checks.push(s);console.log('PASS '+s);};
+ try{
+  browser=await chromium.launch({headless:true,args:['--enable-unsafe-swiftshader']});const context=await browser.newContext({viewport:{width:1466,height:950}});page=await context.newPage();page.on('pageerror',e=>{report.errors.push(e.stack);console.log(e.stack);});page.on('console',m=>{if(m.type()==='error')report.errors.push(m.text());});
+  await context.route('**/*',route=>{const u=new URL(route.request().url());if(u.origin!=='http://127.0.0.1:4321'){report.external.push(u.href);route.abort();}else route.continue();});
+  await page.goto('http://127.0.0.1:4321');await page.waitForFunction(()=>window.studio?.diagnostics?.().library.ready,{},{timeout:60000});
+  check('Full Forever catalogue is searchable',(await page.locator('#result-page').textContent()).includes('8,723'));
+  check('All nine class banks are available',await page.locator('#class option').count()===9);
+  await page.waitForTimeout(1200);await page.screenshot({path:path.join(out,'studio-library.png')});
+  await page.locator('#tab-config').click();await page.waitForFunction(()=>studio.preview.status().layers.length===12&&studio.preview.status().layers.every(l=>l.ready),{},{timeout:90000});await page.waitForTimeout(1800);
+  report.arcane=await page.evaluate(()=>studio.diagnostics());check('Full twelve-layer Arcane crest loaded in one context',report.arcane.preview.layers.length===12);check('GPU composite contains artwork and effects',report.arcane.preview.pixels.rgb>10000&&report.arcane.preview.pixels.error===0);
+  await page.screenshot({path:path.join(out,'studio-arcane.png')});
+  await page.evaluate(()=>{studio.preview.paused=true;studio.preview.hover=false;studio.store.crest.studio.artwork.artwork.enabled=false;});await page.waitForTimeout(300);
+  report.effectPixels=await page.evaluate(()=>studio.preview.engine.inspect());check('Native effects contribute pixels without the artwork',report.effectPixels.rgb>100);
+  await page.evaluate(()=>{studio.store.crest.studio.artwork.artwork.enabled=true;studio.preview.paused=false;studio.preview.hover=true;});
+  check('Shared renderer stays alive after uniform buffers cross scene boundaries',report.errors.length===0);
+  if(process.argv.includes('--smoke'))return;
+  await page.locator('#zoom-actual').click();
+  await page.waitForFunction(()=>studio.preview.factor===studio.store.crest.geometry[6]);
+  check('1:1 uses the default native UI size');
+  await page.locator('#zoom-fit').click();
+  await page.waitForFunction(()=>{
+   const stage=document.querySelector('#crest-stage');
+   const [width,height,,,,,size]=studio.store.crest.geometry;
+   return Math.abs(studio.preview.factor-size*Math.min((stage.clientWidth-50)/width,(stage.clientHeight-40)/height))<.001;
+  });
+  check('Fit scales the complete composition from the native crest bounds');
+  await page.locator('#layer-next').click();await page.locator('#layer-list [data-id=artwork]').click();const order=await page.evaluate(()=>studio.store.crest.studio.order.slice());await page.locator('#forward').click();check('Artwork moves through the effect depth stack',JSON.stringify(await page.evaluate(()=>studio.store.crest.studio.order))!==JSON.stringify(order));await page.locator('#backward').click();
+  await page.locator('#tab-library').click();await page.locator('#search').fill('166602');check('Exact FileDataID search isolates one result',await page.locator('#results .row').count()===1);await page.locator('#results .row').click();await page.waitForFunction(()=>studio.diagnostics().library.id===166602&&studio.diagnostics().library.ready);await page.locator('#add-effect').click();await page.waitForFunction(()=>studio.preview.layers.get(studio.diagnostics().selected)?.ready);
+  check('Adding creates an unbound independent effect layer',await page.evaluate(()=>studio.store.row(studio.diagnostics().selected).behavior==='static'));
+  const xInput=page.locator('[data-field=trailX]');
+  await page.waitForFunction(()=>studio.preview.layers.get(studio.diagnostics().selected)?.camera);
+  const initial=await page.evaluate(()=>{const id=studio.diagnostics().selected;return{value:studio.store.row(id).trailX,anchor:studio.preview.layers.get(id).camera.anchor[0]};});
+  await xInput.fill('25');
+  await page.waitForFunction(({value,anchor})=>{const id=studio.diagnostics().selected;return studio.store.row(id).trailX===value&&studio.preview.layers.get(id).camera.anchor[0]>anchor+5;},initial);
+  check('Typed placement previews before committing');
+  await xInput.fill('25.5');await page.locator('#tab-playback').click();
+  check('Invalid whole-step placement blocks navigation',await page.locator('#placement').isVisible());
+  await xInput.press('Escape');
+  check('Escape restores the committed placement',+await xInput.inputValue()===initial.value);
+  await page.locator('[data-field=trailX]').fill('37');await page.locator('[data-field=trailY]').fill('-18');await page.locator('#follow').check();check('Placement and artwork-axis attachment persist in the draft',await page.evaluate(()=>{const r=studio.store.row(studio.diagnostics().selected);return r.trailX===37&&r.trailY===-18&&r.followArtwork==='artwork';}));
+  await page.locator('#spell-input').fill('Test Regrowth');await page.locator('#add-spell').click();await page.locator('#signal').selectOption('success');await page.locator('#bind').click();check('Waiting-room spell binds to selected effect',await page.evaluate(()=>{const r=studio.store.row(studio.diagnostics().selected);return r.behavior==='bound'&&r.binding.spell==='Test Regrowth';}));
+  check('166602 unsupported segments are disabled',await page.locator('#intro').isDisabled()&&await page.locator('#outro').isDisabled());
+  const creates=await page.evaluate(()=>studio.preview.engine.diagnostics.creates);for(let n=0;n<3;n++){await page.locator('#test-response').click();await page.waitForTimeout(350);check('166602 replay '+(n+1)+' uses Stand',await page.evaluate(()=>studio.preview.layers.get(studio.diagnostics().selected).sequence===0));await page.locator('#stop-test').click();}check('Repeated playback reuses native scenes',creates===await page.evaluate(()=>studio.preview.engine.diagnostics.creates));
+  await page.locator('#save').click();check('Save establishes a session checkpoint',await page.locator('#save').isDisabled());await page.locator('#tab-placement').click();await page.locator('[data-field=trailX]').fill('50');await page.locator('#discard').click();check('Discard restores the saved placement and binding',await page.evaluate(()=>{const r=studio.store.row(studio.diagnostics().selected);return r.trailX===37&&r.binding.spell==='Test Regrowth';}));
+  await page.locator('#export').click();const exported=JSON.parse(await page.locator('#export-text').inputValue());validateBake(exported);check('Export passes the actual addon v2 bake compiler');await page.locator('[data-close-dialog]').click();
+  await page.locator('#unbind').click();await page.locator('#remove-spell').click();check('Unbound waiting-room spell can be removed',await page.evaluate(()=>!studio.store.crest.studio.spells.some(s=>s.spell==='Test Regrowth')));
+  await page.locator('#class').selectOption('DRUID');await page.locator('#crest').selectOption('DRUID:restoration');await page.waitForFunction(()=>studio.preview.status().key==='DRUID:restoration'&&studio.preview.status().layers.length===9&&studio.preview.status().layers.every(l=>l.ready),{},{timeout:90000});await page.waitForTimeout(1200);await page.screenshot({path:path.join(out,'studio-restoration.png')});report.restoration=await page.evaluate(()=>studio.diagnostics());check('Restoration loads its separate nine-layer bake',report.restoration.preview.layers.length===9);
+  await page.locator('#class').selectOption('WARRIOR');check('Unimplemented classes remain configurable without invented artwork',await page.evaluate(()=>studio.store.crest.class==='WARRIOR'&&!studio.store.crest.art));await page.locator('#crest').selectOption('RESOURCE:left');check('Resources disable spell binding',await page.locator('#add-spell').isDisabled()&&await page.locator('#bind').isDisabled());
+  await page.locator('#class').selectOption('MAGE');await page.locator('#crest').selectOption('MAGE:arcane');check('Class switching preserves independent drafts',await page.evaluate(()=>studio.store.crest.effects.length===13));
+  await page.waitForFunction(()=>studio.preview.status().layers.length===13&&studio.preview.status().layers.every(l=>l.ready));
+  await page.evaluate(()=>{studio.chooseLayer('fx4');studio.changeControls('placement');});
+  await page.waitForFunction(()=>studio.preview.layers.get('fx4')?.phase==='main'&&studio.preview.layers.get('fx4').sequence===158);
+  check('Placement holds Missile Barrage in its main animation');
+  await page.locator('#tab-playback').click();await page.locator('#test-response').click();
+  await page.waitForFunction(()=>studio.preview.layers.get('fx4')?.sequence===158,{},{timeout:20000});
+  check('5054328 transitions to Hold in the full crest',await page.evaluate(()=>studio.preview.layers.get('fx4').sequence===158));
+  const original=await page.evaluate(()=>JSON.parse(JSON.stringify(studio.store.crest)));
+  await page.evaluate(()=>{const base=studio.store.crest.effects.find(r=>r.fileID===166009);while(studio.store.crest.effects.length<32)studio.store.add({...base,trailOpacity:5,binding:undefined});});
+  await page.waitForFunction(()=>studio.preview.status().layers.length===32&&studio.preview.status().layers.every(l=>l.ready),{},{timeout:90000});await page.waitForTimeout(1000);
+  report.capacity=await page.evaluate(()=>studio.preview.diagnostics());check('All 32 effect layers render in a single context',report.capacity.layers.length===32&&report.capacity.pixels.error===0&&!report.capacity.errors.length);check('Capacity prevents a thirty-third effect',await page.evaluate(()=>{try{studio.store.add(studio.store.crest.effects[0]);return false;}catch{return true;}}));
+  await page.evaluate(c=>{studio.store.drafts[c.crest]=c;studio.store.emit();},original);
+  await page.locator('#reload-preview').click();await page.waitForFunction(()=>studio.preview.status().layers.length===13&&studio.preview.status().layers.every(l=>l.ready),{},{timeout:60000});check('Explicit preview reload preserves all authoring data',await page.evaluate(()=>studio.store.crest.effects.length===13&&!studio.preview.diagnostics().errors.length));
+  await page.setViewportSize({width:1180,height:900});await page.waitForTimeout(250);check('Compact desktop layout keeps all three panels accessible',await page.evaluate(()=>{const p=[...document.querySelectorAll('#config>.panel')].map(e=>e.getBoundingClientRect());return p.every(r=>r.width>200)&&p[0].right<=p[1].left&&p[1].right<=p[2].left;}));await page.setViewportSize({width:1466,height:950});
+  const data=await page.evaluate(()=>fetch('/api/studio').then(r=>r.json()));for(const c of data.crests){const {Store}=require('./studio-state.js');const s=new Store(data);s.select(c.crest);validateBake(s.export());}check('Every shipped crest exports valid version-2 bake data');
+  check('No browser exceptions',report.errors.length===0);check('No external browser requests',report.external.length===0);
+ }catch(e){report.failure=e.stack;if(page){report.state=await page.evaluate(()=>window.studio?.diagnostics()).catch(()=>null);await page.screenshot({path:path.join(out,'studio-failure.png')}).catch(()=>{});}throw e;}
+ finally{if(browser)await browser.close();await new Promise(r=>app.server.close(r));assert.deepEqual(hashes(installed),before,'Installed addon payloads must remain unchanged');report.installedUnchanged=true;fs.writeFileSync(path.join(out,process.argv.includes('--smoke')?'studio-smoke.json':'studio-verification.json'),JSON.stringify(report,null,2));}
+})().catch(e=>{console.error(e);process.exitCode=1;});

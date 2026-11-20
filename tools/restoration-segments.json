@@ -1,0 +1,179 @@
+[
+  {
+    "id": "leftFeathers",
+    "name": "Left feathers",
+    "source": 0,
+    "states": [
+      "channel",
+      "impact"
+    ]
+  },
+  {
+    "id": "rightFeathers",
+    "name": "Right feathers",
+    "source": 1,
+    "states": [
+      "channel",
+      "impact"
+    ]
+  },
+  {
+    "id": "backboard",
+    "name": "Purple backboard",
+    "source": 2,
+    "states": []
+  },
+  {
+    "id": "roots",
+    "name": "Roots and hanging vines",
+    "source": 3,
+    "states": []
+  },
+  {
+    "id": "leftSlats",
+    "name": "Left carved shards",
+    "source": 4,
+    "states": [
+      "channel"
+    ]
+  },
+  {
+    "id": "rightSlats",
+    "name": "Right carved shards",
+    "source": 5,
+    "states": [
+      "channel"
+    ]
+  },
+  {
+    "id": "leftCheek",
+    "name": "Left cheek foliage",
+    "source": 6,
+    "states": [],
+    "enabled": false
+  },
+  {
+    "id": "rightCheek",
+    "name": "Right cheek foliage",
+    "source": 7,
+    "states": [],
+    "enabled": false
+  },
+  {
+    "id": "leftAutumn",
+    "name": "Left autumn crown",
+    "source": 8,
+    "states": [
+      "channel",
+      "impact"
+    ]
+  },
+  {
+    "id": "rightCrown",
+    "name": "Right green crown",
+    "source": 9,
+    "states": [
+      "channel",
+      "impact"
+    ]
+  },
+  {
+    "id": "leftShoulder",
+    "name": "Left green shoulder",
+    "source": 10,
+    "states": [
+      "channel",
+      "impact"
+    ]
+  },
+  {
+    "id": "rightShoulder",
+    "name": "Right autumn shoulder",
+    "source": 11,
+    "states": [
+      "channel",
+      "impact"
+    ]
+  },
+  {
+    "id": "leftInner",
+    "name": "Left inner crown",
+    "source": 12,
+    "states": [
+      "channel",
+      "impact"
+    ]
+  },
+  {
+    "id": "rightInner",
+    "name": "Right inner crown",
+    "source": 13,
+    "states": [
+      "channel",
+      "impact"
+    ]
+  },
+  {
+    "id": "crownGlyph",
+    "name": "Ivory crown glyph",
+    "source": 14,
+    "states": [
+      "channel",
+      "impact"
+    ]
+  },
+  {
+    "id": "rejuvenation",
+    "name": "Rejuvenation leaf",
+    "source": 15,
+    "states": [
+      "channel",
+      "impact"
+    ]
+  },
+  {
+    "id": "sproutFork",
+    "name": "Carved sprout fork",
+    "source": 16,
+    "states": []
+  },
+  {
+    "id": "forehead",
+    "name": "Forehead shoot",
+    "source": 17,
+    "states": []
+  },
+  {
+    "id": "boughs",
+    "name": "Boughs and charms",
+    "source": 18,
+    "states": []
+  },
+  {
+    "id": "leftBanner",
+    "name": "Left fabric banner",
+    "source": 18,
+    "states": [
+      "channel",
+      "impact"
+    ]
+  },
+  {
+    "id": "rightBanner",
+    "name": "Right fabric banner",
+    "source": 18,
+    "states": [
+      "channel",
+      "impact"
+    ]
+  },
+  {
+    "id": "treant",
+    "name": "Treant face",
+    "source": 18,
+    "states": [
+      "channel",
+      "impact"
+    ]
+  }
+]

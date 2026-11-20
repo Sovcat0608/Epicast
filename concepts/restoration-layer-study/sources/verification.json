@@ -1,0 +1,90 @@
+{
+  "canvas": [
+    660,
+    880
+  ],
+  "approved_source_sha256": "4d592a779782dd20fa9b0bcbd38ce7b018613397ea53a53e0abc77e4c76cbfc8",
+  "review_color": "CPU approximation of the 7% Druid desaturation, before runtime CAS",
+  "layers_back_to_front": [
+    {
+      "layer": "00-Carved-base",
+      "png_sha256": "bbf9dfac66370cfd7123b64280ab25536d6360d2a532ab3e2e6d34e0a24deb64",
+      "visible_bounds_alpha_32": [
+        66,
+        76,
+        599,
+        846
+      ],
+      "changed_visible_pixels_when_hidden": 196667
+    },
+    {
+      "layer": "01-Upper-green-leaves",
+      "png_sha256": "4e2e5f28d3b966befe64ee9fb9ba3f060cc860a2c1df502d21e6adc392ea687c",
+      "visible_bounds_alpha_32": [
+        16,
+        42,
+        642,
+        467
+      ],
+      "changed_visible_pixels_when_hidden": 70474
+    },
+    {
+      "layer": "02-Lower-ivory-leaves",
+      "png_sha256": "dd0d8ceb3ae70cdc7562972b20d53e7986b08a98ff0cad06353f6b63a490bc56",
+      "visible_bounds_alpha_32": [
+        134,
+        397,
+        553,
+        646
+      ],
+      "changed_visible_pixels_when_hidden": 11884
+    },
+    {
+      "layer": "03-Purple-leaves",
+      "png_sha256": "82f3c6023f93117c9738aa0e4bb8e27d4d1b4e8becdf1f75a6a89af5e263540b",
+      "visible_bounds_alpha_32": [
+        32,
+        349,
+        644,
+        766
+      ],
+      "changed_visible_pixels_when_hidden": 60450
+    },
+    {
+      "layer": "04-Central-sprout",
+      "png_sha256": "0308061025d8af2116f63193308f99713705d751af4ac00941411ddc22763b05",
+      "visible_bounds_alpha_32": [
+        252,
+        261,
+        451,
+        416
+      ],
+      "changed_visible_pixels_when_hidden": 12421
+    },
+    {
+      "layer": "05-Crown-glyph",
+      "png_sha256": "e6b7a78ff01f058a120da7bae5c2bf582a23caf974ae35efd04a75d42a65c64c",
+      "visible_bounds_alpha_32": [
+        311,
+        116,
+        390,
+        188
+      ],
+      "changed_visible_pixels_when_hidden": 3184
+    }
+  ],
+  "png_vs_svg_embedded_stack": "identical RGBA pixels",
+  "native_donors": {
+    "branch-underpainting.png": "db3268cfe3c3ba89497e93441f11934576024465d7f5b54f741e1f18eb986141",
+    "ivory-underpainting.png": "439dbbfa2efbcf2d43970ca119ff3ebcb5fe54ea1b31af4d83b3e4640227a55c"
+  },
+  "independent_svg_rasterization": {
+    "size": [
+      660,
+      880
+    ],
+    "max_premultiplied_channel_difference": 2.976,
+    "mean_pixel_difference": 0.363,
+    "pixels_over_5": 0
+  }
+}

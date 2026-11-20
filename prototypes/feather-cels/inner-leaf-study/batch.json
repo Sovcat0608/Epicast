@@ -1,0 +1,32 @@
+{
+  "left": {
+    "id": "4b6bb4cf795d4c6183aefcb8370b0ba3",
+    "input_sha256": "94128ec0c7ec5cc77bc3a4d7e378e04fe97c093b1ca4cdb58c581f2d9dee929c",
+    "request": {
+      "model": "wan2.2-ti2v-5b-native",
+      "fps": 16,
+      "steps": 36,
+      "guidance": 6,
+      "size": "512x512",
+      "num_frames": 33,
+      "seed": 509030,
+      "prompt": "Fixed front-facing close-up of this exact hand-painted yellow-green leaf fan on a flat slate-blue matte. In a gentle breeze the long leaf blades bow in a single clean shallow curve through their midribs. The broad surfaces, paint grain, veins, serrations and silhouette keep their shape. The short stem remains planted. The fan relaxes back to its original pose. The fixed attachment is at the upper left.",
+      "negative_prompt": "mesh wobble, heat-wave distortion, fluttering serrations, moving camera, moving stem, extra leaves, changing texture, changing light, lens zoom"
+    }
+  },
+  "right": {
+    "id": "482f972244414463b3cb10c6c533e869",
+    "input_sha256": "22c7525fcbef7167160dd0d0d3f9c3462dd2bd5b3b5172ff8654e6c1c2b5368a",
+    "request": {
+      "model": "wan2.2-ti2v-5b-native",
+      "fps": 16,
+      "steps": 36,
+      "guidance": 6,
+      "size": "512x512",
+      "num_frames": 33,
+      "seed": 509031,
+      "prompt": "Fixed front-facing close-up of this exact hand-painted yellow-green leaf fan on a flat slate-blue matte. In a gentle breeze the long leaf blades bow in a single clean shallow curve through their midribs. The broad surfaces, paint grain, veins, serrations and silhouette keep their shape. The short stem remains planted. The fan relaxes back to its original pose. The fixed attachment is at the upper right.",
+      "negative_prompt": "mesh wobble, heat-wave distortion, fluttering serrations, moving camera, moving stem, extra leaves, changing texture, changing light, lens zoom"
+    }
+  }
+}

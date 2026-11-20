@@ -1,5 +1,8 @@
 local _,E=...
+local baseHalfFovTangent = 3/8
+local renderPadding = 96 -- UI units per side, within a 90-degree field of view
 function E.StopNativeSmoke(entry)
+    if E.StopEffectMotion then E.StopEffectMotion(entry)end
     local state = entry.nativeSmoke
     if not state then return end
     for _, slot in ipairs(state.slots) do slot.scene:Hide() end
@@ -23,7 +26,7 @@ local function requestRefresh(entry)
     if not entry.effectsEnabled or not entry.nativeWanted or not entry.frame:IsVisible() then return end
     if InCombatLockdown() then E.pending=true;return end
     -- Apply reads the current draft/saved configuration, never a stale snapshot.
-    E.Schedule(entry.side)
+    if entry.preview and E.ScheduleStudioPreview then E.ScheduleStudioPreview()else E.Schedule(entry.side)end
 end
 local function watchLoad(entry,state,slot,profile)
     local generation=state.generation
@@ -67,7 +70,7 @@ local function poll(entry)
             end
             fail(entry, "model did not load within twelve visible seconds", true)
         else poll(entry); return end
-        E.Schedule(entry.side)
+        if entry.preview and E.ScheduleStudioPreview then E.ScheduleStudioPreview()else E.Schedule(entry.side)end
     end)
 end
 function E.PlayNativeSmoke(entry)
@@ -80,13 +83,14 @@ function E.PlayNativeSmoke(entry)
         if state.timedOut then
             if InCombatLockdown() then E.pending=true; return end
             local ok,ready=pcall(loaded,state)
-            if ok and ready then E.Schedule(entry.side) end
+            if ok and ready then requestRefresh(entry) end
         end
         return
     end
     if state.status == "loading" then poll(entry) end
     if entry.castBinding and not entry.castVisible then E.StopNativeSmoke(entry);return end
     for _, slot in ipairs(state.slots) do slot.scene:Show() end
+    if E.PlayEffectMotion then E.PlayEffectMotion(entry)end
 end
 local function create(entry)
     local state = {slots = {}, status = "loading", attempts = 0, retries = 0, generation = 0}
@@ -103,9 +107,8 @@ local function create(entry)
         scene:SetFrameLevel(entry.frame:GetFrameLevel()+1)
         scene:SetDrawLayer("OVERLAY")
         scene:SetCameraNearClip(0.01); scene:SetCameraFarClip(100)
-        -- Triple viewport and world span together: same flame size, more room
-        -- before particles reach the ModelScene render boundary.
-        scene:SetCameraFieldOfView(2*math.atan(6/(2*8)))
+        if scene.SetViewInsets then scene:SetViewInsets(0,0,0,0)end
+        if scene.SetViewTranslation then scene:SetViewTranslation(0,0)end
         scene:SetLightAmbientColor(1,1,1); scene:SetLightDiffuseColor(0,0,0)
         local actor = scene:CreateActor(nil, "EpicastSmokeActorTemplate")
         slot.actor = actor
@@ -114,12 +117,22 @@ local function create(entry)
     end
     return state
 end
+function E.UpdateNativeEffectAlpha(entry, intensity)
+    local state = entry.nativeSmoke
+    if not state then return end
+    local alpha = 0
+    if entry.nativeWanted and state.status == "ready" then
+        alpha = entry.alpha * state.profile.opacity * entry.resourceOpacity * (intensity or 1)
+    end
+    for _, slot in ipairs(state.slots) do
+        slot.scene:SetAlpha(alpha)
+    end
+end
 function E.UpdateNativeSmoke(entry, config)
     if not entry.nativeWanted then return false end
     if InCombatLockdown() then E.pending = true; return false end
     local p=entry.libraryProfile;if not p then return false end
     local id="library:"..p.fileID..":"..p.animation
-    local opacity = (config.trailOpacity or 100)/100
     local ok, result = pcall(function()
         local state = entry.nativeSmoke or create(entry)
         state.profile=p
@@ -163,8 +176,13 @@ function E.UpdateNativeSmoke(entry, config)
             end
             local x, y, direction = E.EffectAnchor(slot.eye, width, height, config)
             local artScale = (width/150)*slot.eye.scale
-            local viewport = 288*artScale*(config.trailSize or 100)/100
-            local pixelsPerUnit = viewport/6
+            local projectionSize = 576*artScale*(config.trailSize or 100)/100
+            local pixelsPerUnit = projectionSize/12
+            -- Add render room without changing projected size at any depth:
+            -- viewport height and tan(half FOV) grow by the same ratio.
+            local renderSize = math.min(projectionSize+2*renderPadding,projectionSize/baseHalfFovTangent)
+            local halfFovTangent = baseHalfFovTangent*renderSize/projectionSize
+            slot.scene:SetCameraFieldOfView(2*math.atan(halfFovTangent))
             -- Roll the camera instead of trusting each asset's world-space particles
             -- to follow actor pitch. Reverse the viewing side for a true mirrored view.
             local rx, rz, ux, uz = direction*sine, direction*cosine, -cosine, sine
@@ -199,8 +217,12 @@ function E.UpdateNativeSmoke(entry, config)
             -- Symmetric models get a genuinely centred viewport. Preserve the
             -- approved flame's asymmetric render room and calibration.
             if p.centered then biasX,biasY=0,0 end
-            slot.cropVisible=E.CropNativeEffect(entry,config,slot.scene,viewport,
-                x+biasX*pixelsPerUnit,y+biasY*pixelsPerUnit,p)
+            slot.anchorX=x+biasX*pixelsPerUnit
+            slot.anchorY=y+biasY*pixelsPerUnit
+            slot.motionX=nil;slot.motionY=nil
+            slot.scene:SetSize(renderSize,renderSize)
+            slot.scene:ClearAllPoints()
+            slot.scene:SetPoint("CENTER",entry.art,"TOPLEFT",slot.anchorX,slot.anchorY)
             -- Put the inspected origin on the chosen point and camera depth plane.
             local modelScale=p.modelScale or 1
             slot.actor:SetScale(modelScale)
@@ -212,9 +234,7 @@ function E.UpdateNativeSmoke(entry, config)
                 slot.needsAnimation=false
             end
         end
-        for _, slot in ipairs(state.slots) do
-            slot.scene:SetAlpha(state.status == "ready" and slot.cropVisible and entry.alpha*p.opacity*opacity or 0)
-        end
+        E.UpdateNativeEffectAlpha(entry)
         E.PlayNativeSmoke(entry)
         return state.status == "ready"
     end)

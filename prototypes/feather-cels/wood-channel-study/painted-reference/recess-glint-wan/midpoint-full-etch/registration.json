@@ -1,0 +1,55 @@
+{
+  "midpoint_sha256": "a8dd1709391a455d91be61cfd217970a04e8ed4e2ba4fa85d17d731b94dc53b2",
+  "sprites": [
+    {
+      "side": "left",
+      "source": "wood-channel-study/left-wood.webp",
+      "source_sha256": "e2fd6de587674fe17f3dd45c454f59da2363ef3fb9c7ec88a43e07c794f20428",
+      "peak_sha256": "17248439d9fdeda79ce2357dbacb27fb45bc8c7f6cffbf0cf3d63fcb7450f148",
+      "native_size": [
+        325,
+        144
+      ],
+      "preview_static_xy": [
+        125,
+        784
+      ],
+      "preview_hold_xy": [
+        97,
+        784
+      ],
+      "video_box": [
+        27,
+        38,
+        650,
+        288
+      ],
+      "lit_pixels": 2541
+    },
+    {
+      "side": "right",
+      "source": "wood-channel-study/right-wood.webp",
+      "source_sha256": "1f2d4b5b6ffdd789bfc1bf4a93478a955c4402162e9819b72679bc578f0af76d",
+      "peak_sha256": "6a586e21e22f0924864ab6ef611912aa1b130996e5dfebb704e6a6504a80a8c4",
+      "native_size": [
+        325,
+        147
+      ],
+      "preview_static_xy": [
+        680,
+        784
+      ],
+      "preview_hold_xy": [
+        708,
+        784
+      ],
+      "video_box": [
+        27,
+        370,
+        650,
+        294
+      ],
+      "lit_pixels": 3060
+    }
+  ]
+}

@@ -32,15 +32,21 @@ const manifestPath=path.join(__dirname,'media-manifest.json'),manifest=JSON.pars
 const report={sourceSHA256:hash(sourcePNG),sourceSize:[sw,sh],canvasSize:[w,h],method:'nearest disconnected alpha silhouette, unchanged source pixels; Lanczos2 + CAS 1.0 / 0.65',artworks:{}};
 for(const [i,name]of ['DruidRestoration','DruidBalance','DruidFeral'].entries()){
  const bounds=components[i].bounds,x0=Math.round((bounds[0]+bounds[2]-w)/2),y0=-22;
- const pixels=Buffer.alloc(w*h*4);let droppedVisible=0;
+ let pixels=Buffer.alloc(w*h*4);let droppedVisible=0;
  for(let p=0;p<owner.length;p++)if(owner[p]===i+1&&source[p*4+3]){
   const x=p%sw-x0,y=Math.floor(p/sw)-y0;
   if(x<0||x>=w||y<0||y>=h){if(source[p*4+3]>=8)droppedVisible++;continue;}
   source.copy(pixels,(y*w+x)*4,p*4,p*4+4);
  }
  if(droppedVisible)throw Error('Clipped visible artwork: '+name);
- fs.writeFileSync(path.join(out,name+'.bgra'),pixels);
  const entry=report.artworks[name]={sourceOrigin:[x0,y0],visibleBounds:[bounds[0]-x0,bounds[1]-y0,bounds[2]-x0,bounds[3]-y0],droppedVisible,sizes:[]};
+ if(name==='DruidRestoration'){
+  pixels=fs.readFileSync(path.join(out,'preferred-restoration.bgra'));
+  if(hash(pixels)!=='8ef0f5558171680478dba8a31ac802ba56a599c1e52dd49d0a98e964dab51013')throw Error('Unexpected registered Restoration pixels');
+  entry.source='concepts/restoration-autumn-treant/Restoration registered.png';
+  entry.sourceOrigin=[0,0];entry.visibleBounds=[17,86,642,802];
+ }
+ fs.writeFileSync(path.join(out,name+'.bgra'),pixels);
  for(const width of [192,288,384,480,576,660]){
   const height=width*4/3,base=buildSize(pixels,w,h,width,height),tga=sharpen(base,width,height);
   for(let p=21;p<tga.length;p+=4)if(tga[p]!==base[p])throw Error('CAS changed alpha');

@@ -1,0 +1,11 @@
+{
+  "fps": 20,
+  "frame_count": 64,
+  "duration_seconds": 3.2,
+  "starts_in_frames": {
+    "A-foliage": 0,
+    "B-moss": 5,
+    "C-leaf": 10
+  },
+  "note": "Independent once-through plays, followed by a still interval; motifs do not share one deformation field."
+}

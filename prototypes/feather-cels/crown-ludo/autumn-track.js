@@ -1,0 +1,1 @@
+const autumnStudy = {"slot": [44, -35, 471, 433], "pivot": [336, 377], "frames": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15], "frameMs": 125, "columns": 4, "sheet": "crown-ludo/autumn-solo.webp"};

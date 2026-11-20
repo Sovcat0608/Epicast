@@ -14,7 +14,10 @@ c.addedEffects={};EpicastDB.version=5
 Mock.event('ADDON_LOADED','Epicast');Mock.advance(0)
 c=EpicastDB.content.classes.DRUID.slots.restoration
 assert(c.x==175 and c.y==23 and c.size==121 and c.addedEffects==nil)
-local expected=E.CrestBakes['DRUID:restoration'];assert(#expected==9 and equal(E.GetAddedEffects(c),expected))
+local shipped=E.CrestBakes['DRUID:restoration']
+local expected=E.Copy(shipped.effects or shipped)
+expected.studio=E.Copy(shipped.studio)
+assert(#expected==9 and equal(E.GetAddedEffects(c),expected))
 assert(#E.GetAddedEffects(EpicastDB.content.classes.DRUID.slots.balance)==0)
 assert(#E.GetAddedEffects(EpicastDB.content.classes.DRUID.slots.feral)==0)
 assert(#E.GetAddedEffects(EpicastDB.content.classes.MAGE.slots.arcane)==12)
@@ -38,4 +41,4 @@ for i=1,3 do
  Mock.advance(2);Mock.advance(.6)
 end
 assert(#Mock.frames==allocations and equal(saved,EpicastDB),'Recovered spell triggers changed frames or player preferences')
-print('PASS: exact nine-layer Restoration recovery, preference retention/class isolation, static accents and repeated Regrowth/Healing Touch/Rejuvenation/Swiftmend without cast-time reloads')
+print('PASS: exact nine-layer Restoration bake, preference retention/class isolation, static accents and repeated Regrowth/Healing Touch/Rejuvenation/Swiftmend without cast-time reloads')

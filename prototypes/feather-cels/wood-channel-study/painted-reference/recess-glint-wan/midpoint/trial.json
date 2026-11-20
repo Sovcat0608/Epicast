@@ -1,0 +1,59 @@
+{
+  "model": "wan2.2-ti2v-5b-native",
+  "source_revision": "921dbaf3f1674a56f47e83fb80a34bac8a8f203e",
+  "runtime_revision": "1ea34ff48f87168174e12956e200b1d908b1c5ff",
+  "prompt": "Fixed orthographic closeup of stationary, hand-painted wooden slats. The wood, its paint, outlines and cut shapes are still. A fine pale mint reflection in the original carved bevels rises gently, meets its brightest painted pose in the middle, then fades to the original dark carved wood. Most of each recess remains dark; the reflection stays narrow and fixed in place.",
+  "negative_prompt": "camera motion, moving wood, new cracks, detached streaks, colored fill, green slime, fog, bloom, liquid, repaint, sparks, flicker",
+  "fps": 16,
+  "size": [
+    704,
+    704
+  ],
+  "frames": 49,
+  "guide_frames": [
+    0,
+    24,
+    48
+  ],
+  "steps": 36,
+  "guidance": 6.5,
+  "seed": 509429,
+  "sources": [
+    {
+      "side": "left",
+      "still_sha256": "b6b3d44b27526c1af724661a7a9aa66a9663105685a67e8e19b3aa44277f5a34",
+      "midpoint_sha256": "6742c967cc87583cd3351095efa751c69fa1aafbf31cac255263ae875194c625",
+      "video_box": [
+        27,
+        38,
+        650,
+        288
+      ]
+    },
+    {
+      "side": "right",
+      "still_sha256": "e2303eb289febafd21eca83233496bd492ca8eb80c61bec8ca951d65f62c1962",
+      "midpoint_sha256": "9b2b1baf6fec9397965c5b3eae7c9b80f58dbbe3391b9fbc40b36d4b50fe79e8",
+      "video_box": [
+        27,
+        370,
+        650,
+        294
+      ]
+    }
+  ],
+  "opening_sha256": "f6a0c1db33cd16928884d3ae7b4622ecacad82c85eaa58c1e53f05ab50d57b99",
+  "midpoint_sha256": "392498306758e63acf80b7419f4ffee0c23cb1e390d9ba8e8aaec6c919715f0a",
+  "conditioning": {
+    "latent_indices": [
+      0,
+      6,
+      12
+    ],
+    "encode_calls": 1,
+    "mask_calls": 1,
+    "midpoint_latent_delta": 0.01685518
+  },
+  "output_sha256": "d35c6ae0669b468d8d46daa5f90af6444b2f714eea1c91513799cffa5f023fd9",
+  "elapsed_seconds": 150.58
+}

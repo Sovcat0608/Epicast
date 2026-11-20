@@ -1,0 +1,107 @@
+{
+  "shared_input_sha256": "a4f7d9ef41436dcc02e8f7a4ef886c97a7e8ce68e1bbde9e34cd8bd40b981e04",
+  "raw_video_trials": {
+    "Griffin HD": {
+      "file": "griffin/griffin-2.mp4",
+      "frames": 49,
+      "fps": 9.483870967741936,
+      "seconds": 5.167,
+      "size": [
+        1024,
+        768
+      ],
+      "ending_green_ratio": 0.001,
+      "median_silhouette_iou_against_input": 0.975,
+      "minimum_silhouette_iou_against_input": 0.954,
+      "bright_green_outside_both_shards_peak_px": 352,
+      "glow_ratio_at_quintiles": [
+        0.411,
+        2.314,
+        0.924,
+        0.001,
+        0.001
+      ]
+    },
+    "Wan 2.2 5B Native": {
+      "file": "wan.mp4",
+      "frames": 81,
+      "fps": 16.0,
+      "seconds": 5.062,
+      "size": [
+        704,
+        512
+      ],
+      "ending_green_ratio": 1.533,
+      "median_silhouette_iou_against_input": 0.974,
+      "minimum_silhouette_iou_against_input": 0.96,
+      "bright_green_outside_both_shards_peak_px": 0,
+      "glow_ratio_at_quintiles": [
+        1.001,
+        0.996,
+        1.34,
+        1.374,
+        2.062
+      ]
+    }
+  },
+  "imagegen_pipeline": {
+    "start": "shared-input.png",
+    "native_keyframes": [
+      {
+        "file": "imagegen/peak.png",
+        "sha256": "8fdbc15a9e4a7a35b03f50d3b82c2291197733931b57dbd61e8daa78bb0bcea7"
+      },
+      {
+        "file": "imagegen/off.png",
+        "sha256": "1b812d6949c3414e43177e4adfdf7e94afa485e8e7abde261779583645ad2aae"
+      }
+    ],
+    "alignment": {
+      "peak": {
+        "correlation": 0.98762,
+        "affine": [
+          [
+            0.9989961981773376,
+            -0.00030588856316171587,
+            -0.011545917019248009
+          ],
+          [
+            0.0002614166878629476,
+            0.99985671043396,
+            -0.674439013004303
+          ]
+        ]
+      },
+      "off": {
+        "correlation": 0.94453,
+        "affine": [
+          [
+            0.997307300567627,
+            -0.001607241341844201,
+            1.1544723510742188
+          ],
+          [
+            0.0003091405669692904,
+            1.0005640983581543,
+            0.1014193519949913
+          ]
+        ]
+      }
+    },
+    "normalized_green_start_peak_end": [
+      1.0,
+      2.0605,
+      0.0004
+    ],
+    "compositing": "Shared input geometry and fixed background; masked linear-light interpolation to the two ImageGen stills.",
+    "timing_seconds": {
+      "peak": 1.25,
+      "fade_start": 1.75,
+      "fully_dark": 4.5,
+      "duration": 5
+    },
+    "fps": 12,
+    "authored_frames": 60,
+    "encoded_frame_changes": 48
+  }
+}

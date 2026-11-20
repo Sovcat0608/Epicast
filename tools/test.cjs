@@ -12,7 +12,25 @@ function run(selected,tail,legacyPair=true,historical=true){
  try{if(lauxlib.luaL_dostring(L,to_luastring(script))!==lua.LUA_OK)throw Error(to_jsstring(lua.lua_tostring(L,-1)));
   lua.lua_getglobal(L,to_luastring('EpicastBakeTestExport'));
   if(lua.lua_isstring(L,-1)){fs.mkdirSync('artifacts/crest-bakes',{recursive:true});fs.writeFileSync('artifacts/crest-bakes/test-export.json',to_jsstring(lua.lua_tostring(L,-1)));}
+  lua.lua_getglobal(L,to_luastring('EpicastStudioTestExport'));
+  if(lua.lua_isstring(L,-1)){fs.mkdirSync('artifacts/crest-bakes',{recursive:true});fs.writeFileSync('artifacts/crest-bakes/studio-export.json',to_jsstring(lua.lua_tostring(L,-1)));}
+  lua.lua_getglobal(L,to_luastring('EpicastMultiBindingTestExport'));
+  if(lua.lua_isstring(L,-1)){fs.mkdirSync('artifacts/crest-bakes',{recursive:true});fs.writeFileSync('artifacts/crest-bakes/multi-export.json',to_jsstring(lua.lua_tostring(L,-1)));}
+  lua.lua_getglobal(L,to_luastring('EpicastSegmentTestExport'));
+  if(lua.lua_isstring(L,-1)){fs.mkdirSync('artifacts/crest-bakes',{recursive:true});fs.writeFileSync('artifacts/crest-bakes/segment-export.json',to_jsstring(lua.lua_tostring(L,-1)));}
  }finally{lua.lua_close(L);}
+}
+function restorationRecovery(){
+ const recovered=JSON.parse(fs.readFileSync('tests/fixtures/restoration-recovered.json','utf8'));
+ const archive=require('./Build-CrestBake.cjs').render({[recovered.crest]:recovered.effects});
+ return `\nlocal archive={};assert(load(${JSON.stringify(archive)}))('Epicast',archive)
+E.CrestBakes=archive.CrestBakes
+assert(loadfile('tests/restoration-recovery.lua'))(E)`;
+}
+if(process.argv[2]){
+ const name=process.argv[2];if(!/^[a-z0-9-]+$/.test(name))throw Error('Expected a test name from tests/');
+ const test=name==='restoration-recovery'?restorationRecovery():`\nassert(loadfile('tests/${name}.lua'))(E)`;
+ run(files,test,false,false);process.exit(0);
 }
 console.log('Schema-4 compatibility fixtures with current shared effect/animation/reader modules:');
 run(files,`\nassert(loadfile('tests/integration.lua'))(E)\nassert(loadfile('tests/buff-retrigger.lua'))(E)\nassert(loadfile('tests/cooldown-buff.lua'))(E)`);
@@ -33,8 +51,15 @@ console.log(`PASS: ${files.length} current modules parsed as Lua 5.1 and loaded 
 run(files,`\nassert(loadfile('tests/arcane-preset.lua'))(E)`,false,false);
 run(files,`\nassert(loadfile('tests/cooldown-visibility.lua'))(E)`,false,false);
 run(files,`\nassert(loadfile('tests/options-redesign.lua'))(E)`,false,false);
+run(files,`\nassert(loadfile('tests/launcher.lua'))(E)`,false,false);
 run(files,`\nassert(loadfile('tests/crest-bakes.lua'))(E)`,false,false);
-run(files,`\nassert(loadfile('tests/restoration-recovery.lua'))(E)`,false,false);
+run(files,restorationRecovery(),false,false);
+run(files,`\nassert(loadfile('tests/effect-studio.lua'))(E)`,false,false);
+run(files,`\nassert(loadfile('tests/studio-layout.lua'))(E)`,false,false);
+run(files,`\nassert(loadfile('tests/quick-bind.lua'))(E)`,false,false);
+run(files,`\nassert(loadfile('tests/effect-viewport.lua'))(E)`,false,false);
+run(files,`\nassert(loadfile('tests/restoration-idle.lua'))(E)`,false,false);
+run(files,`\nassert(loadfile('tests/restoration-segments.lua'))(E)`,false,false);
 require('./test-crest-bakes.cjs');
 require('./test-arcane-preset.cjs');
 require('./test-druid-assets.cjs');

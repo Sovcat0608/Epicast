@@ -4,6 +4,8 @@
 
 ## Approved direction
 
+When revising or animating approved artwork, carry the original pixel registration and paint into the brief. Follow the [mandatory placement and paint checks](segmented-crest-artwork.md#lock-placement-and-painting-fidelity) before using the result.
+
 The user's exact direction:
 
 > World of Warcraft–style hand-painted fantasy illustration: Bold, exaggerated silhouettes, chunky bevelled forms, rich saturated colours, stylised painterly textures, dramatic warm highlights and cool shadows. Simplify micro-details into confident brushstrokes, emphasise material definition and strong visual readability. Preserve the original composition and iconography while replacing photorealistic rendering with Blizzard-inspired painterly shading.
@@ -51,7 +53,7 @@ Photorealism; granular or speckled microtexture; evenly scattered tiny chips/hig
 5. For asset sheets, use genuine transparent alpha, including interior gaps; clear spacing between sisters, outer margin and complete tips/tapers. No baked checkerboard, scenery, background, labels, watermark or cast shadow unless requested.
 6. Preserve native output dimensions and alpha. Keep the exact source PNG, versioned concepts, prompt, reference provenance and verification metadata. Never upscale and call it native detail or overwrite earlier concepts casually.
 7. Visually inspect the generated image for brush scale, angular construction, clear materials, retained motifs, clean contours and full silhouettes. If it drifts toward round glossy forms or noisy detail, correct that specific issue before presenting it as meeting the standard.
-8. Keep source painting separate from deterministic runtime conversion. Existing sampling/CAS/animation standards remain independently applicable when integration is requested. Do not programmatically repaint approved artwork during conversion.
+8. Keep source painting separate from deterministic runtime conversion. For shipped segments and their animation cels, use the [size-specific Lanczos2 + CAS standard](segmented-crest-artwork.md#bake-size-specific-runtime-textures). Do not programmatically repaint approved artwork during conversion.
 9. Art-review requests deliver concepts only. Integrate, rebuild, install or publish when authorized by the user; do not infer those actions from artwork approval alone.
 
 ## Prompt foundation
@@ -61,3 +63,7 @@ Include the user's approved direction above or a faithful theme-specific adaptat
 > Match the approved reference's actual painting method: broad angular planes, chunky bevels, visible large tapered brushstrokes, rich local colour, selective warm highlights and cool shadows. Keep quiet midtone regions between purposeful carved details. Preserve material definition and small-size readability. Smoothness means coherent clean paint shapes, not round glossy rendering or airbrushed gradients. No granular microtexture, dense tiny marks, plastic CGI, pixel art or bloom that hides the forms.
 
 Then specify the current subject, reference roles, distinctive motifs, palette, composition and requested invariants. Do not let a long ingredient list crowd out the focal design or painting direction.
+
+## Separable crest artwork
+
+Apply the painting direction above to every isolated segment. Use the project-wide guide for grouping motifs, painting under overlaps, registering at a locked aspect ratio, linking contact shadows and exporting the editable crest and merged loose assets. [Segmented crest build guide](segmented-crest-artwork.md)

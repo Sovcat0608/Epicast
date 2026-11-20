@@ -1,0 +1,1 @@
+const rightShoulderStudy = {"slot": [831, 257, 302, 305], "frames": [9, 10, 11, 12, 13, 14, 15, 0, 1, 2, 3, 4, 5, 6, 7, 8], "frameMs": 125, "columns": 4, "sheet": "shoulder-study/right-quiet/scene.webp", "pairedSheet": "shoulder-study/right-quiet/pairedSheet.webp"};

@@ -1,23 +1,44 @@
-EndCapper — All Rights Reserved
-Copyright (c) 2026 EndCapper contributors, to the extent applicable.
+Epicast — All Rights Reserved
 
-Permission is granted to download, install, inspect and use EndCapper free of
-charge, and to make personal modifications that are not redistributed.
+Copyright (c) 2026 Epicast contributors. All rights reserved in the original
+Epicast material to the extent held by its respective rights holders.
 
-Distribution of unmodified releases through CurseForge and its authorized
-third-party API clients is permitted in accordance with the project owner's
-CurseForge distribution settings. This permission does not authorize independent
-rehosting, sale, publication of modified versions, or reuse of protected code or
-artwork in another project. Those uses require permission from the relevant
-rights holder, except where applicable law permits them.
+Scope
 
-This notice applies only to rights held by the EndCapper contributors. It does
-not claim ownership of Blizzard Entertainment's names, trademarks, game assets,
-or other third-party material, nor does it create rights in material that is not
-protected by applicable law. Native game effect models are referenced by the
-addon and are not included in this distribution. EndCapper is not affiliated
-with or endorsed by Blizzard Entertainment.
+This licence covers Epicast's original code, crest artwork and animation,
+including its original sprites, sprite sheets and animation assets. See the
+separate notices accompanying any third-party material.
 
-THE ADDON IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED.
-TO THE EXTENT PERMITTED BY LAW, THE CONTRIBUTORS ARE NOT LIABLE FOR CLAIMS OR
-DAMAGES ARISING FROM ITS USE.
+Permissions
+
+Anyone may download, install, run and use Epicast free of charge, and may
+read and inspect its source code. You may copy and modify Epicast locally
+for your own use, including for private testing.
+
+Official project distribution and authorized distribution partners may
+distribute unmodified official releases subject to the project's published
+distribution settings and the applicable platform terms.
+
+All other rights are reserved. Except as allowed by this licence, applicable
+law, applicable third-party terms, or the relevant rights holder's written
+permission, you may not rehost, sell, sublicense or redistribute Epicast or
+its original assets, publish modified copies, or reuse its original code,
+crest artwork or animations in another project. This licence preserves
+GitHub's permissions to view and fork public repositories within GitHub
+under its Terms of Service.
+
+Third-party rights
+
+Blizzard Entertainment's names, trademarks, and game content remain subject
+to their respective rights and terms. This licence grants no rights in
+those materials. Epicast references native game effect models through the
+game client. These models are not included in the addon distribution.
+Epicast is an independent project and is not affiliated with or endorsed
+by Blizzard Entertainment. Other third-party components and materials
+remain governed by their own applicable licences and notices.
+
+Disclaimer
+
+THE ADDON IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED. TO THE EXTENT PERMITTED BY APPLICABLE LAW, THE CONTRIBUTORS ARE
+NOT LIABLE FOR CLAIMS OR DAMAGES ARISING FROM USE OF THE ADDON.

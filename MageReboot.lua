@@ -12,10 +12,13 @@ local function sampleSize(entry,width,art)
  local uv=chosen/backing
  return chosen,{0,0,0,uv,uv,0,uv,uv}
 end
+local function pause(s)
+ if s.startedAt then s.elapsed=(s.elapsed+math.max(0,GetTime()-s.startedAt))%6;s.startedAt=nil end
+ s.hover:Stop()
+end
 function E.StopMageReboot(entry)
  local s=entry.mageReboot;if not s then return end
- if s.startedAt then s.elapsed=(s.elapsed+math.max(0,GetTime()-s.startedAt))%6;s.startedAt=nil end
- s.hover:Stop();s.host:Hide()
+ pause(s);s.host:Hide()
 end
 function E.PlayMageReboot(entry)
  local s=entry.mageReboot;if not s or not s.enabled or not entry.frame:IsVisible()then return end
@@ -34,14 +37,15 @@ function E.UpdateMageReboot(entry,c)
   s.hover=host:CreateAnimationGroup();s.hover:SetLooping("REPEAT")
   for order=1,2 do local leg=s.hover:CreateAnimation("Translation");leg:SetOrder(order);leg:SetDuration(3);leg:SetSmoothing("IN_OUT");s.legs[order]=leg end
  end
- E.StopMageReboot(entry)
+ pause(s)
  if entry.artworkPhase then s.elapsed=entry.artworkPhase elseif s.art~=c.art then s.elapsed=0 end
  s.art=c.art;s.enabled=true;s.animate=c.effects~=false
- local width,height=art.width*c.size/100,art.height*c.size/100
+ local scale=E.CrestScale(c.size)
+ local width,height=art.width*scale,art.height*scale
  local amplitude=s.animate and height*.012 or 0
  local size,uv=sampleSize(entry,width,art);s.textureSize=size
  s.host:SetSize(width,height);s.host:SetFrameLevel(entry.frame:GetFrameLevel()+4);s.host:SetAlpha(entry.alpha)
- s.host:ClearAllPoints();s.host:SetPoint("CENTER",entry.art,"CENTER",0,30*c.size/100-amplitude)
+ s.host:ClearAllPoints();s.host:SetPoint("CENTER",entry.art,"CENTER",0,30*scale-amplitude)
  s.texture:SetTexture(prefix..art.name.."CASSize"..size..".tga");s.texture:SetSize(width,height)
  s.texture:ClearAllPoints();s.texture:SetPoint("CENTER",s.host,"CENTER",0,0);s.texture:SetTexCoord(E.UV(uv,c.flip))
  s.legs[1]:SetOffset(0,amplitude*2);s.legs[2]:SetOffset(0,-amplitude*2)

@@ -265,11 +265,13 @@ local function updatePose(layer, now, elapsed, animate)
 end
 
 place = function(texture, layer, window, flip)
-    if texture.placedWindow==window and texture.placedFlip==flip then return end
+    if texture.placedWindow==window and texture.placedFlip==flip
+        and (not window or (texture.placedWidth==layer.width and texture.placedHeight==layer.height)) then return end
     texture:ClearAllPoints()
     if window then
         local l,t,r,b=unpack(window)
-        local w,h=layer.frame:GetWidth(),layer.frame:GetHeight()
+        local w,h=layer.width,layer.height
+        texture.placedWidth,texture.placedHeight=w,h
         texture:SetPoint("TOPLEFT",layer.frame,"TOPLEFT",w*(flip and 1-r or l),-h*t)
         texture:SetSize(w*(r-l),h*(b-t))
     else
@@ -362,6 +364,8 @@ end
 local function texture(parent, level)
     local art = parent:CreateTexture(nil, "ARTWORK", nil, level)
     art:SetAllPoints(parent)
+    -- Large cels cross atlas pages. Present the requested page and UVs together.
+    if art.SetBlockingLoadsRequested then art:SetBlockingLoadsRequested(true) end
     if art.SetSnapToPixelGrid then art:SetSnapToPixelGrid(false) end
     if art.SetTexelSnappingBias then art:SetTexelSnappingBias(0) end
     if art.SetDesaturation then art:SetDesaturation(E.DruidArtworkDesaturation) end
@@ -449,13 +453,12 @@ function E.ApplyRestorationSegments(entry, config, artwork)
             layer.offset = nil
             layer.frame:ClearAllPoints()
             layer.frame:SetPoint("TOPLEFT", artwork.host, "TOPLEFT", layer.x, layer.y)
-            layer.frame:SetSize(width*w,height*h)
+            layer.width,layer.height=width*w,height*h
+            layer.frame:SetSize(layer.width,layer.height)
             if layer.contacts and layer.contacts.fabric then
                 if not layer.fabricIdle then
                     layer.fabricIdle,layer.fabricAction=texture(layer.frame,0),texture(layer.frame,1)
                 end
-                layer.idle.placedFlip,layer.action.placedFlip=nil,nil
-                layer.fabricIdle.placedFlip,layer.fabricAction.placedFlip=nil,nil
             end
             layer.frame:SetFrameLevel(entry.frame:GetFrameLevel()+info.rank*2)
             local pending=entry.placementLayerID==id and entry.pendingPlacement
@@ -465,10 +468,7 @@ function E.ApplyRestorationSegments(entry, config, artwork)
                 layer.parts = layer.parts or {}
                 for i, window in ipairs(layer.contacts.windows) do
                     local part = layer.parts[i] or texture(layer.frame, 0)
-                    local left, top, right, bottom = unpack(window)
-                    part:ClearAllPoints()
-                    part:SetPoint("TOPLEFT", layer.frame, "TOPLEFT", width*w*(config.flip and 1-right or left), -height*h*top)
-                    part:SetSize(width*w*(right-left), height*h*(bottom-top))
+                    place(part,layer,window,config.flip)
                     if not layer.parts[i] then part:Hide() end
                     layer.parts[i] = part
                 end

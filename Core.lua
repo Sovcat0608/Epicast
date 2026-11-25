@@ -73,7 +73,7 @@ function E.Apply()
    local source=E.GetSide(db,setKey,side);local c=source and E.Copy(source)
    entry.config=c;entry.current=true
    if c and E.IsCrestEnabled(db,setKey,side)and allowed then
-    local w,h,cx,cy=E.GetCapGeometry(c,c.flip);entry.frame:SetSize(w,h);entry.art:SetSize(225*c.size/100,225*c.size/100);entry.art:ClearAllPoints();entry.art:SetPoint("CENTER",entry.frame,"CENTER",-cx,-cy)
+    local w,h,cx,cy=E.GetCapGeometry(c,c.flip);entry.frame:SetSize(w,h);entry.art:SetSize(225*E.CrestScale(c.size),225*E.CrestScale(c.size));entry.art:ClearAllPoints();entry.art:SetPoint("CENTER",entry.frame,"CENTER",-cx,-cy)
     entry.frame:Show();E.UpdateEffects(entry,c);E.UpdateResource(entry,c)
    else
     for _,fx in ipairs(entry.addedEffectSlots or{})do fx.nativeWanted=false end

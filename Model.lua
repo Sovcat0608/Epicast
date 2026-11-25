@@ -41,23 +41,25 @@ function E.Copy(v)if type(v)~="table" then return v end;local t={};for k,x in pa
 local function equal(a,b)if type(a)~=type(b)then return false end;if type(a)~="table" then return a==b end;for k,v in pairs(a)do if not equal(v,b[k])then return false end end;for k in pairs(b)do if a[k]==nil then return false end end;return true end
 local function tableOr(v)return type(v)=="table" and v or {}end
 function E.UV(c,flip)if not flip then return unpack(c)end;return c[5],c[6],c[7],c[8],c[1],c[2],c[3],c[4]end
+function E.CrestScale(percent) return 1.5*percent/100 end
 function E.GetCapGeometry(c,flip)
+ local scale=E.CrestScale(c.size)
  local mage=E.MageRebootArtworks[c.art]
  if mage then
-  local b=mage.bounds;local w,h=mage.width*c.size/100,mage.height*c.size/100
+  local b=mage.bounds;local w,h=mage.width*scale,mage.height*scale
   local cx=((b[1]+b[3])/(2*mage.sourceWidth)-.5)*w*(flip and -1 or 1)
   local cy=(.5-(b[2]+b[4])/(2*mage.sourceHeight))*h
-  return w*(b[3]-b[1])/mage.sourceWidth,h*(b[4]-b[2])/mage.sourceHeight+2*h*.012,cx,30*c.size/100+cy
+  return w*(b[3]-b[1])/mage.sourceWidth,h*(b[4]-b[2])/mage.sourceHeight+2*h*.012,cx,30*scale+cy
  end
  local druid=E.DruidArtworks[c.art]
  if druid then
-  local b=druid.bounds;local w=162*c.size/100;local h=w*4/3
+  local b=druid.bounds;local w=162*scale;local h=w*4/3
   local sw,sh=druid.sourceWidth or 768,druid.sourceHeight or 1024
   local cx=((b[1]+b[3])/(2*sw)-.5)*w*(flip and -1 or 1)
   local cy=(.5-(b[2]+b[4])/(2*sh))*h
-  return w*(b[3]-b[1])/sw,h*(b[4]-b[2])/sh+2*h*.012,cx,30*c.size/100+cy
+  return w*(b[3]-b[1])/sw,h*(b[4]-b[2])/sh+2*h*.012,cx,30*scale+cy
  end
- return 162*c.size/100,216*c.size/100,0,30*c.size/100
+ return 162*scale,216*scale,0,30*scale
 end
 function E.HasCustomArtwork()return false end
 E.AddedEffectLimit=32

@@ -14,11 +14,14 @@ local function sampleSize(entry,width,art)
  while backingH<h do backingH=backingH*2 end
  return chosen,{0,0,0,h/backingH,chosen/backingW,0,chosen/backingW,h/backingH}
 end
-function E.StopDruidSisters(entry)
- local s=entry.druidSister;if not s then return end
+local function pause(s)
  if s.startedAt then s.elapsed=(s.elapsed+math.max(0,GetTime()-s.startedAt))%6;s.startedAt=nil end
  if s.restorationIdle then E.StopRestorationIdle(s)end
- s.hover:Stop();s.host:Hide()
+ s.hover:Stop()
+end
+function E.StopDruidSisters(entry)
+ local s=entry.druidSister;if not s then return end
+ pause(s);s.host:Hide()
 end
 function E.PlayDruidSisters(entry)
  local s=entry.druidSister;if not s or not s.enabled or not entry.frame:IsVisible()then return end
@@ -39,20 +42,20 @@ function E.UpdateDruidSisters(entry,c)
   s.hover=host:CreateAnimationGroup();s.hover:SetLooping("REPEAT")
   for order=1,2 do local leg=s.hover:CreateAnimation("Translation");leg:SetOrder(order);leg:SetDuration(3);leg:SetSmoothing("IN_OUT");s.legs[order]=leg end
  end
- E.StopDruidSisters(entry)
+ pause(s)
  if entry.artworkPhase then s.elapsed=entry.artworkPhase elseif s.art~=c.art then s.elapsed=0 end
  s.art=c.art;s.enabled=true;s.animate=c.effects~=false
  local width=entry.art:GetWidth()*.72;local height=width*4/3
  local amplitude=s.animate and height*.012 or 0
  local size,uv=sampleSize(entry,width,art);s.textureSize=size
  s.host:SetSize(width,height);s.host:SetFrameLevel(entry.frame:GetFrameLevel()+4);s.host:SetAlpha(entry.alpha)
- s.host:ClearAllPoints();s.host:SetPoint("CENTER",entry.art,"CENTER",0,30*c.size/100-amplitude)
+ s.host:ClearAllPoints();s.host:SetPoint("CENTER",entry.art,"CENTER",0,30*entry.art:GetWidth()/225-amplitude)
  s.texture:SetTexture(prefix..art.name.."CASSize"..size..".tga");s.texture:SetSize(width,height)
  s.texture:ClearAllPoints();s.texture:SetPoint("CENTER",s.host,"CENTER",0,0);s.texture:SetTexCoord(E.UV(uv,c.flip))
  s.legs[1]:SetOffset(0,amplitude*2);s.legs[2]:SetOffset(0,-amplitude*2)
  if E.ConfigureRestorationIdle then
   local segmented=E.UseRestorationSegments and E.UseRestorationSegments(entry,c)
-  E.ConfigureRestorationIdle(s,c.art=="druidRestoration" and not segmented and size or nil,c.flip)
+  E.ConfigureRestorationIdle(s,c.art=="druidRestoration" and not segmented and size or nil,c.flip,segmented)
  end
  E.PlayDruidSisters(entry)
 end

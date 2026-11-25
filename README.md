@@ -59,3 +59,7 @@ If an effect fails, run `/epicast triggers` or use **Trigger report** under **Cr
 For these buffs, `cooldown=active` or `inactive` confirms native detection. `untracked` means no matching item was found in a readable visible row; `restricted` or `unknown` means no readable state was available. Hidden-row item details are diagnostic only, because hidden viewers may stop updating. `module missing` means the reader was not loaded: extract the entire ZIP and fully restart WoW. Reader/binding errors are isolated from other triggers and included in the report. Barrage and Clearcasting detection changes still need confirmation on the affected clients.
 
 This is a testing build. Local integration and source asset checks pass; actual client appearance and spell/event availability still need in-game testing. The library's file checks do not verify every animation or appearance in-game.
+
+## Licence
+
+Epicast is free to download, install, and use, and its addon source is publicly readable. Private modifications are permitted. Reusing or redistributing Epicast’s original code, crests, or animations requires permission unless an exception in the licence or applicable law applies. Third-party material remains under its own terms. See the [Epicast licence](LICENSE) and the [official Epicrest website](https://epicrest.sovcat.com/).

@@ -52,7 +52,7 @@ local function showCel(idle, elapsed)
     idle.page, idle.cel, idle.previousFlip = page, cel, idle.flip
 end
 
-function E.ConfigureRestorationIdle(state, size, flip)
+function E.ConfigureRestorationIdle(state, size, flip, segmented)
     local idle = state.restorationIdle
     local bank = E.RestorationIdleBanks[size]
     if not bank then
@@ -60,7 +60,7 @@ function E.ConfigureRestorationIdle(state, size, flip)
             hideCel(idle)
             idle.active = false
         end
-        state.texture:Show()
+        state.texture:SetShown(not segmented)
         return
     end
     if not idle then

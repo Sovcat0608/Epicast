@@ -49,6 +49,6 @@ function E.RefreshStudioPreview()
  end
  entry.canvas:SetSize(stage:GetSize())
  entry.frame:SetSize(w,h);entry.frame:SetScale(scale*(p.previewZoom or 1));entry.frame:ClearAllPoints();entry.frame:SetPoint("CENTER",entry.canvas,"CENTER",0,0)
- local artWidth=225*c.size/100;entry.art:SetSize(artWidth,artWidth);entry.art:ClearAllPoints();entry.art:SetPoint("CENTER",entry.frame,"CENTER",-cx,-cy)
+ local artWidth=225*E.CrestScale(c.size);entry.art:SetSize(artWidth,artWidth);entry.art:ClearAllPoints();entry.art:SetPoint("CENTER",entry.frame,"CENTER",-cx,-cy)
  entry.frame:Show();E.UpdateEffects(entry,c);E.UpdateResource(entry,c)
 end

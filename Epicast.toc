@@ -1,13 +1,12 @@
 ## Interface: 16001
 ## Title: Epicast
-## Notes: Independent Mage and Druid spell crests and native effects.
+## Notes: Spell crests and custom effects.
 ## Author: Epicast
-## Version: 0.1.0-beta.18.segments.8
+## Version: 0.1.0-beta.18.segments.17-cpu.1
 ## IconTexture: Interface\AddOns\Epicast\Media\EpicastIcon
 ## SavedVariables: EpicastDB
 
 ArcaneData.lua
-ArcanePreset.lua
 MageRebootData.lua
 ClassSpecs.lua
 Model.lua
@@ -28,18 +27,31 @@ RestorationSegments.lua
 DruidSisters.lua
 MageReboot.lua
 Resources.lua
-EffectCatalog.lua
-EffectLibrary.lua
-EffectAnimations.lua
 EffectAuthoring.lua
 StudioModel.lua
 StudioRender.lua
-EffectPreview.xml
-EffectPreview.lua
 StudioPreview.lua
 StudioWidgets.lua
 EffectControls.lua
 BindingControls.lua
-EffectBrowser.lua
 Options.lua
+RestorationCPUTest1\StudioCustomLibrary.lua
+# Epicast Studio Crest: DruidBalance
+StudioCrests\DruidBalance-v16-1bd2290f4b636d3e1e3d195a9af945ab57406a8f7959ee121fad8246e9f15239\StudioDruidBalanceData.lua
+WarmupTest1\StudioDruidBalance.lua
+# End Epicast Studio Crest: DruidBalance
+# Epicast Studio Crest: DruidRestoration
+StudioCrests\DruidRestoration-v16-b434bd12da5ae179e3d0102f10f31e9530a9d126048dc02adaac3444b78a85c0\StudioDruidRestorationData.lua
+RestorationCPUTest1\StudioDruidRestoration.lua
+# End Epicast Studio Crest: DruidRestoration
+# Epicast Studio Crest: Arcane
+StudioCrests\Arcane-v16-bbac5ff74dfbee59cb58082f2eaed7957405791f4dc33402520c602e7096fa69\ArcaneFloatData.lua
+StudioCrests\Arcane-v16-bbac5ff74dfbee59cb58082f2eaed7957405791f4dc33402520c602e7096fa69\ArcaneFloatContacts.lua
+StudioCrests\Arcane-v16-bbac5ff74dfbee59cb58082f2eaed7957405791f4dc33402520c602e7096fa69\ArcaneFloat.lua
+# End Epicast Studio Crest: Arcane
+# Epicast Studio Crest: Frost
+StudioCrests\Frost-v16-8aed5e767b64a5532f2570b00fd78a6a95fb370120b18a37a91c54140ec2c9fa\FrostHaloData.lua
+StudioCrests\Frost-v16-8aed5e767b64a5532f2570b00fd78a6a95fb370120b18a37a91c54140ec2c9fa\FrostHalo.lua
+# End Epicast Studio Crest: Frost
+WarmupTest1\CrestWarmup.lua
 Core.lua
